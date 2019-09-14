@@ -1,7 +1,6 @@
 Hello :)
 
-
-
+Team Name: SEAR Software
 
 
 Project Ideas:
