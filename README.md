@@ -32,7 +32,9 @@ Project Ideas:
 - Try and solve the problem of "the user doesn't want to have to input that much data" but then how do we support the needs of what the user wants from a to do app? How often do we send notifications? How do we visualize it for them? How do we add prioritization.
 
 # Cooking App
-- Takes a list of ingredients as input
-- Attempts to scour the web for relevant recepies
+- Stores a list of ingredients you currently have in your fridge/kitchen
+- Lets you manually input recipes
+?- Lets you choose from list of current recipes and see what ingredients you are missing
+?- Lets you find recipes with the ingredients you have
 
 
