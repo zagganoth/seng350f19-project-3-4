@@ -34,7 +34,7 @@ Project Ideas:
 # Cooking App
 - Stores a list of ingredients you currently have in your fridge/kitchen
 - Lets you manually input recipes
-?- Lets you choose from list of current recipes and see what ingredients you are missing
-?- Lets you find recipes with the ingredients you have
+- Lets you choose from list of current recipes and see what ingredients you are missing
+- Lets you find recipes with the ingredients you have
 
 
