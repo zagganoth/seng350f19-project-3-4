@@ -1,4 +1,23 @@
-Homework Helper App
+## Homework Helper App
 
-    Keeps track of homework for the user
-    User inputs what grade they want to achieve in that class and the grading scheme for everything. Then the user would input how much they spent working/studying on a specific item, what grade they got, and then the app would calculate how much time they needed to spend on all the following assignments to achieve their target grade
+### Description:
+-Keeps track of homework for the user.
+-User inputs what grade they want to achieve in that class and the grading scheme for everything. 
+-The user would input how much they spent working/studying on a specific item, what grade they got, etc.
+-The app would calculate how much time they needed to spend on all the following assignments to achieve their target grade.
+### Features:
+-Assignment details submitted via Course Outline pdf scrape (verified by user) (good for csc/engr courses)
+-List assignment deadlines in order
+-Algorithm that calculates ideal study time based off previous study time and grades
+-Sends (email?) notifications when deadline is approaching based on weight of assignment/midterm/final
+-Notification configuration settings (enter an email to receive notifications)
+-Beginner tutorial walk through to set up course assignment settings
+-Add/remove assignment/course
+-Change course grade goal
+-View overall current semester grade
+-Add a difficulty level to a course that is factored in to suggested study time
+-Pass/Fail flag for certain assignments/finals
+-Enter an assignment with no time recommendation
+
+
+## Team SEAR Software
