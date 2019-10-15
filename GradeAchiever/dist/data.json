@@ -1,0 +1,14 @@
+[
+  { "id": 11, "username": "Mr. Nice", "courses": ["SENG350","SENG360"], "overall_grade_goal": 80, "overall_grade": 50 },
+  { "id": 12, "name": "Narco", "courses": ["CSC115","ENG120","ENG141","PHYS111"],"overall_grade_goal": 73,"overall_grade": 57 },
+  { "id": 13, "name": "Bombasto", "courses": ["CSC225","SENG265","ECE260","STAT260"], "overall_grade_goal": 88,
+    "overall_grade": "79"
+  },
+  { "id": 14, "name": "Celeritas" },
+  { "id": 15, "name": "Magneta" },
+  { "id": 16, "name": "RubberMan" },
+  { "id": 17, "name": "Dynama" },
+  { "id": 18, "name": "Dr IQ" },
+  { "id": 19, "name": "Magma" },
+  { "id": 20, "name": "Tornado" }
+]
