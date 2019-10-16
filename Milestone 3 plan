@@ -4,7 +4,7 @@
 3 - Front end and back end can handle data that's manually added to the system, but not regular data input 
 (courses possibly, calendar view, gradable items, users, algorithm possibly)
 4 -  We should be spending a lot of time on this milestone, if everything goes too smoothly we can do more work
-
+5 - We will be using Jest as the testing framework becuase it is becoming more popular than Mocha and is recommended for beginners: https://blog.bitsrc.io/top-javascript-testing-frameworks-in-demand-for-2019-90c76e7777e9.
 
 Milestone
 Marking Guide
