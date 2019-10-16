@@ -17,6 +17,10 @@ export class Server {
 
     public app: express.Application;
 
+    /*
+        Added a test comment
+     */
+
     /**
      * Bootstrap the application.
      *
