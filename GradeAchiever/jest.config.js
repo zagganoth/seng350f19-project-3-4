@@ -1,6 +1,6 @@
 module.exports = {
 	"roots": [
-		"GradeAchiever/src"
+		"<rootDir>/src"
 	],
 	"transform": {
 		"^.+\\.tsx?$": "ts-jest"
