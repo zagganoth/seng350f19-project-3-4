@@ -31,6 +31,9 @@ var Server = /** @class */ (function () {
         //add routes
         this.routes();
     }
+    /*
+        Added a test comment
+     */
     /**
      * Bootstrap the application.
      *

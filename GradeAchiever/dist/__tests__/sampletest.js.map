@@ -1,0 +1,1 @@
+{"version":3,"file":"sampletest.js","sourceRoot":"","sources":["../../src/__tests__/sampletest.ts"],"names":[],"mappings":";AAAA,IAAI,CAAC,YAAY,EAAE;IAElB,MAAM,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CACD,CAAC","sourcesContent":["test('samplename', () => {\n\t\n\texpect(1);\n\t}\n);\n"]}

@@ -22,4 +22,7 @@
 - Enter an assignment with no time recommendation
 
 
-
+## Testing
+Unit test are written using Jest.
+To manually run tests:
+`npm run test` or `npm t`
