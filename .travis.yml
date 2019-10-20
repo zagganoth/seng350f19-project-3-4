@@ -6,4 +6,4 @@ install:
   - npm --prefix ./GradeAchiever install
   
 script:
-  - npm test
+  - npm run test
