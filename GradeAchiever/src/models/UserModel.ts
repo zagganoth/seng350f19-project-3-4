@@ -4,6 +4,15 @@ import { CourseModel } from "./CourseModel";
 export class UserModel extends BaseModel {
     private readonly isAdmin : boolean;
     private readonly userID : Number;
+    /* User Model Fields:
+    	○ StudentID (auto-generated, auto-increment, int)
+		○ Email (string, unique)
+		○ StudentName (string, unique?)
+		○ NotificationLevel
+		○ AlgorithmAccuracy (float: 0.5f - 2f)
+		○ Courses[]
+        IsAdmin (bool)
+     */
     constructor(userID: Number)
     {
         super("User");

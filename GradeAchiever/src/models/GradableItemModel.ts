@@ -2,6 +2,15 @@ import { BaseModel } from "./BaseModel";
 
 export class GradableItemModel extends BaseModel {
 
+    /*
+        Gradable Item Model Fields:
+        		○ GradableItemID (auto-generated,auto-increment,int)
+                ○ CourseID
+                ○ GradableItemName (string)
+                ○ DueDate (Date)
+                ○ Weight (float? Int?) (Constraint: Item weights must add to 100)
+                GItemAlgorithmAccuracy (float?)
+     */
     constructor()
     {
         super("GradableItem");
@@ -24,7 +33,7 @@ export class GradableItemModel extends BaseModel {
     }
     public GetAlgorithmAccuracy(gradableItemID: Number)
     {
-        
+
     }
 
 
