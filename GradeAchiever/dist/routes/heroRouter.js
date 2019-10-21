@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var DbClient = require("../DbClient");
-var Heroes = require('../../dist/data.json');
 var HeroRouter = /** @class */ (function () {
     function HeroRouter() {
         // not much here yet
@@ -37,23 +36,18 @@ var HeroRouter = /** @class */ (function () {
      * GET one hero by id
      */
     HeroRouter.prototype.getOne = function (req, res, next) {
-        var query = parseInt(req.params.id);
-        var hero = Heroes.find(function (hero) { return hero.id === query; });
-        if (hero) {
-            res.status(200)
-                .send({
-                message: 'Success',
-                status: res.status,
-                hero: hero
-            });
-        }
-        else {
-            res.status(404)
-                .send({
-                message: 'No hero found with the given id.',
-                status: res.status
-            });
-        }
+        //console.log(req.params['id']);
+        DbClient.connect()
+            .then(function (db) {
+            return db.collection("heroes").find({ id: +req.params.id }).toArray();
+        })
+            .then(function (heroes) {
+            console.log(heroes);
+            res.send(heroes);
+        })
+            .catch(function (err) {
+            console.log("err.message");
+        });
     };
     return HeroRouter;
 }());

@@ -1,6 +1,5 @@
 import {Router, Request, Response, NextFunction} from 'express';
 import DbClient = require("../DbClient");
-const Heroes = require('../../dist/data.json');
 export class HeroRouter {
     public static create(router: Router) {
         //log
@@ -40,23 +39,18 @@ export class HeroRouter {
      * GET one hero by id
      */
     public getOne(req: Request, res: Response, next: NextFunction) {
-        let query = parseInt(req.params.id);
-        let hero = Heroes.find((hero: any) => hero.id === query);
-        if (hero) {
-            res.status(200)
-                .send({
-                    message: 'Success',
-                    status: res.status,
-                    hero
-                });
-        }
-        else {
-            res.status(404)
-                .send({
-                    message: 'No hero found with the given id.',
-                    status: res.status
-                });
-        }
+        //console.log(req.params['id']);
+        DbClient.connect()
+        .then((db) => {
+            return db!.collection("heroes").find({id: +req.params.id}).toArray();
+        })
+        .then((heroes:any) => {
+            console.log(heroes);
+            res.send(heroes);
+        })
+        .catch((err) => {
+            console.log("err.message");
+        })
     }
 
 }
