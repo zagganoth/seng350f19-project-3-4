@@ -7,7 +7,7 @@ import path from "path";
 import errorHandler from "errorhandler";
 import { IndexRoute } from "./routes/index";
 import { HeroRouter } from "./routes/heroRouter";
-import { UserHomeRoute } from "./routes/userhome";
+import {SessionRoute} from "./routes/SessionRoute";
 
 /**
  * The server.
@@ -102,7 +102,7 @@ export class Server {
 
         IndexRoute.create(router);
         HeroRouter.create(router);
-        UserHomeRoute.create(router);
+        SessionRoute.create(router);
         //use router middleware
         this.app.use(router);
 

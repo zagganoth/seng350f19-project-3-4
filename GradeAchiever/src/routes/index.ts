@@ -1,8 +1,8 @@
 
 import { NextFunction, Request, Response, Router } from "express";
 import { BaseRoute } from "./route";
-import { UserHomeRoute } from "./userhome";
 
+import {SessionController} from "../controllers/SessionController";
 
 /**
  * / route
@@ -21,11 +21,16 @@ export class IndexRoute extends BaseRoute {
     public static create(router: Router) {
         //log
         console.log("[IndexRoute::create] Creating index route.");
-
+        let path = require('path');
         //add home page route
         router.get("/", (req: Request, res: Response, next: NextFunction) => {
             new IndexRoute().index(req, res, next);
         });
+        /*
+        router.get("/stylesheets/style.css", (req: Request, res: Response, next: NextFunction) =>
+        {
+            res.sendFile(path.join(__dirname + "../../../stylesheets/style.css"));
+        });*/
 
     }
 
@@ -49,15 +54,29 @@ export class IndexRoute extends BaseRoute {
      * @next {NextFunction} Execute the next method.
      */
     public index(req: Request, res: Response, next: NextFunction) {
+        //The index page should be default be the login page
+        //Create a SessionController to get a list of all users
+        //Populate page with users from SessionController
+        let session = new SessionController();
+
+
         //set custom title
         this.title = "Grade Achiever";
 
-        //set login options
-        let options: Object = {
-            "users": ["User1", "User2", "User3", "Admin"]
-        };
-
-        //render template
-        this.render(req, res, "index", options);
+        session.RequestUsers(req,res,next)
+        .then((mess) => {
+            console.log(mess);
+            //set message
+            let options: Object = {
+                "users": mess
+            };
+            return options;
+        })
+        .then((options: any)=>{
+            //console.log("I'm doing the thing: "+options);
+            //res.send(options);
+            //render template
+            this.render(req, res, "index", options);
+        });
     }
 }

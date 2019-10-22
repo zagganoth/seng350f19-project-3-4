@@ -1,8 +1,8 @@
 import { BaseModel } from "./BaseModel";
 import { CourseModel } from "./CourseModel";
-
+import DbClient = require("../DbClient");
+import {Request, Response, NextFunction} from "express";
 export class UserModel extends BaseModel {
-    private readonly isAdmin : boolean;
     private readonly userID : Number;
     /* User Model Fields:
     	○ StudentID (auto-generated, auto-increment, int)
@@ -17,35 +17,11 @@ export class UserModel extends BaseModel {
     {
         super("User");
         //We can test here the id of the user submitting the request - if it's an admin user we can allow for admin actions
-        let isAdmin = false;
-        this.isAdmin = isAdmin;
+
 
         this.userID = userID;
     }
-    public AddUser(userName: string, email: string)
-    {
-        //Add the user to the database using dbClient
-        if(this.isAdmin)
-        {
 
-        }
-        else
-        {
-            throw new Error("Invalid admin credentials");
-        }
-
-    }
-    public RemoveUser(userID: Number)
-    {
-        if(this.isAdmin)
-        {
-
-        }
-        else
-        {
-            throw new Error("Invalid admin credentials");
-        }
-    }
     public SetAlgorithmAccuracy(algAccuracy: Number)
     {
 
@@ -66,9 +42,16 @@ export class UserModel extends BaseModel {
     {
         //The course should be uniquely identifiable by the user id and course name
     }
-    public GetUserDetails()
+    async GetUserDetails(req: Request, res: Response, next: NextFunction, id: Number)
     {
-
+        return await DbClient.connect()
+        .then((db)=>{
+            console.log("Id is " + id);
+            return db!.collection(this.tableName).find({"StudentID":id}).toArray();
+        })
+        .catch((err) => {
+            console.log(err.message);
+        })
     }
     public GetAlgorithmAccuracy()
     {
@@ -78,6 +61,5 @@ export class UserModel extends BaseModel {
     {
 
     }
-
 
 }

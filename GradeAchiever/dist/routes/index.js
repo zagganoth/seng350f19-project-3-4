@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var route_1 = require("./route");
+var SessionController_1 = require("../controllers/SessionController");
 /**
  * / route
  *
@@ -40,13 +41,19 @@ var IndexRoute = /** @class */ (function (_super) {
     IndexRoute.create = function (router) {
         //log
         console.log("[IndexRoute::create] Creating index route.");
+        var path = require('path');
         //add home page route
         router.get("/", function (req, res, next) {
             new IndexRoute().index(req, res, next);
         });
+        /*
+        router.get("/stylesheets/style.css", (req: Request, res: Response, next: NextFunction) =>
+        {
+            res.sendFile(path.join(__dirname + "../../../stylesheets/style.css"));
+        });*/
     };
     /**
-     * The home page route.
+     * The login page route.
      *
      * @class IndexRoute
      * @method index
@@ -55,14 +62,28 @@ var IndexRoute = /** @class */ (function (_super) {
      * @next {NextFunction} Execute the next method.
      */
     IndexRoute.prototype.index = function (req, res, next) {
+        var _this = this;
+        //The index page should be default be the login page
+        //Create a SessionController to get a list of all users
+        //Populate page with users from SessionController
+        var session = new SessionController_1.SessionController();
         //set custom title
-        this.title = "Much better title";
-        //set message
-        var options = {
-            "message": "Welcome to the UVic 350!"
-        };
-        //render template
-        this.render(req, res, "index", options);
+        this.title = "Grade Achiever";
+        session.RequestUsers(req, res, next)
+            .then(function (mess) {
+            console.log(mess);
+            //set message
+            var options = {
+                "users": mess
+            };
+            return options;
+        })
+            .then(function (options) {
+            //console.log("I'm doing the thing: "+options);
+            //res.send(options);
+            //render template
+            _this.render(req, res, "index", options);
+        });
     };
     return IndexRoute;
 }(route_1.BaseRoute));

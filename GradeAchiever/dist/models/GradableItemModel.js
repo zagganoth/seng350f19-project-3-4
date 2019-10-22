@@ -16,6 +16,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var BaseModel_1 = require("./BaseModel");
 var GradableItemModel = /** @class */ (function (_super) {
     __extends(GradableItemModel, _super);
+    /*
+        Gradable Item Model Fields:
+                ○ GradableItemID (auto-generated,auto-increment,int)
+                ○ CourseID
+                ○ GradableItemName (string)
+                ○ DueDate (Date)
+                ○ Weight (float? Int?) (Constraint: Item weights must add to 100)
+                GItemAlgorithmAccuracy (float?)
+     */
     function GradableItemModel() {
         return _super.call(this, "GradableItem") || this;
     }

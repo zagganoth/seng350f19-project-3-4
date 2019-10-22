@@ -16,6 +16,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var BaseModel_1 = require("./BaseModel");
 var CourseModel = /** @class */ (function (_super) {
     __extends(CourseModel, _super);
+    /*
+        Course Model Fields:
+            ○ CourseID (auto-generated, auto-increment, int)
+            ○ StudentID (string)
+            ○ CourseName (string)
+            ○ PerceivedDifficulty (Float)
+            ○ GradeGoal (int: 0 - 100)
+            ○ GradableItems[]
+            (Removed) CourseAlgorithmAccuracy (float: 0.5f - 2f)
+     */
     function CourseModel() {
         return _super.call(this, "Course") || this;
     }

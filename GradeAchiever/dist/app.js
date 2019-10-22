@@ -11,6 +11,7 @@ var path_1 = __importDefault(require("path"));
 var errorhandler_1 = __importDefault(require("errorhandler"));
 var index_1 = require("./routes/index");
 var heroRouter_1 = require("./routes/heroRouter");
+var SessionRoute_1 = require("./routes/SessionRoute");
 /**
  * The server.
  *
@@ -53,7 +54,7 @@ var Server = /** @class */ (function () {
      */
     Server.prototype.config = function () {
         //add static paths
-        this.app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
+        this.app.use(express_1.default.static(path_1.default.join(__dirname, "/public")));
         //configure pug
         this.app.set("views", path_1.default.join(__dirname, "/../views"));
         this.app.set("view engine", "pug");
@@ -87,6 +88,7 @@ var Server = /** @class */ (function () {
         router = express_1.default.Router();
         index_1.IndexRoute.create(router);
         heroRouter_1.HeroRouter.create(router);
+        SessionRoute_1.SessionRoute.create(router);
         //use router middleware
         this.app.use(router);
     };

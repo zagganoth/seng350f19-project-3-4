@@ -9,5 +9,6 @@ block content
         label(for='userOpt') Users
         select(name='user')
           each user in users
-            option=user
+            option("value"=user) #{user.StudentName}
           input(type='submit', value='Login')
+
