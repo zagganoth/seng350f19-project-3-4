@@ -11,9 +11,9 @@ before_install:
 
 install:
   - npm --prefix ./GradeAchiever install
-  #- npm install -g gulp
-  # ^ this is the code
-  - npm install --save-dev gulp-tslint
+  - npm install -g gulp
+  # ^ this is the code that works?
+  #- npm install --save-dev gulp-tslint
 
 script:
   - npm --prefix ./GradeAchiever run test
