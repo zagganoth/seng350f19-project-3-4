@@ -4,10 +4,13 @@ html
     title= title
     block styles
       link(rel='stylesheet' type='text/css' href='stylesheets/style.css')
+  
   body
-    div.navbar
-      if StudentDetails
-        button.logout Logout
-      if admin
-        button Admin
+    header
+      nav.navbar
+        if studentDetails
+          a.logout.navbar-item(href="/") Logout
+          if studentDetails[0].IsAdmin
+            a.navbar-item(href="/admin") Manage Users
+    
     block content
