@@ -2,6 +2,13 @@ language: node_js
 node_js:
   - "node"
 
+services:
+  - docker
+
+before_install:
+  - docker build -t grade-achiever ./GradeAchiever
+  
+
 install:
   - npm --prefix ./GradeAchiever install
   
