@@ -1,8 +1,61 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #474a48;
+  color: #f3e0ec;
 }
 
 a {
-  color: #00B7FF;
+  color: #f3e0ec;
+}
+
+h1 {
+  color: #ee5622;
+}
+
+.container-fluid{
+  width: 100%;
+  margin: 1%;
+}
+
+
+/*
+Colour scheme:
+eca72c yellow
+474a48 dark grey
+ee5622 orange
+f3e0ec whiteish
+ead5e6 light grey
+*/
+
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #eca72c;
+  color: #f3e0ec;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #eca72c;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f3e0ec;
+  padding: 20px;
 }
