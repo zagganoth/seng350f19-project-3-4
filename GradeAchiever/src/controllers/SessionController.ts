@@ -21,4 +21,6 @@ export class SessionController {
         return await m.GetUserDetails(req,res,next,id)
 
     }
+    
+
 }
