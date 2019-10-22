@@ -105,7 +105,7 @@ export class Server {
         HeroRouter.create(router);
         SessionRoute.create(router);
         AdminRoute.create(router);
-        // use router middleware
+        //use router middleware
         this.app.use(router);
 
     }
