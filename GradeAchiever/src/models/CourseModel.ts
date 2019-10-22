@@ -16,7 +16,7 @@ export class CourseModel extends BaseModel {
     constructor() {
         super("Course");
     }
-    public CreateCourse(userID: number, courseName: string) {
+    public CreateCourse(userID: Number, courseName: string) {
 
     }
     public SetDifficulty(courseID: number, difficulty: number) {

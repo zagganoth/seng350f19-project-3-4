@@ -16,7 +16,7 @@ script:
   - npm link typescript
   - npm link tslint
   - tslint -p ./GradeAchiever
-  - tslint -p ./GradeAchiever --test
+  # - tslint -p ./GradeAchiever
 
 
   # - npm --prefix ./GradeAchiever run compile
