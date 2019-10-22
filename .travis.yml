@@ -11,8 +11,11 @@ before_install:
 
 install:
   - npm --prefix ./GradeAchiever install
+  - npm --prefix ./GradeAchiever install -g typescript
   
 
 script:
+  - tsc -v
+  - tslint -v
   - npm --prefix ./GradeAchiever run test
   - tslint -p ./GradeAchiever --test
