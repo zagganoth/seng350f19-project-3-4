@@ -8,17 +8,10 @@ services:
 before_install:
   - docker build -t grade-achiever ./GradeAchiever
   
-
 install:
   - npm --prefix ./GradeAchiever install
 
 script:
-  - npm link typescript
-  - npm link tslint
-  - tslint -p ./GradeAchiever
-  # - tslint -p ./GradeAchiever
-
-
-  # - npm --prefix ./GradeAchiever run compile
-  # - npm --prefix ./GradeAchiever run tslint-test
-  # - npm --prefix ./GradeAchiever run test
+  - npm --prefix ./GradeAchiever run tslint-test
+  - npm --prefix ./GradeAchiever run compile
+  - npm --prefix ./GradeAchiever run test
