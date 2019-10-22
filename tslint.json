@@ -1,5 +1,3 @@
 {
-  "rules": {
-    "no-unreachable": true
-  }
+  "extends": "tslint:recomennded"
 }
