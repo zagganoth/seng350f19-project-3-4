@@ -13,9 +13,11 @@ install:
   - npm --prefix ./GradeAchiever install
   - npm install -g gulp
   - npm install --save-dev gulp-tslint
+  - npm install -g typescript
 
 script:
   - npm --prefix ./GradeAchiever run test
+  - npm link typescript
   - npm link tslint
   - npm link gulp
   - gulp tslint
