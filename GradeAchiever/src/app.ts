@@ -5,10 +5,10 @@ import errorHandler from "errorhandler";
 import express from "express";
 import logger from "morgan";
 import path from "path";
+import {AdminRoute} from "./routes/AdminRoute";
 import { HeroRouter } from "./routes/heroRouter";
 import { IndexRoute } from "./routes/index";
 import {SessionRoute} from "./routes/SessionRoute";
-import {AdminRoute} from "./routes/AdminRoute";
 
 /**
  * The server.
