@@ -50,7 +50,7 @@ export class UserHomeRoute extends BaseRoute {
         //set custom title
         this.title = "Overview";
         //set options
-        let options: Object = {
+        let options: object = {
             "username": req.body.user
         };
 

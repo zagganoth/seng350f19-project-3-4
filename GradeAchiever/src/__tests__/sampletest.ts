@@ -1,5 +1,4 @@
-test('samplename', () => {
-	
+test("samplename", () => {
 	expect(1);
-	}
+	},
 );
