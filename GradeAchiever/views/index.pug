@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1 #{message}
-  p Welcome to #{title}
+  div.container-fluid
+    h1 #{title}
+    h2 Select a user to login
+    div.container-fluid
+      form(action='/overview' method="post")
+        label(for='userOpt') Users
+        select(name='user')
+          each user in users
+            option=user
+          input(type='submit', value='Login')

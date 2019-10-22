@@ -7,6 +7,7 @@ import path from "path";
 import errorHandler from "errorhandler";
 import { IndexRoute } from "./routes/index";
 import { HeroRouter } from "./routes/heroRouter";
+import { UserHomeRoute } from "./routes/userhome";
 
 /**
  * The server.
@@ -58,7 +59,7 @@ export class Server {
      */
     public config() {
         //add static paths
-        this.app.use(express.static(path.join(__dirname, "public")));
+        this.app.use(express.static(path.join(__dirname, "/public")));
 
         //configure pug
         this.app.set("views", path.join(__dirname, "/../views"));
@@ -101,6 +102,7 @@ export class Server {
 
         IndexRoute.create(router);
         HeroRouter.create(router);
+        UserHomeRoute.create(router);
         //use router middleware
         this.app.use(router);
 

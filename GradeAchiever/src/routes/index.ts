@@ -1,6 +1,7 @@
 
 import { NextFunction, Request, Response, Router } from "express";
 import { BaseRoute } from "./route";
+import { UserHomeRoute } from "./userhome";
 
 
 /**
@@ -25,6 +26,7 @@ export class IndexRoute extends BaseRoute {
         router.get("/", (req: Request, res: Response, next: NextFunction) => {
             new IndexRoute().index(req, res, next);
         });
+
     }
 
     /**
@@ -38,7 +40,7 @@ export class IndexRoute extends BaseRoute {
     }
 
     /**
-     * The home page route.
+     * The login page route.
      *
      * @class IndexRoute
      * @method index
@@ -48,11 +50,11 @@ export class IndexRoute extends BaseRoute {
      */
     public index(req: Request, res: Response, next: NextFunction) {
         //set custom title
-        this.title = "Much better title";
+        this.title = "Grade Achiever";
 
-        //set message
+        //set login options
         let options: Object = {
-            "message": "Welcome to the UVic 350!"
+            "users": ["User1", "User2", "User3", "Admin"]
         };
 
         //render template
