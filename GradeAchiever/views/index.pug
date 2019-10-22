@@ -4,11 +4,15 @@ block content
   div.container-fluid
     h1 #{title}
     h2 Select a user to login
-    div.container-fluid
+    div
       form(action='/overview' method="post")
         label(for='userOpt') Users
-        select(name='user')
-          each user in users
-            option("value"=user) #{user.StudentName}
+        if users.length > 0
+          select(name='user')
+            each user in users
+              option("value"=user) #{user.StudentName}
           input(type='submit', value='Login')
+        else 
+          p.dark No users available.
+          input(type='submit', disabled, value='Login')
 

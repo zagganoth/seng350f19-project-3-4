@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Open Sans", Helvetica, Arial, sans-serif;
   background-color: #474a48;
   color: #f3e0ec;
 }
@@ -13,10 +13,32 @@ h1 {
   color: #ee5622;
 }
 
+div {
+  border-radius: 5px;
+  background-color: #f3e0ec;
+  padding: 20px;
+}
+
+
+.dark {
+  color: #474a48;
+}
+
 .container-fluid{
   width: 100%;
-  margin: 1%;
+  padding: 10px;
 }
+
+.navbar{
+  padding: 0;
+  color: #474a48;
+}
+
+.logout{
+  background-color: #eca72c;
+  color: #f3e0ec;
+}
+
 
 
 /*
@@ -54,8 +76,12 @@ input[type=submit]:hover {
   background-color: #eca72c;
 }
 
-div {
-  border-radius: 5px;
-  background-color: #f3e0ec;
-  padding: 20px;
+
+input[disabled] {
+  background-color: #eebd68;
 }
+
+input[disabled]:hover {
+  background-color: #eebd68;
+}
+

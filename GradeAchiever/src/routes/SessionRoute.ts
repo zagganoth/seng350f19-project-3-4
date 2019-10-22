@@ -12,6 +12,7 @@ export class SessionRoute extends BaseRoute {
             console.log(req.body);
             new SessionRoute().Session(req,res,next,JSON.parse(req.body.user).StudentID);
         });
+        
     }
     async Session(req: Request,res: Response, next: NextFunction,id: Number)
     {

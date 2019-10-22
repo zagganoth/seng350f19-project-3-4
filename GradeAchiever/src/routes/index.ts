@@ -26,11 +26,12 @@ export class IndexRoute extends BaseRoute {
         router.get("/", (req: Request, res: Response, next: NextFunction) => {
             new IndexRoute().index(req, res, next);
         });
-        /*
+        
         router.get("/stylesheets/style.css", (req: Request, res: Response, next: NextFunction) =>
         {
-            res.sendFile(path.join(__dirname + "../../../stylesheets/style.css"));
-        });*/
+            console.log("CSS requested")
+            res.sendFile(path.join(__dirname + "../../../public/stylesheets/style.css"));
+        });
 
     }
 
@@ -62,7 +63,7 @@ export class IndexRoute extends BaseRoute {
 
         //set custom title
         this.title = "Grade Achiever";
-
+        
         session.RequestUsers(req,res,next)
         .then((mess) => {
             console.log(mess);
@@ -71,6 +72,9 @@ export class IndexRoute extends BaseRoute {
                 "users": mess
             };
             return options;
+        })
+        .catch((err) => {
+            console.log(err.message);
         })
         .then((options: any)=>{
             //console.log("I'm doing the thing: "+options);

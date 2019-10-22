@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  div.container-fluid
+    h1 Admin Page
+    h3 Welcome Admin
+    div
+      h2 Manage user accounts
+      div 
+        h3 Create a new user
+        div
+          //form(action='/createUser' method="post")
+            //label(for='userOpt') Users
+            
+      div 
+        h3 Delete a user
+        div
+          form(action='/deleteUser' method="post")
+            label(for='userOpt') Users
+            if users.length > 0
+              select(name='user')
+                each user in users
+                if user.StudentName == username
+                  option("value"=user disabled) #{user.StudentName}
+                else 
+                  option("value"=user) #{user.StudentName}
+              input(type='submit', value='Delete')
+            else 
+              p.dark No users available.
+              input(type='submit', disabled, value='Delete')
+
+
+
