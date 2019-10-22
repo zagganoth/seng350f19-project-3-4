@@ -1,5 +1,5 @@
 {
-  "name": "untitled",
+  "name": "grade-achiever",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -22,12 +22,12 @@
     "http-errors": "~1.6.3",
     "mongodb": "^3.3.3",
     "morgan": "^1.9.1",
-    "pug": "^2.0.0-beta11"
+    "pug": "^2.0.0-beta11",
+    "typescript": "^3.6.4"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
     "jest": "^24.9.0",
-    "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
+    "ts-jest": "^24.1.0"
   }
 }
