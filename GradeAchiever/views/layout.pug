@@ -5,4 +5,9 @@ html
     block styles
       link(rel='stylesheet' type='text/css' href='stylesheets/style.css')
   body
+    div.navbar
+      if StudentDetails
+        button.logout Logout
+      if admin
+        button Admin
     block content
