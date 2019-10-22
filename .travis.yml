@@ -13,9 +13,12 @@ install:
   - npm --prefix ./GradeAchiever install
 
 script:
-  - npm --prefix ./GradeAchiever run sample-script
   - npm link typescript
-  - tsc -v
-  - tslint -v
-  - npm --prefix ./GradeAchiever run test
+  - npm link tslint
+  - tslint -p ./GradeAchiever
   - tslint -p ./GradeAchiever --test
+
+
+  # - npm --prefix ./GradeAchiever run compile
+  # - npm --prefix ./GradeAchiever run tslint-test
+  # - npm --prefix ./GradeAchiever run test
