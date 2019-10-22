@@ -16,5 +16,6 @@ install:
 
 script:
   - npm --prefix ./GradeAchiever run test
+  - npm link tslint
   - npm link gulp
   - gulp tslint
