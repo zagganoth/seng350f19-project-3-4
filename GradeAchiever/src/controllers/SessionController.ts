@@ -3,24 +3,19 @@ import {AdminModel} from "../models/AdminModel";
 import {UserModel} from "../models/UserModel";
 
 export class SessionController {
-    constructor()
-    {
+    constructor() {
 
     }
-    async RequestUsers(req: Request, res: Response, next: NextFunction)
-    {
-        let m = new AdminModel();
+    public async RequestUsers(req: Request, res: Response, next: NextFunction) {
+        const m = new AdminModel();
 
-        let retval = await m.GetAllUsers(req,res,next);
+        const retval = await m.GetAllUsers(req, res, next);
         return retval;
     }
-    async RequestUser(req: Request, res: Response, next: NextFunction,id: Number)
-    {
+    public async RequestUser(req: Request, res: Response, next: NextFunction, id: number) {
 
-        let m = new UserModel(id);
-        return await m.GetUserDetails(req,res,next,id)
+        const m = new UserModel(id);
+        return await m.GetUserDetails(req, res, next, id);
 
     }
-    
-
 }

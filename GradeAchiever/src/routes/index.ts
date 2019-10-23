@@ -19,17 +19,16 @@ export class IndexRoute extends BaseRoute {
      * @static
      */
     public static create(router: Router) {
-        //log
+        // log
         console.log("[IndexRoute::create] Creating index route.");
-        let path = require('path');
-        //add home page route
+        const path = require("path");
+        // add home page route
         router.get("/", (req: Request, res: Response, next: NextFunction) => {
             new IndexRoute().index(req, res, next);
         });
-        
-        router.get("/stylesheets/style.css", (req: Request, res: Response, next: NextFunction) =>
-        {
-            console.log("CSS requested")
+
+        router.get("/stylesheets/style.css", (req: Request, res: Response, next: NextFunction) => {
+            console.log("CSS requested");
             res.sendFile(path.join(__dirname + "../../../public/stylesheets/style.css"));
         });
 
@@ -55,31 +54,30 @@ export class IndexRoute extends BaseRoute {
      * @next {NextFunction} Execute the next method.
      */
     public index(req: Request, res: Response, next: NextFunction) {
-        //The index page should be default be the login page
-        //Create a SessionController to get a list of all users
-        //Populate page with users from SessionController
-        let session = new SessionController();
+        // The index page should be default be the login page
+        // Create a SessionController to get a list of all users
+        // Populate page with users from SessionController
+        const session = new SessionController();
 
-
-        //set custom title
+        // set custom title
         this.title = "Grade Achiever";
-        
-        session.RequestUsers(req,res,next)
+
+        session.RequestUsers(req, res, next)
         .then((mess) => {
             console.log(mess);
-            //set message
-            let options: Object = {
-                "users": mess
+            // set message
+            const options: object = {
+                users: mess,
             };
             return options;
         })
         .catch((err) => {
             console.log(err.message);
         })
-        .then((options: any)=>{
-            //console.log("I'm doing the thing: "+options);
-            //res.send(options);
-            //render template
+        .then((options: any) => {
+            // console.log("I'm doing the thing: "+options);
+            // res.send(options);
+            // render template
             this.render(req, res, "index", options);
         });
     }

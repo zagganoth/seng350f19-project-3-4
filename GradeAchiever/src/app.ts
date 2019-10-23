@@ -1,14 +1,14 @@
 
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import errorHandler from "errorhandler";
 import express from "express";
 import logger from "morgan";
 import path from "path";
-import errorHandler from "errorhandler";
-import { IndexRoute } from "./routes/index";
-import { HeroRouter } from "./routes/heroRouter";
-import {SessionRoute} from "./routes/SessionRoute";
 import {AdminRoute} from "./routes/AdminRoute";
+import { HeroRouter } from "./routes/heroRouter";
+import { IndexRoute } from "./routes/index";
+import {SessionRoute} from "./routes/SessionRoute";
 
 /**
  * The server.
@@ -16,8 +16,6 @@ import {AdminRoute} from "./routes/AdminRoute";
  * @class Server
  */
 export class Server {
-
-    public app: express.Application;
 
     /*
         Added a test comment
@@ -35,6 +33,8 @@ export class Server {
         return new Server();
     }
 
+    public app: express.Application;
+
     /**
      * Constructor.
      *
@@ -42,13 +42,13 @@ export class Server {
      * @constructor
      */
     constructor() {
-        //create expressjs application
+        // create expressjs application
         this.app = express();
 
-        //configure application
+        // configure application
         this.config();
 
-        //add routes
+        // add routes
         this.routes();
     }
 
@@ -59,25 +59,25 @@ export class Server {
      * @method config
      */
     public config() {
-        //add static paths
+        // add static paths
         this.app.use(express.static(path.join(__dirname, "/public")));
 
-        //configure pug
+        // configure pug
         this.app.set("views", path.join(__dirname, "/../views"));
         this.app.set("view engine", "pug");
 
-        //mount logger
+        // mount logger
         this.app.use(logger("dev"));
 
-        //mount json form parser
+        // mount json form parser
         this.app.use(bodyParser.json());
 
-        //mount query string parser
+        // mount query string parser
         this.app.use(bodyParser.urlencoded({
-            extended: true
+            extended: true,
         }));
 
-        //mount cookie parser middleware
+        // mount cookie parser middleware
         this.app.use(cookieParser("SECRET_GOES_HERE"));
 
         // catch 404 and forward to error handler
@@ -86,7 +86,7 @@ export class Server {
             next(err);
         });
 
-        //error handling
+        // error handling
         this.app.use(errorHandler());
     }
 
@@ -105,7 +105,7 @@ export class Server {
         HeroRouter.create(router);
         SessionRoute.create(router);
         AdminRoute.create(router);
-        //use router middleware
+        // use router middleware
         this.app.use(router);
 
     }

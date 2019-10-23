@@ -13,47 +13,34 @@ export class CourseModel extends BaseModel {
             ○ GradableItems[]
             (Removed) CourseAlgorithmAccuracy (float: 0.5f - 2f)
      */
-    constructor()
-    {
+    constructor() {
         super("Course");
     }
-    public CreateCourse(userID: Number, courseName: string)
-    {
+    public CreateCourse(userID: number, courseName: string) {
 
     }
-    public SetDifficulty(courseID: Number, difficulty: Number)
-    {
+    public SetDifficulty(courseID: number, difficulty: number) {
 
     }
-    public SetGradeGoal(courseID: Number,goal: Number)
-    {
-        if(goal <= 100)
-        {
+    public SetGradeGoal(courseID: number, goal: number) {
+        if (goal <= 100) {
 
         }
     }
-    public AddGradableItem(courseID: Number,item: GradableItemModel)
-    {
+    public AddGradableItem(courseID: number, item: GradableItemModel) {
 
     }
-    public GetCourseDetails(courseID: Number)
-    {
-        //Course name, student, etc
+    public GetCourseDetails(courseID: number) {
+        // Course name, student, etc
     }
-    public GetGradableItems(courseID: Number)
-    {
-        //List of all gradable items
+    public GetGradableItems(courseID: number) {
+        // List of all gradable items
     }
-    public GetGradeGoal(courseID: Number)
-    {
+    public GetGradeGoal(courseID: number) {
 
     }
-    public GetPerceivedDifficulty(courseID: Number)
-    {
+    public GetPerceivedDifficulty(courseID: number) {
 
     }
-
-
-
 
 }
