@@ -9,7 +9,7 @@ export class AdminModel extends BaseModel {
         const isAdmin = true;
         this.isAdmin = isAdmin;
     }
-    public AddUser(userName: string, email: string, isAdmin:boolean) {
+    public AddUser(userName: string, email: string, isAdmin: boolean) {
         // Add the user to the database using dbClient
         if (this.isAdmin) {
 
@@ -19,12 +19,12 @@ export class AdminModel extends BaseModel {
 
     }
 
-    public async RemoveUser(req: Request, res: Response, next:NextFunction, userID: number) {
+    public async RemoveUser(req: Request, res: Response, next: NextFunction, userID: number) {
         if (this.isAdmin) {
-            console.log("Deleting user id "+userID+" from db.");
+            console.log("Deleting user id " + userID + " from db.");
             return await DbClient.connect()
             .then((db) => {
-                /*TODO stuff to delete user id 
+                /*TODO stuff to delete user id
                  currently returns users that are left*/
                 return db!.collection(this.tableName).find().project({StudentID: 1, StudentName: 1}).toArray();
             })

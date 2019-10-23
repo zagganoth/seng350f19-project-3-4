@@ -1,7 +1,7 @@
 
 import { NextFunction, Request, Response, Router } from "express";
-import {SessionController} from "../controllers/SessionController";
 import {AdminController} from "../controllers/AdminController";
+import {SessionController} from "../controllers/SessionController";
 import { BaseRoute } from "./route";
 
 export class AdminRoute extends BaseRoute {
@@ -10,15 +10,14 @@ export class AdminRoute extends BaseRoute {
         router.post("/admin", (req: Request, res: Response, next: NextFunction) => {
             console.log("Posting admin - req is ");
             console.log(req.body);
-            console.log("Reached Admin page route")
+            console.log("Reached Admin page route");
             new AdminRoute().Admin(req, res, next, req.body.user);
         });
-        
-        router.post("/deleteUser", (req: Request, res: Response, next: NextFunction)=>
-        {
+
+        router.post("/deleteUser", (req: Request, res: Response, next: NextFunction) => {
             console.log("Posting deleteUser - req is ");
             console.log(req.body);
-            new AdminRoute().deleteUser(req,res,next,req.body.id, req.body.thisID);
+            new AdminRoute().deleteUser(req, res, next, req.body.id, req.body.thisID);
         });
         /*
         router.post("/createUser", (req: Request, res: Response, next: NextFunction)=>
@@ -28,7 +27,6 @@ export class AdminRoute extends BaseRoute {
             new AdminRoute().createUser(req,res,next,req.body.user);
         });
         */
-        
 
     }
     public async Admin(req: Request, res: Response, next: NextFunction, id: number) {
@@ -60,20 +58,17 @@ export class AdminRoute extends BaseRoute {
 
     }
 
-    async deleteUser(req: Request,res: Response, next: NextFunction, id: number, thisID: number)
-    {
+    public async deleteUser(req: Request, res: Response, next: NextFunction, id: number, thisID: number) {
         console.log("value of id to delete is " + id.toString());
-        let adminsession= new AdminController();
+        const adminsession = new AdminController();
         this.title = "DeleteUser";
-        adminsession.DeleteUser(req,res,next,id)
+        adminsession.DeleteUser(req, res, next, id)
         .then(() => {
             console.log(res);
-            //res.redirect(307, "/admin");
-            this.Admin(req,res,next,thisID);
+            // res.redirect(307, "/admin");
+            this.Admin(req, res, next, thisID);
         });
-        
 
     }
-
 
 }
