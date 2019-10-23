@@ -5,8 +5,15 @@ body {
   color: #f3e0ec;
 }
 
-a {
+a.logout {
+  background-color: #eca72c;
   color: #f3e0ec;
+  border: none;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 h1 {
@@ -35,6 +42,7 @@ nav {
   padding: 0;
   color: #f3e0ec;
   background: #474a48;
+
 }
 
 .navbar-item{
@@ -48,6 +56,7 @@ nav {
   background-color: #474a48;
   color: #eca72c;
 }
+
 
 
 

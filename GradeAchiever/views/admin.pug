@@ -9,8 +9,12 @@ block content
       div 
         h3 Create a new user
         div
-          //form(action='/createUser' method="post")
-            //label(for='userOpt') Users
+          form(action='/createUser' method="post")
+            label(for="name") Name:
+            input(type="text" name="name")
+            label(for="isadmin") Admin User
+            input(type="radio" name="isadmin" value="Admin user")
+            input(type="submit", value="Create User")
             
       div 
         h3 Delete a user
@@ -20,10 +24,10 @@ block content
             if users.length > 0
               select(name='user')
                 each user in users
-                if user.StudentName == username
-                  option("value"=user disabled) #{user.StudentName}
-                else 
-                  option("value"=user) #{user.StudentName}
+                  if thisID == user.StudentID
+                    option("value"=user disabled) #{user.StudentName}
+                  else 
+                    option("value"=user) #{user.StudentName}
               input(type='submit', value='Delete')
             else 
               p.dark No users available.
