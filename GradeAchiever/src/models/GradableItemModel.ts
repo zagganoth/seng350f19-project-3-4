@@ -1,5 +1,5 @@
 import { BaseModel } from "./BaseModel";
-
+import DbClient = require("../DbClient");
 export class GradableItemModel extends BaseModel {
 
     /*
@@ -11,23 +11,38 @@ export class GradableItemModel extends BaseModel {
                 ○ Weight (float? Int?) (Constraint: Item weights must add to 100)
                 GItemAlgorithmAccuracy (float?)
      */
-    constructor() {
+    constructor()
+    {
         super("GradableItem");
     }
-    public SetDate(gradableItemID: number, date: string) {
-        // ensure this is a valid date first
+    public SetDate(gradableItemID: Number,date: string)
+    {
+        //ensure this is a valid date first
     }
-    public SetWeight(gradableItemID: number, weight: number) {
-        // ensure that sum of all weights for a course is 100
+    public SetWeight(gradableItemID: Number, weight: Number)
+    {
+        //ensure that sum of all weights for a course is 100
     }
-    public SetAlgAccuracy(gradableItemID: number, accuracy: number) {
-        // Ensure between 0.5-2
+    public SetAlgAccuracy(gradableItemID: Number, accuracy: Number)
+    {
+        //Ensure between 0.5-2
     }
-    public GetGradableItemDetails(gradableItemID: number) {
-        // Returns gradableItem name, id, course id, due date, weight
+    async GetGradableItemDetails(gradableItemID: Number)
+    {
+        //Returns gradableItem name, id, course id, due date, weight
+        return await DbClient.connect()
+        .then((db)=>{
+            return db!.collection(this.tableName).find({"GradableItemID":gradableItemID}).toArray();
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        })
     }
-    public GetAlgorithmAccuracy(gradableItemID: number) {
+    public GetAlgorithmAccuracy(gradableItemID: Number)
+    {
 
     }
+
 
 }

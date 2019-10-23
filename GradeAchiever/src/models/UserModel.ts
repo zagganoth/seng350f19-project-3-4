@@ -1,9 +1,9 @@
-import {NextFunction, Request, Response} from "express";
-import DbClient = require("../DbClient");
 import { BaseModel } from "./BaseModel";
 import { CourseModel } from "./CourseModel";
+import DbClient = require("../DbClient");
+import {Request, Response, NextFunction} from "express";
 export class UserModel extends BaseModel {
-    private readonly userID: number;
+    private readonly userID : Number;
     /* User Model Fields:
     	○ StudentID (auto-generated, auto-increment, int)
 		○ Email (string, unique)
@@ -13,42 +13,52 @@ export class UserModel extends BaseModel {
 		○ Courses[]
         IsAdmin (bool)
      */
-    constructor(userID: number) {
+    constructor(userID: Number)
+    {
         super("User");
-        // We can test here the id of the user submitting the request - if it's an admin user we can allow for admin actions
+        //We can test here the id of the user submitting the request - if it's an admin user we can allow for admin actions
+
 
         this.userID = userID;
     }
 
-    public SetAlgorithmAccuracy(algAccuracy: number) {
+    public SetAlgorithmAccuracy(algAccuracy: Number)
+    {
 
     }
-    public SetNotificationLevel(notificationLevel: number) {
+    public SetNotificationLevel(notificationLevel: Number)
+    {
 
     }
-    public SetEmail(email: string) {
+    public SetEmail(email: string)
+    {
 
     }
-    public AddCourse(course: CourseModel) {
+    public AddCourse(course: CourseModel)
+    {
 
     }
-    public RemoveCourse(courseName: string) {
-        // The course should be uniquely identifiable by the user id and course name
+    public RemoveCourse(courseName: string)
+    {
+        //The course should be uniquely identifiable by the user id and course name
     }
-    public async GetUserDetails(req: Request, res: Response, next: NextFunction, id: number) {
+    async GetUserDetails(req: Request, res: Response, next: NextFunction, id: Number) : Promise<any>
+    {
         return await DbClient.connect()
-        .then((db) => {
-            console.log("Id is " + id);
-            return db!.collection(this.tableName).find({StudentID: id}).toArray();
+        .then((db)=>{
+            return db!.collection(this.tableName).find({"StudentID":id}).toArray();
         })
         .catch((err) => {
             console.log(err.message);
-        });
+            return [];
+        })
     }
-    public GetAlgorithmAccuracy() {
+    public GetAlgorithmAccuracy()
+    {
 
     }
-    public GetCourses() {
+    public GetCourses()
+    {
 
     }
 

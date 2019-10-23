@@ -1,6 +1,6 @@
 import { BaseModel } from "./BaseModel";
 import {GradableItemModel} from "./GradableItemModel";
-
+import DbClient = require("../DbClient");
 export class CourseModel extends BaseModel {
 
     /*
@@ -13,34 +13,55 @@ export class CourseModel extends BaseModel {
             ○ GradableItems[]
             (Removed) CourseAlgorithmAccuracy (float: 0.5f - 2f)
      */
-    constructor() {
+    constructor()
+    {
         super("Course");
     }
-    public CreateCourse(userID: number, courseName: string) {
+    public CreateCourse(userID: Number, courseName: string)
+    {
 
     }
-    public SetDifficulty(courseID: number, difficulty: number) {
+    public SetDifficulty(courseID: Number, difficulty: Number)
+    {
 
     }
-    public SetGradeGoal(courseID: number, goal: number) {
-        if (goal <= 100) {
+    public SetGradeGoal(courseID: Number,goal: Number)
+    {
+        if(goal <= 100)
+        {
 
         }
     }
-    public AddGradableItem(courseID: number, item: GradableItemModel) {
+    public AddGradableItem(courseID: Number,item: GradableItemModel)
+    {
 
     }
-    public GetCourseDetails(courseID: number) {
-        // Course name, student, etc
+    async GetCourseDetails(courseID: Number)
+    {
+        return await DbClient.connect()
+        .then((db)=>{
+            return db!.collection(this.tableName).find({"CourseID":courseID}).toArray();
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        })
+        //Course name, student, etc
     }
-    public GetGradableItems(courseID: number) {
-        // List of all gradable items
+    public GetGradableItems(courseID: Number)
+    {
+        //List of all gradable items
     }
-    public GetGradeGoal(courseID: number) {
+    public GetGradeGoal(courseID: Number)
+    {
 
     }
-    public GetPerceivedDifficulty(courseID: number) {
+    public GetPerceivedDifficulty(courseID: Number)
+    {
 
     }
+
+
+
 
 }
