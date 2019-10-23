@@ -1,13 +1,12 @@
-import {BaseModel} from "./BaseModel";
 import { NextFunction, Request, Response, Router } from "express";
 import DbClient = require("../DbClient");
+import {BaseModel} from "./BaseModel";
 
 export class AdminModel extends BaseModel {
-    private readonly isAdmin : boolean;
-    constructor()
-    {
+    private readonly isAdmin: boolean;
+    constructor() {
         super("User");
-        let isAdmin = true;
+        const isAdmin = true;
         this.isAdmin = isAdmin;
     }
     public AddUser(userName: string, email: string, isAdmin: boolean) {
@@ -36,16 +35,15 @@ export class AdminModel extends BaseModel {
             throw new Error("Invalid admin credentials");
         }
     }
-    async GetAllUsers(req: Request, res: Response, next: NextFunction)
-    {
+    public async GetAllUsers(req: Request, res: Response, next: NextFunction) {
         return await DbClient.connect()
         .then((db) => {
-            return db!.collection(this.tableName).find().project({"StudentID":1,"StudentName":1}).toArray();
+            return db!.collection(this.tableName).find().project({StudentID: 1, StudentName: 1}).toArray();
         })
         .catch((err) => {
             console.log(err.message);
             return [];
-        })
+        });
     }
 
 }

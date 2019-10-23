@@ -1,39 +1,34 @@
 import { NextFunction, Request, Response, Router } from "express";
 import {AdminModel} from "../models/AdminModel";
-import {UserModel} from "../models/UserModel";
 import {CourseModel} from "../models/CourseModel";
 import {GradableItemModel} from "../models/GradableItemModel";
+import {UserModel} from "../models/UserModel";
 
 export class SessionController {
-    constructor()
-    {
+    constructor() {
 
     }
-    async RequestUsers(req: Request, res: Response, next: NextFunction)
-    {
-        let m = new AdminModel();
+    public async RequestUsers(req: Request, res: Response, next: NextFunction) {
+        const m = new AdminModel();
 
-        let retval = await m.GetAllUsers(req,res,next);
+        const retval = await m.GetAllUsers(req, res, next);
         return retval;
     }
-    async RequestUser(req: Request, res: Response, next: NextFunction,id: Number)
-    {
+    public async RequestUser(req: Request, res: Response, next: NextFunction, id: number) {
 
-        let m = new UserModel(id);
-        let retVal =  await m.GetUserDetails(req,res,next,id)
-        console.log("Retval is ")
+        const m = new UserModel(id);
+        const retVal =  await m.GetUserDetails(req, res, next, id);
+        console.log("Retval is ");
         console.log(retVal[0].Courses[0]);
-        //Get course names
-        let cm = new CourseModel();
-        let gm = new GradableItemModel();
-        let gradableItems = [];
-        let courses = []
-        for(let course of retVal[0].Courses)
-        {
+        // Get course names
+        const cm = new CourseModel();
+        const gm = new GradableItemModel();
+        const gradableItems = [];
+        const courses = [];
+        for (const course of retVal[0].Courses) {
             console.log("Getting course details for courseid " + course);
-            let courseDetails = await cm.GetCourseDetails(+course);
-            for(let gradableItem of courseDetails[0].GradableItems)
-            {
+            const courseDetails = await cm.GetCourseDetails(+course);
+            for (const gradableItem of courseDetails[0].GradableItems) {
                 gradableItems.push(await gm.GetGradableItemDetails(gradableItem));
             }
 
@@ -41,7 +36,7 @@ export class SessionController {
 
         }
         retVal.push(courses);
-        retVal.push(gradableItems)
+        retVal.push(gradableItems);
         return retVal;
 
     }
