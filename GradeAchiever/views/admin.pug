@@ -33,6 +33,7 @@ block content
                   else 
                     option("value"=user.StudentID) #{user.StudentName}
               input(type="hidden", value=thisID, name='thisID')
+              input(type="hidden" name="redirect" value="/admin")
               input(type='submit', value='Delete')
             else 
               p.dark No users available.
