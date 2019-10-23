@@ -23,7 +23,7 @@ block content
       div 
         h3 Delete a user
         div
-          form(action='/deleteUser' method="post" target="_blank")
+          form(action='/deleteUser' method="post")
             label(for='userOpt') Users
             if users.length > 0
               select(name='id')
@@ -33,7 +33,6 @@ block content
                   else 
                     option("value"=user.StudentID) #{user.StudentName}
               input(type="hidden", value=thisID, name='thisID')
-              input(type="hidden" name="redirect" value="/admin")
               input(type='submit', value='Delete')
             else 
               p.dark No users available.

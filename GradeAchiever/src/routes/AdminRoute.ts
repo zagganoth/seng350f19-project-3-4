@@ -16,7 +16,7 @@ export class AdminRoute extends BaseRoute {
         
         router.post("/deleteUser", (req: Request, res: Response, next: NextFunction)=>
         {
-            console.log("Posting admin - req is ");
+            console.log("Posting deleteUser - req is ");
             console.log(req.body);
             new AdminRoute().deleteUser(req,res,next,req.body.id, req.body.thisID);
         });
@@ -67,7 +67,8 @@ export class AdminRoute extends BaseRoute {
         this.title = "DeleteUser";
         adminsession.DeleteUser(req,res,next,id)
         .then(() => {
-            console.log(res)
+            console.log(res);
+            //res.redirect(307, "/admin");
             this.Admin(req,res,next,thisID);
         });
         
