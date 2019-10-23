@@ -6,12 +6,16 @@ block content
     h3 Welcome Admin
     div
       h2 Manage user accounts
+      if Mess
+        h3.message #{Mess}
       div 
         h3 Create a new user
         div
           form(action='/createUser' method="post")
             label(for="name") Name:
             input(type="text" name="name")
+            label(for="email") Email Address:
+            input(type="text" name="email")
             label(for="isadmin") Admin User
             input(type="radio" name="isadmin" value="Admin user")
             input(type="submit", value="Create User")
@@ -19,15 +23,16 @@ block content
       div 
         h3 Delete a user
         div
-          form(action='/deleteUser' method="post")
+          form(action='/deleteUser' method="post" target="_blank")
             label(for='userOpt') Users
             if users.length > 0
-              select(name='user')
+              select(name='id')
                 each user in users
                   if thisID == user.StudentID
-                    option("value"=user disabled) #{user.StudentName}
+                    option("value"=user.StudentID disabled) #{user.StudentName}
                   else 
-                    option("value"=user) #{user.StudentName}
+                    option("value"=user.StudentID) #{user.StudentName}
+              input(type="hidden", value=thisID, name='thisID')
               input(type='submit', value='Delete')
             else 
               p.dark No users available.
