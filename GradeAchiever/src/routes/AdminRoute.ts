@@ -1,5 +1,6 @@
 
 import { NextFunction, Request, Response, Router } from "express";
+import {AdminController} from "../controllers/AdminController";
 import {SessionController} from "../controllers/SessionController";
 import { BaseRoute } from "./route";
 
@@ -9,15 +10,16 @@ export class AdminRoute extends BaseRoute {
         router.post("/admin", (req: Request, res: Response, next: NextFunction) => {
             console.log("Posting admin - req is ");
             console.log(req.body);
+            console.log("Reached Admin page route");
             new AdminRoute().Admin(req, res, next, req.body.user);
         });
-        /*
-        router.post("/deletUser", (req: Request, res: Response, next: NextFunction)=>
-        {
-            console.log("Posting admin - req is ");
+
+        router.post("/deleteUser", (req: Request, res: Response, next: NextFunction) => {
+            console.log("Posting deleteUser - req is ");
             console.log(req.body);
-            new AdminRoute().deleteUser(req,res,next,req.body.user);
+            new AdminRoute().deleteUser(req, res, next, req.body.id, req.body.thisID);
         });
+        /*
         router.post("/createUser", (req: Request, res: Response, next: NextFunction)=>
         {
             console.log("Posting admin - req is ");
@@ -55,36 +57,18 @@ export class AdminRoute extends BaseRoute {
         });
 
     }
-/*
-    async deleteUser(req: Request,res: Response, next: NextFunction,id: Number)
-    {
-        console.log("id in adminrouter is " + id);
-        console.log("value of id to delete is" + id.toString());
-        let session= new SessionController();
+
+    public async deleteUser(req: Request, res: Response, next: NextFunction, id: number, thisID: number) {
+        console.log("value of id to delete is " + id.toString());
+        const adminsession = new AdminController();
         this.title = "DeleteUser";
-        session.DeleteUser(req,res,next)
-        .then((mess) => {
-            console.log(mess);
-            console.log("ID is "+id);
-            //set message
-            let options: Object = {
-                "users": mess,
-                "thisID": id
-            };
-            console.log(options)
-            return options;
-        })
-        .catch((err) => {
-            console.log(err.message);
-        })
-        .then((options: any)=>{
-            //console.log("I'm doing the thing: "+options);
-            //res.send(options);
-            //render template
-            this.render(req, res, "admin", options);
+        adminsession.DeleteUser(req, res, next, id)
+        .then(() => {
+            console.log(res);
+            // res.redirect(307, "/admin");
+            this.Admin(req, res, next, thisID);
         });
 
     }
-*/
 
 }
