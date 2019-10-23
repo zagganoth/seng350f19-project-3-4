@@ -42,12 +42,18 @@ nav {
   padding: 0;
   color: #f3e0ec;
   background: #474a48;
+
 }
 
 .navbar-item{
   float: right;
   padding: 5px;
   margin: 3px;
+  color: #eca72c;
+}
+
+.logout{
+  background-color: #474a48;
   color: #eca72c;
 }
 
