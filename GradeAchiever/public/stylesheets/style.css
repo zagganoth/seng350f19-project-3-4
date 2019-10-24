@@ -47,6 +47,10 @@ nav {
   text-decoration: none;
 }
 
+.navbar-item:hover{
+  background-color: #ffa200;
+}
+
 input.admin{
   font-size: 14px;
 }
@@ -58,7 +62,23 @@ input.admin{
 
 div.calendar{
   width: 50%;
-  min-width: 100px;
+  min-width: 200px;
+  max-width: 500px;
+  text-align: center;
+}
+
+table.users {
+  width: 100%;
+  max-width: 840px;
+  text-align: left;
+}
+
+div.newuser{
+  max-width: 360px;
+}
+
+td.button{
+  width: 100px
 }
 
 
@@ -95,7 +115,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #eca72c;
+  background-color: #ffa200;
 }
 
 
