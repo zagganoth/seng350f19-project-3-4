@@ -5,25 +5,26 @@ block content
     h1 Overview Page
     h3 Welcome #{studentDetails[0].StudentName}
     div.calendar
+
       if studentDetails[1] && studentDetails[1].length > 0
-        table.courses Courses:
-          tr
-            th Name
-            th Grade
-        tbody
-          each course in studentDetails[1]
-            tr 
-              td #{course[0].CourseName}
-              td #{course[0].CurrentGrade}
-        
-        table.gradable-items Gradable Items:
+        h3 Calendar        
+        table.gradable-items
           tr
             th Name
             th Due Date
-        tbody
           each gradableItem in studentDetails[2]
             tr
               td #{gradableItem[0].GradableItemName}
               td #{gradableItem[0].DueDate}
       else
         h3 You haven't added any courses.
+    div.course-list
+      h3 Courses
+      table.courses
+          tr
+            th Name
+            th Current Grade
+          each course in studentDetails[1]
+            tr
+              td #{course[0].CourseName}
+              td #{course[0].CurrentGrade} %
