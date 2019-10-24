@@ -1,7 +1,24 @@
-## Team SEAR Software
+### Team SEAR Software
+# Grade Achiever
 
-## Homework Helper App
+## Implemented User Stories
+- User Story #7: View current grades
+- User Story #4: View gradable items
 
+## Changed Design Rational
+During the development process, a few architectural designs were changed from the original Module Diagram in Milestone 2. These changes included...
+
+## Build Process
+Clone this project from GitHub and run:
+``docker`` stuff 
+
+## Testing
+Unit test are written using Jest.
+To manually run tests:
+`npm run test` or `npm t`
+
+
+## End Goal
 ### Description:
 - Keeps track of homework for the user.
 - User inputs what grade they want to achieve in that class and the grading scheme for everything. 
@@ -20,9 +37,3 @@
 - Add a difficulty level to a course that is factored in to suggested study time
 - Pass/Fail flag for certain assignments/finals
 - Enter an assignment with no time recommendation
-
-
-## Testing
-Unit test are written using Jest.
-To manually run tests:
-`npm run test` or `npm t`
