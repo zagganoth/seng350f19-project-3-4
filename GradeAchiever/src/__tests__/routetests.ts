@@ -1,22 +1,18 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { BaseRoute } from "../routes/route";
 
-let testBaseRoute = new BaseRoute();
-
+// const testBaseRoute = new BaseRoute();
 
 test("Initialize BaseRoute", () => {
-    let testBaseRoute = new BaseRoute();
+    const testBaseRoute = new BaseRoute();
     expect(testBaseRoute).toBeInstanceOf(BaseRoute);
 });
 
-
 test("testBaseRouteInit", () => {
-	let testBaseRoute = new BaseRoute();
+	const testBaseRoute = new BaseRoute();
 	expect(testBaseRoute.gettitle() === "My New TypeScript Web app");
 	},
 );
-
-
 
 test("testBaseRouteAddScript", () => {
 	let testBaseRoute = new BaseRoute();

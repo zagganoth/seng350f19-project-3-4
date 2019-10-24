@@ -3,8 +3,7 @@ import { AdminRoute } from "../routes/AdminRoute";
 
 import {SessionController} from "../controllers/SessionController";
 
-
 test("Initialize AdminRoute", () => {
-    let testAdminRoute = new AdminRoute();
+    const testAdminRoute = new AdminRoute();
     expect(testAdminRoute).toBeInstanceOf(AdminRoute);
 });
