@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { IndexRoute } from "../routes/index";
+import { IndexRoute } from "../../routes/index";
 
-import {SessionController} from "../controllers/SessionController";
+import {SessionController} from "../../controllers/SessionController";
 
 test("Initialize IndexRoute", () => {
     const testIndexRoute = new IndexRoute();

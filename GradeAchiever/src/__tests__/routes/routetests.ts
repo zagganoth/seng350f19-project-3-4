@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { BaseRoute } from "../routes/route";
+import { BaseRoute } from "../../routes/route";
 
 // const testBaseRoute = new BaseRoute();
 
