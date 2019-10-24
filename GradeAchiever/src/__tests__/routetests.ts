@@ -1,34 +1,38 @@
-import { BaseRoute } from "./routes/route";
+jest.mock('../routes/route');
+jest.mock("express");
+import {BaseRoute} from "../routes/route";
 import {Request, Response } from "express";
+let testBaseRoute = new BaseRoute();
 
-testBaseRouteInit({
-	  let testBaseRoute:BaseRoute = new BaseRoute();
-  	expect(testBaseRoute.gettitle() == "My New TypeScript Web app");
-})
+test("testBaseRouteInit", () => {
+	expect(testBaseRoute.gettitle() == "My New TypeScript Web app");
+	},
+);
 
-testBaseRouteAddScript({
-  let testBaseRoute:BaseRoute = new BaseRoute();
-  testBaseRoute = testBaseRoute.addScript("The Sky is Blue");
-  expect(testBaseRoute.getScripts()== "The Sky is Blue");
-})
 
- testBaseRouteRender({
-  let testRender:BaseRoute = new BaseRoute();
-  testRender = testBaseRoute.addScript("The sky is purple");
-  testRender.render(req, res, "userhome", options);
-  expect(res.locals.BASE_URL == "/");
-  expect(res.locals.scripts == testRender.scripts);
-  expect(res.locals.title == testRender.title);
-})
+testBaseRoute = testBaseRoute.addScript("The Sky is Blue");
 
-testBaseRouteAddScriptFAIL({
-  let testBaseRoute:BaseRoute = new BaseRoute();
-  let ans = 2;
-try {
-  testBaseRoute.addScript(420);
-}
-catch(error) {
-  ans = 3;
-}
-expect(ans==3);
-})
+test("testBaseRouteAddScript", () => {
+	expect(testBaseRoute.getScripts()== "The Sky is Blue");
+
+	},
+);
+
+let testRender = new BaseRoute();
+testRender = testBaseRoute.addScript("The sky is purple");
+testRender.render(req, res, "userhome", options);
+
+test("testRender", () => {
+	expect(testBaseRoute.getScripts()== "The Sky is Blue");
+	expect(res.locals.BASE_URL == "/");
+	expect(res.locals.title == testRender.title);
+	expect(res.locals.scripts == testRender.scripts);
+	},
+);
+
+
+test("testBaseRouteAddScriptFAIL", () => {
+	expect(testBaseRoute.getScripts()== "The Sky is Blue");
+
+	},
+);

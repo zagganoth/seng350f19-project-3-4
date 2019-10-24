@@ -2,7 +2,8 @@ module.exports = {
 	"roots": [
 		"<rootDir>/src"
 	],
-	"transform": {
-		"^.+\\.tsx?$": "ts-jest"
-	},
+	verbose: true,
+	//"transform": {
+	//	"^.+\\.tsx?$": "ts-jest"
+	//},
 }
