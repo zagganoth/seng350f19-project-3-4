@@ -14,6 +14,7 @@ export class UserModel extends BaseModel {
         IsAdmin (bool)
      */
     constructor(userID: number) {
+        //Table name
         super("User");
         // We can test here the id of the user submitting the request - if it's an admin user we can allow for admin actions
 
@@ -38,10 +39,14 @@ export class UserModel extends BaseModel {
     public async GetUserDetails(req: Request, res: Response, next: NextFunction, id: number): Promise<any> {
         return await DbClient.connect()
         .then((db) => {
+            console.log("Getting user details from table User")
             return db!.collection(this.tableName).find({StudentID: id}).toArray();
+
         })
         .catch((err) => {
+            console.log("Returning no user details: ")
             console.log(err.message);
+            
             return [];
         });
     }

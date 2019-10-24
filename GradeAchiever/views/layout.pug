@@ -13,7 +13,7 @@ html
           unless thisID
             if studentDetails[0].IsAdmin
               form.navbar-item(action='/admin' method="post")
-                input(type='hidden' name='user' value=studentDetails[0].StudentID)
-                input(type="submit" value="Manage Users")
+                input.admin(type='hidden' name='user' value=studentDetails[0].StudentID)
+                input.admin(type="submit" value="Manage Users")
     
     block content
