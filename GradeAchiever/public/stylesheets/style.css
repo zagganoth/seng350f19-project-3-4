@@ -1,7 +1,7 @@
 body {
   padding: 20px;
   font: 14px "Open Sans", Helvetica, Arial, sans-serif;
-  background-color: #474a48;
+  background-color: #383838;
   color: #f3e0ec;
 }
 
@@ -24,13 +24,13 @@ h1 {
 
 div {
   border-radius: 5px;
-  background-color: #474a48;
+  background-color: #383838;
   padding: 20px;
 }
 
 
 .dark {
-  color: #474a48;
+  color: #383838;
 }
 
 .container-fluid{
@@ -41,7 +41,7 @@ div {
 nav {
   padding: 0;
   color: #f3e0ec;
-  background: #474a48;
+  background: #383838;
 
 }
 
@@ -53,7 +53,7 @@ nav {
 }
 
 .logout{
-  background-color: #474a48;
+  background-color: #383838;
   color: #eca72c;
 }
 
@@ -67,7 +67,7 @@ nav {
 /*
 Colour scheme:
 eca72c yellow
-474a48 dark grey
+383838 dark grey
 ee5622 orange
 f3e0ec whiteish
 ead5e6 light grey
