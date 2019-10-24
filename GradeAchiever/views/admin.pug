@@ -10,7 +10,7 @@ block content
         h3.message #{Mess}
       div 
         h3 Create a new user
-        div
+        div.newuser
           form(action='/createUser' method="post")
             label(for="name") Name:
             input(type="text" name="name")
@@ -23,20 +23,32 @@ block content
       div 
         h3 Delete a user
         div
-          form(action='/deleteUser' method="post")
-            label(for='userOpt') Users
-            if users.length > 0
-              select(name='id')
+          if users.length > 0
+            table.users
+              tr
+                th ID
+                th Name
+                th Email
+                th Remove
+              tbody
                 each user in users
-                  if thisID == user.StudentID
-                    option("value"=user.StudentID disabled) #{user.StudentName}
-                  else 
-                    option("value"=user.StudentID) #{user.StudentName}
-              input(type="hidden", value=thisID, name='thisID')
-              input(type='submit', value='Delete')
-            else 
-              p.dark No users available.
-              input(type='submit', disabled, value='Delete')
+                  tr
+                    td #{user.StudentID}
+                    td #{user.StudentName}
+                    td #{user.Email}
+                    td.button 
+                      form(action='/deleteUser' method="post")
+                        input(type="hidden", value=thisID, name='thisID')
+                        input(type='hidden', value=user.StudentID)
+                        if thisID == user.StudentID
+                          input(type='submit', value='Delete' disabled)
+                        else
+                          input(type='submit', value='Delete')
+                    
+          else
+            h3 No users available
 
+     
+        
 
 

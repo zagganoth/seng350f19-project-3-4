@@ -17,8 +17,9 @@ export class SessionController {
     public async RequestUser(req: Request, res: Response, next: NextFunction, id: number) {
 
         const m = new UserModel(id);
+        console.log("ID in Request User is " + id);
         const retVal =  await m.GetUserDetails(req, res, next, id);
-        console.log("Retval is ");
+        console.log("Retval of GetUserDetails is ");
         console.log(retVal[0].Courses[0]);
         // Get course names
         const cm = new CourseModel();

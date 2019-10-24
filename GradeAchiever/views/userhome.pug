@@ -4,11 +4,27 @@ block content
   div.container-fluid
     h1 Overview Page
     h3 Welcome #{studentDetails[0].StudentName}
-    h2 Courses:
-    each course in studentDetails[1]
-      h3 Name: #{course[0].CourseName}
-      h3 Grade: #{course[0].CurrentGrade}
-    h2 Gradable Items:
-    each gradableItem in studentDetails[2]
-      h3 Name: #{gradableItem[0].GradableItemName}
-      h3 DueDate: #{gradableItem[0].DueDate}
+    div.calendar
+
+      if studentDetails[1] && studentDetails[1].length > 0
+        h3 Calendar        
+        table.gradable-items
+          tr
+            th Name
+            th Due Date
+          each gradableItem in studentDetails[2]
+            tr
+              td #{gradableItem[0].GradableItemName}
+              td #{gradableItem[0].DueDate}
+      else
+        h3 You haven't added any courses.
+    div.course-list
+      h3 Courses
+      table.courses
+          tr
+            th Name
+            th Current Grade
+          each course in studentDetails[1]
+            tr
+              td #{course[0].CourseName}
+              td #{course[0].CurrentGrade} %
