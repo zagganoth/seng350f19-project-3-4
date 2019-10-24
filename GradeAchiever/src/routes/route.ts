@@ -37,13 +37,13 @@ export class BaseRoute {
         return this;
     }
 
-    public getScripts(){
-      let retScripts = this.scripts;
+    public getScripts() {
+      const retScripts = this.scripts;
       return retScripts;
     }
 
-    public gettitle(){
-      let retTitle = this.title
+    public gettitle() {
+      const retTitle = this.title;
       return retTitle;
     }
 
