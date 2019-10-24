@@ -14,22 +14,17 @@ test("testBaseRouteAddScript", () => {
 	expect(testBaseRoute.getScripts() === ["The Sky is Blue"]);
 	},
 );
-/*
-let testRender = new BaseRoute();
-testRender = testBaseRoute.addScript("The sky is purple");
+
+const testRender = new BaseRoute();
+const req = new Request("helloworld");
+const res = new Response();
+const options = new Object();
+testRender = testBaseRoute;
 testRender.render(req, res, "userhome", options);
-
 test("testRender", () => {
-	expect(testBaseRoute.getScripts()== "The Sky is Blue");
-	expect(res.locals.BASE_URL == "/");
-	expect(res.locals.title == testRender.title);
-	expect(res.locals.scripts == testRender.scripts);
+	expect(testRender.getScripts() === ["The Sky is Blue"]);
+	expect(res.locals.BASE_URL === "/");
+	expect(res.locals.title === testRender.title);
+	expect(res.locals.scripts === testRender.scripts);
 	},
 );
-
-test("testBaseRouteAddScriptFAIL", () => {
-	expect(testBaseRoute.getScripts()== "The Sky is Blue");
-
-	},
-);
-*/
