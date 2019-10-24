@@ -1,19 +1,17 @@
-import { BaseRoute } from '../routes/route';
 import { NextFunction, Request, Response, Router } from "express";
+import { BaseRoute } from "../routes/route";
 
 let testBaseRoute = new BaseRoute();
 
 test("testBaseRouteInit", () => {
-	expect(testBaseRoute.gettitle() == "My New TypeScript Web app");
+	expect(testBaseRoute.gettitle() === "My New TypeScript Web app");
 	},
 );
-
 
 testBaseRoute = testBaseRoute.addScript("The Sky is Blue");
 
 test("testBaseRouteAddScript", () => {
-	expect(testBaseRoute.getScripts()== ["The Sky is Blue"]);
-
+	expect(testBaseRoute.getScripts() === ["The Sky is Blue"]);
 	},
 );
 /*
@@ -28,7 +26,6 @@ test("testRender", () => {
 	expect(res.locals.scripts == testRender.scripts);
 	},
 );
-
 
 test("testBaseRouteAddScriptFAIL", () => {
 	expect(testBaseRoute.getScripts()== "The Sky is Blue");
