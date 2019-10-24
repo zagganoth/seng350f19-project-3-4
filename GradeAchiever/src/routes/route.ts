@@ -37,6 +37,16 @@ export class BaseRoute {
         return this;
     }
 
+    public getScripts(){
+      let retScripts = this.scripts;
+      return retScripts;
+    }
+
+    public gettitle(){
+      let retTitle = this.title
+      return retTitle;
+    }
+
     /**
      * Render a page.
      *
