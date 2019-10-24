@@ -8,12 +8,9 @@ html
   body
     header
       nav.navbar
-        if studentDetails || thisID
+        if studentDetails
           a.logout.navbar-item(href="/") Logout
-          unless thisID
-            if studentDetails[0].IsAdmin
-              form.navbar-item(action='/admin' method="post")
-                input(type="hidden" name='user' value=studentDetails[0].StudentID)
-                input(type="submit", value="Manage Users")
-
+          if studentDetails[0].IsAdmin
+            a.navbar-item(href="/admin") Manage Users
+    
     block content

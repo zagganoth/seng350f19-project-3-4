@@ -4,3 +4,11 @@ block content
   div.container-fluid
     h1 Overview Page
     h3 Welcome #{studentDetails[0].StudentName}
+    h2 Courses:
+    each course in studentDetails[1]
+      h3 Name: #{course[0].CourseName}
+      h3 Grade: #{course[0].CurrentGrade}
+    h2 Gradable Items:
+    each gradableItem in studentDetails[2]
+      h3 Name: #{gradableItem[0].GradableItemName}
+      h3 DueDate: #{gradableItem[0].DueDate}

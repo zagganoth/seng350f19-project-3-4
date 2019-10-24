@@ -42,6 +42,7 @@ export class AdminModel extends BaseModel {
         })
         .catch((err) => {
             console.log(err.message);
+            return [];
         });
     }
 

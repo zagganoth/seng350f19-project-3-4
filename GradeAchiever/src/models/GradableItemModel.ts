@@ -1,5 +1,5 @@
+import DbClient = require("../DbClient");
 import { BaseModel } from "./BaseModel";
-
 export class GradableItemModel extends BaseModel {
 
     /*
@@ -23,8 +23,16 @@ export class GradableItemModel extends BaseModel {
     public SetAlgAccuracy(gradableItemID: number, accuracy: number) {
         // Ensure between 0.5-2
     }
-    public GetGradableItemDetails(gradableItemID: number) {
+    public async GetGradableItemDetails(gradableItemID: number) {
         // Returns gradableItem name, id, course id, due date, weight
+        return await DbClient.connect()
+        .then((db) => {
+            return db!.collection(this.tableName).find({GradableItemID: gradableItemID}).toArray();
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        });
     }
     public GetAlgorithmAccuracy(gradableItemID: number) {
 

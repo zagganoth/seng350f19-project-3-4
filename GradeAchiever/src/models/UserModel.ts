@@ -35,14 +35,14 @@ export class UserModel extends BaseModel {
     public RemoveCourse(courseName: string) {
         // The course should be uniquely identifiable by the user id and course name
     }
-    public async GetUserDetails(req: Request, res: Response, next: NextFunction, id: number) {
+    public async GetUserDetails(req: Request, res: Response, next: NextFunction, id: number): Promise<any> {
         return await DbClient.connect()
         .then((db) => {
-            console.log("Id is " + id);
             return db!.collection(this.tableName).find({StudentID: id}).toArray();
         })
         .catch((err) => {
             console.log(err.message);
+            return [];
         });
     }
     public GetAlgorithmAccuracy() {

@@ -1,6 +1,6 @@
+import DbClient = require("../DbClient");
 import { BaseModel } from "./BaseModel";
 import {GradableItemModel} from "./GradableItemModel";
-
 export class CourseModel extends BaseModel {
 
     /*
@@ -30,7 +30,15 @@ export class CourseModel extends BaseModel {
     public AddGradableItem(courseID: number, item: GradableItemModel) {
 
     }
-    public GetCourseDetails(courseID: number) {
+    public async GetCourseDetails(courseID: number) {
+        return await DbClient.connect()
+        .then((db) => {
+            return db!.collection(this.tableName).find({CourseID: courseID}).toArray();
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        });
         // Course name, student, etc
     }
     public GetGradableItems(courseID: number) {
