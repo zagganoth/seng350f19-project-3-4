@@ -6,7 +6,11 @@
 - User Story #4: View gradable items
 
 ## Changed Design Rational
-During the development process, a few architectural designs were changed from the original Module Diagram in Milestone 2. These changes included...
+During the development process, a few architectural designs were changed from the original Module Diagram in Milestone 2. The most notable of these changes was the splitting of session controller functionality into an admin controller and a session controller. This was as during our initial design we overlooked the fact that the session controller would be responsible for both of these functionalities even though they are fairly distinct.
+
+There was also an "admin model" added in to service interactions between controllers and the database that involved multiple users. Doing this allowed for the user model to only be responsible for editing/accessing data related to a particular user, which serves our security and privacy ASR as no user can obtain data for another user. Another functionality that was overlooked in the MVC diagram was that the session controller would first have to populate the login page with available users, which is now done using the admin model.
+
+The final change regarding controllers and models is a tweak to the process of a user being shown their overview page. In the MVC diagram, the user would pose a login request to the view, which was passed to the session controller and through it to the overview controller, which would be responsible for presenting the user with the overview page. This design did not account for how routing would take place, and has been replaced by having the session router first use the session controller to verify the user as present in GradeAchiever, then contact the overview controller to load the page in the current iteration.
 
 ## Build Process
 Clone this project from GitHub and run:
