@@ -5,7 +5,7 @@ class DbClient {
 
     public async connect() {
         try {
-            const client = await MongoClient.connect("mongodb://localhost:27017",{useUnifiedTopology: true});
+            const client = await MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true});
             this.db = client.db("myapp");
             return this.db;
         } catch (error) {

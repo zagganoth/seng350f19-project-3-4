@@ -20,16 +20,14 @@ export class OverviewController {
 
         const gradableItems = [];
         const courses = [];
-        if("Courses" in  userDetails && userDetails["Courses"] != [])
-        {
+        if ("Courses" in  userDetails && userDetails.Courses !== []) {
             // This will be used to temporarily store each gradable item object then add a "coursename" field to it
-            let item : any;
+            let item: any;
             // For each course
             for (const course of userDetails.Courses) {
                 // Get the course details, including all gradable items
                 const courseDetails = await cm.GetCourseDetails(+course);
-                if("GradableItems" in courseDetails && courseDetails.GradableItems != [])
-                {
+                if ("GradableItems" in courseDetails && courseDetails.GradableItems !== []) {
                     // For each gradable item in the course
                     for (const gradableItem of courseDetails.GradableItems) {
                         // Add it to the list of gradable items

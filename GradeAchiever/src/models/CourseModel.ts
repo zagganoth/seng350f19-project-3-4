@@ -14,13 +14,13 @@ export class CourseModel extends BaseModel {
             ○ GradableItems[]
             (Removed) CourseAlgorithmAccuracy (float: 0.5f - 2f)
      */
-    public CourseID! : number;
-    public StudentID! : number;
-    public CourseName! : string;
-    public PerceivedDifficulty! : number;
-    public CurrentGrade! : number;
-    public GradeGoal! : number;
-    public GradableItems! : number[]
+    public CourseID!: number;
+    public StudentID!: number;
+    public CourseName!: string;
+    public PerceivedDifficulty!: number;
+    public CurrentGrade!: number;
+    public GradeGoal!: number;
+    public GradableItems!: number[];
     constructor() {
         super("Course");
     }

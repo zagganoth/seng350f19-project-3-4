@@ -17,7 +17,7 @@ export class AdminModel extends BaseModel {
             .then((db) => {
                 /*TODO stuff to delete user id
                  currently returns users that are left*/
-                return db!.collection(this.tableName).find().project({StudentID: 1, StudentName: 1}).toArray();
+                return db.collection(this.tableName).find().project({StudentID: 1, StudentName: 1}).toArray();
             })
             .catch((err) => {
                 console.log(err.message);

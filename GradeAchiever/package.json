@@ -41,6 +41,7 @@
     }
   },
   "jest": {
-    "testResultsProcessor": "jest-sonar-reporter"
+    "testResultsProcessor": "jest-sonar-reporter",
+    "testPathIgnorePatterns": ["./src/__tests__/"]
   }
 }
