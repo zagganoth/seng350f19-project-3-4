@@ -11,7 +11,6 @@ export class BaseModel {
     public async getAll(query: object= {}, project: object= {}, sort: object= {}) {
 
         return await DbClient.connect()
-
         .then((db) => {
             return db!.collection(this.tableName).find(query).project(project).sort(sort).toArray();
         })
@@ -19,7 +18,6 @@ export class BaseModel {
             console.log(err.message);
             return [];
         });
-
     }
     public async getOne(query: object): Promise<any> {
         return await DbClient.connect()

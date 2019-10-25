@@ -20,20 +20,26 @@ export class OverviewController {
 
         const gradableItems = [];
         const courses = [];
-        // This will be used to temporarily store each gradable item object then add a "coursename" field to it
-        let item;
-        // For each course
-        for (const course of userDetails.Courses) {
-            // Get the course details, including all gradable items
-            const courseDetails = await cm.GetCourseDetails(+course);
-            // For each gradable item in the course
-            for (const gradableItem of courseDetails.GradableItems) {
-                // Add it to the list of gradable items
-                item = await gm.GetGradableItemDetails(gradableItem);
-                item.CourseName = courseDetails.CourseName;
-                gradableItems.push(item);
+        if("Courses" in  userDetails && userDetails["Courses"] != [])
+        {
+            // This will be used to temporarily store each gradable item object then add a "coursename" field to it
+            let item : any;
+            // For each course
+            for (const course of userDetails.Courses) {
+                // Get the course details, including all gradable items
+                const courseDetails = await cm.GetCourseDetails(+course);
+                if("GradableItems" in courseDetails && courseDetails.GradableItems != [])
+                {
+                    // For each gradable item in the course
+                    for (const gradableItem of courseDetails.GradableItems) {
+                        // Add it to the list of gradable items
+                        item = await gm.GetGradableItemDetails(gradableItem);
+                        item.CourseName = courseDetails.CourseName;
+                        gradableItems.push(item);
+                    }
+                }
+                courses.push(courseDetails);
             }
-            courses.push(courseDetails);
         }
         // Sort gradable items by due date
         gradableItems.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);

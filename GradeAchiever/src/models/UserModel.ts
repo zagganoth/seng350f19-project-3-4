@@ -13,6 +13,12 @@ export class UserModel extends BaseModel {
 		○ Courses[]
         IsAdmin (bool)
      */
+    public StudentID! : number;
+    public Email! : string;
+    public StudentName! : string;
+    public NotificationLevel! : number;
+    public AlgorithmAccuracy! : number;
+    public Courses! : number[];
     constructor(userID: number) {
         // Table name
         super("User");
