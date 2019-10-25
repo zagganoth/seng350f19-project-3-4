@@ -1,7 +1,6 @@
 export class UserModel {
     public async GetUserDetails(id: number): Promise<any> {
-        return [
-        {
+        return {
             StudentID: 2,
             Email: "ashenwai@uvic.ca",
             StudentName: "AShenwai",
@@ -9,7 +8,6 @@ export class UserModel {
             AlgorithmAccuracy: 1.5,
             Courses: [],
             IsAdmin: false,
-        },
-      ];
-        };
+      };
+        }
   }

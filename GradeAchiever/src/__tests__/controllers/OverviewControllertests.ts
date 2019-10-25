@@ -4,7 +4,7 @@ import { UserModel } from "../../models/UserModel";
 
 jest.mock("../../models/UserModel");
 
-describe("Session Controller Tests", () => {
+describe("Overview Controller Tests", () => {
     let controller: OverviewController;
     const id = 1;
     beforeEach(() => {
@@ -13,7 +13,7 @@ describe("Session Controller Tests", () => {
 
     it("should delete a user", async () => {
         return controller.RequestUser(id).then((user: any) => {
-            expect(user)
+            expect(user);
         });
     });
 });

@@ -19,7 +19,7 @@ describe("Session Controller Tests", () => {
         });
     });
     it("no functionality yet", async () => {
-        return controller.VerifyUser(req, res, next,1).then((users: any) => {
+        return controller.VerifyUser(req, res, next, 1).then((users: any) => {
             expect(1);
         });
     });
