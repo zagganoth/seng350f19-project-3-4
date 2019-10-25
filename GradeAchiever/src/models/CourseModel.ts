@@ -1,6 +1,7 @@
 import DbClient = require("../DbClient");
 import { BaseModel } from "./BaseModel";
 import {GradableItemModel} from "./GradableItemModel";
+import {Request, Response, NextFunction} from "express";
 export class CourseModel extends BaseModel {
 
     /*
@@ -30,24 +31,9 @@ export class CourseModel extends BaseModel {
     public AddGradableItem(courseID: number, item: GradableItemModel) {
 
     }
-    public async GetCourseDetails(courseID: number) {
-        return await DbClient.connect()
-        .then((db) => {
-            return db!.collection(this.tableName).find({CourseID: courseID}).toArray();
-        })
-        .catch((err) => {
-            console.log(err.message);
-            return [];
-        });
-        // Course name, student, etc
-    }
-    public GetGradableItems(courseID: number) {
-        // List of all gradable items
-    }
-    public GetGradeGoal(courseID: number) {
-
-    }
-    public GetPerceivedDifficulty(courseID: number) {
+    public async GetCourseDetails(courseID: number): Promise<any> {
+        // Get all the details for a course, including its gradable items
+        return await this.getOne({CourseID: courseID})
 
     }
 

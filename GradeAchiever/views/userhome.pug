@@ -3,19 +3,21 @@ extends layout
 block content
   div.container-fluid
     h1 Overview Page
-    h3 Welcome #{studentDetails[0].StudentName}
+    h3 Welcome #{studentDetails.StudentName}
     div.calendar
 
-      if studentDetails[1] && studentDetails[1].length > 0
+      if courseDetails && courseDetails.length > 0
         h3 Calendar        
         table.gradable-items
           tr
-            th Name
+            th Course Name
+            th Gradable Item Name
             th Due Date
-          each gradableItem in studentDetails[2]
+          each gradableItem in gradableItemDetails
             tr
-              td #{gradableItem[0].GradableItemName}
-              td #{gradableItem[0].DueDate}
+              td #{gradableItem.CourseName}
+              td #{gradableItem.GradableItemName}
+              td #{gradableItem.DueDate}
       else
         h3 You haven't added any courses.
     div.course-list
@@ -24,7 +26,7 @@ block content
           tr
             th Name
             th Current Grade
-          each course in studentDetails[1]
+          each course in courseDetails
             tr
-              td #{course[0].CourseName}
-              td #{course[0].CurrentGrade} %
+              td #{course.CourseName}
+              td #{course.CurrentGrade} %

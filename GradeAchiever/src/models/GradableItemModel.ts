@@ -9,7 +9,7 @@ export class GradableItemModel extends BaseModel {
                 ○ GradableItemName (string)
                 ○ DueDate (Date)
                 ○ Weight (float? Int?) (Constraint: Item weights must add to 100)
-                GItemAlgorithmAccuracy (float?)
+                ○ GItemAlgorithmAccuracy (float?)
      */
     constructor() {
         super("GradableItem");
@@ -23,19 +23,9 @@ export class GradableItemModel extends BaseModel {
     public SetAlgAccuracy(gradableItemID: number, accuracy: number) {
         // Ensure between 0.5-2
     }
-    public async GetGradableItemDetails(gradableItemID: number) {
-        // Returns gradableItem name, id, course id, due date, weight
-        return await DbClient.connect()
-        .then((db) => {
-            return db!.collection(this.tableName).find({GradableItemID: gradableItemID}).toArray();
-        })
-        .catch((err) => {
-            console.log(err.message);
-            return [];
-        });
-    }
-    public GetAlgorithmAccuracy(gradableItemID: number) {
-
+    public async GetGradableItemDetails(gradableItemID: number): Promise<any> {
+        // Returns all details for a gradableItem
+        return await this.getOne({GradableItemID: gradableItemID});
     }
 
 }

@@ -2,3 +2,6 @@ node_modules/
 *.js
 dist/
 .vscode
+.idea
+.git
+db
