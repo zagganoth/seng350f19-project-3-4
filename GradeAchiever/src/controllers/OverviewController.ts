@@ -35,6 +35,7 @@ export class OverviewController {
             }
             courses.push(courseDetails);
         }
+        // Sort gradable items by due date
         gradableItems.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
         const retVal = [];
         retVal.push(userDetails);

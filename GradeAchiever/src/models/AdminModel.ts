@@ -28,7 +28,13 @@ export class AdminModel extends BaseModel {
     }
     public async GetAllUsers() {
         // Return the id and name for all students
-        return await this.getAll({}, {StudentID: 1, StudentName: 1});
+        try{
+            return await this.getAll({}, {StudentID: 1, StudentName: 1});
+        }catch(error){
+            console.log(error);
+            console.log("error from getall users")
+            return [];
+        }
     }
 
 }

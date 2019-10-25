@@ -64,7 +64,7 @@ export class IndexRoute extends BaseRoute {
 
         session.RequestUsers(req, res, next)
         .then((mess) => {
-            console.log(mess);
+            console.log("message"+mess);
             // set message
             const options: object = {
                 users: mess,
