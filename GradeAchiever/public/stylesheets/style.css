@@ -60,6 +60,10 @@ input.admin{
   color: green;
 }
 
+.error{
+  color: red;
+}
+
 div.calendar{
   width: 30%;
   min-width: 200px;
@@ -152,6 +156,7 @@ input[disabled] {
 
 input[disabled]:hover {
   background-color: #eebd68;
+  cursor: default;
 }
 
 

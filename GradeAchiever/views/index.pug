@@ -13,6 +13,6 @@ block content
               option("value"=user) #{user.StudentName}
           input(type='submit', value='Login')
         else 
-          p.dark No users available.
+          p.error No users available.
           input(type='submit', disabled, value='Login')
 
