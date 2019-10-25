@@ -5,6 +5,7 @@
     "max-line-length": false,
     "no-empty": false,
     "only-arrow-functions": false,
-    "indent": ["true", "tabs"]
+    "indent": ["true", "tabs"],
+    "object-literal-sort-keys": false
   }
 }
