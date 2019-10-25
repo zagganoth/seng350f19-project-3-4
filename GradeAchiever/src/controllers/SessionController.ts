@@ -38,7 +38,7 @@ export class SessionController {
         }
         retVal.push(courses);
         /*Sort gradable items in order by due date */
-        gradableItems.sort((a,b) => a[0].DueDate < b[0].DueDate ? -1 : a[0].DueDate > b[0].DueDate ? 1:0);
+        gradableItems.sort((a, b) => a[0].DueDate < b[0].DueDate ? -1 : a[0].DueDate > b[0].DueDate ? 1 : 0);
         retVal.push(gradableItems);
         return retVal;
 
