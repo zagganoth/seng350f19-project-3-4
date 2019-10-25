@@ -28,11 +28,11 @@ export class AdminModel extends BaseModel {
     }
     public async GetAllUsers() {
         // Return the id and name for all students
-        try{
+        try {
             return await this.getAll({}, {StudentID: 1, StudentName: 1});
-        }catch(error){
+        } catch (error) {
             console.log(error);
-            console.log("error from getall users")
+            console.log("error from getall users");
             return [];
         }
     }

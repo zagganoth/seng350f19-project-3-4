@@ -7,10 +7,10 @@ export class SessionController {
     }
     public async RequestUsers(req: Request, res: Response, next: NextFunction) {
         const m = new AdminModel();
-        try{
+        try {
             const retval = await m.GetAllUsers();
             return retval;
-        }catch(error){
+        } catch (error) {
             console.log(error);
             return [];
         }
