@@ -9,16 +9,6 @@ export class AdminModel extends BaseModel {
         const isAdmin = true;
         this.isAdmin = isAdmin;
     }
-    public AddUser(userName: string, email: string, isAdmin: boolean) {
-        // Add the user to the database using dbClient (ensure id is incremented over last maximum and
-        // that username is unique)
-        if (this.isAdmin) {
-
-        } else {
-            throw new Error("Invalid admin credentials");
-        }
-
-    }
 
     public async RemoveUser(userID: number) {
         if (this.isAdmin) {
@@ -37,8 +27,8 @@ export class AdminModel extends BaseModel {
         }
     }
     public async GetAllUsers() {
-        //Return the id and name for all students
-        return await this.getAll({},{StudentID:1,StudentName:1});
+        // Return the id and name for all students
+        return await this.getAll({}, {StudentID: 1, StudentName: 1});
     }
 
 }

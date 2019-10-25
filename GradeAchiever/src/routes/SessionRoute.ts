@@ -1,7 +1,7 @@
 
 import { NextFunction, Request, Response, Router } from "express";
-import {SessionController} from "../controllers/SessionController";
 import {OverviewController} from "../controllers/OverviewController";
+import {SessionController} from "../controllers/SessionController";
 import { BaseRoute } from "./route";
 
 export class SessionRoute extends BaseRoute {
@@ -12,15 +12,14 @@ export class SessionRoute extends BaseRoute {
         });
 
     }
-    public async Session(req: Request, res: Response, next: NextFunction, id: number)
-    {
+    public async Session(req: Request, res: Response, next: NextFunction, id: number) {
         const session = new SessionController();
-        //First, verify if user is valid (currently always true)
+        // First, verify if user is valid (currently always true)
         if (!await session.VerifyUser(req, res, next, id)) {
             this.render(req, res, "error");
             return;
         }
-        //Then, populate the overview page
+        // Then, populate the overview page
         const overview = new OverviewController();
         this.title = "Home";
         overview.RequestUser(id)
@@ -28,13 +27,12 @@ export class SessionRoute extends BaseRoute {
             const options: object = {
                 studentDetails: details[0],
                 courseDetails: details[1],
-                gradableItemDetails: details[2]
+                gradableItemDetails: details[2],
             };
             this.render(req, res, "userhome", options);
         })
-        .catch((error)=>
-        {
-           this.render(req,res,"error");
+        .catch((error) => {
+           this.render(req, res, "error");
         });
     }
 

@@ -11,8 +11,7 @@ export class SessionController {
         return retval;
     }
 
-    public async VerifyUser(req: Request, res: Response, next: NextFunction, id: number)
-    {
+    public async VerifyUser(req: Request, res: Response, next: NextFunction, id: number) {
         return true;
     }
 }

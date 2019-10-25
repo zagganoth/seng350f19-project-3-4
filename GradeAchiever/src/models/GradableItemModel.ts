@@ -14,15 +14,6 @@ export class GradableItemModel extends BaseModel {
     constructor() {
         super("GradableItem");
     }
-    public SetDate(gradableItemID: number, date: string) {
-        // ensure this is a valid date first
-    }
-    public SetWeight(gradableItemID: number, weight: number) {
-        // ensure that sum of all weights for a course is 100
-    }
-    public SetAlgAccuracy(gradableItemID: number, accuracy: number) {
-        // Ensure between 0.5-2
-    }
     public async GetGradableItemDetails(gradableItemID: number): Promise<any> {
         // Returns all details for a gradableItem
         return await this.getOne({GradableItemID: gradableItemID});

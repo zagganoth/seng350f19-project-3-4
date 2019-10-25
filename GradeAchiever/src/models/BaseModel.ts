@@ -7,7 +7,7 @@ export class BaseModel {
         this.tableName = tableName;
     }
 
-    public async getAll(query : object={}, project : object={}, sort : Object={}) {
+    public async getAll(query: object= {}, project: object= {}, sort: object= {}) {
         return await DbClient.connect()
         .then((db) => {
             return db!.collection(this.tableName).find(query).project(project).sort(sort).toArray();
@@ -16,7 +16,7 @@ export class BaseModel {
             console.log(err.message);
         });
     }
-    public async getOne(query : Object) : Promise<any> {
+    public async getOne(query: object): Promise<any> {
         return await DbClient.connect()
         .then((db) => {
             return db!.collection(this.tableName).findOne(query);

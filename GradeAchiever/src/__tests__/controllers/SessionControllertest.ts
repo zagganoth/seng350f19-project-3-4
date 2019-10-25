@@ -15,7 +15,7 @@ describe("Session Controller Tests", () => {
     });
 
     it("should get all users", async () => {
-        return controller.RequestUsers(req, res, next).then((users : any) => {
+        return controller.RequestUsers(req, res, next).then((users: any) => {
             expect(users.length).toEqual(3);
         });
     });

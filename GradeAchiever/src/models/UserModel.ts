@@ -20,35 +20,13 @@ export class UserModel extends BaseModel {
 
         this.userID = userID;
     }
-
-    public SetAlgorithmAccuracy(algAccuracy: number) {
-
-    }
-    public SetNotificationLevel(notificationLevel: number) {
-
-    }
-    public SetEmail(email: string) {
-
-    }
-    public AddCourse(course: CourseModel) {
-
-    }
-    public RemoveCourse(courseName: string) {
-        // The course should be uniquely identifiable by the user id and course name
-    }
     public async GetUserDetails(id: number): Promise<any> {
         console.log("Getting user details from table User");
         return await this.getOne({StudentID: id})
-        .catch((error)=>{
+        .catch((error) => {
             console.log("Error in getting user details.");
             return [];
         });
-    }
-    public GetAlgorithmAccuracy() {
-
-    }
-    public GetCourses() {
-
     }
 
 }
