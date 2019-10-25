@@ -3,7 +3,6 @@ import DbClient = require("../DbClient");
 import { BaseModel } from "./BaseModel";
 import { CourseModel } from "./CourseModel";
 export class UserModel extends BaseModel {
-    private readonly userID: number;
     /* User Model Fields:
     	○ StudentID (auto-generated, auto-increment, int)
 		○ Email (string, unique)
@@ -13,6 +12,13 @@ export class UserModel extends BaseModel {
 		○ Courses[]
         IsAdmin (bool)
      */
+    public StudentID!: number;
+    public Email!: string;
+    public StudentName!: string;
+    public NotificationLevel!: number;
+    public AlgorithmAccuracy!: number;
+    public Courses!: number[];
+    private readonly userID: number;
     constructor(userID: number) {
         // Table name
         super("User");
