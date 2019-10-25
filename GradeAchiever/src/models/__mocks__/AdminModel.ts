@@ -33,4 +33,26 @@ export class AdminModel extends BaseModel {
             },
         ];
     }
+    public async RemoveUser(userID: number) {
+      return [
+          {
+              StudentID: 2,
+              Email: "ashenwai@uvic.ca",
+              StudentName: "AShenwai",
+              NotificationLevel: 2,
+              AlgorithmAccuracy: 1.5,
+              Courses: [],
+              IsAdmin: false,
+          },
+          {
+              StudentID: 3,
+              Email: "admin@uvic.ca",
+              StudentName: "admin",
+              NotificationLevel: 0,
+              AlgorithmAccuracy: 0,
+              Courses: [],
+              IsAdmin: true,
+          },
+      ];
+      }
 }
