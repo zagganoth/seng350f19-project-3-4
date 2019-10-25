@@ -50,8 +50,6 @@ export class AdminRoute extends BaseRoute {
             console.log(err.message);
         })
         .then((options: any) => {
-            // console.log("I'm doing the thing: "+options);
-            // res.send(options);
             // render template
             this.render(req, res, "admin", options);
         });

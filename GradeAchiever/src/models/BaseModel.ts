@@ -7,23 +7,19 @@ export class BaseModel {
         this.tableName = tableName;
     }
 
-    public async getAll(req: Request, res: Response, next: NextFunction) {
+    public async getAll(query: object= {}, project: object= {}, sort: object= {}) {
         return await DbClient.connect()
         .then((db) => {
-            return db!.collection(this.tableName).find().toArray();
+            return db!.collection(this.tableName).find(query).project(project).sort(sort).toArray();
         })
         .catch((err) => {
             console.log(err.message);
         });
     }
-    public getOne(req: Request, res: Response) {
-        DbClient.connect()
+    public async getOne(query: object): Promise<any> {
+        return await DbClient.connect()
         .then((db) => {
-            return db!.collection(this.tableName).find().toArray();
-        })
-        .then((heroes: any) => {
-            console.log(heroes);
-            res.send(heroes);
+            return db!.collection(this.tableName).findOne(query);
         })
         .catch((err) => {
             console.log("err.message");
