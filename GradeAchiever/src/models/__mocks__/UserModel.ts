@@ -1,5 +1,5 @@
 export class UserModel {
-    public async GetUserDetails(id: number): Promise<any> {
+    public GetUserDetails(id: number) {
         return {
             StudentID: 2,
             Email: "ashenwai@uvic.ca",

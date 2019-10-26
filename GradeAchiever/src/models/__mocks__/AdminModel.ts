@@ -2,7 +2,7 @@ import { NextFunction, Request, Response, Router } from "express";
 import { BaseModel } from "../BaseModel";
 
 export class AdminModel extends BaseModel {
-    public async GetAllUsers(req: Request, res: Response, next: NextFunction) {
+    public GetAllUsers() {
         return [
             {
                 StudentID: 1,
@@ -33,7 +33,7 @@ export class AdminModel extends BaseModel {
             },
         ];
     }
-    public async RemoveUser(userID: number) {
+    public RemoveUser(userID: number) {
       return [
           {
               StudentID: 2,
