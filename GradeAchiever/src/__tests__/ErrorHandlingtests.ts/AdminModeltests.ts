@@ -10,3 +10,12 @@ test("Throws: Invalid admin credentials", () => {
   }
   expect(works === 1);
 });
+test("The issue with return await", () => {
+  const model = new AdminModel();
+  let works = 0;
+  if(model.GetAllUsers()===[]) {
+    works = 1;
+  
+  }
+  expect(works === 1);
+});
