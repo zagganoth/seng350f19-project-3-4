@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response} from "express";
 import { OverviewController } from "../../controllers/OverviewController";
-import { UserModel } from "../../models/UserModel";
 
 jest.mock("../../models/UserModel");
+jest.mock("../../models/GradableItemModel");
+jest.mock("../../models/CourseModel");
 
 describe("Overview Controller Tests", () => {
     let controller: OverviewController;
@@ -11,7 +12,7 @@ describe("Overview Controller Tests", () => {
         controller = new OverviewController();
     });
 
-    it("should delete a user", async () => {
+    it("test request a user and their courses and gradable items", async () => {
         return controller.RequestUser(id).then((user: any) => {
             expect(user);
         });
