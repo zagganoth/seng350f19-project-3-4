@@ -3,8 +3,9 @@
 
 ## Implemented User Stories
 - User Story #7: View current grades
+  Upon launching the app, the user can select an account to log in with, and see their grades on the overview page for each course they are enrolled in
 - User Story #4: View gradable items
-
+  Upon landing on the overview page, each user can see each gradable item they have due along with its due date in chronological order
 ## Changed Design Rational
 During the development process, a few architectural designs were changed from the original Module Diagram in Milestone 2. The most notable of these changes was the splitting of session controller functionality into an admin controller and a session controller. This was as during our initial design we overlooked the fact that the session controller would be responsible for both of these functionalities even though they are fairly distinct.
 
@@ -13,7 +14,9 @@ There was also an "admin model" added in to service interactions between control
 The final change regarding controllers and models is a tweak to the process of a user being shown their overview page. In the MVC diagram, the user would pose a login request to the view, which was passed to the session controller and through it to the overview controller, which would be responsible for presenting the user with the overview page. This design did not account for how routing would take place, and has been replaced by having the session router first use the session controller to verify the user as present in GradeAchiever, then contact the overview controller to load the page in the current iteration.
 
 ## Build Process
-Clone this project from GitHub and run:
+Clone this project from GitHub and from the "GradeAchiever" directory run:
+``tsc`` to compile
+``./bin/www`` to run
 ``docker`` stuff 
 
 ## Testing
