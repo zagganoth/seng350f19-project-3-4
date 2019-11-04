@@ -29,4 +29,20 @@ export class BaseModel {
         });
     }
 
+    public async deleteOne(query: object): Promise<any> {
+
+    }
+
+    public async deleteMany(query: object= {}, project: object= {}, sort: object= {}) {
+
+    }
+
+    public async editOne(query: object): Promise<any> {
+
+    }
+
+    public async editMany(query: object= {}, project: object= {}, sort: object= {}) {
+
+    }
+
 }
