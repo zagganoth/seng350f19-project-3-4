@@ -19,14 +19,12 @@ export class AdminRoute extends BaseRoute {
             console.log(req.body);
             new AdminRoute().deleteUser(req, res, next, req.body.id, req.body.thisID);
         });
-        
-        router.post("/createUser", (req: Request, res: Response, next: NextFunction)=>
-        {
+
+        router.post("/createUser", (req: Request, res: Response, next: NextFunction) => {
             console.log("Posting admin - req is ");
             console.log(req.body);
-            new AdminRoute().createUser(req,res,next,req.body.name,req.body.email,req.body.isAdmin, req.body.thisID);
+            new AdminRoute().createUser(req, res, next, req.body.name, req.body.email, req.body.isAdmin, req.body.thisID);
         });
-    
 
     }
     public async Admin(req: Request, res: Response, next: NextFunction, id: number, OpError?: string) {
@@ -85,7 +83,7 @@ export class AdminRoute extends BaseRoute {
         adminCtrl.CreateUser(req, res, next, name, email, isAdmin)
         .then((message) => {
             this.Admin(req, res, next, thisID);
-        
+
         });
 
     }
