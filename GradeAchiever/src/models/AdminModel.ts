@@ -17,6 +17,7 @@ export class AdminModel extends BaseModel {
         try {
             console.log("Admin Model - trying to delete one: " + userID);
             return await this.deleteOne({StudentID: Number(userID)});
+            // not sure how I feel about using this cast here. Shouldn't this be checked/handled somewhere else?
         } catch (error) {
             console.log(error);
             console.log("error from deleteOne user");
