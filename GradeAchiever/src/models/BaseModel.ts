@@ -32,8 +32,8 @@ export class BaseModel {
     public async deleteOne(query: object): Promise<any> {
         return await DbClient.connect()
         .then((db) => {
-            console.log("Base Model - deleting ");
-            console.log(query);
+            //console.log("Base Model - deleting ");
+            //console.log(query);
             return db.collection(this.tableName).deleteOne(query);
         })
         .catch((err) => {
