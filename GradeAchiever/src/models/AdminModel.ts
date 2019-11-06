@@ -13,10 +13,10 @@ export class AdminModel extends BaseModel {
 
     // Removes a user specified by ID
     public async RemoveUser(userID: number) {
-        // Return the id and name for all students
+        // Returns db response after deleting user
         try {
-            console.log("Admin Model - trying to delete one");
-            return await this.deleteOne({StudentID: userID});
+            console.log("Admin Model - trying to delete one: "+userID);
+            return await this.deleteOne({StudentID: Number(userID)});
         } catch (error) {
             console.log(error);
             console.log("error from deleteOne user");
