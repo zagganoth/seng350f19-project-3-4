@@ -51,7 +51,7 @@ export class AdminModel extends BaseModel {
     // Gets user by ID and updates user details
     public async UpdateUser(userID: number, update: object) {
         try {
-            console.log("Admin Model - Updating a user")
+            console.log("Admin Model - Updating a user");
             return this.editOne({StudentID: userID}, update);
         } catch (error) {
             console.log(error);
