@@ -9,10 +9,27 @@ export class AdminController {
 
     }
 
+    // Deletes an existing user
     public async DeleteUser(req: Request, res: Response, next: NextFunction, id: number) {
+        const am = new AdminModel();
+        console.log("Adming Controller - calling Remove User");
+        const returnVal = await am.RemoveUser(id);
+        console.log(returnVal);
+        return returnVal;
 
+    }
+
+    // Creates a new user
+    public async CreateUser(req: Request, res: Response, next: NextFunction, id: number) {
         const m = new AdminModel();
-        return await m.RemoveUser(id);
+        return await m.AddUser(id);
+
+    }
+
+    // Edits a user's details
+    public async EditUser(req: Request, res: Response, next: NextFunction, Userid: number, UpdatedUserDetails: object) {
+        const m = new AdminModel();
+        return await m.UpdateUser(Userid, UpdatedUserDetails);
 
     }
 }

@@ -9,6 +9,7 @@ export class OverviewController {
 
     }
 
+    // Gets user by ID and their courses, gradable items (in sorted order)
     public async RequestUser(id: number) {
 
         const um = new UserModel(id);

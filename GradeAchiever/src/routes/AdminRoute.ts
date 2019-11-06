@@ -29,20 +29,22 @@ export class AdminRoute extends BaseRoute {
         */
 
     }
-    public async Admin(req: Request, res: Response, next: NextFunction, id: number) {
+    public async Admin(req: Request, res: Response, next: NextFunction, id: number, OpError?: string) {
         console.log("id in adminrouter is " + id);
         console.log("value of id is" + id.toString());
         const session = new SessionController();
         this.title = "Admin";
         session.RequestUsers(req, res, next)
-        .then((mess) => {
-            console.log(mess);
+        .then((users) => {
+            console.log(users);
             console.log("ID is " + id);
             // set message
             const options: object = {
                 thisID: id,
-                users: mess,
+                users,
+                Mess: OpError,
             };
+
             console.log(options);
             return options;
         })
@@ -58,13 +60,18 @@ export class AdminRoute extends BaseRoute {
 
     public async deleteUser(req: Request, res: Response, next: NextFunction, id: number, thisID: number) {
         console.log("value of id to delete is " + id.toString());
-        const adminsession = new AdminController();
+        const adminCtrl = new AdminController();
         this.title = "DeleteUser";
-        adminsession.DeleteUser(req, res, next, id)
-        .then(() => {
-            console.log(res);
-            // res.redirect(307, "/admin");
-            this.Admin(req, res, next, thisID);
+        adminCtrl.DeleteUser(req, res, next, id)
+        .then((message) => {
+            if (message.deletedCount === 0) {
+                const Mess = "Failed to delete user.";
+                this.Admin(req, res, next, thisID, Mess);
+            } else {
+                // console.log(res);
+                // res.redirect(307, "/admin");
+                this.Admin(req, res, next, thisID);
+            }
         });
 
     }

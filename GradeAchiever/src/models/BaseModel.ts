@@ -30,7 +30,15 @@ export class BaseModel {
     }
 
     public async deleteOne(query: object): Promise<any> {
-
+        return await DbClient.connect()
+        .then((db) => {
+            console.log("Base Model - deleting ");
+            return db.collection(this.tableName).deleteOne(query);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        });
     }
 
     public async deleteMany(query: object= {}, project: object= {}, sort: object= {}) {
