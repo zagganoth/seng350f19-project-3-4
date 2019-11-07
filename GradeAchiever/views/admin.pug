@@ -18,6 +18,7 @@ block content
             input(type="text" name="email")
             label(for="isadmin") Admin User
             input(type="radio" name="isadmin" value="Admin user")
+            input(type="hidden" value=thisID, name="thisID")
             input(type="submit", value="Create User")
             
       div 
@@ -39,7 +40,7 @@ block content
                     td.button 
                       form(action='/deleteUser' method="post")
                         input(type="hidden", value=thisID, name='thisID')
-                        input(type='hidden', value=user.StudentID)
+                        input(type='hidden', value=user.StudentID, name='id')
                         if thisID == user.StudentID
                           input(type='submit', value='Delete' disabled)
                         else

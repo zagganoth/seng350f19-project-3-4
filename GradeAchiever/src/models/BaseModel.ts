@@ -9,8 +9,7 @@ export class BaseModel {
     }
 
     public async getAll(query: object= {}, project: object= {}, sort: object= {}) {
-
-        return await DbClient.connect()
+        return DbClient.connect()
         .then((db) => {
             return db.collection(this.tableName).find(query).project(project).sort(sort).toArray();
         })
@@ -20,13 +19,68 @@ export class BaseModel {
         });
     }
     public async getOne(query: object): Promise<any> {
-        return await DbClient.connect()
+        return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).findOne(query);
+            console.log("Base Model - get one.");
+            const returnVal = db.collection(this.tableName).findOne(query);
+            console.log("Base Model - return " + returnVal);
+            return returnVal;
         })
         .catch((err) => {
-            console.log("err.message");
+            console.log(err.message);
         });
+    }
+
+    public async deleteOne(query: object): Promise<any> {
+        return DbClient.connect()
+        .then((db) => {
+            // console.log("Base Model - deleting ");
+            // console.log(query);
+            return db.collection(this.tableName).deleteOne(query);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        });
+    }
+
+    public async deleteMany(query: object= {}, project: object= {}, sort: object= {}) {
+
+    }
+
+/*
+Update needs to be an object of the form
+{
+    NameOfDBField: ValueWeWantToSetItTo,
+    NameOfDBField: ValueWeWantToSetItTo,
+    NameOfDBField: ValueWeWantToSetItTo,
+    .
+    .
+    .
+}
+*/
+    public async editOne(query: object, update: object): Promise<any> {
+        return DbClient.connect()
+        .then((db) => {
+            console.log("Base Model - Editing one");
+            return db.collection(this.tableName).updateOne(query, {$set: update});
+        });
+    }
+
+    public async editMany(query: object= {}, project: object= {}, sort: object= {}) {
+
+    }
+
+    public async addOne(query: object): Promise<any> {
+        return DbClient.connect()
+        .then((db) => {
+            console.log("Base Model - Inserting one");
+            return db.collection(this.tableName).insertOne(query);
+        });
+    }
+
+    public async addMany(query: object= {}, project: object= {}, sort: object= {}) {
+
     }
 
 }

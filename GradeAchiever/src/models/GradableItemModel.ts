@@ -24,7 +24,7 @@ export class GradableItemModel extends BaseModel {
 
     public async GetGradableItemDetails(gradableItemID: number): Promise<GradableItemModel> {
         // Returns all details for a gradableItem
-        return await this.getOne({GradableItemID: gradableItemID});
+        return await this.getOne({GradableItemID: Number(gradableItemID)});
     }
 
 }
