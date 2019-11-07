@@ -27,7 +27,7 @@ export class CourseModel extends BaseModel {
 
     public async GetCourseDetails(courseID: number): Promise<CourseModel> {
         // Get all the details for a course, including its gradable items
-        return await this.getOne({CourseID: courseID});
+        return await this.getOne({CourseID: Number(courseID)});
     }
 
 }
