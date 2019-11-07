@@ -21,9 +21,9 @@ export class BaseModel {
     public async getOne(query: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
-            console.log("Base Model - get one.")
+            console.log("Base Model - get one.");
             const returnVal = db.collection(this.tableName).findOne(query);
-            console.log("Base Model - return "+returnVal);
+            console.log("Base Model - return " + returnVal);
             return returnVal;
         })
         .catch((err) => {
