@@ -36,7 +36,7 @@ export class SessionRoute extends BaseRoute {
                 studentDetails: details[0],
                 courseDetails: details[1],
                 gradableItemDetails: details[2],
-                thisID: id
+                thisID: id,
             };
             this.render(req, res, "userhome", options);
         })
