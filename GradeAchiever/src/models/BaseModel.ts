@@ -45,6 +45,67 @@ export class BaseModel {
 
     }
 
+
+    /*Gets the number of rows in a table */
+    public async getCount(query: object= {}) {
+        return DbClient.connect()
+        .then((db) => {
+            return db.collection(this.tableName).find().count();
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        });
+    }
+
+
+     /* Gets the max (of ID) in a table 
+      * row of the from 
+        {
+            NameOfDBField: -1
+        }
+
+        ie. {
+                StudentID:-1
+            }
+      */
+     public async getMax(query: object, field: object) {
+        return DbClient.connect()
+        .then((db) => {
+            return db.collection(this.tableName).find().sort(field).limit(1);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        });
+    }
+
+
+      /* Gets the min in a table field.
+       * Param field of the from 
+        {
+            NameOfDBField: +1
+        }
+
+        eg. {
+                StudentID: +1
+            }
+      */
+     public async getMin(query: object, field: object) {
+        return DbClient.connect()
+        .then((db) => {
+            return db.collection(this.tableName).find().sort(field).limit(1);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        });
+    }
+
+
+
+
+
 /*
 Update needs to be an object of the form
 {
