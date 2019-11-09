@@ -5,3 +5,9 @@ dist/
 .idea
 .git
 db
+<<<<<<< Updated upstream
+=======
+coverage/
+.gitignore
+.scannerwork
+>>>>>>> Stashed changes

@@ -41,7 +41,6 @@ nav {
   color: #f3e0ec;
   border: none;
   padding: 12px 16px;
-  border: none;
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
@@ -53,6 +52,9 @@ nav {
 
 input.admin{
   font-size: 14px;
+  margin: 0px;
+  padding:0px;
+
 }
 
 
@@ -157,11 +159,4 @@ input[disabled] {
 input[disabled]:hover {
   background-color: #eebd68;
   cursor: default;
-}
-
-
-input.admin{
-  margin: 0px;
-  padding:0px;
-
 }

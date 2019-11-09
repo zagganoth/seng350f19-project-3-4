@@ -33,9 +33,12 @@ Marks deducted:
 - testability issue - see comment
 - user story titles are uninformative (-1)
 
-# Milestone 2    / 20
+
+
+# Milestone 2   20 / 20
 
 ## Marking Guide
+
 - technical writing is clear and concise (key decisions are documented; organization is easy to follow; basic English spelling and writing conventions adhered to)
 - design follows basic principles like cohesion/coupling, single responsibility, open/closed
 - design addresses QAR from M1
@@ -46,8 +49,13 @@ Marks deducted:
 - ADRs don't capture trivial design decisions
 
 ## Notes M2
+
 (explaining why marks were deducted)
 -----
+
+- nice work. 
+
+
 
 
 # Milestone 3    / 20

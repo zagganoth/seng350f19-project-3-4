@@ -6,7 +6,6 @@ import express from "express";
 import logger from "morgan";
 import path from "path";
 import {AdminRoute} from "./routes/AdminRoute";
-import { HeroRouter } from "./routes/heroRouter";
 import { IndexRoute } from "./routes/index";
 import {SessionRoute} from "./routes/SessionRoute";
 
@@ -102,7 +101,6 @@ export class Server {
         router = express.Router();
 
         IndexRoute.create(router);
-        HeroRouter.create(router);
         SessionRoute.create(router);
         AdminRoute.create(router);
         // use router middleware

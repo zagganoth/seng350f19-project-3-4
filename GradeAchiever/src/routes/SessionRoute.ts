@@ -24,6 +24,12 @@ export class SessionRoute extends BaseRoute {
         this.title = "Home";
         overview.RequestUser(id)
         .then((details) => {
+            console.log(details);
+            /*Details is an array of length 3 with the following fields -
+                details[0] = studentDetails (Name, id, email, list of courses etc
+                details[1] = courseDetails (CourseName,CourseID,list of gradable items etc)
+                details[1] = gradableItemDetails (CourseName,CourseID,list of gradable items etc);
+            */
             const options: object = {
                 studentDetails: details[0],
                 courseDetails: details[1],
