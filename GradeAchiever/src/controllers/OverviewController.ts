@@ -17,28 +17,28 @@ export class OverviewController {
         // Get all details for the user, including courses
         const userDetails = await um.GetUserDetails(id);
         // Prepare to query details from both the courses and the models
-        const gm = new GradableItemModel();
+        //const gm = new GradableItemModel();
+
+        //gets course and grade info from courseController
         const CourseCtrl = new CourseController();
 
         const gradableItems = [];
         const courses = [];
         if ("Courses" in  userDetails && userDetails.Courses !== []) {
-            // This will be used to temporarily store each gradable item object then add a "coursename" field to it
-            let item: any;
             let courseDetails: any;
+            let gradableItemsbyCourse: any;
             // For each course
             for (const course of userDetails.Courses) {
                 // Get the course details, including all gradable items
                 courseDetails = await CourseCtrl.RequestCourse(course);
                 console.log("**** **** **** Course Details: " + courseDetails);
-                if ("GradableItems" in courseDetails && courseDetails.GradableItems !== []) {
-                    // For each gradable item in the course
-                    for (const gradableItem of courseDetails.GradableItems) {
-                        // Add it to the list of gradable items
-                        item = await gm.GetGradableItemDetails(gradableItem);
-                        item.CourseName = courseDetails.CourseName;
-                        gradableItems.push(item);
-                    }
+                // get gradable items by course id from Course Controller
+                gradableItemsbyCourse = await CourseCtrl.RequestCourseGradableItems(course);
+                console.log("Gradable Items by course:"+gradableItemsbyCourse);
+                for (const gradableitem of gradableItemsbyCourse){
+                    //Add course name to each gradable item
+                    gradableitem.CourseName = courseDetails.CourseName;
+                    gradableItems.push(gradableitem);
                 }
                 courses.push(courseDetails);
             }
@@ -46,7 +46,7 @@ export class OverviewController {
         }
         // Sort gradable items by due date
         gradableItems.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
-
+        console.log(gradableItems);
         const retVal = [];
         retVal.push(userDetails);
         retVal.push(courses);
