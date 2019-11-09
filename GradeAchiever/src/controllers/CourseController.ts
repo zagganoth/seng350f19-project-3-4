@@ -39,6 +39,7 @@ export class CourseController {
                         const itemDetails = await gradableItemContr.RequestGradableItem(itemID);
                         returnVal.push(itemDetails);
                     }
+                    console.log("Request course gradable itmes returning: " + returnVal);
                     return returnVal;
                 }
             });
