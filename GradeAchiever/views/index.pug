@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  
+  - var page = 'index'
   div.container-fluid
     h1 #{title}
     h2 Select a user to login
@@ -10,7 +12,7 @@ block content
         if users.length > 0
           select(name='user')
             each user in users
-              option("value"=user) #{user.StudentName}
+              option("value"=user.StudentID) #{user.StudentName}
           input(type='submit', value='Login')
         else 
           p.error No users available.

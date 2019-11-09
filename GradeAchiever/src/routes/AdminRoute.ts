@@ -39,8 +39,10 @@ export class AdminRoute extends BaseRoute {
             // set message
             const options: object = {
                 thisID: id,
+                isAdmin: true,
                 users,
                 Mess: OpError,
+
             };
 
             console.log(options);

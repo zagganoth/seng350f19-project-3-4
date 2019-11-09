@@ -9,13 +9,11 @@ h1 {
   color: #ee5622;
 }
 
-
 div {
   border-radius: 5px;
   background-color: #383838;
   padding: 20px;
 }
-
 
 .dark {
   color: #383838;
@@ -26,38 +24,6 @@ div {
   padding: 10px;
 }
 
-nav {
-  padding: 0;
-  color: #f3e0ec;
-  background: #383838;
-
-}
-
-.navbar-item{
-  font-size: 14px;
-  float: right;
-  margin: 3px;
-  background-color: #eca72c;
-  color: #f3e0ec;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.navbar-item:hover{
-  background-color: #ffa200;
-}
-
-input.admin{
-  font-size: 14px;
-  margin: 0px;
-  padding:0px;
-
-}
-
-
 .message{
   color: green;
 }
@@ -66,6 +32,11 @@ input.admin{
   color: red;
 }
 
+
+
+/****************
+TABLES
+*****************/
 div.calendar{
   width: 30%;
   min-width: 200px;
@@ -107,7 +78,6 @@ table.gradable-items tr:nth-child(odd){
   background: #5f5f5f;
 }
 
-
 td{
   padding: 5px;
 }
@@ -125,7 +95,9 @@ f3e0ec whiteish
 ead5e6 light grey
 */
 
-
+/****************
+FORM INPUTS
+*****************/
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -159,4 +131,44 @@ input[disabled] {
 input[disabled]:hover {
   background-color: #eebd68;
   cursor: default;
+}
+
+
+
+/****************
+NAVBAR
+*****************/
+nav {
+  padding: 0;
+  color: #f3e0ec;
+  background: #383838;
+
+}
+
+.nav input[type=submit] {
+  margin: 0;
+  padding: 0;
+}
+
+.nav{
+  font-size: 14px;
+  margin: 0px;
+  padding:0px;
+}
+
+.navbar-item{
+  font-size: 14px;
+  float: right;
+  margin: 3px;
+  background-color: #eca72c;
+  color: #f3e0ec;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar-item:hover{
+  background-color: #ffa200;
 }

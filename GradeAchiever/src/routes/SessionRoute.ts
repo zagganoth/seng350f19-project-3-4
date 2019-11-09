@@ -8,7 +8,9 @@ export class SessionRoute extends BaseRoute {
     public static create(router: Router) {
         console.log("[SessionRoute::create] Creating user homepage route.");
         router.post("/overview", (req: Request, res: Response, next: NextFunction) => {
-            new SessionRoute().Session(req, res, next, JSON.parse(req.body.user).StudentID);
+            console.log(req.body);
+            console.log(req.body.user);
+            new SessionRoute().Session(req, res, next, Number(req.body.user));
         });
 
     }
@@ -20,9 +22,9 @@ export class SessionRoute extends BaseRoute {
             return;
         }
         // Then, populate the overview page
-        const overview = new OverviewController();
+        const overviewCtrl = new OverviewController();
         this.title = "Home";
-        overview.RequestUser(id)
+        overviewCtrl.RequestUser(id)
         .then((details) => {
             console.log(details);
             /*Details is an array of length 3 with the following fields -
@@ -34,11 +36,12 @@ export class SessionRoute extends BaseRoute {
                 studentDetails: details[0],
                 courseDetails: details[1],
                 gradableItemDetails: details[2],
+                thisID: id
             };
             this.render(req, res, "userhome", options);
         })
         .catch((error) => {
-           this.render(req, res, "error");
+           this.render(req, res, "error", error);
         });
     }
 
