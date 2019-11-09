@@ -17,9 +17,9 @@ export class OverviewController {
         // Get all details for the user, including courses
         const userDetails = await um.GetUserDetails(id);
         // Prepare to query details from both the courses and the models
-        //const gm = new GradableItemModel();
+        // const gm = new GradableItemModel();
 
-        //gets course and grade info from courseController
+        // gets course and grade info from courseController
         const CourseCtrl = new CourseController();
 
         const gradableItems = [];
@@ -34,9 +34,9 @@ export class OverviewController {
                 console.log("**** **** **** Course Details: " + courseDetails);
                 // get gradable items by course id from Course Controller
                 gradableItemsbyCourse = await CourseCtrl.RequestCourseGradableItems(course);
-                console.log("Gradable Items by course:"+gradableItemsbyCourse);
-                for (const gradableitem of gradableItemsbyCourse){
-                    //Add course name to each gradable item
+                console.log("Gradable Items by course:" + gradableItemsbyCourse);
+                for (const gradableitem of gradableItemsbyCourse) {
+                    // Add course name to each gradable item
                     gradableitem.CourseName = courseDetails.CourseName;
                     gradableItems.push(gradableitem);
                 }
