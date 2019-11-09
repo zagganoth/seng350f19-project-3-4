@@ -4,17 +4,30 @@ block content
   
   - var page = 'index'
   div.container-fluid
-    h1 #{title}
-    h2 Select a user to login
-    div.newuser
-      form(action='/overview' method="post")
-        label(for='userOpt') Users
-        if users.length > 0
-          select(name='user')
-            each user in users
-              option("value"=user.StudentID) #{user.StudentName}
-          input(type='submit', value='Login')
-        else 
-          p.error No users available.
-          input(type='submit', disabled, value='Login')
+    h1.welcome Welome to Grade Achiever
+    div.row
+      div.col
+        h1 Login
+        h2 Select a user to login
+        div.newuser
+          form(action='/overview' method="post")
+            label(for='userOpt') Users
+            if users.length > 0
+              select(name='user')
+                each user in users
+                  option("value"=user.StudentID) #{user.StudentName}
+              input(type='submit', value='Login')
+            else 
+              p.error No users available.
+              input(type='submit', disabled, value='Login')
+      div.col
+        h1 Sign Up
+        h2 Don't have an account? Create a new user!
+        div.newuser
+          form(action='/createUser' method="post")
+            label(for="name") Name:
+            input(type="text" name="name")
+            label(for="email") Email Address:
+            input(type="text" name="email")
+            input(type="submit", value="Create User")
 

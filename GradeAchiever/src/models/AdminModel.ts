@@ -38,10 +38,10 @@ export class AdminModel extends BaseModel {
     }
 
     // Adds a new user
-    public async AddUser(userID: number) {
+    public async AddUser(user: object) {
         try {
             console.log("Admin Model - adding a user");
-            return this.addOne({});
+            return this.addOne(user);
         } catch (error) {
             console.log(error);
             console.log("error from AddUser users");

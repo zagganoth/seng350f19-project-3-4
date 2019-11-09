@@ -9,7 +9,8 @@ html
     header
     - var page = 'layout'
       nav.navbar
-        if thisID
+        h1.title GradeAchiever
+        if studentDetails || thisID
           a.logout.navbar-item(href="/") Logout
           unless page === 'admin'
             if studentDetails && studentDetails.IsAdmin
@@ -22,5 +23,6 @@ html
             form.navbar-item.nav(action='/overview' method="post")
               input(type='hidden' name='user' value=thisID)
               input(type="submit" value="Course Overview")
+      
     
     block content

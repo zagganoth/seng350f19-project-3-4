@@ -21,7 +21,7 @@ export class AdminRoute extends BaseRoute {
         });
 
         router.post("/createUser", (req: Request, res: Response, next: NextFunction) => {
-            console.log("Posting admin - req is ");
+            console.log("Posting createUser - req is ");
             console.log(req.body);
             new AdminRoute().createUser(req, res, next, req.body.name, req.body.email, req.body.isAdmin, req.body.thisID);
         });
@@ -84,8 +84,13 @@ export class AdminRoute extends BaseRoute {
         this.title = "CreateUser";
         adminCtrl.CreateUser(req, res, next, name, email, isAdmin)
         .then((message) => {
-            this.Admin(req, res, next, thisID);
-
+            console.log(message);
+            if (message.insertedCount === 0) {
+                const Mess = "Failed to create user.";
+                this.Admin(req, res, next, thisID, Mess);
+            } else {
+                this.Admin(req, res, next, thisID);
+            }
         });
 
     }
