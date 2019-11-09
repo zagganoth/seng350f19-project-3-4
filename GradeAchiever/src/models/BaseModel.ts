@@ -45,7 +45,6 @@ export class BaseModel {
 
     }
 
-
     /*Gets the number of rows in a table */
     public async getCount(query: object= {}) {
         return DbClient.connect()
@@ -58,9 +57,8 @@ export class BaseModel {
         });
     }
 
-
-     /* Gets the max (of ID) in a table 
-      * row of the from 
+     /* Gets the max (of ID) in a table
+      * row of the from
         {
             NameOfDBField: -1
         }
@@ -80,9 +78,8 @@ export class BaseModel {
         });
     }
 
-
       /* Gets the min in a table field.
-       * Param field of the from 
+       * Param field of the from
         {
             NameOfDBField: +1
         }
@@ -101,10 +98,6 @@ export class BaseModel {
             return [];
         });
     }
-
-
-
-
 
 /*
 Update needs to be an object of the form

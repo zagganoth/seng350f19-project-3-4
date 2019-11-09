@@ -22,13 +22,13 @@ export class AdminController {
     // Creates a new user
     public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string, isAdmin: boolean) {
         const am = new AdminModel();
-        const newID = Number(await am.getCount())+1; 
+        const newID = Number(await am.getCount()) + 1;
         const newuser: object = {
             StudentID: newID,
             StudentName: name,
             Email: email,
-            IsAdmin: isAdmin
-        }
+            IsAdmin: isAdmin,
+        };
         return am.AddUser(newuser);
 
     }
