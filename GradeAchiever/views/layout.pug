@@ -11,9 +11,9 @@ html
         if studentDetails || thisID
           a.logout.navbar-item(href="/") Logout
           unless thisID
-            if studentDetails[0].IsAdmin
+            if studentDetails.IsAdmin
               form.navbar-item(action='/admin' method="post")
-                input.admin(type='hidden' name='user' value=studentDetails[0].StudentID)
+                input.admin(type='hidden' name='user' value=studentDetails.StudentID)
                 input.admin(type="submit" value="Manage Users")
     
     block content
