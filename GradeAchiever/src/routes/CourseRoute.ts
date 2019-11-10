@@ -22,10 +22,12 @@ export class CourseRoute extends BaseRoute {
         const courseCtrl = new CourseController();
         this.title = "Course Home";
         courseCtrl.RequestCourse(courseID)
-        .then((details) => {
+        .then(async(details) => {
             console.log(details);
+            const gradableItemDetails = await courseCtrl.RequestCourseGradableItems(courseID)
             const options: object = {
                 courseDetails: details,
+                gradableItems: gradableItemDetails,
                 thisID: userID,
                 message: Mess,
             };
