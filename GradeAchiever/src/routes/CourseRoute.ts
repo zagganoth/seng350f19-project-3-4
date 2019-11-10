@@ -12,7 +12,7 @@ export class CourseRoute extends BaseRoute {
             new CourseRoute().Course(req, res, next, Number(req.body.courseID), Number(req.body.thisID));
         });
         router.post("/newGradableItem", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().createGradableItem(req,res,next,req.body.courseID, req.body.name, req.body.email, req.body.thisID);
+            new CourseRoute().createGradableItem(req, res, next, req.body.courseID, req.body.name, req.body.email, req.body.thisID);
         });
 
     }
@@ -39,12 +39,12 @@ export class CourseRoute extends BaseRoute {
     /**
      * Signs up a new user by creating them in db and then loads their homepage
      */
-    public async createGradableItem(req: Request, res: Response, next: NextFunction,courseID: number, name: string, email: string, thisID: number) {
+    public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, email: string, thisID: number) {
         console.log("values of user to create is " + name.toString());
         console.log(email.toString());
         const courseCtrl = new CourseController();
         this.title = "CreateUser";
-        courseCtrl.CreateGradableItem(courseID, name, email,thisID)
+        courseCtrl.CreateGradableItem(courseID, name, email, thisID)
         .then((resp) => {
             console.log(resp);
             // If new user creation failed, reload page with message
