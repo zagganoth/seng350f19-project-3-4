@@ -1,7 +1,7 @@
+import { promises } from "dns";
 import { NextFunction, Request, Response, Router } from "express";
 import { MongoNetworkError } from "mongodb";
 import DbClient = require("../DbClient");
-import { promises } from "dns";
 
 export class BaseModel {
     protected tableName: string;
@@ -71,13 +71,13 @@ export class BaseModel {
                 StudentID:-1
             }
       */
-     public async getMax(query: object = {}, project: object = {}, sort:object={}) {
+     public async getMax(query: object = {}, project: object = {}, sort: object= {}) {
         return DbClient.connect()
         .then((db) => {
             console.log("Base Model - get max.");
             const returnVal = db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
             console.log("Base Model - return " + returnVal);
-            //console.log(returnVal.StudentID);
+            // console.log(returnVal.StudentID);
             return returnVal;
         })
         .catch((err) => {

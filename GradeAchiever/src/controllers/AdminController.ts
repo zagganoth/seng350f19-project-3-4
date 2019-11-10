@@ -1,8 +1,8 @@
-import { is, anyTypeAnnotation } from "@babel/types";
+import { anyTypeAnnotation, is } from "@babel/types";
 import { NextFunction, Request, Response, Router } from "express";
 import {AdminModel} from "../models/AdminModel";
 import {UserModel} from "../models/UserModel";
-//import {SessionController} from "./SessionController";
+// import {SessionController} from "./SessionController";
 
 export class AdminController {
     constructor() {
@@ -29,17 +29,16 @@ export class AdminController {
         let newID: any = await am.GetNewID();
         console.log(newID);
         console.log(newID[0].StudentID);
-        newID = Number(newID[0].StudentID)+1;
-        console.log("NEW ID "+newID);
+        newID = Number(newID[0].StudentID) + 1;
+        console.log("NEW ID " + newID);
         const newuser: object = {
             StudentID: newID,
             StudentName: name,
             Email: email,
             IsAdmin: isAdmin,
         };
-        
+
         return await am.AddUser(newuser);
-       
 
     }
 

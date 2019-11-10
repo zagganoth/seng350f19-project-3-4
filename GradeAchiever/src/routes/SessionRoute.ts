@@ -57,7 +57,7 @@ export class SessionRoute extends BaseRoute {
         .then((resp) => {
             console.log(resp);
             if (resp.insertedCount === 0) {
-                res.redirect('/');
+                res.redirect("/");
             } else {
                 this.Session(req, res, next, resp.ops[0].StudentID);
             }

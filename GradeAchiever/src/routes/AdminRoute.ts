@@ -80,14 +80,14 @@ export class AdminRoute extends BaseRoute {
         console.log("values of user to create is " + name.toString());
         console.log(email.toString());
         console.log(isAdmin);
-        if(isAdmin === undefined){
+        if (isAdmin === undefined) {
             isAdmin = false;
         }
         const adminCtrl = new AdminController();
         this.title = "CreateUser";
         adminCtrl.CreateUser(req, res, next, String(name), String(email), Boolean(isAdmin))
         .then((resp) => {
-            console.log("GOT RESPONSE")
+            console.log("GOT RESPONSE");
             console.log(resp);
             if (resp.insertedCount === 0) {
                 const Mess = "Failed to create user.";
@@ -96,13 +96,12 @@ export class AdminRoute extends BaseRoute {
                 this.Admin(req, res, next, thisID);
             }
         })
-        .catch((err) =>{
+        .catch((err) => {
             console.log(err);
             const Mess = "Failed to create user.";
-            try{
+            try {
                 this.Admin(req, res, next, thisID, Mess);
-            }
-            catch{
+            } catch {
                 return;
             }
         });

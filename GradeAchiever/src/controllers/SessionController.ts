@@ -24,14 +24,14 @@ export class SessionController {
     public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
         const am = new AdminModel();
         let maxRow: any;
-        maxRow = await am.getMax({},{StudentID:-1});
+        maxRow = await am.getMax({}, {StudentID: -1});
         console.log(maxRow);
         console.log(maxRow.StudenID);
         const newID = Number(maxRow.StudentID) + 1;
         const newuser: object = {
             StudentID: newID,
             StudentName: name,
-            Email: email
+            Email: email,
         };
         return am.AddUser(newuser);
     }
