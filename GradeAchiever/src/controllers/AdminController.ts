@@ -1,12 +1,11 @@
-import { is } from "@babel/types";
+import { anyTypeAnnotation, is } from "@babel/types";
 import { NextFunction, Request, Response, Router } from "express";
 import {AdminModel} from "../models/AdminModel";
 import {UserModel} from "../models/UserModel";
-import {SessionController} from "./SessionController";
+// import {SessionController} from "./SessionController";
 
 export class AdminController {
     constructor() {
-
     }
 
     // Deletes an existing user
@@ -16,21 +15,21 @@ export class AdminController {
         const returnVal = await am.RemoveUser(id);
         console.log(returnVal);
         return returnVal;
-
     }
 
     // Creates a new user
     public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string, isAdmin: boolean) {
         const am = new AdminModel();
-        const newID = Number(await am.getCount()) + 1;
+        let newID: any = await am.GetNewID();
+        newID = Number(newID[0].StudentID) + 1;
+        // console.log("NEW ID " + newID);
         const newuser: object = {
             StudentID: newID,
             StudentName: name,
             Email: email,
             IsAdmin: isAdmin,
         };
-        return am.AddUser(newuser);
-
+        return await am.AddUser(newuser);
     }
 
     // Edits a user's details

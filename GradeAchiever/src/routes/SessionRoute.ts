@@ -12,6 +12,9 @@ export class SessionRoute extends BaseRoute {
             console.log(req.body.user);
             new SessionRoute().Session(req, res, next, Number(req.body.user));
         });
+        router.post("/newUser", (req: Request, res: Response, next: NextFunction) => {
+            new SessionRoute().createUser(req, res, next, req.body.name, req.body.email);
+        });
 
     }
     public async Session(req: Request, res: Response, next: NextFunction, id: number) {
@@ -43,6 +46,28 @@ export class SessionRoute extends BaseRoute {
         .catch((error) => {
            this.render(req, res, "error", error);
         });
+    }
+
+    /**
+     * Signs up a new user by creating them in db and then loads their homepage
+     */
+    public async createUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
+        console.log("values of user to create is " + name.toString());
+        console.log(email.toString());
+        const sessionCtrl = new SessionController();
+        this.title = "CreateUser";
+        sessionCtrl.CreateUser(req, res, next, String(name), String(email))
+        .then((resp) => {
+            console.log(resp);
+            // If adding a new user failed, return to login page
+            if (resp.insertedCount === 0) {
+                res.redirect("/");
+            } else {
+                // Loads overview page for new user
+                this.Session(req, res, next, resp.ops[0].StudentID);
+            }
+        });
+
     }
 
 }

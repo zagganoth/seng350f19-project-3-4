@@ -1,3 +1,4 @@
+import { promises } from "dns";
 import { NextFunction, Request, Response, Router } from "express";
 import { MongoNetworkError } from "mongodb";
 import DbClient = require("../DbClient");
@@ -18,6 +19,7 @@ export class BaseModel {
             return [];
         });
     }
+
     public async getOne(query: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
@@ -52,7 +54,7 @@ export class BaseModel {
     public async getCount(query: object= {}) {
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).find().count();
+            return db.collection(this.tableName).find(query).count();
         })
         .catch((err) => {
             console.log(err.message);
@@ -70,10 +72,13 @@ export class BaseModel {
                 StudentID:-1
             }
       */
-     public async getMax(query: object, field: object) {
+     public async getMax(query: object = {}, project: object = {}, sort: object= {}) {
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).find().sort(field).limit(1);
+            // console.log("Base Model - get max.");
+            const returnVal = db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
+            // console.log("Base Model - return " + returnVal);
+            return returnVal;
         })
         .catch((err) => {
             console.log(err.message);
@@ -81,20 +86,19 @@ export class BaseModel {
         });
     }
 
-      /* Gets the min in a table field.
+      /* Gets the row with the min in a table field.
        * Param field of the from
         {
             NameOfDBField: +1
         }
-
         eg. {
                 StudentID: +1
             }
       */
-     public async getMin(query: object, field: object) {
+     public async getMin(query: object = {}, project: object = {}, sort: object= {})  {
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).find().sort(field).limit(1);
+            return db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
         })
         .catch((err) => {
             console.log(err.message);
@@ -125,6 +129,9 @@ Update needs to be an object of the form
 
     }
 
+    /**
+     * Adds one entry to db table
+     */
     public async addOne(query: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
