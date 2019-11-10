@@ -26,7 +26,6 @@ export class CourseController {
      */
     public async RequestCourseGradableItems(courseID: number) {
         console.log("Course ID: " + courseID);
-        const courseModel = new CourseModel();
         try {
             return this.RequestCourse(courseID)
             .then(async (courseDetails) => {
@@ -45,6 +44,22 @@ export class CourseController {
             });
 
             // }
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
+
+
+    /* Gets course Details by course ID */
+    public async CreateGradableItem(courseID:number, name:string,duedate:string,weight:number) {
+        console.log("Course Controller - create new gradable item");
+        const gradableItemContr = new GradableItemController();
+        try {
+            const returnVal = await gradableItemContr.CreateItem(courseID, name, duedate, weight);
+            console.log("course return: " + returnVal);
+            return returnVal;
         } catch (error) {
             console.log(error);
             return [];
