@@ -19,6 +19,7 @@ export class BaseModel {
             return [];
         });
     }
+
     public async getOne(query: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
@@ -74,10 +75,9 @@ export class BaseModel {
      public async getMax(query: object = {}, project: object = {}, sort: object= {}) {
         return DbClient.connect()
         .then((db) => {
-            console.log("Base Model - get max.");
+            //console.log("Base Model - get max.");
             const returnVal = db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
-            console.log("Base Model - return " + returnVal);
-            // console.log(returnVal.StudentID);
+            //console.log("Base Model - return " + returnVal);
             return returnVal;
         })
         .catch((err) => {
@@ -91,15 +91,14 @@ export class BaseModel {
         {
             NameOfDBField: +1
         }
-
         eg. {
                 StudentID: +1
             }
       */
-     public async getMin(query: object, field: object): Promise<any> {
+     public async getMin(query: object = {}, project: object = {}, sort: object= {})  {
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).find(query).sort(field).limit(1);
+            return db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
         })
         .catch((err) => {
             console.log(err.message);
@@ -130,6 +129,9 @@ Update needs to be an object of the form
 
     }
 
+    /**
+     * Adds one entry to db table
+     */
     public async addOne(query: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
@@ -138,6 +140,7 @@ Update needs to be an object of the form
         });
     }
 
+    
     public async addMany(query: object= {}, project: object= {}, sort: object= {}) {
 
     }

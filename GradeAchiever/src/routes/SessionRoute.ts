@@ -48,6 +48,9 @@ export class SessionRoute extends BaseRoute {
         });
     }
 
+    /**
+     * Signs up a new user by creating them in db and then loads their homepage
+     */
     public async createUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
         console.log("values of user to create is " + name.toString());
         console.log(email.toString());

@@ -6,7 +6,6 @@ import {UserModel} from "../models/UserModel";
 
 export class AdminController {
     constructor() {
-
     }
 
     // Deletes an existing user
@@ -16,30 +15,21 @@ export class AdminController {
         const returnVal = await am.RemoveUser(id);
         console.log(returnVal);
         return returnVal;
-
     }
 
     // Creates a new user
     public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string, isAdmin: boolean) {
         const am = new AdminModel();
-        /*const filter: object ={
-            StudentID:1,
-            _id:0
-        }*/
         let newID: any = await am.GetNewID();
-        console.log(newID);
-        console.log(newID[0].StudentID);
         newID = Number(newID[0].StudentID) + 1;
-        console.log("NEW ID " + newID);
+        //console.log("NEW ID " + newID);
         const newuser: object = {
             StudentID: newID,
             StudentName: name,
             Email: email,
             IsAdmin: isAdmin,
         };
-
         return await am.AddUser(newuser);
-
     }
 
     // Edits a user's details
