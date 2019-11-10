@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response, Router } from "express";
-import DbClient = require("../DbClient");
+//import DbClient = require("../DbClient");
 import { BaseModel } from "./BaseModel";
 
 export class AdminModel extends BaseModel {
@@ -45,6 +45,19 @@ export class AdminModel extends BaseModel {
         } catch (error) {
             console.log(error);
             console.log("error from AddUser users");
+            return [];
+        }
+    }
+
+    
+    // Gets next new user ID
+    public async GetNewID() {
+        try {
+            console.log("Admin Model - getting new user ID");
+            return this.getMax({},{},{StudentID:-1});
+        } catch (error) {
+            console.log(error);
+            console.log("error from getMax");
             return [];
         }
     }

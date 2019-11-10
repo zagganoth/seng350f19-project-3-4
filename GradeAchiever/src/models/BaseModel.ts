@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { MongoNetworkError } from "mongodb";
 import DbClient = require("../DbClient");
+import { promises } from "dns";
 
 export class BaseModel {
     protected tableName: string;
@@ -52,7 +53,7 @@ export class BaseModel {
     public async getCount(query: object= {}) {
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).find().count();
+            return db.collection(this.tableName).find(query).count();
         })
         .catch((err) => {
             console.log(err.message);
@@ -70,10 +71,14 @@ export class BaseModel {
                 StudentID:-1
             }
       */
-     public async getMax(query: object, field: object) {
+     public async getMax(query: object = {}, project: object = {}, sort:object={}) {
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).find().sort(field).limit(1);
+            console.log("Base Model - get max.");
+            const returnVal = db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
+            console.log("Base Model - return " + returnVal);
+            //console.log(returnVal.StudentID);
+            return returnVal;
         })
         .catch((err) => {
             console.log(err.message);
@@ -81,7 +86,7 @@ export class BaseModel {
         });
     }
 
-      /* Gets the min in a table field.
+      /* Gets the row with the min in a table field.
        * Param field of the from
         {
             NameOfDBField: +1
@@ -91,10 +96,10 @@ export class BaseModel {
                 StudentID: +1
             }
       */
-     public async getMin(query: object, field: object) {
+     public async getMin(query: object, field: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).find().sort(field).limit(1);
+            return db.collection(this.tableName).find(query).sort(field).limit(1);
         })
         .catch((err) => {
             console.log(err.message);
