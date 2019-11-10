@@ -31,8 +31,8 @@ export class SessionController {
         const newuser: object = {
             StudentID: newID,
             StudentName: name,
-            Email: email, 
-            IsAdmin: false
+            Email: email,
+            IsAdmin: false,
         };
 
         return await am.AddUser(newuser);
