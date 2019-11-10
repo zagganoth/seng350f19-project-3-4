@@ -50,10 +50,8 @@ export class CourseController {
         }
     }
 
-
-
     /* Gets course Details by course ID */
-    public async CreateGradableItem(courseID:number, name:string,duedate:string,weight:number) {
+    public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number) {
         console.log("Course Controller - create new gradable item");
         const gradableItemContr = new GradableItemController();
         try {

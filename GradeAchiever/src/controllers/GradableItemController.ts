@@ -20,8 +20,9 @@ export class GradableItemController {
         }
     }
 
-     /*Creates gradable item*/
-     public async CreateItem(courseID:number, name:string,duedate:string,weight:number) {
+    
+    /*Creates gradable item*/
+    public async CreateItem(courseID: number, name: string, duedate: string, weight: number) {
         const gradableItemModel = new GradableItemModel();
         let newID: any = await gradableItemModel.GetNewID();
         newID = Number(newID[0].GradableItemID) + 1;

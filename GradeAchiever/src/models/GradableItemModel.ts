@@ -27,7 +27,6 @@ export class GradableItemModel extends BaseModel {
         return await this.getOne({GradableItemID: Number(gradableItemID)});
     }
 
-
     /**
      * Creates a new gradable item
      */
@@ -42,9 +41,6 @@ export class GradableItemModel extends BaseModel {
         }
     }
 
-
-
-
     // Gets next new gradable item ID
     public async GetNewID() {
         try {
@@ -56,9 +52,5 @@ export class GradableItemModel extends BaseModel {
             return [];
         }
     }
-
-
-
-
 
 }
