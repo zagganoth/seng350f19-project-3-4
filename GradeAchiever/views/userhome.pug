@@ -1,32 +1,34 @@
 extends layout
 
 block content
+  
+  - var page = 'userhome'
   div.container-fluid
     h1 Overview Page
     h3 Welcome #{studentDetails.StudentName}
-    div.calendar
-
-      if courseDetails && courseDetails.length > 0
-        h3 Calendar        
-        table.gradable-items
-          tr
-            th Course Name
-            th Gradable Item Name
-            th Due Date
-          each gradableItem in gradableItemDetails
+    div.row
+      div.calendar
+        if courseDetails && courseDetails.length > 0
+          h3 Calendar        
+          table.gradable-items
             tr
-              td #{gradableItem.CourseName}
-              td #{gradableItem.GradableItemName}
-              td #{gradableItem.DueDate}
-      else
-        h3 You haven't added any courses.
-    div.course-list
-      h3 Courses
-      table.courses
-          tr
-            th Name
-            th Current Grade
-          each course in courseDetails
+              th Course Name
+              th Gradable Item Name
+              th Due Date
+            each gradableItem in gradableItemDetails
+              tr
+                td #{gradableItem.CourseName}
+                td #{gradableItem.GradableItemName}
+                td #{gradableItem.DueDate}
+        else
+          h3 You haven't added any courses.
+      div.course-list
+        h3 Courses
+        table.courses
             tr
-              td #{course.CourseName}
-              td #{course.CurrentGrade} %
+              th Name
+              th Current Grade
+            each course in courseDetails
+              tr
+                td #{course.CourseName}
+                td #{course.CurrentGrade} %

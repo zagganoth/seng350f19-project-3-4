@@ -7,14 +7,22 @@ html
   
   body
     header
+    - var page = 'layout'
       nav.navbar
-        h1 GradeAcheiver
+        h1.title GradeAchiever
         if studentDetails || thisID
           a.logout.navbar-item(href="/") Logout
-          unless thisID
-            if studentDetails.IsAdmin
-              form.navbar-item(action='/admin' method="post")
-                input.admin(type='hidden' name='user' value=studentDetails.StudentID)
-                input.admin(type="submit" value="Manage Users")
+          unless page === 'admin'
+            if studentDetails && studentDetails.IsAdmin
+              #{isAdmin = true}
+            if isAdmin
+              form.navbar-item.nav(action='/admin' method="post")
+                input(type='hidden' name='user' value=thisID)
+                input(type="submit" value="Manage Users")
+          unless page === 'userhome'
+            form.navbar-item.nav(action='/overview' method="post")
+              input(type='hidden' name='user' value=thisID)
+              input(type="submit" value="Course Overview")
+      
     
     block content

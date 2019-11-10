@@ -1,73 +1,56 @@
 body {
-  padding: 20px;
+  /*adding: 20px;*/
   font: 14px "Open Sans", Helvetica, Arial, sans-serif;
-  background-color: #383838;
+  background-color: #333333;
   color: #f3e0ec;
+  margin: 0px;
 }
 
 h1 {
   color: #ee5622;
 }
 
+.welcome{
+  color: #ffa200;
+  padding-left: 5px;
+  font-size: 26px;
+  margin: 5px;
+}
 
 div {
   border-radius: 5px;
-  background-color: #383838;
+  background-color: #333333;
   padding: 20px;
 }
 
-
 .dark {
-  color: #383838;
+  color: #333333;
 }
 
 .container-fluid{
   width: 100%;
-  padding: 10px;
+  padding: 15px;
+  margin: 5px;
 }
-
-nav {
-  padding: 0;
-  color: #f3e0ec;
-  background: #383838;
-
-}
-
-.navbar-item{
-  font-size: 14px;
-  float: right;
-  margin: 3px;
-  background-color: #eca72c;
-  color: #f3e0ec;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.navbar-item:hover{
-  background-color: #ffa200;
-}
-
-input.admin{
-  font-size: 14px;
-  margin: 0px;
-  padding:0px;
-
-}
-
 
 .message{
   color: green;
 }
 
+.error{
+  color: red;
+}
+
+
+
+/****************
+TABLES
+*****************/
 div.calendar{
-  width: 30%;
+  flex: 33%;
   min-width: 200px;
   max-width: 400px;
   text-align: center;
-  display: inline-block;
   padding-left: 0px;
 }
 
@@ -89,8 +72,7 @@ td.button{
 }
 
 div .course-list{
-  display: inline-block;
-  margin-left: 30%;
+  flex: 66%;
   text-align: center;
   min-width: 300px;
 }
@@ -103,7 +85,6 @@ table.gradable-items tr:nth-child(odd){
   background: #5f5f5f;
 }
 
-
 td{
   padding: 5px;
 }
@@ -115,13 +96,15 @@ td{
 /*
 Colour scheme:
 eca72c yellow
-383838 dark grey
+333333 dark grey
 ee5622 orange
 f3e0ec whiteish
 ead5e6 light grey
 */
 
-
+/****************
+FORM INPUTS
+*****************/
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -154,4 +137,67 @@ input[disabled] {
 
 input[disabled]:hover {
   background-color: #eebd68;
+  cursor: default;
+}
+
+
+
+/****************
+NAVBAR
+*****************/
+nav {
+  padding: 5px;
+  color: #f3e0ec;
+  background: #262626;
+  min-height: 60px;
+}
+
+.nav input[type=submit] {
+  margin: 0;
+  padding: 0;
+}
+
+.nav{
+  font-size: 14px;
+  margin: 0px;
+  padding:0px;
+}
+
+.navbar-item{
+  font-size: 14px;
+  float: right;
+  margin: 3px;
+  background-color: #eca72c;
+  color: #f3e0ec;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  height: 100%;
+}
+
+.navbar-item:hover{
+  background-color: #ffa200;
+}
+
+.title{
+  /*float: left;*/
+  width: 200px;
+  font-size: 24px;
+  margin: 3px;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+
+/****************
+LOGIN
+*****************/
+.col{
+  flex: 50%;
+}
+
+.row{
+  display: flex;
 }
