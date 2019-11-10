@@ -79,7 +79,7 @@ export class AdminRoute extends BaseRoute {
 
     // Poseted to create a new user in db with name, email, and IsAdmin
     public async createUser(req: Request, res: Response, next: NextFunction, name: string, email: string, isAdmin: boolean, thisID: number) {
-        //Check if Admin user radio was checked
+        // Check if Admin user radio was checked
         if (isAdmin === undefined) {
             isAdmin = false;
         }
@@ -100,7 +100,7 @@ export class AdminRoute extends BaseRoute {
         })
         .catch((err) => {
             console.log(err);
-            //If error was thrown, reload page with message
+            // If error was thrown, reload page with message
             const Mess = "Failed to create user.";
             try {
                 this.Admin(req, res, next, thisID, Mess);

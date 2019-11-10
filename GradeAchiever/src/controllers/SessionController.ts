@@ -21,13 +21,13 @@ export class SessionController {
     }
 
     /**
-     * Creates a new user 
+     * Creates a new user
      */
     public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
         const am = new AdminModel();
         let newID: any = await am.GetNewID();
         newID = Number(newID[0].StudentID) + 1;
-        //console.log("NEW ID " + newID);
+        // console.log("NEW ID " + newID);
         const newuser: object = {
             StudentID: newID,
             StudentName: name,

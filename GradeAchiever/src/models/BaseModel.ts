@@ -75,9 +75,9 @@ export class BaseModel {
      public async getMax(query: object = {}, project: object = {}, sort: object= {}) {
         return DbClient.connect()
         .then((db) => {
-            //console.log("Base Model - get max.");
+            // console.log("Base Model - get max.");
             const returnVal = db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
-            //console.log("Base Model - return " + returnVal);
+            // console.log("Base Model - return " + returnVal);
             return returnVal;
         })
         .catch((err) => {
@@ -140,7 +140,6 @@ Update needs to be an object of the form
         });
     }
 
-    
     public async addMany(query: object= {}, project: object= {}, sort: object= {}) {
 
     }
