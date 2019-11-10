@@ -23,16 +23,19 @@ export class SessionController {
     // Creates a new user
     public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
         const am = new AdminModel();
-        let maxRow: any;
-        maxRow = await am.getMax({}, {StudentID: -1});
-        console.log(maxRow);
-        console.log(maxRow.StudenID);
-        const newID = Number(maxRow.StudentID) + 1;
+        let newID: any = await am.GetNewID();
+        console.log(newID);
+        console.log(newID[0].StudentID);
+        newID = Number(newID[0].StudentID) + 1;
+        console.log("NEW ID " + newID);
         const newuser: object = {
             StudentID: newID,
             StudentName: name,
-            Email: email,
+            Email: email, 
+            IsAdmin: false
         };
-        return am.AddUser(newuser);
+
+        return await am.AddUser(newuser);
+
     }
 }

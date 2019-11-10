@@ -56,9 +56,11 @@ export class SessionRoute extends BaseRoute {
         sessionCtrl.CreateUser(req, res, next, String(name), String(email))
         .then((resp) => {
             console.log(resp);
+            // If adding a new user failed, return to login page
             if (resp.insertedCount === 0) {
                 res.redirect("/");
             } else {
+                // Loads overview page for new user
                 this.Session(req, res, next, resp.ops[0].StudentID);
             }
         });
