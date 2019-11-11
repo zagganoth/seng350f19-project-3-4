@@ -4,33 +4,42 @@ block content
   
   - var page = 'course'
   div.container-fluid
-    h1 Course Page
     div.row
-      div.calendar
-        if courseDetails
-          h3 Calendar        
-          table.gradable-items
-            tr
-              th Course Name
-              th Gradable Item Name
-              th Due Date
-            each gradableItem in gradableItems
+      h1.course-title #{courseDetails.CourseName}
+      div.progress-bar
+        span.progress
+    div.row
+        div.calendar
+          if courseDetails
+            h3 Calendar        
+            table.gradable-items
               tr
-                td #{gradableItem.CourseName}
-                td #{gradableItem.GradableItemName}
-                td #{gradableItem.DueDate}
-        else
-          h3 You haven't added any courses.
-      div.course-list
-        h3 Course Details
-        table.courses-details
-            tr
-              th            
-            tr
-              td #{CourseDetails.CourseName}
-            tr
-              td #{CourseDetails.PerceivedDifficulty}
-            tr
-              td #{CourseDetails.GradeGoal}
-            tr
-              td #{CourseDetails.CurrentGrade}
+                th Gradable Item
+                th Due Date
+              each gradableItem in gradableItems
+                tr
+                  td #{gradableItem.GradableItemName}
+                  td #{gradableItem.DueDate}
+          else
+            h3 You haven't added any courses.
+        div.course-list
+            if courseDetails
+            h3
+              table.course-details
+                tr
+                  th
+                  th
+                  th        
+                tr
+                  td Difficulty Level
+                  td #{courseDetails.PerceivedDifficulty}
+                  td
+                    input.edit(type="submit", value='Edit')
+                tr
+                  td Grade Goal
+                  td #{courseDetails.GradeGoal}
+                  td
+                    input.edit(type="submit", value='Edit')
+                tr
+                  td Current Grade
+                  td #{courseDetails.CurrentGrade}

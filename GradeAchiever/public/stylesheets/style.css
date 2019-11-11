@@ -27,18 +27,24 @@ div {
   color: #333333;
 }
 
+/*
 .container-fluid{
   width: 100%;
   padding: 15px;
   margin: 5px;
 }
-
+*/
 .message{
   color: green;
 }
 
 .error{
   color: red;
+}
+
+h1.course-title{
+  flex: 25%;
+  max-width: 150px;
 }
 
 
@@ -75,6 +81,7 @@ div .course-list{
   flex: 66%;
   text-align: center;
   min-width: 300px;
+  font-weight: bold;
 }
 
 table.gradable-items tr:nth-child(even){
@@ -87,6 +94,10 @@ table.gradable-items tr:nth-child(odd){
 
 td{
   padding: 5px;
+}
+
+table.course-details{
+  max-width: 500px;
 }
 
 
@@ -138,6 +149,28 @@ input[disabled] {
 input[disabled]:hover {
   background-color: #eebd68;
   cursor: default;
+}
+
+input.edit{
+  max-width: 75px;
+  padding: 10px 16px;
+  margin: 5px 0;
+}
+
+input.course, input.course:hover{
+  background-color: #333333;
+  margin: 5px;
+  padding: 10px 16px;
+  font-weight: bold;
+}
+
+input.course, textarea{
+  color:#f3e0ec;
+}
+
+input.course:hover{
+  color: #ffa200;
+
 }
 
 
@@ -200,4 +233,40 @@ LOGIN
 
 .row{
   display: flex;
+}
+
+
+/****************
+PROGRESS BAR
+*****************/
+.progress-bar { 
+  flex: 75%;
+	height: 20px;  /* Can be anything */
+	position: relative;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+  padding: 0px;
+  background-color: #262626;
+  margin: 30px 10px 10px 75px;
+}
+
+.progress-bar > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: green;
+  background-image: linear-gradient(
+    center bottom,
+    green 37%,
+    green 69%
+  );
+  position: relative;
+}
+
+span.progress {
+  width: 25%;
 }
