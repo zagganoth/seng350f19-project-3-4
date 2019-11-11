@@ -29,7 +29,7 @@ export class AdminModel extends BaseModel {
     public async GetAllUsers() {
         // Return the id and name for all students
         try {
-            return this.getAll({}, { StudentID: 1, StudentName: 1 });
+            return this.getAll({}, { StudentID: 1, StudentName: 1, Email: 1 });
         } catch (error) {
             console.log(error);
             console.log("error from getall users");

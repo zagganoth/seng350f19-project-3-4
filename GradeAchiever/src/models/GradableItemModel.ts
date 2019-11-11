@@ -27,4 +27,30 @@ export class GradableItemModel extends BaseModel {
         return await this.getOne({GradableItemID: Number(gradableItemID)});
     }
 
+    /**
+     * Creates a new gradable item
+     */
+    public async CreateItem(gradableItem: object) {
+        try {
+            console.log("Gradable Item Model - adding an item");
+            return this.addOne(gradableItem);
+        } catch (error) {
+            console.log(error);
+            console.log("error from addOne gradable item");
+            return [];
+        }
+    }
+
+    // Gets next new gradable item ID
+    public async GetNewID() {
+        try {
+            console.log("Gradable Item Model - getting new item ID");
+            return this.getMax({}, {}, {GradableItemID: -1});
+        } catch (error) {
+            console.log(error);
+            console.log("error from getMax");
+            return [];
+        }
+    }
+
 }

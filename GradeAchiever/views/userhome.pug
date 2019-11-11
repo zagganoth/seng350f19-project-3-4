@@ -30,5 +30,9 @@ block content
               th Current Grade
             each course in courseDetails
               tr
-                td #{course.CourseName}
+                td.courses 
+                  form(action='/course' method="post")
+                    input(type="hidden", value=thisID, name='thisID')
+                    input(type="hidden", value=course.CourseID, name='courseID')
+                    input.course(type='submit', value=course.CourseName)
                 td #{course.CurrentGrade} %
