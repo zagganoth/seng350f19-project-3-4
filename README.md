@@ -2,12 +2,12 @@
 # Grade Achiever
 
 ## Implemented User Stories
-- User Story #7: View current grades
-  Upon launching the app, the user can select an account to log in with, and see their grades on the overview page for each course they are enrolled in
-- User Story #4: View gradable items
-  Upon landing on the overview page, each user can see each gradable item they have due along with its due date in chronological order
-- User Story #5 Create/Delete users
-  From the login page, a new user can be created. From the Admin page, an admin user can add create a new regular user or a new admin user and can delete exisitng users (except themselves).
+- User Story #7: View current grades:
+Upon launching the app, the user can select an account to log in with, and see their grades on the overview page for each course they are enrolled in.
+- User Story #4: View gradable items:
+Upon landing on the overview page, each user can see each gradable item they have due along with its due date in chronological order.
+- User Story #5 Create/Delete users:
+From the login page, a new user can be created. From the Admin page, an admin user can add create a new regular user or a new admin user and can delete exisitng users (except themselves).
 ## Changed Design Rational
 During the development process, a few architectural designs were changed from the original Module Diagram in Milestone 2. The most notable of these changes was the splitting of session controller functionality into an admin controller and a session controller. This was as during our initial design we overlooked the fact that the session controller would be responsible for both of these functionalities even though they are fairly distinct.
 
