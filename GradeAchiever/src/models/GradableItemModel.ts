@@ -30,10 +30,18 @@ export class GradableItemModel extends BaseModel {
     /**
      * Creates a new gradable item
      */
-    public async CreateItem(gradableItem: object) {
+    public async CreateItem(courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
+        const newGradableItem = {
+            GradableItemID: this.GetNewID(),
+            CourseID: courseID,
+            GradableItemName: gradableItemName,
+            DueDate: dueDate,
+            Weight: weight,
+            GItemAccuracy: gItemAccuracy,
+        };
         try {
             console.log("Gradable Item Model - adding an item");
-            return this.addOne(gradableItem);
+            return this.addOne(newGradableItem);
         } catch (error) {
             console.log(error);
             console.log("error from addOne gradable item");
@@ -49,6 +57,52 @@ export class GradableItemModel extends BaseModel {
         } catch (error) {
             console.log(error);
             console.log("error from getMax");
+            return [];
+        }
+    }
+
+    public async DeleteGradableItem(gradableItemID: number) {
+        try {
+            return this.deleteOne({GradableItemID: gradableItemID});
+        } catch (error) {
+            console.log(error);
+            console.log("error from deleteOne");
+            return [];
+        }
+    }
+
+    public async EditCourseID(gradableItemID: number, newID: number) {
+        try {
+            return this.editOne({GradableItemID: gradableItemID}, {CourseID: newID});
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
+    public async EditGradableItemName(gradableItemID: number, newName: string) {
+        try {
+            return this.editOne({GradableItemID: gradableItemID}, {GradableItemName: newName});
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
+    public async EditGradableItemWeight(gradableItemID: number, newWeight: number) {
+        try {
+            return this.editOne({GradableItemID: gradableItemID}, {Weight: newWeight});
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
+    public async EditDueDate(gradableItemID: number, newDueDate: string) {
+        try {
+            return this.editOne({GradableItemID: gradableItemID}, {DueDate: newDueDate});
+        } catch (error) {
+            console.log(error);
             return [];
         }
     }
