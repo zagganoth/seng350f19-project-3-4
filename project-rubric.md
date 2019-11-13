@@ -3,7 +3,7 @@ Title: Marking Rubric - Project
 Authors: Neil Ernst
 ---
 
-# Running Total (this will change each milestone):   7
+# Running Total (this will change each milestone):   45.5
 
 NB: for all milestones, basic clean coding style: comments, standardized indentation, lack of code smells, is expected. Your submission and repository should show the following: 
 	- Travis CI is being used (M3+)
@@ -56,14 +56,13 @@ Marks deducted:
 - nice work. 
 
 
+# Milestone 3   18.5 / 20
 
+## Marking Guide
 
-# Milestone 3    / 20
-
-## Marking Guide	
-- code compiles 
+- code compiles
 - code conventions/CI from above (commented, code style, design principles)
-- working demo 
+- working demo
 - clear explanation of what user stories were satisfied in this iteration
 - design as implemented follows design doc, or change rationale is present in README
 - async is async when necessary
@@ -71,7 +70,13 @@ Marks deducted:
 - test suite present/part of CI
 - test coverage reasonable and meaningful
 
+Marks deducted:
+
+- Coding convention and good coding design was not followed properly. (-1.5)
+
 ## Notes M3
+
 (explaining why marks were deducted)
 -----
 
+- The methods are large. The database connection could be moved somewhere else to avoid having large methods.
