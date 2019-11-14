@@ -37,9 +37,14 @@ block content
                     input.edit(type="submit", value='Edit')
                 tr
                   td Grade Goal
-                  td #{courseDetails.GradeGoal}
+                  td#gradegoal #{courseDetails.GradeGoal}
+                  td#gradegoalinput 
+                    input#goalinput(type="text" name="newGradeGoal" placeholder=courseDetails.GradeGoal)
                   td
-                    input.edit(type="submit", value='Edit')
+                    button.edit#editgoal(type='button' onclick='editGradeGoal('+courseDetails.GradeGoal+')') Edit
+                  td
+                    button.submit#submitgoal(type='button' onclick='changeGradeGoal('+courseDetails.CourseID+')') Submit
+               
                 tr
                   td Current Grade
                   td #{courseDetails.CurrentGrade}

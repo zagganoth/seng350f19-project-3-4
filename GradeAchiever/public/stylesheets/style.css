@@ -82,6 +82,7 @@ div .course-list{
   text-align: center;
   min-width: 300px;
   font-weight: bold;
+  max-width: 500px;
 }
 
 table.gradable-items tr:nth-child(even){
@@ -99,6 +100,8 @@ td{
 table.course-details{
   max-width: 500px;
 }
+
+
 
 
 
@@ -126,7 +129,7 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
-input[type=submit] {
+input[type=submit], #submitgoal, #editgoal {
   width: 100%;
   background-color: #eca72c;
   color: #f3e0ec;
@@ -151,7 +154,7 @@ input[disabled]:hover {
   cursor: default;
 }
 
-input.edit{
+input.edit, button.edit{
   max-width: 75px;
   padding: 10px 16px;
   margin: 5px 0;
@@ -171,6 +174,15 @@ input.course, textarea{
 input.course:hover{
   color: #ffa200;
 
+}
+
+#gradegoal, #submitgoal, #editgoal{
+  display:table-cell;
+}
+
+#gradegoalinput, #submitgoal{
+  display: none;
+  max-width: 75px;
 }
 
 
@@ -222,6 +234,8 @@ nav {
   display: inline-flex;
   vertical-align: middle;
 }
+
+
 
 
 /****************
