@@ -1,6 +1,6 @@
 export class UserModel {
     public GetUserDetails(id: number) {
-        if (id === 2 ){
+        if (id === 2 ) {
             return {
                 StudentID: 2,
                 Email: "ashenwai@uvic.ca",
@@ -10,7 +10,7 @@ export class UserModel {
                 Courses: [],
                 IsAdmin: false,
             };
-        }else if (id === 1){
+        } else if (id === 1) {
             return {
                 StudentID: 1,
                 Email: "test@uvic.ca",
@@ -19,7 +19,7 @@ export class UserModel {
                 AlgorithmAccuracy: 1.5,
                 Courses: [1, 2],
                 IsAdmin: false,
-            }
+            };
         }
     }
 }
