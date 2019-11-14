@@ -34,8 +34,7 @@ function changeGradeGoal(courseID: number) {
             /* Check response status code*/
             if (response.ok) {
                 return;
-            }
-            else{
+            } else {
                 throw new Error("Could not update gradeGoal :( HTTP response not was not OK -> " + response.status);
             }
         })
