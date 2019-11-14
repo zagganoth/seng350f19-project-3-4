@@ -7,14 +7,15 @@ jest.mock("../../models/CourseModel");
 
 describe("Overview Controller Tests", () => {
     let controller: OverviewController;
-    const id = 1;
+    const userid = 1;
     beforeEach(() => {
         controller = new OverviewController();
     });
 
-    it("test request a user and their courses and gradable items", async () => {
-        return controller.RequestUser(id).then((user: any) => {
-            expect(user);
+    it("requests a user and their courses and gradable items", async () => {
+        return controller.RequestUser(userid)
+        .then((returnVal: any) => {
+            expect(returnVal.length).toEqual(3);
         });
     });
 });
