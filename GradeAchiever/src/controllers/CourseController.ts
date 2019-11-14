@@ -50,12 +50,27 @@ export class CourseController {
         }
     }
 
-    /* Gets course Details by course ID */
-    public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number) {
+    /* Edits course grade goal*/
+    public async editCourseGradeGoal(req: Request, res: Response, next: NextFunction, courseID: number, newGoal: number) {
+        const courseModel = new CourseModel();
+        console.log("Course Controller - edit grade goal");
+        console.log(Number(newGoal));
+        const returnVal = await courseModel.EditGradeGoal(Number(courseID), Number(newGoal));
+        console.log("course return: " + returnVal);
+        if (returnVal.matchedCount === 1) {
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(500);
+        }
+        return;
+    }
+
+     /* Gets course Details by course ID */
+     public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number) {
         console.log("Course Controller - create new gradable item");
         const gradableItemContr = new GradableItemController();
         try {
-            const returnVal = await gradableItemContr.CreateItem(courseID, name, duedate, weight);
+            const returnVal = await gradableItemContr.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
             console.log("course return: " + returnVal);
             return returnVal;
         } catch (error) {

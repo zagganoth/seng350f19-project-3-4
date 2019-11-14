@@ -33,23 +33,6 @@ export class BaseModel {
         });
     }
 
-    public async deleteOne(query: object): Promise<any> {
-        return DbClient.connect()
-        .then((db) => {
-            // console.log("Base Model - deleting ");
-            // console.log(query);
-            return db.collection(this.tableName).deleteOne(query);
-        })
-        .catch((err) => {
-            console.log(err.message);
-            return [];
-        });
-    }
-
-    public async deleteMany(query: object= {}, project: object= {}, sort: object= {}) {
-
-    }
-
     /*Gets the number of rows in a table */
     public async getCount(query: object= {}) {
         return DbClient.connect()
@@ -61,6 +44,12 @@ export class BaseModel {
             return [];
         });
     }
+
+/*
+These two functions below are the same right now... does this just mean we can create the "sort" object
+in this function and plug it in manually here? As it is set up, the controller will be setting the sort
+so we could have just one function which gets just a single record, could be highest or lowest or anything else
+*/
 
      /* Gets the max (of ID) in a table
       * row of the from
@@ -106,6 +95,27 @@ export class BaseModel {
         });
     }
 
+    public async deleteOne(query: object): Promise<any> {
+        return DbClient.connect()
+        .then((db) => {
+            // console.log("Base Model - deleting ");
+            // console.log(query);
+            return db.collection(this.tableName).deleteOne(query);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return [];
+        });
+    }
+
+    public async deleteMany(query: object): Promise<any> {
+        return DbClient.connect()
+        .then((db) => {
+            // returns an object which has a field confirming how many items were deleted. Might be useful.
+            return db.collection(this.tableName).deleteMany(query);
+        });
+    }
+
 /*
 Update needs to be an object of the form
 {
@@ -125,8 +135,41 @@ Update needs to be an object of the form
         });
     }
 
-    public async editMany(query: object= {}, project: object= {}, sort: object= {}) {
+    public async addToArray(query: object, field: string, value: number[]) {
+        interface IUpdateType {
+            [key: string]: object;
+        }
+        const newValue = {
+            $each: value,
+        };
+        const update: IUpdateType = {};
+        update[field] = newValue;
+        return DbClient.connect()
+        .then((db) => {
+            return db.collection(this.tableName).updateOne(query, {$addToSet: { update }});
+        });
+    }
 
+    public async removeFromArray(query: object, field: string, value: number[]) {
+        interface IUpdateType {
+            [key: string]: object;
+        }
+        const newValue = {
+            $in: value,
+        };
+        const update: IUpdateType = {};
+        update[field] = newValue;
+        return DbClient.connect()
+        .then((db) => {
+            return db.collection(this.tableName).updateOne(query, {$pull: { update }});
+        });
+    }
+
+    public async editMany(query: object, update: object) {
+        return DbClient.connect()
+        .then((db) => {
+            return db.collection(this.tableName).updateMany(query, {$set: update});
+        });
     }
 
     /**
@@ -140,7 +183,12 @@ Update needs to be an object of the form
         });
     }
 
-    public async addMany(query: object= {}, project: object= {}, sort: object= {}) {
+    // The query object must be an array where each element of the array is the document object.
+    public async addMany(query: object[]) {
+        return DbClient.connect()
+        .then((db) => {
+            return db.collection(this.tableName).insertMany(query);
+        });
 
     }
 

@@ -8,11 +8,16 @@ export class CourseRoute extends BaseRoute {
         console.log("[CourseRoute::create] Creating course page route.");
         router.post("/course", (req: Request, res: Response, next: NextFunction) => {
             console.log(req.body);
-            console.log(req.body.course);
+            console.log(req.body.courseID);
             new CourseRoute().Course(req, res, next, Number(req.body.courseID), Number(req.body.thisID));
         });
         router.post("/newGradableItem", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().createGradableItem(req, res, next, req.body.courseID, req.body.name, req.body.email, req.body.thisID);
+            new CourseRoute().createGradableItem(req, res, next, req.body.courseID, req.body.name, req.body.dueDate, req.body.weight, req.body.gItemAccuracy);
+        });
+        router.post("/editGradeGoal", (req: Request, res: Response, next: NextFunction) => {
+            console.log(req.body.courseID);
+            console.log(req.body.newGoal);
+            new CourseRoute().editGradeGoal(req, res, next, req.body.courseID, req.body.newGoal);
         });
 
     }
@@ -39,26 +44,34 @@ export class CourseRoute extends BaseRoute {
     }
 
     /**
-     * Signs up a new user by creating them in db and then loads their homepage
+     * creates a new gradable item for a course
      */
-    public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, email: string, thisID: number) {
-        console.log("values of user to create is " + name.toString());
-        console.log(email.toString());
+
+    public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, dueDate: string, weight: number, gItemAccuracy: number) {
         const courseCtrl = new CourseController();
-        this.title = "CreateUser";
-        courseCtrl.CreateGradableItem(courseID, name, email, thisID)
+        this.title = "CreateGradableItem";
+        courseCtrl.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy)
         .then((resp) => {
             console.log(resp);
-            // If new user creation failed, reload page with message
+            // If new gradable item creation failed, reload page with message
             if (resp.insertedCount === 0) {
-                const Mess = "Failed to create user.";
-                this.Course(req, res, next, courseID, thisID, Mess);
+                const Mess = "Failed to create item.";
+                return resp;
             // Reload page with newest user
             } else {
-                this.Course(req, res, next, courseID, thisID);
+                return resp;
             }
         });
 
+    }
+
+    /**
+     * Edits a course grade grade goal
+     */
+    public async editGradeGoal(req: Request, res: Response, next: NextFunction, courseID: number, newGoal: number) {
+        const courseCtrl = new CourseController();
+        this.title = "EditGradeGoal";
+        return await courseCtrl.editCourseGradeGoal(req, res, next, courseID, newGoal);
     }
 
 }
