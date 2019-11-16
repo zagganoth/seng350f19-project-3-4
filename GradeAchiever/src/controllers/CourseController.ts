@@ -57,16 +57,11 @@ export class CourseController {
         console.log(Number(newGoal));
         const returnVal = await courseModel.EditGradeGoal(Number(courseID), Number(newGoal));
         console.log("course return: " + returnVal);
-        if (returnVal.matchedCount === 1) {
-            res.sendStatus(200);
-        } else {
-            res.sendStatus(500);
-        }
-        return;
+        return returnVal;
     }
 
      /* Gets course Details by course ID */
-     public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number) {
+     public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
         console.log("Course Controller - create new gradable item");
         const gradableItemContr = new GradableItemController();
         try {

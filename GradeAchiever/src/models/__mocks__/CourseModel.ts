@@ -28,4 +28,18 @@ export class CourseModel {
         }
     }
 
+    public EditGradeGoal(id: number, newGrade: number) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
 }
