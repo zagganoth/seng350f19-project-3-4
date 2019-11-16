@@ -23,7 +23,7 @@ export class OverviewController {
                 // Get the course details, including all gradable items
                 const courseDetails = await CourseCtrl.RequestCourse(course);
                 courses.push(courseDetails);
-                for(const item of await this.RequestGradableItems(course, (courseDetails as any).CourseName)){
+                for (const item of await this.RequestGradableItems(course, (courseDetails as any).CourseName)) {
                     gradableItems.push(item);
                 }
             }
@@ -36,16 +36,15 @@ export class OverviewController {
         return retVal;
     }
 
-
     /**
      * Requests all gradable items by course and sorts in order by duedate
      */
     public async RequestGradableItems(courseID: number, courseName: string) {
         const CourseCtrl = new CourseController();
         // get gradable items by course id from Course Controller
-        let gradableItems = [];
+        const gradableItems = [];
         const gradableItemsbyCourse = await CourseCtrl.RequestCourseGradableItems(courseID);
-        if (gradableItemsbyCourse){
+        if (gradableItemsbyCourse) {
             for (const gradableitem of gradableItemsbyCourse) {
                 // Add course name to each gradable item
                 (gradableitem as any).CourseName = courseName;
@@ -54,6 +53,5 @@ export class OverviewController {
         }
         return gradableItems;
     }
-
 
 }
