@@ -8,29 +8,23 @@ export class CourseRoute extends BaseRoute {
 
         console.log("[CourseRoute::create] Creating course page route.");
         router.post("/course", (req: Request, res: Response, next: NextFunction) => {
-            console.log(req.body);
-            console.log(req.body.courseID);
             new CourseRoute().Course(req, res, next, Number(req.body.courseID), Number(req.body.thisID));
         });
         router.post("/newGradableItem", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().createGradableItem(req, res, next, req.body.courseID, req.body.name, req.body.dueDate, req.body.weight, req.body.gItemAccuracy);
         });
         router.post("/editGradeGoal", (req: Request, res: Response, next: NextFunction) => {
-            console.log(req.body.courseID);
-            console.log(req.body.newGoal);
             new CourseRoute().editGradeGoal(req, res, next, req.body.courseID, req.body.newGoal);
         });
 
     }
 
     public async Course(req: Request, res: Response, next: NextFunction, courseID: number, userID: number, Mess: string= "") {
-        const session = new CourseController();
         // Then, populate the overview page
         const courseCtrl = new CourseController();
         this.title = "Course Home";
         courseCtrl.RequestCourse(courseID)
         .then(async (details) => {
-            console.log(details);
             const gradableItemDetails = await courseCtrl.RequestCourseGradableItems(courseID);
             const options: object = {
                 courseDetails: details,
@@ -54,7 +48,6 @@ export class CourseRoute extends BaseRoute {
         this.title = "CreateGradableItem";
         courseCtrl.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy)
         .then((resp) => {
-            console.log(resp);
             // If new gradable item creation failed, reload page with message
             if (resp.insertedCount === 0) {
                 const Mess = "Failed to create item.";

@@ -28,7 +28,6 @@ export class UserModel extends BaseModel {
     }
     public async GetUserDetails(id: number): Promise<any> {
         try {
-            console.log("Getting user details from table User");
             return this.getOne({StudentID: id});
         } catch (error) {
             console.log(error);

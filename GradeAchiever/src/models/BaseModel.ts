@@ -23,9 +23,7 @@ export class BaseModel {
     public async getOne(query: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
-            console.log("Base Model - get one.");
             const returnVal = db.collection(this.tableName).findOne(query);
-            console.log("Base Model - return " + returnVal);
             return returnVal;
         })
         .catch((err) => {
@@ -64,9 +62,7 @@ so we could have just one function which gets just a single record, could be hig
      public async getMax(query: object = {}, project: object = {}, sort: object= {}) {
         return DbClient.connect()
         .then((db) => {
-            // console.log("Base Model - get max.");
             const returnVal = db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
-            // console.log("Base Model - return " + returnVal);
             return returnVal;
         })
         .catch((err) => {
@@ -98,8 +94,6 @@ so we could have just one function which gets just a single record, could be hig
     public async deleteOne(query: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
-            // console.log("Base Model - deleting ");
-            // console.log(query);
             return db.collection(this.tableName).deleteOne(query);
         })
         .catch((err) => {
@@ -130,7 +124,6 @@ Update needs to be an object of the form
     public async editOne(query: object, update: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
-            console.log("Base Model - Editing one");
             return db.collection(this.tableName).updateOne(query, {$set: update});
         });
     }
@@ -181,7 +174,6 @@ Update needs to be an object of the form
     public async addOne(query: object): Promise<any> {
         return DbClient.connect()
         .then((db) => {
-            console.log("Base Model - Inserting one");
             return db.collection(this.tableName).insertOne(query);
         });
     }
