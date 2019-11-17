@@ -71,7 +71,6 @@ export class CourseRoute extends BaseRoute {
             } else {
                 res.sendStatus(500);
             }
-            return;
         });
 
     }

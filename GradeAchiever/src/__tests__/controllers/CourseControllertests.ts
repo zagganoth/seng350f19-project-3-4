@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response} from "express";
 import { CourseController } from "../../controllers/CourseController";
-// import { CourseModel } from "../../models/CourseModel";
 
 jest.mock("../../models/CourseModel");
 jest.mock("../../models/GradableItemModel");

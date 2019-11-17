@@ -1,9 +1,19 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { IndexRoute } from "../../routes/index";
 
-import {SessionController} from "../../controllers/SessionController";
+describe("Index Routing Tests", () => {
+    let TestIndexRoute: IndexRoute;
+    const req = {} as Request;
+    const res = {} as Response;
+    const next = {} as NextFunction;
+    const router = {} as Router;
+    beforeEach(() => {
+        TestIndexRoute = new IndexRoute();
+    });
 
-test("Initialize IndexRoute", () => {
-    const testIndexRoute = new IndexRoute();
-    expect(testIndexRoute).toBeInstanceOf(IndexRoute);
+    it("Initializes indexRoute index", async () => {
+        TestIndexRoute.index(req, res, next);
+        expect(TestIndexRoute).toBeInstanceOf(IndexRoute);
+    });
+
 });

@@ -1,25 +1,36 @@
+import { anyTypeAnnotation } from "@babel/types";
 import { NextFunction, Request, Response, Router } from "express";
 import { BaseRoute } from "../../routes/route";
 
-// const testBaseRoute = new BaseRoute();
+describe("Base Routing Tests", () => {
+    let TestBaseRoute: BaseRoute;
+    const req = {} as Request;
+    const res = {} as Response;
+    const next = {} as NextFunction;
+    const router = {} as Router;
+    beforeEach(() => {
+        TestBaseRoute = new BaseRoute();
+    });
 
-test("Initialize BaseRoute", () => {
-    const testBaseRoute = new BaseRoute();
-    expect(testBaseRoute).toBeInstanceOf(BaseRoute);
+    it("Initializes BaseRoute render", async () => {
+		const view = "userhome";
+		res.locals = {};
+		res.render = () => {return; };
+  TestBaseRoute.render(req, res, view);
+  expect(TestBaseRoute).toBeInstanceOf(BaseRoute);
+	});
+
+	   it("Initializes BaseRoute render", async () => {
+		const title = TestBaseRoute.gettitle();
+		expect(title === "My New TypeScript Web app");
+	});
+
+	   it("Adds script to base route", () => {
+		TestBaseRoute.addScript("The Sky is Blue");
+		expect(TestBaseRoute.getScripts() === ["The Sky is Blue"]);
+	});
+
 });
-
-test("testBaseRouteInit", () => {
-	const testBaseRoute = new BaseRoute();
-	expect(testBaseRoute.gettitle() === "My New TypeScript Web app");
-	},
-);
-
-test("testBaseRouteAddScript", () => {
-	let testBaseRoute = new BaseRoute();
-	testBaseRoute = testBaseRoute.addScript("The Sky is Blue");
-	expect(testBaseRoute.getScripts() === ["The Sky is Blue"]);
-	},
-);
 
 /*
 test("test BaseRoute render", () => {
