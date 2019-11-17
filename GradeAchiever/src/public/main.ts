@@ -8,21 +8,14 @@
 function changeGradeGoal(courseID: number) {
     // Cast to input element to get value.
     const newGradeElement = document.getElementById("goalinput") as HTMLInputElement;
-    let newGrade: number;
-    console.log(newGradeElement);
     if (newGradeElement) {
-        newGrade = Number(newGradeElement.value);
-
-        console.log(newGrade);
-        if (!newGrade || (isNaN(newGrade) || (newGrade > 100 || newGrade < 0))) {
-            alert("Please enter a number between 0 and 100");
-            return;
-        }
+        const newGrade: number = Number(newGradeElement.value);
+        /* Verify user input */
+        if (!verifyNewGrade(newGrade)) { return; }
         const body = {
             newGoal: newGrade,
             courseID,
         };
-        console.log(body);
         fetch("/editGradeGoal", {
             method: "POST",
             headers: {"Accept": "application/json", "Content-Type": "application/json"},
@@ -32,29 +25,52 @@ function changeGradeGoal(courseID: number) {
         )
         .then(function(response) {
             /* Check response status code*/
-            if (response.ok) {
-                return;
-            } else {
-                throw new Error("Could not update gradeGoal :( HTTP response not was not OK -> " + response.status);
-            }
+            CheckResponse(response);
         })
         .then(function() {
             /* Update HTML with new value */
-            const goal = document.getElementById("gradegoal");
-            if (goal) {
-                goal.innerHTML = String(newGrade);
-            }
-            return;
+            UpdateGoalHTML(newGrade);
         })
         .catch(function(error) {
             console.log(error);
             return error;
         })
         .finally(function() {
-        doneEditGradeGoal();
+            doneEditGradeGoal();
         });
     }
+}
 
+/*
+ * Check fetch response status code
+ */
+function CheckResponse(resp: any) {
+    if (resp.ok) {
+        return;
+    } else {
+        throw new Error("HTTP response not was not OK -> " + resp.status);
+    }
+}
+
+/*
+ * Verifies new goal is a number between 0 and 100 
+ */
+function verifyNewGrade(newGrade: number) {
+    if (!newGrade || (isNaN(newGrade) || (newGrade > 100 || newGrade < 0))) {
+        alert("Please enter a number between 0 and 100");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/** Updated grade goal in html */
+function UpdateGoalHTML(newGoal: number) {
+    const goal = document.getElementById("gradegoal");
+    if (goal) {
+        goal.innerHTML = String(newGoal);
+    }
+    return;
 }
 
 /**
