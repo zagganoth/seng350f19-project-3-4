@@ -49,4 +49,18 @@ export class GradableItemModel {
             ];
         }
     }
+
+    public CreateItem(courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
+        if (courseID !== 1) {
+            const returnVal = {
+                insertedCount: 0,
+            };
+            return returnVal;
+        } else {
+            const returnVal = {
+                insertedCount: 1,
+            };
+            return returnVal;
+        }
+    }
 }
