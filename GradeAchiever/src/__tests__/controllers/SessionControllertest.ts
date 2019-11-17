@@ -13,21 +13,21 @@ describe("Session Controller Tests", () => {
         controller = new SessionController();
     });
 
-    it("requests get all users", async () => {
+    it("Gets all users", async () => {
         return controller.RequestUsers(req, res, next)
         .then((users: any) => {
             expect(users.length).toEqual(3);
         });
     });
 
-    it("no functionality yet", async () => {
+    it("Verifies user exists", async () => {
         return controller.VerifyUser(req, res, next, 1)
         .then((users: any) => {
             expect(1);
         });
     });
 
-    /*
+    
     it("Creates a new user", async () => {
         const name = "Test User";
         const email = "test@email.com";
@@ -36,6 +36,6 @@ describe("Session Controller Tests", () => {
             expect(returnVal.insertedCount).toEqual(1);
         });
     });
-    */
+    
 
 });

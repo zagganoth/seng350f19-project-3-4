@@ -54,5 +54,28 @@ export class AdminModel extends BaseModel {
               IsAdmin: true,
           },
       ];
-      }
+    }
+
+
+    public GetNewID() {
+        return [
+            {StudenID: 4}
+        ];
+    }
+
+    public AddUser(newuser:object) {
+        return {
+            insertedCount: 1,
+            ops: [
+                {StudentID: 2}
+            ]
+        };
+    }
+
+    public UpdateUser(userID:number, updatedUser:object) {
+        return {
+            matchedCount: 1
+        };
+    }
+
 }
