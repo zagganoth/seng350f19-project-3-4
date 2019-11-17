@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel} from "../models/CourseModel";
+import {UserModel} from "../models/UserModel";
 
 export class CourseController {
     constructor() {
@@ -20,7 +21,21 @@ export class CourseController {
             return [];
         }
     }
-
+    public async createCourse(courseDetails: any) {
+        const name: string = courseDetails.name;
+        const gradegoal: number = courseDetails.gradeGoal;
+        const courseModel = new CourseModel();
+        const courseId = (await courseModel.GetNewID()) as number;
+        // console.log(courseId);
+        const gradableItems = [];
+        // courseId = courseId.CourseID;
+        for (const gradableItem of courseDetails.GradableItems) {
+            gradableItems.push(await this.CreateGradableItem(courseId, gradableItem.name, gradableItem.duedate, gradableItem.weight));
+        }
+        await courseModel.CreateNewCourse(courseDetails.studentId, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
+        const userModel = new UserModel(courseDetails.studentId);
+        return userModel.AddCourse(courseDetails.studentId, [courseId]);
+    }
     /* Gets all gradable items Details in an array of a specified course ID
      * Called from course view
      */
@@ -33,17 +48,14 @@ export class CourseController {
                     const gradableItemIDs = courseDetails.GradableItems;
                     const gradableItemContr = new GradableItemController();
                     const returnVal = [];
-
                     for (const itemID of gradableItemIDs) {
                         const itemDetails = await gradableItemContr.RequestGradableItem(itemID);
                         returnVal.push(itemDetails);
                     }
-                    console.log("Request course gradable itmes returning: " + returnVal);
+                    // console.log("Request course gradable itmes returning: " + returnVal);
                     return returnVal;
                 }
             });
-
-            // }
         } catch (error) {
             console.log(error);
             return [];
@@ -65,12 +77,14 @@ export class CourseController {
         console.log("Course Controller - create new gradable item");
         const gradableItemContr = new GradableItemController();
         try {
-            const returnVal = await gradableItemContr.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
-            console.log("course return: " + returnVal);
-            return returnVal;
+            const returnVal: any = await gradableItemContr.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
+            console.log("course return:");
+            console.log(returnVal);
+            // Returns the id of the newly created gradable item
+            return returnVal.ops[0].GradableItemID;
         } catch (error) {
             console.log(error);
-            return [];
+            return -1;
         }
     }
 

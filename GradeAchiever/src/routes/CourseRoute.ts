@@ -5,6 +5,7 @@ import { BaseRoute } from "./route";
 
 export class CourseRoute extends BaseRoute {
     public static create(router: Router) {
+
         console.log("[CourseRoute::create] Creating course page route.");
         router.post("/course", (req: Request, res: Response, next: NextFunction) => {
             console.log(req.body);
@@ -21,6 +22,7 @@ export class CourseRoute extends BaseRoute {
         });
 
     }
+
     public async Course(req: Request, res: Response, next: NextFunction, courseID: number, userID: number, Mess: string= "") {
         const session = new CourseController();
         // Then, populate the overview page

@@ -146,7 +146,10 @@ Update needs to be an object of the form
         update[field] = newValue;
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).updateOne(query, {$addToSet: { update }});
+            console.log("Updating " + field + " with "  + value);
+            console.log(update);
+            console.log(query);
+            return db.collection(this.tableName).updateOne(query, {$addToSet:  update });
         });
     }
 

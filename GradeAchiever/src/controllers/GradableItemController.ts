@@ -12,7 +12,7 @@ export class GradableItemController {
         console.log("Gradable Item Controller - Request gradable item from id " + gradableItemID);
         try {
             const returnVal = await gradableItemModel.GetGradableItemDetails(gradableItemID);
-            console.log("gradable item return: " + returnVal);
+            // console.log("gradable item return: " + returnVal);
             return returnVal;
         } catch (error) {
             console.log(error);

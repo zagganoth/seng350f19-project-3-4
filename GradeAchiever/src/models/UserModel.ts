@@ -39,7 +39,7 @@ export class UserModel extends BaseModel {
 
     public async AddCourse(userID: number, itemsToAdd: number[]) {
         try {
-            return this.addToArray({UserID: userID}, "Courses", itemsToAdd);
+            return this.addToArray({StudentID: Number(userID)}, "Courses", itemsToAdd);
         } catch (error) {
             console.log(error);
             return [];
@@ -48,7 +48,7 @@ export class UserModel extends BaseModel {
 
     public async RemoveCourse(userID: number, itemsToRemove: number[]) {
         try {
-            return this.removeFromArray({UserID: userID}, "Courses", itemsToRemove);
+            return this.removeFromArray({StudentID: userID}, "Courses", itemsToRemove);
         } catch (error) {
             console.log(error);
             return [];
@@ -57,7 +57,7 @@ export class UserModel extends BaseModel {
 
     public async EditNotificationSettings(userID: number, newNotificationSettings: number) {
         try {
-            return this.editOne({UserID: userID}, {NotificationSettings: newNotificationSettings});
+            return this.editOne({StudentID: userID}, {NotificationSettings: newNotificationSettings});
         } catch (error) {
             console.log(error);
             return [];
@@ -66,7 +66,7 @@ export class UserModel extends BaseModel {
 
     public async EditAlgorithmAccuracy(userID: number, newAlgorithmValue: number) {
         try {
-            return this.editOne({UserID: userID}, {AlgorithmAccuracy: newAlgorithmValue});
+            return this.editOne({StudentID: userID}, {AlgorithmAccuracy: newAlgorithmValue});
         } catch (error) {
             console.log(error);
             return [];
