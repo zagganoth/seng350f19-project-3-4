@@ -19,17 +19,16 @@ describe("Session Routing Tests", () => {
     it("Initializes Session Route session", async () => {
 		const userid = 2;
 		res.locals = {};
-		res.render = () =>{return};
-        TestSessionRoute.Session(req,res,next,userid);
-        expect(TestSessionRoute).toBeInstanceOf(SessionRoute);
-	});
-	
-	it("Creates User", async () => {
-        const name = "Test User";
-        const email = "test@email.com";
-        TestSessionRoute.createUser(req,res,next,name, email);
-		expect(TestSessionRoute).toBeInstanceOf(SessionRoute);
+		res.render = () => {return; };
+  TestSessionRoute.Session(req, res, next, userid);
+  expect(TestSessionRoute).toBeInstanceOf(SessionRoute);
 	});
 
-    
+	   it("Creates User", async () => {
+        const name = "Test User";
+        const email = "test@email.com";
+        TestSessionRoute.createUser(req, res, next, name, email);
+		      expect(TestSessionRoute).toBeInstanceOf(SessionRoute);
+	});
+
 });

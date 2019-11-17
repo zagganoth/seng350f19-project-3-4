@@ -27,7 +27,6 @@ describe("Session Controller Tests", () => {
         });
     });
 
-    
     it("Creates a new user", async () => {
         const name = "Test User";
         const email = "test@email.com";
@@ -36,6 +35,5 @@ describe("Session Controller Tests", () => {
             expect(returnVal.insertedCount).toEqual(1);
         });
     });
-    
 
 });

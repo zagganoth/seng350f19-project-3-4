@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { IndexRoute } from "../../routes/index";
 
-
 describe("Index Routing Tests", () => {
     let TestIndexRoute: IndexRoute;
     const req = {} as Request;
@@ -13,8 +12,8 @@ describe("Index Routing Tests", () => {
     });
 
     it("Initializes indexRoute index", async () => {
-        TestIndexRoute.index(req,res,next);
+        TestIndexRoute.index(req, res, next);
         expect(TestIndexRoute).toBeInstanceOf(IndexRoute);
     });
-    
+
 });

@@ -30,21 +30,17 @@ describe("Session Controller Tests", () => {
         });
     });
 
-
-
     it("Edits an existing user", async () => {
-        const userDetails:object = {
+        const userDetails: object = {
             StudentName: "Test User",
             Email: "test@email.com",
-            IsAdmin: false
-        }
+            IsAdmin: false,
+        };
         const studentID = 5;
-        return controller.EditUser(req, res, next,studentID, userDetails)
+        return controller.EditUser(req, res, next, studentID, userDetails)
         .then((returnVal: any) => {
             expect(returnVal.matchedCount).toEqual(1);
         });
     });
-
-
 
 });

@@ -56,25 +56,24 @@ export class AdminModel extends BaseModel {
       ];
     }
 
-
     public GetNewID() {
         return [
-            {StudenID: 4}
+            {StudenID: 4},
         ];
     }
 
-    public AddUser(newuser:object) {
+    public AddUser(newuser: object) {
         return {
             insertedCount: 1,
             ops: [
-                {StudentID: 2}
-            ]
+                {StudentID: 2},
+            ],
         };
     }
 
-    public UpdateUser(userID:number, updatedUser:object) {
+    public UpdateUser(userID: number, updatedUser: object) {
         return {
-            matchedCount: 1
+            matchedCount: 1,
         };
     }
 

@@ -1,6 +1,6 @@
+import { anyTypeAnnotation } from "@babel/types";
 import { NextFunction, Request, Response, Router } from "express";
 import { BaseRoute } from "../../routes/route";
-import { anyTypeAnnotation } from "@babel/types";
 
 describe("Base Routing Tests", () => {
     let TestBaseRoute: BaseRoute;
@@ -15,25 +15,22 @@ describe("Base Routing Tests", () => {
     it("Initializes BaseRoute render", async () => {
 		const view = "userhome";
 		res.locals = {};
-		res.render = () =>{return};
-        TestBaseRoute.render(req,res,view);
-        expect(TestBaseRoute).toBeInstanceOf(BaseRoute);
+		res.render = () => {return; };
+  TestBaseRoute.render(req, res, view);
+  expect(TestBaseRoute).toBeInstanceOf(BaseRoute);
 	});
-	
-	it("Initializes BaseRoute render", async () => {
-		const title = TestBaseRoute.gettitle()
+
+	   it("Initializes BaseRoute render", async () => {
+		const title = TestBaseRoute.gettitle();
 		expect(title === "My New TypeScript Web app");
 	});
 
-	it("Adds script to base route", () => {
+	   it("Adds script to base route", () => {
 		TestBaseRoute.addScript("The Sky is Blue");
 		expect(TestBaseRoute.getScripts() === ["The Sky is Blue"]);
-	})
+	});
 
-    
 });
-
-
 
 /*
 test("test BaseRoute render", () => {
