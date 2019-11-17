@@ -27,7 +27,6 @@ export class SessionController {
         const am = new AdminModel();
         let newID: any = await am.GetNewID();
         newID = Number(newID[0].StudentID) + 1;
-        // console.log("NEW ID " + newID);
         const newuser: object = {
             StudentID: newID,
             StudentName: name,

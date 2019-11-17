@@ -8,8 +8,6 @@ export class SessionRoute extends BaseRoute {
     public static create(router: Router) {
         console.log("[SessionRoute::create] Creating user homepage route.");
         router.post("/overview", (req: Request, res: Response, next: NextFunction) => {
-            console.log(req.body);
-            console.log(req.body.user);
             new SessionRoute().Session(req, res, next, Number(req.body.user));
         });
         router.post("/newUser", (req: Request, res: Response, next: NextFunction) => {
@@ -29,7 +27,6 @@ export class SessionRoute extends BaseRoute {
         this.title = "Home";
         overviewCtrl.RequestUser(id)
         .then((details) => {
-            console.log(details);
             /*Details is an array of length 3 with the following fields -
                 details[0] = studentDetails (Name, id, email, list of courses etc
                 details[1] = courseDetails (CourseName,CourseID,list of gradable items etc)
@@ -44,7 +41,8 @@ export class SessionRoute extends BaseRoute {
             this.render(req, res, "userhome", options);
         })
         .catch((error) => {
-           this.render(req, res, "error", error);
+            console.log(error);
+            this.render(req, res, "error", error);
         });
     }
 
@@ -52,13 +50,10 @@ export class SessionRoute extends BaseRoute {
      * Signs up a new user by creating them in db and then loads their homepage
      */
     public async createUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
-        console.log("values of user to create is " + name.toString());
-        console.log(email.toString());
         const sessionCtrl = new SessionController();
         this.title = "CreateUser";
         sessionCtrl.CreateUser(req, res, next, String(name), String(email))
         .then((resp) => {
-            console.log(resp);
             // If adding a new user failed, return to login page
             if (resp.insertedCount === 0) {
                 res.redirect("/");

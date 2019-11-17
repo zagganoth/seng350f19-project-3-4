@@ -28,7 +28,6 @@ export class IndexRoute extends BaseRoute {
         });
 
         router.get("/stylesheets/style.css", (req: Request, res: Response, next: NextFunction) => {
-            console.log("CSS requested");
             res.sendFile(path.join(__dirname + "../../../public/stylesheets/style.css"));
         });
 
@@ -64,7 +63,6 @@ export class IndexRoute extends BaseRoute {
 
         session.RequestUsers(req, res, next)
         .then((mess) => {
-            console.log("message" + mess);
             // set message
             const options: object = {
                 users: mess,
@@ -75,9 +73,6 @@ export class IndexRoute extends BaseRoute {
             console.log(err.message);
         })
         .then((options: any) => {
-            // console.log("I'm doing the thing: "+options);
-            // res.send(options);
-            // render template
             this.render(req, res, "index", options);
         });
     }

@@ -27,12 +27,49 @@ export class UserModel extends BaseModel {
         this.userID = userID;
     }
     public async GetUserDetails(id: number): Promise<any> {
-        console.log("Getting user details from table User");
-        return await this.getOne({StudentID: id})
-        .catch((error) => {
-            console.log("Error in getting user details.");
+        try {
+            return this.getOne({StudentID: id});
+        } catch (error) {
+            console.log(error);
             return [];
-        });
+        }
+
+    }
+
+    public async AddCourse(userID: number, itemsToAdd: number[]) {
+        try {
+            return this.addToArray({UserID: userID}, "Courses", itemsToAdd);
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
+    public async RemoveCourse(userID: number, itemsToRemove: number[]) {
+        try {
+            return this.removeFromArray({UserID: userID}, "Courses", itemsToRemove);
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
+    public async EditNotificationSettings(userID: number, newNotificationSettings: number) {
+        try {
+            return this.editOne({UserID: userID}, {NotificationSettings: newNotificationSettings});
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
+    public async EditAlgorithmAccuracy(userID: number, newAlgorithmValue: number) {
+        try {
+            return this.editOne({UserID: userID}, {AlgorithmAccuracy: newAlgorithmValue});
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
     }
 
 }
