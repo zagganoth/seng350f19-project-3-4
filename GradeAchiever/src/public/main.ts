@@ -53,7 +53,7 @@ function CheckResponse(resp: any) {
 }
 
 /*
- * Verifies new goal is a number between 0 and 100 
+ * Verifies new goal is a number between 0 and 100
  */
 function verifyNewGrade(newGrade: number) {
     if (!newGrade || (isNaN(newGrade) || (newGrade > 100 || newGrade < 0))) {
