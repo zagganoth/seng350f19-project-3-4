@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { CourseController } from "../controllers/CourseController";
-import { UserModel } from "../models/UserModel";
 import { GradableItemModel } from "../models/GradableItemModel";
+import { UserModel } from "../models/UserModel";
 
 export class OverviewController {
     constructor() {
@@ -16,7 +16,7 @@ export class OverviewController {
         // Get all details for the user, including courses
         const userDetails = await um.GetUserDetails(id);
         // gets course and grade info from courseController
-        let gradableItems: Array<GradableItemModel> = [];
+        let gradableItems: GradableItemModel[] = [];
         const courses = [];
         if ("Courses" in  userDetails && userDetails.Courses !== []) {
             // For each course
@@ -28,7 +28,7 @@ export class OverviewController {
             }
         }
         // Sort gradable items by due date
-        //gradableItems.sort((a:any, b:any) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
+        // gradableItems.sort((a:any, b:any) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
         retVal.push(userDetails);
         retVal.push(courses);
         retVal.push(gradableItems);
@@ -38,7 +38,7 @@ export class OverviewController {
     /**
      * Requests all gradable items by course and sorts in order by duedate
      */
-    public async RequestGradableItems(courseID: number, courseName: string, gradableItems: Array<GradableItemModel>) {
+    public async RequestGradableItems(courseID: number, courseName: string, gradableItems: GradableItemModel[]) {
         const CourseCtrl = new CourseController();
         // get gradable items by course id from Course Controller
         const gradableItemsbyCourse: any = await CourseCtrl.RequestCourseGradableItems(courseID);
