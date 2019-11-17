@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel} from "../models/CourseModel";
+import {UserModel} from "../models/UserModel";
 
 export class CourseController {
     constructor() {
@@ -18,7 +19,21 @@ export class CourseController {
             return [];
         }
     }
-
+    public async createCourse(courseDetails: any) {
+        const name: string = courseDetails.name;
+        const gradegoal: number = courseDetails.gradeGoal;
+        const courseModel = new CourseModel();
+        const courseId = (await courseModel.GetNewID()) as number;
+        // console.log(courseId);
+        const gradableItems = [];
+        // courseId = courseId.CourseID;
+        for (const gradableItem of courseDetails.GradableItems) {
+            gradableItems.push(await this.CreateGradableItem(courseId, gradableItem.name, gradableItem.duedate, gradableItem.weight));
+        }
+        await courseModel.CreateNewCourse(courseDetails.studentId, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
+        const userModel = new UserModel(courseDetails.studentId);
+        return userModel.AddCourse(courseDetails.studentId, [courseId]);
+    }
     /* Gets all gradable items Details in an array of a specified course ID
      * Called from course view
      */
@@ -35,6 +50,7 @@ export class CourseController {
             return returnVal;
         } else {
             console.log("No Gradable items found for course.");
+
             return [];
         }
     }
@@ -50,11 +66,14 @@ export class CourseController {
      public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
         const gradableItemContr = new GradableItemController();
         try {
-            const returnVal = await gradableItemContr.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
-            return returnVal;
+            const returnVal: any = await gradableItemContr.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
+            console.log("course return:");
+            console.log(returnVal);
+            // Returns the id of the newly created gradable item
+            return returnVal.ops[0].GradableItemID;
         } catch (error) {
             console.log(error);
-            return [];
+            return -1;
         }
     }
 

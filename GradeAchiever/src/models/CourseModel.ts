@@ -32,9 +32,10 @@ export class CourseModel extends BaseModel {
 
     public async CreateNewCourse(studentID: number, courseName: string, percievedDifficulty: number, currentGrade: number, gradeGoal: number, gradableItems: number[]) {
         try {
+            // I don't know why, but studentID was getting inserted as a string if I didn't force it to number below
             const newCourse = {
-                CourseID: this.GetNewID(),
-                StudentID: studentID,
+                CourseID: await this.GetNewID(),
+                StudentID: Number(studentID),
                 CourseName: courseName,
                 PerceivedDifficulty: percievedDifficulty,
                 CurrentGrade: currentGrade,
@@ -52,11 +53,12 @@ export class CourseModel extends BaseModel {
     public async GetNewID() {
         try {
             console.log("Course Model - getting new course ID");
-            return this.getMax({}, {}, {CourseID: -1});
+            const maxRow = await this.getMax({}, {}, {CourseID: -1});
+            return maxRow[0].CourseID + 1;
         } catch (error) {
             console.log(error);
             console.log("error from getMax");
-            return [];
+            return 1;
         }
     }
 

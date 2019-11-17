@@ -32,7 +32,7 @@ export class GradableItemModel extends BaseModel {
      */
     public async CreateItem(courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
         const newGradableItem = {
-            GradableItemID: this.GetNewID(),
+            GradableItemID: await this.GetNewID(),
             CourseID: courseID,
             GradableItemName: gradableItemName,
             DueDate: dueDate,
@@ -41,6 +41,7 @@ export class GradableItemModel extends BaseModel {
         };
         try {
             console.log("Gradable Item Model - adding an item");
+            console.log(newGradableItem);
             return this.addOne(newGradableItem);
         } catch (error) {
             console.log(error);
@@ -53,11 +54,13 @@ export class GradableItemModel extends BaseModel {
     public async GetNewID() {
         try {
             console.log("Gradable Item Model - getting new item ID");
-            return this.getMax({}, {}, {GradableItemID: -1});
+            const maxRow = await this.getMax({}, {}, {GradableItemID: -1});
+            return maxRow[0].GradableItemID + 1;
         } catch (error) {
             console.log(error);
             console.log("error from getMax");
-            return [];
+            // This should only ever happen because there is no old course ids, therefore the first id should be 1
+            return 1;
         }
     }
 

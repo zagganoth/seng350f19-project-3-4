@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    - var page = 'createcourse'
+    - var n = 0;
+    form(name='verifyInfoForm',action='/createcourse',method='post')
+        input(type='hidden',name='studentId',value=studentID)
+        table
+            tr
+                td Name
+                td
+                    input(type='text',value=courseDetails.CourseName,name='name',required=true)
+            tr
+                th Name
+                th Weight
+                th Due Date
+            each gradableItem,name in courseDetails.GradableItems
+                tr
+                    td
+                        input(type='text',value=name,name='GradableItems['+n+'][name]')
+                    td
+                        input(type='text',value=gradableItem.Weight,name="GradableItems["+n+"][weight]")
+                    td
+                        input(type='date',value=new Date(gradableItem.DueDate).toLocaleDateString('en-ca'),name='GradableItems['+n+'][duedate]')
+                - n++
+            tr
+                td Grade Goal
+                td
+                    input(type='number',name='gradegoal',min=50,max=100,required=true)
+            tr
+                td Perceived Difficulty (1-5)
+                td
+                    input(type='number',name='perceivedDiff',min=1,max=5,required=true)
+        input(type='submit',value='Send')
