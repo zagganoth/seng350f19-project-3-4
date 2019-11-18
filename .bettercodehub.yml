@@ -1,6 +1,6 @@
 component_depth: 1
 languages:
-- name: typscript
+- name: typescript
   production:
     exclude:
       - /GradeAchiever/src/models/\_\_mocks\_\_/.*
