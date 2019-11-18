@@ -1,5 +1,4 @@
-import { anyTypeAnnotation, is } from "@babel/types";
-import { NextFunction, Request, Response, Router } from "express";
+import { NextFunction, Request, Response } from "express";
 import {AdminModel} from "../models/AdminModel";
 
 export class AdminController {
