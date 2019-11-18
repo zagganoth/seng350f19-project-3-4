@@ -1,10 +1,11 @@
-component_depth: 1
+component_depth: 3
 languages:
 - name: typescript
   production:
     exclude:
       - /GradeAchiever/src/models/\_\_mocks\_\_/.*
       - /GradeAchiever/src/\_\_tests\_\_/.*
+      - /GradeAchiever/public/.*
   test:
     include:
       - /GradeAchiever/src/\_\_tests\_\_/.*
