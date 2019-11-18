@@ -22,9 +22,11 @@ export class GradableItemModel extends BaseModel {
         super("GradableItem");
     }
 
+    /*
+     * Returns all details for a gradable item
+     */
     public async GetGradableItemDetails(gradableItemID: number): Promise<GradableItemModel> {
-        // Returns all details for a gradableItem
-        return await this.getOne({GradableItemID: Number(gradableItemID)});
+        return this.getOne({GradableItemID: Number(gradableItemID)});
     }
 
     /**
