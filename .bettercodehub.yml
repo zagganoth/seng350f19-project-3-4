@@ -1,10 +1,10 @@
 component_depth: 3
 languages:
-- name: java
+- name: typscript
   production:
     exclude:
-      - .*/__mocks__/*
-      - .*/__tests__/*
+      - .*/__mocks__/.*
+      - .*/__tests__/.*
   test:
     include:
       - .*/__mocks__/*
