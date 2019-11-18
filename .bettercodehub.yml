@@ -1,4 +1,4 @@
-component_depth: 3
+component_depth: 1
 languages:
 - name: typscript
   production:
@@ -7,5 +7,4 @@ languages:
       - /__tests__/.*
   test:
     include:
-      - /__mocks__/*
       - /__tests__/*
