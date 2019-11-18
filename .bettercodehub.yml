@@ -5,7 +5,7 @@ languages:
     exclude:
       - /GradeAchiever/src/models/\_\_mocks\_\_/.*
       - /GradeAchiever/src/\_\_tests\_\_/.*
-      - /GradeAchiever/public/.*
+      - /GradeAchiever/src/public/.*
   test:
     include:
       - /GradeAchiever/src/\_\_tests\_\_/.*
