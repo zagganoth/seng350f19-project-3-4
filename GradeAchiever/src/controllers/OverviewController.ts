@@ -36,7 +36,7 @@ export class OverviewController {
     /**
      * Requests all gradable items by course and sorts in order by duedate
      */
-    public async RequestGradableItems(courseID: number, courseName: string, gradableItems: GradableItemModel[]) {
+    public async RequestGradableItems(courseID: number, courseName: string, gradableItems: any[]) {
         const CourseCtrl = new CourseController();
         // get gradable items by course id from Course Controller
         const gradableItemsbyCourse: any = await CourseCtrl.RequestCourseGradableItems(courseID);
