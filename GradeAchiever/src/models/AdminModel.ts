@@ -28,13 +28,12 @@ export class AdminModel extends BaseModel {
     // Gets all users currently in DB
     public async GetAllUsers() {
         // Return the id and name for all students
-        try {
-            return this.getAll({}, { StudentID: 1, StudentName: 1, Email: 1 });
-        } catch (error) {
+        return this.getAll({}, { StudentID: 1, StudentName: 1, Email: 1 })
+        .catch ((error) => {
             console.log(error);
             console.log("error from getall users");
             return [];
-        }
+        });
     }
 
     // Adds a new user

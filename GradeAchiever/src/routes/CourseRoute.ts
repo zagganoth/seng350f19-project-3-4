@@ -45,18 +45,7 @@ export class CourseRoute extends BaseRoute {
     public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, dueDate: string, weight: number, gItemAccuracy: number) {
         const courseCtrl = new CourseController();
         this.title = "CreateGradableItem";
-        courseCtrl.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy)
-        .then((resp) => {
-            // If new gradable item creation failed, reload page with message
-            if (resp.insertedCount === 0) {
-                const Mess = "Failed to create item.";
-                return resp;
-            // Reload page with newest user
-            } else {
-                return resp;
-            }
-        });
-
+        courseCtrl.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy);
     }
 
     /**

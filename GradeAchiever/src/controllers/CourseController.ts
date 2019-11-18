@@ -21,7 +21,6 @@ export class CourseController {
     }
     public async createCourse(courseDetails: any) {
         const name: string = courseDetails.name;
-        const gradegoal: number = courseDetails.gradeGoal;
         const courseModel = new CourseModel();
         const courseId = (await courseModel.GetNewID()) as number;
         // console.log(courseId);

@@ -33,7 +33,7 @@ export class SessionRoute extends BaseRoute {
         });
     }
     public async createCourse(req: Request, res: Response, next: NextFunction) {
-        const course = req.body as any;
+        const course = req.body;
         // console.log(course.GradableItems);
         const courseController = new CourseController();
         courseController.createCourse(course)

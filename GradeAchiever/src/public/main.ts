@@ -100,3 +100,7 @@ function hideElementbyID(element: any) {
 function showElementbyID(element: any) {
     element.style.display = "table-cell";
 }
+
+function toggleAddCourse() {
+    document.getElementById("courseAddOverlay")!.style.display = (document.getElementById("courseAddOverlay")!.style.display === "block" ? "none" : "block");
+}

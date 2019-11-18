@@ -27,26 +27,29 @@ export class CourseModel extends BaseModel {
 
     public async GetCourseDetails(courseID: number): Promise<CourseModel> {
         // Get all the details for a course, including its gradable items
-        return await this.getOne({CourseID: Number(courseID)});
+        return this.getOne({CourseID: Number(courseID)})
+        .catch((error) => {
+            console.log(error);
+            return [];
+        });
     }
 
     public async CreateNewCourse(studentID: number, courseName: string, percievedDifficulty: number, currentGrade: number, gradeGoal: number, gradableItems: number[]) {
-        try {
-            // I don't know why, but studentID was getting inserted as a string if I didn't force it to number below
-            const newCourse = {
-                CourseID: await this.GetNewID(),
-                StudentID: Number(studentID),
-                CourseName: courseName,
-                PerceivedDifficulty: percievedDifficulty,
-                CurrentGrade: currentGrade,
-                GradeGoal: gradeGoal,
-                GradableItems: gradableItems,
-            };
-            return this.addOne(newCourse);
-        } catch (error) {
+        // I don't know why, but studentID was getting inserted as a string if I didn't force it to number below
+        const newCourse = {
+            CourseID: await this.GetNewID(),
+            StudentID: Number(studentID),
+            CourseName: courseName,
+            PerceivedDifficulty: percievedDifficulty,
+            CurrentGrade: currentGrade,
+            GradeGoal: gradeGoal,
+            GradableItems: gradableItems,
+        };
+        return this.addOne(newCourse)
+        .catch((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     // Gets next new course ID
@@ -63,68 +66,62 @@ export class CourseModel extends BaseModel {
     }
 
     public async DeleteCourse(courseID: number) {
-        try {
-            return this.deleteOne({CourseID: courseID});
-        } catch (error) {
+        return this.deleteOne({CourseID: courseID})
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async AddGradableItems(courseID: number, itemsToAdd: number[]) {
         // add id's to array
-        try {
-            return this.addToArray({CourseID: courseID}, "GradableItems", itemsToAdd);
-        } catch (error) {
+        return this.addToArray({CourseID: courseID}, "GradableItems", itemsToAdd)
+        .catch((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async DeleteGradableItems(courseID: number, itemsToRemove: number[]) {
         // remove ids from array
-        try {
-            return this.addToArray({CourseID: courseID}, "GradableItems", itemsToRemove);
-        } catch (error) {
+        return this.addToArray({CourseID: courseID}, "GradableItems", itemsToRemove)
+        .catch((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditCourseName(courseID: number, courseName: string) {
-        try {
-            return this.editOne({CourseID: courseID}, {CourseName: courseName});
-        } catch (error) {
+        return this.editOne({CourseID: courseID}, {CourseName: courseName})
+        .catch((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditPercievedDifficulty(courseID: number, percievedDifficulty: number) {
-        try {
-            return this.editOne({CourseID: courseID}, {PerceivedDifficulty: percievedDifficulty});
-        } catch (error) {
+
+        return this.editOne({CourseID: courseID}, {PerceivedDifficulty: percievedDifficulty})
+        .catch((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditCurrentGrade(courseID: number, currentGrade: number) {
-        try {
-            return this.editOne({CourseID: courseID}, {CurrentGrade: currentGrade});
-        } catch (error) {
+        return this.editOne({CourseID: courseID}, {CurrentGrade: currentGrade})
+        .catch((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditGradeGoal(courseID: number, gradeGoal: number) {
-        try {
-            return this.editOne({CourseID: courseID}, {GradeGoal: gradeGoal});
-        } catch (error) {
+        return this.editOne({CourseID: courseID}, {GradeGoal: gradeGoal})
+        .catch((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
 }

@@ -41,15 +41,14 @@ export class GradableItemModel extends BaseModel {
             Weight: weight,
             GItemAccuracy: gItemAccuracy,
         };
-        try {
-            console.log("Gradable Item Model - adding an item");
-            console.log(newGradableItem);
-            return this.addOne(newGradableItem);
-        } catch (error) {
+
+        console.log("Gradable Item Model - adding an item");
+        console.log(newGradableItem);
+        return this.addOne(newGradableItem)
+        .catch((error) => {
             console.log(error);
-            console.log("error from addOne gradable item");
             return [];
-        }
+        });
     }
 
     // Gets next new gradable item ID
@@ -67,49 +66,43 @@ export class GradableItemModel extends BaseModel {
     }
 
     public async DeleteGradableItem(gradableItemID: number) {
-        try {
-            return this.deleteOne({GradableItemID: gradableItemID});
-        } catch (error) {
+        return this.deleteOne({GradableItemID: gradableItemID})
+        .catch ((error) => {
             console.log(error);
-            console.log("error from deleteOne");
             return [];
-        }
+        });
     }
 
     public async EditCourseID(gradableItemID: number, newID: number) {
-        try {
-            return this.editOne({GradableItemID: gradableItemID}, {CourseID: newID});
-        } catch (error) {
+        return this.editOne({GradableItemID: gradableItemID}, {CourseID: newID})
+        .catch((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditGradableItemName(gradableItemID: number, newName: string) {
-        try {
-            return this.editOne({GradableItemID: gradableItemID}, {GradableItemName: newName});
-        } catch (error) {
+        return this.editOne({GradableItemID: gradableItemID}, {GradableItemName: newName})
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditGradableItemWeight(gradableItemID: number, newWeight: number) {
-        try {
-            return this.editOne({GradableItemID: gradableItemID}, {Weight: newWeight});
-        } catch (error) {
+        return this.editOne({GradableItemID: gradableItemID}, {Weight: newWeight})
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditDueDate(gradableItemID: number, newDueDate: string) {
-        try {
-            return this.editOne({GradableItemID: gradableItemID}, {DueDate: newDueDate});
-        } catch (error) {
+        return this.editOne({GradableItemID: gradableItemID}, {DueDate: newDueDate})
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
 }

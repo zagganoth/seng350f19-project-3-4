@@ -27,49 +27,44 @@ export class UserModel extends BaseModel {
         this.userID = userID;
     }
     public async GetUserDetails(id: number): Promise<any> {
-        try {
-            return this.getOne({StudentID: id});
-        } catch (error) {
+        return this.getOne({StudentID: id})
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
 
     }
 
     public async AddCourse(userID: number, itemsToAdd: number[]) {
-        try {
-            return this.addToArray({StudentID: Number(userID)}, "Courses", itemsToAdd);
-        } catch (error) {
+        return this.addToArray({StudentID: Number(userID)}, "Courses", itemsToAdd)
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async RemoveCourse(userID: number, itemsToRemove: number[]) {
-        try {
-            return this.removeFromArray({StudentID: userID}, "Courses", itemsToRemove);
-        } catch (error) {
+        return this.removeFromArray({StudentID: userID}, "Courses", itemsToRemove)
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditNotificationSettings(userID: number, newNotificationSettings: number) {
-        try {
-            return this.editOne({StudentID: userID}, {NotificationSettings: newNotificationSettings});
-        } catch (error) {
+        return this.editOne({StudentID: userID}, {NotificationSettings: newNotificationSettings})
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     public async EditAlgorithmAccuracy(userID: number, newAlgorithmValue: number) {
-        try {
-            return this.editOne({StudentID: userID}, {AlgorithmAccuracy: newAlgorithmValue});
-        } catch (error) {
+        return this.editOne({StudentID: userID}, {AlgorithmAccuracy: newAlgorithmValue})
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
 }

@@ -284,11 +284,6 @@ PROGRESS BAR
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   background-color: green;
-  background-image: linear-gradient(
-    center bottom,
-    green 37%,
-    green 69%
-  );
   position: relative;
 }
 
