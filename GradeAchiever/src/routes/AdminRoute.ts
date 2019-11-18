@@ -82,7 +82,7 @@ export class AdminRoute extends BaseRoute {
             // If error was thrown, reload page with message
             const Mess = "Failed to create user.";
             this.Admin(req, res, next, thisID, Mess)
-            .catch((error)=>{
+            .catch((error) => {
                 return;
             });
         });

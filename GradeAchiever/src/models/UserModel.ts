@@ -28,7 +28,7 @@ export class UserModel extends BaseModel {
     }
     public async GetUserDetails(id: number): Promise<any> {
         return this.getOne({StudentID: id})
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -37,7 +37,7 @@ export class UserModel extends BaseModel {
 
     public async AddCourse(userID: number, itemsToAdd: number[]) {
         return this.addToArray({StudentID: Number(userID)}, "Courses", itemsToAdd)
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -45,7 +45,7 @@ export class UserModel extends BaseModel {
 
     public async RemoveCourse(userID: number, itemsToRemove: number[]) {
         return this.removeFromArray({StudentID: userID}, "Courses", itemsToRemove)
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -53,7 +53,7 @@ export class UserModel extends BaseModel {
 
     public async EditNotificationSettings(userID: number, newNotificationSettings: number) {
         return this.editOne({StudentID: userID}, {NotificationSettings: newNotificationSettings})
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -61,10 +61,10 @@ export class UserModel extends BaseModel {
 
     public async EditAlgorithmAccuracy(userID: number, newAlgorithmValue: number) {
         return this.editOne({StudentID: userID}, {AlgorithmAccuracy: newAlgorithmValue})
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
 }

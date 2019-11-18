@@ -43,7 +43,7 @@ export class GradableItemModel extends BaseModel {
         console.log("Gradable Item Model - adding an item");
         console.log(newGradableItem);
         return this.addOne(newGradableItem)
-        .catch((error)=> {
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -65,7 +65,7 @@ export class GradableItemModel extends BaseModel {
 
     public async DeleteGradableItem(gradableItemID: number) {
         return this.deleteOne({GradableItemID: gradableItemID})
-        .catch ((error) =>{
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -73,7 +73,7 @@ export class GradableItemModel extends BaseModel {
 
     public async EditCourseID(gradableItemID: number, newID: number) {
         return this.editOne({GradableItemID: gradableItemID}, {CourseID: newID})
-        .catch((error) =>{
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -81,7 +81,7 @@ export class GradableItemModel extends BaseModel {
 
     public async EditGradableItemName(gradableItemID: number, newName: string) {
         return this.editOne({GradableItemID: gradableItemID}, {GradableItemName: newName})
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -89,15 +89,15 @@ export class GradableItemModel extends BaseModel {
 
     public async EditGradableItemWeight(gradableItemID: number, newWeight: number) {
         return this.editOne({GradableItemID: gradableItemID}, {Weight: newWeight})
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
     public async EditDueDate(gradableItemID: number, newDueDate: string) {
         return this.editOne({GradableItemID: gradableItemID}, {DueDate: newDueDate})
-        .catch ((error) =>{
+        .catch ((error) => {
             console.log(error);
             return [];
         });

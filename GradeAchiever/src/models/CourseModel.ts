@@ -28,7 +28,7 @@ export class CourseModel extends BaseModel {
     public async GetCourseDetails(courseID: number): Promise<CourseModel> {
         // Get all the details for a course, including its gradable items
         return this.getOne({CourseID: Number(courseID)})
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -44,12 +44,12 @@ export class CourseModel extends BaseModel {
             CurrentGrade: currentGrade,
             GradeGoal: gradeGoal,
             GradableItems: gradableItems,
-        }
+        };
         return this.addOne(newCourse)
-        .catch((error)=> {
+        .catch((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
     // Gets next new course ID
@@ -67,7 +67,7 @@ export class CourseModel extends BaseModel {
 
     public async DeleteCourse(courseID: number) {
         return this.deleteOne({CourseID: courseID})
-        .catch ((error) =>{
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -76,7 +76,7 @@ export class CourseModel extends BaseModel {
     public async AddGradableItems(courseID: number, itemsToAdd: number[]) {
         // add id's to array
         return this.addToArray({CourseID: courseID}, "GradableItems", itemsToAdd)
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -85,7 +85,7 @@ export class CourseModel extends BaseModel {
     public async DeleteGradableItems(courseID: number, itemsToRemove: number[]) {
         // remove ids from array
         return this.addToArray({CourseID: courseID}, "GradableItems", itemsToRemove)
-        .catch((error)=> {
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -93,7 +93,7 @@ export class CourseModel extends BaseModel {
 
     public async EditCourseName(courseID: number, courseName: string) {
         return this.editOne({CourseID: courseID}, {CourseName: courseName})
-        .catch((error) =>{
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -102,7 +102,7 @@ export class CourseModel extends BaseModel {
     public async EditPercievedDifficulty(courseID: number, percievedDifficulty: number) {
 
         return this.editOne({CourseID: courseID}, {PerceivedDifficulty: percievedDifficulty})
-        .catch((error)=> {
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -110,7 +110,7 @@ export class CourseModel extends BaseModel {
 
     public async EditCurrentGrade(courseID: number, currentGrade: number) {
         return this.editOne({CourseID: courseID}, {CurrentGrade: currentGrade})
-        .catch((error) =>{
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -118,7 +118,7 @@ export class CourseModel extends BaseModel {
 
     public async EditGradeGoal(courseID: number, gradeGoal: number) {
         return this.editOne({CourseID: courseID}, {GradeGoal: gradeGoal})
-        .catch((error) =>{
+        .catch((error) => {
             console.log(error);
             return [];
         });
