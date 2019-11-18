@@ -3,8 +3,8 @@ languages:
 - name: typscript
   production:
     exclude:
-      - /GradeAchiever/src/models/__mocks__/.*
-      - /GradeAchiever/src/__tests__/.*
+      - /GradeAchiever/src/models/\_\_mocks\_\_/.*
+      - /GradeAchiever/src/\_\_tests\_\_/.*
   test:
     include:
-      - /GradeAchiever/src/__tests__/.*
+      - /GradeAchiever/src/\_\_tests\_\_/.*
