@@ -1,0 +1,11 @@
+component_depth: 3
+languages:
+- name: java
+  production:
+    exclude:
+      - .*/__mocks__/*
+      - .*/__tests__/*
+  test:
+    include:
+      - .*/__mocks__/*
+      - .*/__tests__/*
