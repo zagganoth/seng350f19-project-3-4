@@ -1,6 +1,4 @@
-import { NextFunction, Request, Response, Router } from "express";
 import { CourseController } from "../controllers/CourseController";
-import { GradableItemModel } from "../models/GradableItemModel";
 import { UserModel } from "../models/UserModel";
 
 export class OverviewController {
@@ -16,7 +14,7 @@ export class OverviewController {
         // Get all details for the user, including courses
         const userDetails = await um.GetUserDetails(id);
         // gets course and grade info from courseController
-        let gradableItems: GradableItemModel[] = [];
+        let gradableItems: any[] = [];
         const courses = [];
         if ("Courses" in  userDetails && userDetails.Courses !== []) {
             // For each course
@@ -38,7 +36,7 @@ export class OverviewController {
     /**
      * Requests all gradable items by course and sorts in order by duedate
      */
-    public async RequestGradableItems(courseID: number, courseName: string, gradableItems: GradableItemModel[]) {
+    public async RequestGradableItems(courseID: number, courseName: string, gradableItems: any[]) {
         const CourseCtrl = new CourseController();
         // get gradable items by course id from Course Controller
         const gradableItemsbyCourse: any = await CourseCtrl.RequestCourseGradableItems(courseID);

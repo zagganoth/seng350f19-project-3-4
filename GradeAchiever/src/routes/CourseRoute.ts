@@ -1,4 +1,3 @@
-
 import { NextFunction, Request, Response, Router } from "express";
 import {CourseController} from "../controllers/CourseController";
 import { BaseRoute } from "./route";

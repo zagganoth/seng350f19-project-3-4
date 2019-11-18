@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel} from "../models/CourseModel";
-import {UserModel} from "../models/UserModel";
+import { UserModel } from "../models/UserModel";
 
 export class CourseController {
     constructor() {
