@@ -15,6 +15,9 @@ export class CourseRoute extends BaseRoute {
         router.post("/editGradeGoal", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editGradeGoal(req, res, next, req.body.courseID, req.body.newGoal);
         });
+        router.post("/editDifficulty", (req: Request, res: Response, next: NextFunction) => {
+            new CourseRoute().editGradeGoal(req, res, next, req.body.courseID, req.body.newDiff);
+        });
 
     }
 
@@ -55,6 +58,23 @@ export class CourseRoute extends BaseRoute {
         const courseCtrl = new CourseController();
         this.title = "EditGradeGoal";
         courseCtrl.editCourseGradeGoal(req, res, next, courseID, newGoal)
+        .then((resp) => {
+            if (resp.matchedCount === 1) {
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(500);
+            }
+        });
+
+    }
+
+    /*
+     * Edits a courses perceived difficulty
+     */
+    public async editDifficulty(req: Request, res: Response, next: NextFunction, courseID: number, newGoal: number) {
+        const courseCtrl = new CourseController();
+        this.title = "EditDifficulty";
+        courseCtrl.editDifficulty(req, res, next, courseID, newGoal)
         .then((resp) => {
             if (resp.matchedCount === 1) {
                 res.sendStatus(200);

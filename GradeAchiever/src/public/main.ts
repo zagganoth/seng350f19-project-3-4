@@ -29,7 +29,46 @@ function changeGradeGoal(courseID: number) {
         })
         .then(function() {
             /* Update HTML with new value */
-            UpdateGoalHTML(newGrade);
+            UpdateHTML("gradegoal", newGrade);
+        })
+        .catch(function(error) {
+            console.log(error);
+            return error;
+        })
+        .finally(function() {
+            doneEditGradeGoal();
+        });
+    }
+}
+
+/**
+ * changeGradeGoal by sending fetch request with course id and new goal
+ */
+function changeDifficulty(courseID: number) {
+    // Cast to input element to get value.
+    const newGradeElement = document.getElementById("diffinput") as HTMLInputElement;
+    if (newGradeElement) {
+        const newDiff: number = Number(newGradeElement.value);
+        /* Verify user input */
+        if (!verifyNewDiff(newDiff)) { return; }
+        const body = {
+            newDiff,
+            courseID,
+        };
+        fetch("/editDifficulty", {
+            method: "POST",
+            headers: {"Accept": "application/json", "Content-Type": "application/json"},
+            credentials: "same-origin",
+            body: JSON.stringify(body),
+            },
+        )
+        .then(function(response) {
+            /* Check response status code*/
+            CheckResponse(response);
+        })
+        .then(function() {
+            /* Update HTML with new value */
+            UpdateHTML("diff", newDiff);
         })
         .catch(function(error) {
             console.log(error);
@@ -64,11 +103,23 @@ function verifyNewGrade(newGrade: number) {
     }
 }
 
-/** Updated grade goal in html */
-function UpdateGoalHTML(newGoal: number) {
-    const goal = document.getElementById("gradegoal");
+/*
+ * Verifies new diff is a number between 1 and 5
+ */
+function verifyNewDiff(newDiff: number) {
+    if (!newDiff || (isNaN(newDiff) || (newDiff > 5 || newDiff < 1))) {
+        alert("Please enter a number between 1 and 5");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/** Updated edited html */
+function UpdateHTML(id: string, newUpdate: any) {
+    const goal = document.getElementById(id);
     if (goal) {
-        goal.innerHTML = String(newGoal);
+        goal.innerHTML = String(newUpdate);
     }
     return;
 }
@@ -84,9 +135,29 @@ function editGradeGoal() {
 }
 
 /**
- * Hide prompt
+ * Create prompt for user input
+ */
+function editDifficulty() {
+    hideElementbyID(document.getElementById("diff"));
+    showElementbyID(document.getElementById("difficultyinput"));
+    hideElementbyID(document.getElementById("editdiff"));
+    showElementbyID(document.getElementById("submitdiff"));
+}
+
+/**
+ * Hide goal prompt
  */
 function doneEditGradeGoal() {
+    hideElementbyID(document.getElementById("difficultyinput"));
+    hideElementbyID(document.getElementById("submitdiff"));
+    showElementbyID(document.getElementById("diff"));
+    showElementbyID(document.getElementById("editdiff"));
+}
+
+/**
+ * Hide difficulty prompt
+ */
+function doneEditDifficulty() {
     hideElementbyID(document.getElementById("gradegoalinput"));
     hideElementbyID(document.getElementById("submitgoal"));
     showElementbyID(document.getElementById("gradegoal"));

@@ -61,6 +61,13 @@ export class CourseController {
         return returnVal;
     }
 
+    /* Edits course grade goal*/
+    public async editDifficulty(req: Request, res: Response, next: NextFunction, courseID: number, newDiff: number) {
+        const courseModel = new CourseModel();
+        const returnVal = await courseModel.EditPercievedDifficulty(Number(courseID), Number(newDiff));
+        return returnVal;
+    }
+
      /* Gets course Details by course ID */
      public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
         const gradableItemContr = new GradableItemController();

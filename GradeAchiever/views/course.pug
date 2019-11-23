@@ -32,9 +32,13 @@ block content
                   th        
                 tr
                   td Difficulty Level
-                  td #{courseDetails.PerceivedDifficulty}
+                  td#diff #{courseDetails.PerceivedDifficulty}
+                  td#difficultyinput
+                    input#diffinput(type="text", name="newDifficulty" placeholder=courseDetails.PerceivedDifficulty)
                   td
-                    input.edit(type="submit", value='Edit')
+                    button.edit#editdiff(type='button' onclick='editDifficulty()') Edit
+                  td
+                    button.submit#submitdiff(type='button' onclick='changeDifficulty('+courseDetails.CourseID+')') Submit
                 tr
                   td Grade Goal
                   td#gradegoal #{courseDetails.GradeGoal}

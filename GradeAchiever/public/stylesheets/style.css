@@ -140,7 +140,7 @@ input[type=text], select {
   background-color: rgba(0,0,0, 0.9);
 }
 
-input[type=submit], #submitgoal, #editgoal {
+input[type=submit], #submitgoal, #editgoal, #submitdiff,#editdiff {
   width: 100%;
   background-color: #eca72c;
   color: #f3e0ec;
@@ -187,11 +187,11 @@ input.course:hover{
 
 }
 
-#gradegoal, #submitgoal, #editgoal{
+#gradegoal, #submitgoal, #editgoal, #diff, #submitdiff{
   display:table-cell;
 }
 
-#gradegoalinput, #submitgoal{
+#gradegoalinput, #submitgoal, #difficultyinput, #submitdiff{
   display: none;
   max-width: 75px;
 }
