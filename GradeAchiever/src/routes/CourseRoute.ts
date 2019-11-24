@@ -10,10 +10,16 @@ export class CourseRoute extends BaseRoute {
             new CourseRoute().Course(req, res, next, Number(req.body.courseID), Number(req.body.thisID));
         });
         router.post("/newGradableItem", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().createGradableItem(req, res, next, req.body.courseID, req.body.name, req.body.dueDate, req.body.weight, req.body.gItemAccuracy);
+            new CourseRoute().createGradableItems(req, res, next);
         });
         router.post("/editGradeGoal", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editGradeGoal(req, res, next, req.body.courseID, req.body.newGoal);
+        });
+        router.post("/editDifficulty", (req: Request, res: Response, next: NextFunction) => {
+            new CourseRoute().editGradeGoal(req, res, next, req.body.courseID, req.body.newDiff);
+        });
+        router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
+            new CourseRoute().editName(req, res, next, req.body.courseID, req.body.newName);
         });
 
     }
@@ -25,6 +31,8 @@ export class CourseRoute extends BaseRoute {
         courseCtrl.RequestCourse(courseID)
         .then(async (details) => {
             const gradableItemDetails = await courseCtrl.RequestCourseGradableItems(courseID);
+
+            // gradableItemDetails.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
             const options: object = {
                 courseDetails: details,
                 gradableItems: gradableItemDetails,
@@ -41,11 +49,25 @@ export class CourseRoute extends BaseRoute {
     /**
      * creates a new gradable item for a course
      */
-
-    public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, dueDate: string, weight: number, gItemAccuracy: number) {
+    public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, dueDate: string, weight: number, gItemAccuracy: number = -1) {
         const courseCtrl = new CourseController();
         this.title = "CreateGradableItem";
         courseCtrl.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy);
+    }
+
+    /**
+     * creates new gradable items for a course
+     */
+    public async createGradableItems(req: Request, res: Response, next: NextFunction) {
+        const courseCtrl = new CourseController();
+        console.log(req.body.courseID);
+        console.log(req.body.studentID);
+        this.title = "CreateGradableItems";
+        courseCtrl.createGradableItems(req.body)
+        .then(() => {
+            console.log("rendering userhome");
+            this.Course(req, res, next, Number(req.body.courseID), Number(req.body.studentID));
+        });
     }
 
     /**
@@ -55,6 +77,40 @@ export class CourseRoute extends BaseRoute {
         const courseCtrl = new CourseController();
         this.title = "EditGradeGoal";
         courseCtrl.editCourseGradeGoal(req, res, next, courseID, newGoal)
+        .then((resp) => {
+            if (resp.matchedCount === 1) {
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(500);
+            }
+        });
+
+    }
+
+    /*
+     * Edits a courses perceived difficulty
+     */
+    public async editDifficulty(req: Request, res: Response, next: NextFunction, courseID: number, newGoal: number) {
+        const courseCtrl = new CourseController();
+        this.title = "EditDifficulty";
+        courseCtrl.editDifficulty(req, res, next, courseID, newGoal)
+        .then((resp) => {
+            if (resp.matchedCount === 1) {
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(500);
+            }
+        });
+
+    }
+
+     /*
+     * Edits a courses name
+     */
+    public async editName(req: Request, res: Response, next: NextFunction, courseID: number, newName: string) {
+        const courseCtrl = new CourseController();
+        this.title = "EditDifficulty";
+        courseCtrl.editCourseName(req, res, next, courseID, newName)
         .then((resp) => {
             if (resp.matchedCount === 1) {
                 res.sendStatus(200);

@@ -48,7 +48,6 @@ h1.course-title{
 }
 
 
-
 /****************
 TABLES
 *****************/
@@ -64,7 +63,7 @@ table {
   width: 100%;
 }
 
-table.users {
+table.users, table.newgradableitem {
   max-width: 840px;
   text-align: left;
 }
@@ -128,19 +127,28 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-.overlay {
+.overlay, .itemoverlay {
   height: 100%;
   width: 100%;
   display: none;
   position: fixed;
   z-index: 1;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
+  background-color: rgba(0,0,0, 0.8);
 }
 
-input[type=submit], #submitgoal, #editgoal {
+div.inneritemoverlay{
+  width: 80%;
+  height: 80%;
+  max-width: 900px;
+  max-height: 1200px;
+  margin: 0 auto;
+  
+}
+
+input[type=submit], #submitgoal, #editgoal, #submitdiff,#editdiff, #submitname {
   width: 100%;
   background-color: #eca72c;
   color: #f3e0ec;
@@ -165,10 +173,19 @@ input[disabled]:hover {
   cursor: default;
 }
 
-input.edit, button.edit{
+input.edit, button.edit, input.submit{
   max-width: 75px;
   padding: 10px 16px;
   margin: 5px 0;
+}
+
+input.submit{
+  float: left;
+}
+
+#editname{
+  border: none;
+  background-color: #333333;
 }
 
 input.course, input.course:hover{
@@ -187,13 +204,18 @@ input.course:hover{
 
 }
 
-#gradegoal, #submitgoal, #editgoal{
+#gradegoal, #submitgoal, #editgoal, #diff, #submitdiff{
   display:table-cell;
 }
 
-#gradegoalinput, #submitgoal{
+#gradegoalinput, #submitgoal, #difficultyinput, #submitdiff, #submitname{
   display: none;
   max-width: 75px;
+}
+
+#nameinput{
+  display: none;
+  max-width: 200px;
 }
 
 
@@ -289,4 +311,47 @@ PROGRESS BAR
 
 span.progress {
   width: 25%;
+}
+
+
+
+/****************
+BUTTONS
+*****************/
+.plus{
+  padding:0px;
+}
+
+button.plus {
+  display: block;
+  height: 0.6em;
+  width: 0.6em;
+  font-size: 35px;
+  text-align: center;
+  line-height: 0.5em;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bolder;
+  color: #f3e0ec;
+  background-color: #ee5622;
+  float: right;
+  border-radius: 4px;
+}
+
+button.plus::before {
+  display: block;
+  content: '+';
+}
+
+button.plus:hover{
+  height: 0.7em;
+  width: 0.7em;
+  text-align: center;
+  line-height: 0.7em;
+}
+
+button{
+  border: none;
 }

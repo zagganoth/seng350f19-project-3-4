@@ -30,10 +30,6 @@ export class IndexRoute extends BaseRoute {
         router.get("/stylesheets/style.css", (req: Request, res: Response, next: NextFunction) => {
             res.sendFile(path.join(__dirname + "../../../public/stylesheets/style.css"));
         });
-        router.get("/javascripts/frontend.js", (req: Request, res: Response, next: NextFunction) => {
-            console.log("JS requested");
-            res.sendFile(path.join(__dirname + "../../../dist/frontend.js"));
-        });
     }
 
     /**

@@ -25,8 +25,6 @@ export class OverviewController {
                 gradableItems = await this.RequestGradableItems(course, (courseDetails as any).CourseName, gradableItems);
             }
         }
-        // Sort gradable items by due date
-        // gradableItems.sort((a:any, b:any) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
         retVal.push(userDetails);
         retVal.push(courses);
         retVal.push(gradableItems);

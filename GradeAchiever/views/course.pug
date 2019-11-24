@@ -3,9 +3,38 @@ extends layout
 block content
   
   - var page = 'course'
+  div.itemoverlay#GradableItemAddOverlay
+    div.inneritemoverlay
+      span.closeBtn(onclick='toggleAddGradableItem()',title="Toggle Overlay") x
+      h2 Add new gradable items
+      form(name='addGradableItemForm',action='/newGradableItem',method='post')
+          input(type='hidden',name='courseID',value=courseDetails.CourseID)
+          input(type='hidden',name='studentID',value=thisID)
+          table#newgradableitem
+            tr#row1
+              th Name
+              th Weight
+              th Due Date
+              th
+            tr#2
+              td
+                input(type='text',name='GradableItems[0][name]', required=true)
+              td
+                input(type='text',name="GradableItems[0][weight]", required=true)
+              td
+                input(type='date',name='GradableItems[0][duedate]', required=true)
+              td
+                button.delete(type='button' onclick='RemoveRow(\'newgradableitem\',2)') X
+          div.plus
+            button.plus#addrow(onclick="addNewRow(\'newgradableitem\')")
+          div
+            input.submit(type='submit',value='Submit')
   div.container-fluid
     div.row
-      h1.course-title #{courseDetails.CourseName}
+      button#editname(type='button' onclick='editCourseName()')
+        h1.course-title#name(title="Edit course name") #{courseDetails.CourseName}
+      input#nameinput(type="text", name="newName" placeholder=courseDetails.CourseName)
+      button.submit#submitname(type='button' onclick='changeName('+courseDetails.CourseID+')') Submit
       div.progress-bar
         span.progress
     div.row
@@ -21,7 +50,9 @@ block content
                   td #{gradableItem.GradableItemName}
                   td #{gradableItem.DueDate}
           else
-            h3 You haven't added any courses.
+            h3 You haven't added any gradable items.
+          div.plus
+            button.plus(onclick="toggleAddGradableItem()")
         div.course-list
             if courseDetails
             h3
@@ -32,9 +63,13 @@ block content
                   th        
                 tr
                   td Difficulty Level
-                  td #{courseDetails.PerceivedDifficulty}
+                  td#diff #{courseDetails.PerceivedDifficulty}
+                  td#difficultyinput
+                    input#diffinput(type="text", name="newDifficulty" placeholder=courseDetails.PerceivedDifficulty)
                   td
-                    input.edit(type="submit", value='Edit')
+                    button.edit#editdiff(type='button' onclick='editDifficulty()') Edit
+                  td
+                    button.submit#submitdiff(type='button' onclick='changeDifficulty('+courseDetails.CourseID+')') Submit
                 tr
                   td Grade Goal
                   td#gradegoal #{courseDetails.GradeGoal}
@@ -47,4 +82,4 @@ block content
                
                 tr
                   td Current Grade
-                  td #{courseDetails.CurrentGrade}
+                  td #{courseDetails.CurrentGrade} %
