@@ -246,9 +246,9 @@ function addNewRow(tableid: string) {
         const row = tableElement.insertRow();
         const rowid: string = GetNewID(tableElement);
         row.id = rowid;
-        row.insertCell().innerHTML += '<input type="text" name="GradableItems['+rowid+'][name]" required=true>';
-        row.insertCell().innerHTML += '<input type="text" name="GradableItems['+rowid+'][weight]" required=true>';
-        row.insertCell().innerHTML += '<input type="date" name="GradableItems['+rowid+'][duedate]" required=true>';
+        row.insertCell().innerHTML += '<input type="text" name="GradableItems[' + rowid + '][name]" required=true>';
+        row.insertCell().innerHTML += '<input type="text" name="GradableItems[' + rowid + '][weight]" required=true>';
+        row.insertCell().innerHTML += '<input type="date" name="GradableItems[' + rowid + '][duedate]" required=true>';
         row.insertCell().innerHTML += '<button class=\'delete\' type=\'button\' onclick="RemoveRow(\'newgradableitem\',' + rowid + ')"> X';
     }
 }

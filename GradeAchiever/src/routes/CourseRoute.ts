@@ -30,9 +30,9 @@ export class CourseRoute extends BaseRoute {
         this.title = "Course Home";
         courseCtrl.RequestCourse(courseID)
         .then(async (details) => {
-            let gradableItemDetails = await courseCtrl.RequestCourseGradableItems(courseID);            
-           
-            //gradableItemDetails.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
+            const gradableItemDetails = await courseCtrl.RequestCourseGradableItems(courseID);
+
+            // gradableItemDetails.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
             const options: object = {
                 courseDetails: details,
                 gradableItems: gradableItemDetails,
@@ -55,7 +55,6 @@ export class CourseRoute extends BaseRoute {
         courseCtrl.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy);
     }
 
-
     /**
      * creates new gradable items for a course
      */
@@ -70,8 +69,6 @@ export class CourseRoute extends BaseRoute {
             this.Course(req, res, next, Number(req.body.courseID), Number(req.body.studentID));
         });
     }
-
-    
 
     /**
      * Edits a course grade grade goal
