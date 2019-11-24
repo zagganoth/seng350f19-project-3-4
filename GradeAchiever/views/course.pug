@@ -5,7 +5,10 @@ block content
   - var page = 'course'
   div.container-fluid
     div.row
-      h1.course-title #{courseDetails.CourseName}
+      button#editname(type='button' onclick='editCourseName()')
+        h1.course-title#name(title="Edit course name") #{courseDetails.CourseName}
+      input#nameinput(type="text", name="newName" placeholder=courseDetails.CourseName)
+      button.submit#submitname(type='button' onclick='changeName('+courseDetails.CourseID+')') Submit
       div.progress-bar
         span.progress
     div.row

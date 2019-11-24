@@ -61,10 +61,17 @@ export class CourseController {
         return returnVal;
     }
 
-    /* Edits course grade goal*/
+    /* Edits course's perceived difficulty*/
     public async editDifficulty(req: Request, res: Response, next: NextFunction, courseID: number, newDiff: number) {
         const courseModel = new CourseModel();
         const returnVal = await courseModel.EditPercievedDifficulty(Number(courseID), Number(newDiff));
+        return returnVal;
+    }
+
+    /* Edits course's name*/
+    public async editCourseName(req: Request, res: Response, next: NextFunction, courseID: number, newName: string) {
+        const courseModel = new CourseModel();
+        const returnVal = await courseModel.EditCourseName(Number(courseID), String(newName));
         return returnVal;
     }
 

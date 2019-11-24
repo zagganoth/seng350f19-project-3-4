@@ -18,6 +18,9 @@ export class CourseRoute extends BaseRoute {
         router.post("/editDifficulty", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editGradeGoal(req, res, next, req.body.courseID, req.body.newDiff);
         });
+        router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
+            new CourseRoute().editName(req, res, next, req.body.courseID, req.body.newName);
+        });
 
     }
 
@@ -84,5 +87,24 @@ export class CourseRoute extends BaseRoute {
         });
 
     }
+
+
+     /*
+     * Edits a courses name
+     */
+    public async editName(req: Request, res: Response, next: NextFunction, courseID: number, newName: string) {
+        const courseCtrl = new CourseController();
+        this.title = "EditDifficulty";
+        courseCtrl.editCourseName(req, res, next, courseID, newName)
+        .then((resp) => {
+            if (resp.matchedCount === 1) {
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(500);
+            }
+        });
+
+    }
+
 
 }

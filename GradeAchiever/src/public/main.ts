@@ -80,6 +80,46 @@ function changeDifficulty(courseID: number) {
     }
 }
 
+
+/**
+ * Change course name by sending fetch request with course id and new name
+ */
+function changeName(courseID: number) {
+    // Cast to input element to get value.
+    const newNameElement = document.getElementById("nameinput") as HTMLInputElement;
+    if (newNameElement) {
+        const newName: string = String(newNameElement.value);
+        const body = {
+            newName,
+            courseID,
+        };
+        fetch("/editCourseName", {
+            method: "POST",
+            headers: {"Accept": "application/json", "Content-Type": "application/json"},
+            credentials: "same-origin",
+            body: JSON.stringify(body),
+            },
+        )
+        .then(function(response) {
+            /* Check response status code*/
+            CheckResponse(response);
+        })
+        .then(function() {
+            /* Update HTML with new value */
+            UpdateHTML("name", newName);
+        })
+        .catch(function(error) {
+            console.log(error);
+            return error;
+        })
+        .finally(function() {
+            doneEditCourseName();
+        });
+    }
+}
+
+
+
 /*
  * Check fetch response status code
  */
@@ -142,6 +182,24 @@ function editDifficulty() {
     showElementbyID(document.getElementById("difficultyinput"));
     hideElementbyID(document.getElementById("editdiff"));
     showElementbyID(document.getElementById("submitdiff"));
+}
+
+/**
+ * Create prompt for user input
+ */
+function editCourseName() {
+    hideElementbyID(document.getElementById("editname"));
+    showElementbyID(document.getElementById("nameinput"));
+    showElementbyID(document.getElementById("submitname"));
+}
+
+/**
+ * Create prompt for user input
+ */
+function doneEditCourseName() {
+    showElementbyID(document.getElementById("editname"));
+    hideElementbyID(document.getElementById("nameinput"));
+    hideElementbyID(document.getElementById("submitname"));
 }
 
 /**

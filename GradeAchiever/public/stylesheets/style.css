@@ -48,7 +48,6 @@ h1.course-title{
 }
 
 
-
 /****************
 TABLES
 *****************/
@@ -140,7 +139,7 @@ input[type=text], select {
   background-color: rgba(0,0,0, 0.9);
 }
 
-input[type=submit], #submitgoal, #editgoal, #submitdiff,#editdiff {
+input[type=submit], #submitgoal, #editgoal, #submitdiff,#editdiff, #submitname {
   width: 100%;
   background-color: #eca72c;
   color: #f3e0ec;
@@ -171,6 +170,11 @@ input.edit, button.edit{
   margin: 5px 0;
 }
 
+#editname{
+  border: none;
+  background-color: #333333;
+}
+
 input.course, input.course:hover{
   background-color: #333333;
   margin: 5px;
@@ -191,9 +195,14 @@ input.course:hover{
   display:table-cell;
 }
 
-#gradegoalinput, #submitgoal, #difficultyinput, #submitdiff{
+#gradegoalinput, #submitgoal, #difficultyinput, #submitdiff, #submitname{
   display: none;
   max-width: 75px;
+}
+
+#nameinput{
+  display: none;
+  max-width: 200px;
 }
 
 
