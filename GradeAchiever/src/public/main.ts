@@ -75,7 +75,7 @@ function changeDifficulty(courseID: number) {
             return error;
         })
         .finally(function() {
-            doneEditGradeGoal();
+            doneEditDifficulty();
         });
     }
 }
@@ -202,7 +202,7 @@ function doneEditCourseName() {
 /**
  * Hide goal prompt
  */
-function doneEditGradeGoal() {
+function doneEditDifficulty() {
     hideElementbyID(document.getElementById("difficultyinput"));
     hideElementbyID(document.getElementById("submitdiff"));
     showElementbyID(document.getElementById("diff"));
@@ -212,7 +212,7 @@ function doneEditGradeGoal() {
 /**
  * Hide difficulty prompt
  */
-function doneEditDifficulty() {
+function doneEditGradeGoal() {
     hideElementbyID(document.getElementById("gradegoalinput"));
     hideElementbyID(document.getElementById("submitgoal"));
     showElementbyID(document.getElementById("gradegoal"));
@@ -229,4 +229,9 @@ function showElementbyID(element: any) {
 
 function toggleAddCourse() {
     document.getElementById("courseAddOverlay")!.style.display = (document.getElementById("courseAddOverlay")!.style.display === "block" ? "none" : "block");
+}
+
+
+function toggleAddGradableItem() {
+    document.getElementById("GradableItemAddOverlay")!.style.display = (document.getElementById("GradableItemAddOverlay")!.style.display === "block" ? "none" : "block");
 }

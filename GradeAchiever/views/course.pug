@@ -3,6 +3,26 @@ extends layout
 block content
   
   - var page = 'course'
+  div.itemoverlay#GradableItemAddOverlay
+        form(name='verifyInfoForm',action='/creategradableitem',method='post')
+            input(type='hidden',name='courseId',value=courseDetails.CourseID)
+            table
+                tr
+                    td Name
+                    td
+                        input(type='text',name='name',required=true)
+                tr
+                    th Name
+                    th Weight
+                    th Due Date
+                tr
+                    td
+                        input(type='text',name='GradableItemName')
+                    td
+                        input(type='text',name="GradableItemWeight")
+                    td
+                        input(type='date',name='GradableItemsDuedate')
+            input(type='submit',value='Send')
   div.container-fluid
     div.row
       button#editname(type='button' onclick='editCourseName()')
@@ -25,6 +45,8 @@ block content
                   td #{gradableItem.DueDate}
           else
             h3 You haven't added any courses.
+          div
+            button.plus(onclick="toggleAddGradableItem()")
         div.course-list
             if courseDetails
             h3

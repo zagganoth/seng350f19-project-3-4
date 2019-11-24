@@ -21,6 +21,7 @@ export class CourseRoute extends BaseRoute {
         router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editName(req, res, next, req.body.courseID, req.body.newName);
         });
+       
 
     }
 
@@ -43,6 +44,8 @@ export class CourseRoute extends BaseRoute {
            this.render(req, res, "error", error);
         });
     }
+
+
 
     /**
      * creates a new gradable item for a course

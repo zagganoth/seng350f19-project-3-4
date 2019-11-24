@@ -127,9 +127,9 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-.overlay {
-  height: 100%;
-  width: 100%;
+.overlay, .itemoverlay {
+  height: 800%;
+  width: 80%;
   display: none;
   position: fixed;
   z-index: 1;
@@ -298,4 +298,42 @@ PROGRESS BAR
 
 span.progress {
   width: 25%;
+}
+
+
+
+/****************
+BUTTONS
+*****************/
+.plus {
+  display: block;
+  height: 0.6em;
+  width: 0.6em;
+  font-size: 35px;
+  text-align: center;
+  line-height: 0.5em;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bolder;
+  color: #f3e0ec;
+  background-color: #ee5622;
+  float: right;
+}
+
+.plus::before {
+  display: block;
+  content: '+';
+}
+
+.plus:hover{
+  height: 0.7em;
+  width: 0.7em;
+  text-align: center;
+  line-height: 0.6em;
+}
+
+button{
+  border: none;
 }
