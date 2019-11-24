@@ -88,7 +88,6 @@ export class CourseRoute extends BaseRoute {
 
     }
 
-
      /*
      * Edits a courses name
      */
@@ -105,6 +104,5 @@ export class CourseRoute extends BaseRoute {
         });
 
     }
-
 
 }

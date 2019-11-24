@@ -80,7 +80,6 @@ function changeDifficulty(courseID: number) {
     }
 }
 
-
 /**
  * Change course name by sending fetch request with course id and new name
  */
@@ -117,8 +116,6 @@ function changeName(courseID: number) {
         });
     }
 }
-
-
 
 /*
  * Check fetch response status code
