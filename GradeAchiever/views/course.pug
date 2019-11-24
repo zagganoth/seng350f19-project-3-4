@@ -4,25 +4,31 @@ block content
   
   - var page = 'course'
   div.itemoverlay#GradableItemAddOverlay
-        form(name='verifyInfoForm',action='/creategradableitem',method='post')
-            input(type='hidden',name='courseId',value=courseDetails.CourseID)
-            table
-                tr
-                    td Name
-                    td
-                        input(type='text',name='name',required=true)
-                tr
-                    th Name
-                    th Weight
-                    th Due Date
-                tr
-                    td
-                        input(type='text',name='GradableItemName')
-                    td
-                        input(type='text',name="GradableItemWeight")
-                    td
-                        input(type='date',name='GradableItemsDuedate')
-            input(type='submit',value='Send')
+    div.inneritemoverlay
+      span.closeBtn(onclick='toggleAddGradableItem()',title="Toggle Overlay") x
+      h2 Add new gradable items
+      form(name='addGradableItemForm',action='/newGradableItem',method='post')
+          input(type='hidden',name='courseID',value=courseDetails.CourseID)
+          input(type='hidden',name='studentID',value=thisID)
+          table#newgradableitem
+            tr#row1
+              th Name
+              th Weight
+              th Due Date
+              th
+            tr#2
+              td
+                input(type='text',name='GradableItems[0][name]', required=true)
+              td
+                input(type='text',name="GradableItems[0][weight]", required=true)
+              td
+                input(type='date',name='GradableItems[0][duedate]', required=true)
+              td
+                button.delete(type='button' onclick='RemoveRow(\'newgradableitem\',2)') X
+          div.plus
+            button.plus#addrow(onclick="addNewRow(\'newgradableitem\')")
+          div
+            input.submit(type='submit',value='Submit')
   div.container-fluid
     div.row
       button#editname(type='button' onclick='editCourseName()')
@@ -44,8 +50,8 @@ block content
                   td #{gradableItem.GradableItemName}
                   td #{gradableItem.DueDate}
           else
-            h3 You haven't added any courses.
-          div
+            h3 You haven't added any gradable items.
+          div.plus
             button.plus(onclick="toggleAddGradableItem()")
         div.course-list
             if courseDetails
@@ -76,4 +82,4 @@ block content
                
                 tr
                   td Current Grade
-                  td #{courseDetails.CurrentGrade}
+                  td #{courseDetails.CurrentGrade} %

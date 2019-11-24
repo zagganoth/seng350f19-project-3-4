@@ -10,7 +10,7 @@ export class CourseRoute extends BaseRoute {
             new CourseRoute().Course(req, res, next, Number(req.body.courseID), Number(req.body.thisID));
         });
         router.post("/newGradableItem", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().createGradableItem(req, res, next, req.body.courseID, req.body.name, req.body.dueDate, req.body.weight, req.body.gItemAccuracy);
+            new CourseRoute().createGradableItems(req, res, next);
         });
         router.post("/editGradeGoal", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editGradeGoal(req, res, next, req.body.courseID, req.body.newGoal);
@@ -21,7 +21,6 @@ export class CourseRoute extends BaseRoute {
         router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editName(req, res, next, req.body.courseID, req.body.newName);
         });
-       
 
     }
 
@@ -31,7 +30,9 @@ export class CourseRoute extends BaseRoute {
         this.title = "Course Home";
         courseCtrl.RequestCourse(courseID)
         .then(async (details) => {
-            const gradableItemDetails = await courseCtrl.RequestCourseGradableItems(courseID);
+            let gradableItemDetails = await courseCtrl.RequestCourseGradableItems(courseID);            
+           
+            //gradableItemDetails.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
             const options: object = {
                 courseDetails: details,
                 gradableItems: gradableItemDetails,
@@ -45,17 +46,32 @@ export class CourseRoute extends BaseRoute {
         });
     }
 
-
-
     /**
      * creates a new gradable item for a course
      */
-
-    public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, dueDate: string, weight: number, gItemAccuracy: number) {
+    public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, dueDate: string, weight: number, gItemAccuracy: number = -1) {
         const courseCtrl = new CourseController();
         this.title = "CreateGradableItem";
         courseCtrl.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy);
     }
+
+
+    /**
+     * creates new gradable items for a course
+     */
+    public async createGradableItems(req: Request, res: Response, next: NextFunction) {
+        const courseCtrl = new CourseController();
+        console.log(req.body.courseID);
+        console.log(req.body.studentID);
+        this.title = "CreateGradableItems";
+        courseCtrl.createGradableItems(req.body)
+        .then(() => {
+            console.log("rendering userhome");
+            this.Course(req, res, next, Number(req.body.courseID), Number(req.body.studentID));
+        });
+    }
+
+    
 
     /**
      * Edits a course grade grade goal

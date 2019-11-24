@@ -63,7 +63,7 @@ table {
   width: 100%;
 }
 
-table.users {
+table.users, table.newgradableitem {
   max-width: 840px;
   text-align: left;
 }
@@ -128,15 +128,24 @@ input[type=text], select {
   box-sizing: border-box;
 }
 .overlay, .itemoverlay {
-  height: 800%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   display: none;
   position: fixed;
   z-index: 1;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
+  background-color: rgba(0,0,0, 0.8);
+}
+
+div.inneritemoverlay{
+  width: 80%;
+  height: 80%;
+  max-width: 900px;
+  max-height: 1200px;
+  margin: 0 auto;
+  
 }
 
 input[type=submit], #submitgoal, #editgoal, #submitdiff,#editdiff, #submitname {
@@ -164,10 +173,14 @@ input[disabled]:hover {
   cursor: default;
 }
 
-input.edit, button.edit{
+input.edit, button.edit, input.submit{
   max-width: 75px;
   padding: 10px 16px;
   margin: 5px 0;
+}
+
+input.submit{
+  float: left;
 }
 
 #editname{
@@ -305,7 +318,11 @@ span.progress {
 /****************
 BUTTONS
 *****************/
-.plus {
+.plus{
+  padding:0px;
+}
+
+button.plus {
   display: block;
   height: 0.6em;
   width: 0.6em;
@@ -320,18 +337,19 @@ BUTTONS
   color: #f3e0ec;
   background-color: #ee5622;
   float: right;
+  border-radius: 4px;
 }
 
-.plus::before {
+button.plus::before {
   display: block;
   content: '+';
 }
 
-.plus:hover{
+button.plus:hover{
   height: 0.7em;
   width: 0.7em;
   text-align: center;
-  line-height: 0.6em;
+  line-height: 0.7em;
 }
 
 button{

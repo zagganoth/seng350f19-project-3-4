@@ -1,3 +1,5 @@
+import { isTemplateElement } from "@babel/types";
+
 /**
  * Client side ts/js
  */
@@ -231,7 +233,59 @@ function toggleAddCourse() {
     document.getElementById("courseAddOverlay")!.style.display = (document.getElementById("courseAddOverlay")!.style.display === "block" ? "none" : "block");
 }
 
-
 function toggleAddGradableItem() {
     document.getElementById("GradableItemAddOverlay")!.style.display = (document.getElementById("GradableItemAddOverlay")!.style.display === "block" ? "none" : "block");
+}
+
+/**
+ * Add a new row to a table
+ */
+function addNewRow(tableid: string) {
+    const tableElement = document.getElementById(String(tableid)) as HTMLTableElement;
+    if (tableElement) {
+        const row = tableElement.insertRow();
+        const rowid: string = GetNewID(tableElement);
+        row.id = rowid;
+        row.insertCell().innerHTML += '<input type="text" name="GradableItems['+rowid+'][name]" required=true>';
+        row.insertCell().innerHTML += '<input type="text" name="GradableItems['+rowid+'][weight]" required=true>';
+        row.insertCell().innerHTML += '<input type="date" name="GradableItems['+rowid+'][duedate]" required=true>';
+        row.insertCell().innerHTML += '<button class=\'delete\' type=\'button\' onclick="RemoveRow(\'newgradableitem\',' + rowid + ')"> X';
+    }
+}
+
+/**
+ * Get max row id
+ */
+function GetNewID(tableElement: HTMLTableElement) {
+    let maxid: number = 0;
+    let x = 1;
+    while (x < tableElement.rows.length) {
+
+        if (Number(tableElement.rows[x].id) > maxid) {
+            maxid = Number(tableElement.rows[x].id);
+        }
+        x += 1;
+    }
+    maxid += 1;
+    return String(maxid);
+}
+
+/**
+ * Add remove row from table
+ */
+function RemoveRow(tableid: string, rowNum: number) {
+    const tableElement = document.getElementById(String(tableid)) as HTMLTableElement;    let x = 0;
+    let item: HTMLTableRowElement = tableElement.rows[x];
+    while (item.id !== String(rowNum)) {
+        x += 1;
+        item = tableElement.rows[x];
+    }
+
+    if (tableElement) {
+        tableElement.deleteRow(x);
+        }
+    /*If no gradable items are added */
+    if (tableElement.rows.length < 2) {
+        toggleAddGradableItem();
+    }
 }
