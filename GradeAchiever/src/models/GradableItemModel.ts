@@ -120,7 +120,6 @@ export class GradableItemModel extends BaseModel {
         });
     }
 
-    
     /**
      * Updates study time for a gradable item
      */

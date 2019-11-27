@@ -112,9 +112,8 @@ export class CourseController {
         }
     }
 
-    
     /* Adds study time to a gradable item */
-    public async addStudyTime(gradableItemID: number, prevtime: number, newtime:number) {
+    public async addStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
         const gradableItemContr = new GradableItemController();
         try {
             const returnVal: any = await gradableItemContr.LogStudyTime(gradableItemID, prevtime, newtime);

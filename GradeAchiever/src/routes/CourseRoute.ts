@@ -126,12 +126,10 @@ export class CourseRoute extends BaseRoute {
         });
     }
 
-
-
       /*
      * Edits a courses name
      */
-    public async logGradableItemTime(req: Request, res: Response, next: NextFunction, gradableItemID: number,  prevtime:number,newtime: number) {
+    public async logGradableItemTime(req: Request, res: Response, next: NextFunction, gradableItemID: number,  prevtime: number, newtime: number) {
         const courseCtrl = new CourseController();
         this.title = "AddStudyTime";
         courseCtrl.addStudyTime(gradableItemID, prevtime, newtime)
@@ -143,6 +141,5 @@ export class CourseRoute extends BaseRoute {
             }
         });
     }
-    
 
 }

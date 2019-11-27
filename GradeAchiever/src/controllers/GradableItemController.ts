@@ -28,7 +28,7 @@ export class GradableItemController {
             return [];
         }
     }
-    
+
      /* Edits gradable item's name*/
      public async editGradableItemName(gradableItemID: number, newName: string) {
         const gradableItemModel = new GradableItemModel();
@@ -36,11 +36,10 @@ export class GradableItemController {
         return returnVal;
     }
 
-
     /* Adds study time to a gradable item*/
-    public async LogStudyTime(gradableItemID: number, prevtime: number, newtime:number) {
+    public async LogStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
         const gradableItemModel = new GradableItemModel();
-        const totalTime:number = Number(prevtime) + Number(newtime);
+        const totalTime: number = Number(prevtime) + Number(newtime);
         const returnVal = await gradableItemModel.AddStudyTime(Number(gradableItemID), totalTime);
         return returnVal;
     }
