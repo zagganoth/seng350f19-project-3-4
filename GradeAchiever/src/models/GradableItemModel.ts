@@ -65,6 +65,9 @@ export class GradableItemModel extends BaseModel {
         }
     }
 
+    /**
+     * Deletes a gradable item
+     */
     public async DeleteGradableItem(gradableItemID: number) {
         return this.deleteOne({GradableItemID: gradableItemID})
         .catch ((error) => {
@@ -73,6 +76,9 @@ export class GradableItemModel extends BaseModel {
         });
     }
 
+    /**
+     * Changes the course a gradable item part of
+     */
     public async EditCourseID(gradableItemID: number, newID: number) {
         return this.editOne({GradableItemID: gradableItemID}, {CourseID: newID})
         .catch((error) => {
@@ -81,6 +87,9 @@ export class GradableItemModel extends BaseModel {
         });
     }
 
+    /**
+     * Edits gradable item name
+     */
     public async EditGradableItemName(gradableItemID: number, newName: string) {
         return this.editOne({GradableItemID: gradableItemID}, {GradableItemName: newName})
         .catch ((error) => {
@@ -89,6 +98,9 @@ export class GradableItemModel extends BaseModel {
         });
     }
 
+    /**
+     * Edits gradable item percent weight
+     */
     public async EditGradableItemWeight(gradableItemID: number, newWeight: number) {
         return this.editOne({GradableItemID: gradableItemID}, {Weight: newWeight})
         .catch ((error) => {
@@ -97,8 +109,22 @@ export class GradableItemModel extends BaseModel {
         });
     }
 
+    /**
+     * Edits gradable item due date
+     */
     public async EditDueDate(gradableItemID: number, newDueDate: string) {
         return this.editOne({GradableItemID: gradableItemID}, {DueDate: newDueDate})
+        .catch ((error) => {
+            console.log(error);
+            return [];
+        });
+    }
+
+    /**
+     * Updates study time for a gradable item
+     */
+    public async AddStudyTime(gradableItemID: number, newtime: number) {
+        return this.editOne({GradableItemID: gradableItemID}, {StudiedTime: newtime})
         .catch ((error) => {
             console.log(error);
             return [];

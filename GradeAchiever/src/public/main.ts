@@ -1,5 +1,3 @@
-import { isTemplateElement } from "@babel/types";
-
 /**
  * Client side ts/js
  */
