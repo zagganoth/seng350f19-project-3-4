@@ -21,6 +21,12 @@ export class CourseRoute extends BaseRoute {
         router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editName(req, res, next, req.body.courseID, req.body.newName);
         });
+        router.post("/logStudyHours", (req: Request, res: Response, next: NextFunction) => {
+            new CourseRoute().logGradableItemTime(req, res, next, req.body.gradableItemID, req.body.prevtime, req.body.newtime);
+        });
+        router.post("/editGradableItem", (req: Request, res: Response, next: NextFunction) => {
+            new CourseRoute().editName(req, res, next, req.body.gradableItemID, req.body.newName);
+        });
 
     }
 
@@ -118,7 +124,25 @@ export class CourseRoute extends BaseRoute {
                 res.sendStatus(500);
             }
         });
-
     }
+
+
+
+      /*
+     * Edits a courses name
+     */
+    public async logGradableItemTime(req: Request, res: Response, next: NextFunction, gradableItemID: number,  prevtime:number,newtime: number) {
+        const courseCtrl = new CourseController();
+        this.title = "AddStudyTime";
+        courseCtrl.addStudyTime(gradableItemID, prevtime, newtime)
+        .then((resp) => {
+            if (resp.matchedCount === 1) {
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(500);
+            }
+        });
+    }
+    
 
 }

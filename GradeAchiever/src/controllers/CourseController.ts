@@ -19,6 +19,7 @@ export class CourseController {
             return [];
         }
     }
+
     public async createCourse(courseDetails: any) {
         const name: string = courseDetails.name;
         const courseModel = new CourseModel();
@@ -95,8 +96,8 @@ export class CourseController {
         return returnVal;
     }
 
-     /* Gets course Details by course ID */
-     public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
+    /* Gets course Details by course ID */
+    public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
         const gradableItemContr = new GradableItemController();
         try {
             const returnVal: any = await gradableItemContr.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
@@ -105,6 +106,20 @@ export class CourseController {
 
             // Returns the id of the newly created gradable item
             return returnVal.ops[0].GradableItemID;
+        } catch (error) {
+            console.log(error);
+            return -1;
+        }
+    }
+
+    
+    /* Adds study time to a gradable item */
+    public async addStudyTime(gradableItemID: number, prevtime: number, newtime:number) {
+        const gradableItemContr = new GradableItemController();
+        try {
+            const returnVal: any = await gradableItemContr.LogStudyTime(gradableItemID, prevtime, newtime);
+            // Returns the new number of hours studied
+            return returnVal.ops[0].StudiedTime;
         } catch (error) {
             console.log(error);
             return -1;
