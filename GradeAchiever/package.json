@@ -30,10 +30,15 @@
     "typescript": "^3.6.4"
   },
   "devDependencies": {
+    "@types/expect-puppeteer": "^3.3.3",
     "@types/jest": "^24.0.19",
+    "@types/jest-environment-puppeteer": "^4.3.1",
+    "@types/puppeteer": "^2.0.0",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
+    "jest-puppeteer": "^4.3.0",
     "jest-sonar-reporter": "^2.0.0",
+    "puppeteer": "^1.20.0",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"

@@ -17,6 +17,7 @@ export class GradableItemModel extends BaseModel {
     public DueDate!: string;
     public Weight!: number;
     public GItemAccuracy!: number;
+    public StudiedTime!: number;
 
     constructor() {
         super("GradableItem");
