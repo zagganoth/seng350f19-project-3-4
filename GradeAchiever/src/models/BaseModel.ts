@@ -3,7 +3,7 @@ import { NextFunction, Request, Response, Router } from "express";
 import { MongoNetworkError } from "mongodb";
 import DbClient = require("../DbClient");
 
-export class BaseModel{
+export class BaseModel {
     protected tableName: string;
     constructor(tableName: string) {
         this.tableName = tableName;

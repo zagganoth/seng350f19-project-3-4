@@ -234,23 +234,21 @@ function toggleAddCourse() {
 function toggleAddGradableItem() {
     document.getElementById("GradableItemAddOverlay")!.style.display = (document.getElementById("GradableItemAddOverlay")!.style.display === "block" ? "none" : "block");
 }
-function expandGradableItem(gradableItemID: number)
-{
+function expandGradableItem(gradableItemID: number) {
     const rowID = gradableItemID + "_details";
     const rowElement = document.getElementById(rowID);
-    if(rowElement !== null) {
-        rowElement.style.display == "" ? rowElement.style.display = "none" : rowElement.style.display = "";
+    if (rowElement !== null) {
+        rowElement.style.display === "" ? rowElement.style.display = "none" : rowElement.style.display = "";
     }
 }
-function showEditForm(gradableItemID: number)
-{
+function showEditForm(gradableItemID: number) {
     const rowID = gradableItemID + "_edit";
     const rowElement = document.getElementById(rowID);
     const rowID2 = gradableItemID + "_details";
     const row2 = document.getElementById(rowID2);
-    if(rowElement !== null){
-        rowElement.style.display == "" ? rowElement.style.display = "none" : rowElement.style.display = "";
-        if(row2!=null)row2.style.display == "" ? row2.style.display = "none" : row2.style.display = "";
+    if (rowElement !== null) {
+        rowElement.style.display === "" ? rowElement.style.display = "none" : rowElement.style.display = "";
+        if (row2 != null) {row2.style.display === "" ? row2.style.display = "none" : row2.style.display = ""; }
     }
 }
 /**
@@ -265,7 +263,7 @@ function addNewRow(tableid: string) {
         row.insertCell().innerHTML += '<input type="text" name="GradableItems[' + rowid + '][name]" required=true>';
         row.insertCell().innerHTML += '<input type="text" name="GradableItems[' + rowid + '][weight]" required=true>';
         row.insertCell().innerHTML += '<input type="date" name="GradableItems[' + rowid + '][duedate]" required=true>';
-        row.insertCell().innerHTML += '<button class=\'delete\' type=\'button\' onclick="RemoveRow(\''+tableid+'\',' + rowid + ')"> X';
+        row.insertCell().innerHTML += '<button class=\'delete\' type=\'button\' onclick="RemoveRow(\'' + tableid + "'," + rowid + ')"> X';
     }
 }
 

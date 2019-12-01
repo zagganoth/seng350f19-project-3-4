@@ -40,7 +40,7 @@ export class OverviewController {
         const gradableItemsbyCourse: any = await CourseCtrl.RequestCourseGradableItems(courseID);
         for (const gradableitem of gradableItemsbyCourse) {
             // Add course name to each gradable item
-            if(gradableitem !== null) {
+            if (gradableitem !== null) {
                 gradableitem.CourseName = courseName;
                 gradableItems.push(gradableitem);
             }

@@ -112,13 +112,12 @@ export class GradableItemModel extends BaseModel {
     /**
      * Edits Gradable Item Grade
      */
-    public async EditGradableItemGrade(gradableItemID: number, newGrade: number)
-    {
-        return this.editOne({GradableItemID: gradableItemID},{CurrentGrade: newGrade})
-        .catch((error)=>{
+    public async EditGradableItemGrade(gradableItemID: number, newGrade: number) {
+        return this.editOne({GradableItemID: gradableItemID}, {CurrentGrade: newGrade})
+        .catch((error) => {
             console.log(error);
-            return []
-        })
+            return [];
+        });
     }
     /**
      * Edits gradable item due date

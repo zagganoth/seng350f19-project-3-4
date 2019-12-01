@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel} from "../models/CourseModel";
-import { UserModel } from "../models/UserModel";
 import {GradableItemModel} from "../models/GradableItemModel";
+import { UserModel } from "../models/UserModel";
 
 export class CourseController {
     constructor() {
@@ -112,14 +112,13 @@ export class CourseController {
             return -1;
         }
     }
-    public async EditGradableItem(gradableItemID: number, name: string,duedate: Date,hours:number,grade: number)
-    {
+    public async EditGradableItem(gradableItemID: number, name: string, duedate: Date, hours: number, grade: number) {
         const gradableItemContr = new GradableItemController();
-        gradableItemContr.EditGradableItem(gradableItemID,name,duedate,hours,grade)
-        .then((details)=>{
+        gradableItemContr.EditGradableItem(gradableItemID, name, duedate, hours, grade)
+        .then((details) => {
             return true;
         })
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
             return false;
         });
@@ -136,16 +135,14 @@ export class CourseController {
             return -1;
         }
     }
-    public async deleteGradableItem(courseID: number,gradableItemID: number)
-    {
+    public async deleteGradableItem(courseID: number, gradableItemID: number) {
         try {
             const courseModel = new CourseModel();
-            await courseModel.DeleteGradableItems(courseID,[Number(gradableItemID)]);
+            await courseModel.DeleteGradableItems(courseID, [Number(gradableItemID)]);
             const gradableItemsModel = new GradableItemModel();
             await gradableItemsModel.DeleteGradableItem(gradableItemID);
 
-        }catch(error)
-        {
+        } catch (error) {
             console.log(error);
         }
 

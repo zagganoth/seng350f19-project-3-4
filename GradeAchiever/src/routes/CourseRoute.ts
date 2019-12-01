@@ -25,15 +25,14 @@ export class CourseRoute extends BaseRoute {
             new CourseRoute().logGradableItemTime(req, res, next, req.body.gradableItemID, req.body.prevtime, req.body.newtime);
         });
         router.post("/editgradableitem", (req: Request, res: Response, next: NextFunction) => {
-            //new CourseRoute().editName(req, res, next, req.body.gradableItemID, req.body.newName);
-            new CourseRoute().editGradableItem(req,res,next)
+            // new CourseRoute().editName(req, res, next, req.body.gradableItemID, req.body.newName);
+            new CourseRoute().editGradableItem(req, res, next);
         });
-        router.post("/deleteitem",(req:Request, res: Response, next: NextFunction)=> {
-            new CourseRoute().deleteGradableItem(req,res,next);
-        })
+        router.post("/deleteitem", (req: Request, res: Response, next: NextFunction) => {
+            new CourseRoute().deleteGradableItem(req, res, next);
+        });
     }
-    public async editGradableItem(req: Request, res: Response, next: NextFunction)
-    {
+    public async editGradableItem(req: Request, res: Response, next: NextFunction) {
         const name = req.body.name;
         const id = req.body.id;
         const duedate = req.body.date;
@@ -42,21 +41,19 @@ export class CourseRoute extends BaseRoute {
         const courseController = new CourseController();
         try {
             await courseController.EditGradableItem(id, name, duedate, hours, grade);
-            res.redirect(307,"/overview");
-        }catch(error)
-        {
+            res.redirect(307, "/overview");
+        } catch (error) {
             console.log(error);
             this.render(req, res, "error", error);
         }
-        //this.logGradableItemTime(req,res,next,id,0,hours);
+        // this.logGradableItemTime(req,res,next,id,0,hours);
 
     }
-    public async deleteGradableItem(req: Request,res: Response,next: NextFunction)
-    {
+    public async deleteGradableItem(req: Request, res: Response, next: NextFunction) {
         const courseController = new CourseController();
-        courseController.deleteGradableItem(req.body.course,req.body.id)
-        .then((details)=>{
-            res.redirect(307,'/overview');
+        courseController.deleteGradableItem(req.body.course, req.body.id)
+        .then((details) => {
+            res.redirect(307, "/overview");
         })
         .catch((error) => {
             console.log(error);

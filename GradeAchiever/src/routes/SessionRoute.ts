@@ -1,11 +1,11 @@
 
 import { NextFunction, Request, Response, Router } from "express";
 import {CourseController} from "../controllers/CourseController";
+import {GradableItemController} from "../controllers/GradableItemController";
 import {OverviewController} from "../controllers/OverviewController";
 import {SessionController} from "../controllers/SessionController";
 import {PDFParser} from "../Modules/PDFParser";
 import { BaseRoute } from "./route";
-import {GradableItemController} from "../controllers/GradableItemController";
 const fileupload = require("express-fileupload");
 const bodyParser =  require("body-parser");
 
@@ -42,20 +42,19 @@ export class SessionRoute extends BaseRoute {
         courseController.createCourse(course)
         .then((details) => {
             // console.log(course.studentId);
-            //this.Session(req, res, next, Number(course.studentId));
-            res.redirect(307,'/overview');
+            // this.Session(req, res, next, Number(course.studentId));
+            res.redirect(307, "/overview");
         });
     }
     public async ParsePDF(req: Request, res: Response, next: NextFunction, b: any) {
         const parser = new PDFParser();
-        //console.log(b.files.file);
-        let courseDetails : any = {};
-        try{
+        // console.log(b.files.file);
+        let courseDetails: any = {};
+        try {
             courseDetails = await parser.parse(b.files.file, "heat");
 
-        }catch(e)
-        {
-            //console.log("No file?");
+        } catch (e) {
+            // console.log("No file?");
             courseDetails.GradableItems = {};
         }
         const options: object = {
