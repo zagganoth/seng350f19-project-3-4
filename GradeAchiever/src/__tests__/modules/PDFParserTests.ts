@@ -9,7 +9,7 @@ const path = require("path");
 describe("PDF Parser Tests", () => {
     it("Runs Parse on the SENG360 Outline PDF", async () => {
 
-        const file = fs.readFileSync(path.resolve(__dirname, "../../../sample_outlines/Seng360Outline.pdf"));
+        const file = fs.readFileSync(path.resolve(__dirname, "../../../sample_outlines/SENG360Outline.pdf"));
         const retObj = await new PDFParser().parse({data: file}, "heat");
         const expectedObj = {
             CourseName: "SENG 360",
