@@ -3,7 +3,7 @@ import { NextFunction, Request, Response, Router } from "express";
 import { MongoNetworkError } from "mongodb";
 import DbClient = require("../DbClient");
 
-export class BaseModel {
+export class BaseModel{
     protected tableName: string;
     constructor(tableName: string) {
         this.tableName = tableName;
@@ -155,9 +155,14 @@ Update needs to be an object of the form
         };
         const update: IUpdateType = {};
         update[field] = newValue;
+        console.log("Update is");
+        console.log({$pull: update});
+        console.log("Query is");
+        console.log(query);
         return DbClient.connect()
         .then((db) => {
-            return db.collection(this.tableName).updateOne(query, {$pull: { update }});
+            console.log("removing " + value + " from " + field);
+            return db.collection(this.tableName).updateOne(query, {$pull:  update });
         });
     }
 

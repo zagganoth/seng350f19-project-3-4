@@ -1,10 +1,12 @@
 const pdf = require("pdf-parse");
+pdf.disableWorker = true;
 
 export class PDFParser {
     constructor() {
 
     }
     public async parse(file: any, type: string) {
+        if(file.data === null || file.data === undefined)return {};
         if (type === "heat") {
             const data = await pdf(file.data);
             const returnObject = this.parseHeatOutline(data);

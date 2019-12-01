@@ -28,7 +28,21 @@ export class GradableItemController {
             return [];
         }
     }
+    public async EditGradableItem(id: number,name:string,duedate: Date, hours: number, grade: number)
+    {
+        const gradableItemModel = new GradableItemModel();
+        try {
+            await gradableItemModel.AddStudyTime(Number(id),Number(hours));
+            await gradableItemModel.EditDueDate(Number(id),duedate.toString());
+            await gradableItemModel.EditGradableItemGrade(Number(id),Number(grade));
+            await gradableItemModel.EditGradableItemName(Number(id),name);
+            return true;
+        }catch(error)
+        {
+            return false;
+        }
 
+    }
      /* Edits gradable item's name*/
      public async editGradableItemName(gradableItemID: number, newName: string) {
         const gradableItemModel = new GradableItemModel();
