@@ -3,6 +3,7 @@ import { NextFunction, Request, Response, Router } from "express";
 import { BaseModel } from "./BaseModel";
 
 export class AdminModel extends BaseModel {
+
     private readonly isAdmin: boolean;
     constructor() {
         // table name

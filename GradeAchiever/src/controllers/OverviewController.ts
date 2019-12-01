@@ -16,7 +16,7 @@ export class OverviewController {
         // gets course and grade info from courseController
         let gradableItems: any[] = [];
         const courses = [];
-        if ("Courses" in  userDetails && userDetails.Courses !== []) {
+        if (userDetails !== null && "Courses" in  userDetails && userDetails.Courses !== []) {
             // For each course
             for (const course of userDetails.Courses) {
                 // Get the course details, including all gradable items
@@ -40,8 +40,10 @@ export class OverviewController {
         const gradableItemsbyCourse: any = await CourseCtrl.RequestCourseGradableItems(courseID);
         for (const gradableitem of gradableItemsbyCourse) {
             // Add course name to each gradable item
-            gradableitem.CourseName = courseName;
-            gradableItems.push(gradableitem);
+            if (gradableitem !== null) {
+                gradableitem.CourseName = courseName;
+                gradableItems.push(gradableitem);
+            }
         }
         // Sort gradable items by due date
         gradableItems.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);

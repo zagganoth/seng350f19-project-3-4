@@ -1,10 +1,12 @@
 const pdf = require("pdf-parse");
+pdf.disableWorker = true;
 
 export class PDFParser {
     constructor() {
 
     }
     public async parse(file: any, type: string) {
+        if (file.data === null || file.data === undefined) {return {}; }
         if (type === "heat") {
             const data = await pdf(file.data);
             const returnObject = this.parseHeatOutline(data);
@@ -87,7 +89,7 @@ export class PDFParser {
             }
             gradableItems[match[1]].Weight = match[2];
             gradableItems[match[1]].DueDate = new Date(match[3] + " " + new Date().getFullYear());
-
+            gradableItems[match[1]].DueDate.setUTCHours(0);
             match = assignmentReg2.exec(assignmentBreakdown);
         }
     }
