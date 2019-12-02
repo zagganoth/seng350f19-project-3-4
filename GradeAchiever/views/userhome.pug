@@ -51,12 +51,14 @@ block content
                             input(type='hidden',name='course',value=gradableItem.CourseID)
                             input(type='hidden',name='user',value=studentDetails.StudentID)
                             button(type='submit',style='width:100%;height:100%') delete
-              tr(style='display:none',id=gradableItem.GradableItemID + "_edit",onclick='showEditForm('+gradableItem.GradableItemID+')')
+              tr(style='display:none',id=gradableItem.GradableItemID + "_edit")
                 td(colspan=3)
                   form(name='EditItem',action='/editgradableitem',method='post',enctype='multipart/form-data')
                     input(type='hidden',name='id',value=gradableItem.GradableItemID)
                     input(type='hidden',name='course',value=gradableItem.CourseID)
                     input(type='hidden',name='user',value=studentDetails.StudentID)
+                    input(type='hidden',name='prevHours',value=gradableItem.StudiedTime)
+                    button(onclick='showEditForm('+gradableItem.GradableItemID+')') hide
                     table
                       tr
                         th Name
@@ -71,13 +73,13 @@ block content
                           input.noPadding(type='number',name='weight',value=gradableItem.Weight)
                       tr
                         th Current Grade
-                        th Hours Spent
+                        th Add Hours
                         th Needed Grade
                       tr
                         td
                           input.noPadding(type='number',name='grade',value=gradableItem.CurrentGrade)
                         td
-                          input.noPadding(type='number',name='hours',value=gradableItem.StudiedTime)
+                          input.noPadding(type='number',name='hours')
                         td
                           if (gradableItem.NeededGrade !== undefined)
                             p #{gradableItem.NeededGrade}
