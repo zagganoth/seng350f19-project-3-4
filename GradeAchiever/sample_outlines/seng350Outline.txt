@@ -1,0 +1,162 @@
+11/9/2019 SENG 350 Outline
+https://heat.csc.uvic.ca/coview/outline/2019/Fall/SENG/350?unp=t 1/4
+SENG350: Software Architecture and Design
+Course Dates
+CRN(s): Section A01 CRN: 12848
+Section A02 CRN: 12849
+Term: Fall 2019
+Course Start: 2019-09-04
+Course End: 2019-12-21
+Withdrawal with 100% reduction of tuition fees: 2019-09-17
+Withdrawal with 50% reduction of tuition fees: 2019-10-08
+Last day for withdrawal (no fees returned): 2019-10-31
+Scheduled Meeting Times (M=Mon, T=Tue, W=Wed, R=Thu, F=Fri)
+Section: Location: Classes Start: Classes End: Days of week: Hours of day: Instructor:
+A01 COR A221 2019-09-04 2019-12-04 MWR 15:30-16:20 Neil Ernst
+A02 COR A221 2019-09-04 2019-12-04 MWR 15:30-16:20 Neil Ernst
+B01 ELW B238 2019-09-09 2019-12-04 T 13:30-15:20
+B02 ELW B238 2019-09-09 2019-12-04 T 15:30-17:20
+B03 ELW B238 2019-09-09 2019-12-04 W 12:30-14:20
+Instructor(s)
+Name: Neil Ernst
+Office: ECS 560
+Phone: (250) 472-5746
+Email: nernst at uvic dot ca
+Office Hours: Comments
+Wed 11:30am-02:30pm
+Course Overview
+An introduction to analysis and design of software architectures with UML (Unified Modelling Language) and their
+subsequent synthesis at the program level. Topics include requirements analysis, analysis and design of static and
+dynamic view points of architectures and model driven engineering. Design patterns are introduced and applied as
+solutions to recurring design problems. Students are familiarized with component reuse, event-driven programming and
+computer-aided software engineering tools. The course includes a major design project.
+Course Objectives And Learning Outcomes
+Upon completion of the course, students will be able to:
+Apply software patterns and architectural styles to solve design problems
+Understand the value of quality attributes and scenarios in testing potential designs
+Analyse architectural approaches using rigorous techniques
+Understand what decisions are the architecturally significant decisions, and which should be left to developers.
+Languages and notations, including the UML, for abstracting design models.
+11/9/2019 SENG 350 Outline
+https://heat.csc.uvic.ca/coview/outline/2019/Fall/SENG/350?unp=t 2/4
+Textbooks
+Required: Software Architecture in Practice, 3rd ed.
+Authors: Len Bass, Paul Clements, Rick Kazman
+Publisher: Addison-Wesley
+Labs
+This course has dedicated lab hours to introduce tools and allow student groups to jointly work on their projects.
+PLEASE ATTEND THE LAB YOU HAVE REGISTERED FOR. Lab attendance is part of the participation mark.
+Project
+This course has a substantial group project. The schedule for the milestones is available on the course page.
+The project includes a major teamwork component and students should expect to work in a large group and learn and
+apply teamwork skills. Failure to do so might result in course failure.
+Exams
+There will be one midterm exam worth 25%, scheduled tentatively for Oct 31, 2019.
+For courses which have final exams, students are strongly advised not to make final plans for travel or employment
+during the exam period since special arrangements will not be made for examinations that may conflict with such plans.
+Quizzes
+There will be 5 quizzes during the term, each worth 2%.
+Grading
+Coursework Weight (out of 100%)
+5 Quizzes 10%
+Midterm Exam 25%
+Project 55%
+Class Participation 10%
+Important: You must pass EACH of the Midterm Exam and the Project component to pass the course.
+The Project grade accounts for your teamwork skills as well as individual contribution to the project. Your Project grade
+does not rely solely on the group performance but will be adjusted to reflect your individual contribution to the group
+project. Your individual contribution is assessed twice during the semester by your group peers.
+The Class Participation accounts for your active engagement with the lecture, project material and discussions during
+lectures, and it goes beyond mere attendance to lectures. Most classes do include in-class project work, reflection and
+presentations to the class and therefore attendance to classes is highly recommended. You will be graded on your
+participation in class activities, including showing up on time, attending all classes, completing class activities, reports
+and presentations, and discussions. The criteria used for grading Class participation include "Critical thinking", "Effective
+involvement and communication", "Professionalism" and "Respectful Engagement".
+Attending the two lectures in the first week is mandatory because we are forming project groups and it will count
+towards the class participation mark.
+Course Material
+See Github Course Repo for up to date information and project info. We will communicate via Slack. You may opt out of
+these services by discussing with the instructor in the first 2 weeks of class.
+Grading System
+11/9/2019 SENG 350 Outline
+https://heat.csc.uvic.ca/coview/outline/2019/Fall/SENG/350?unp=t 3/4
+The University of Victoria follows a percentage grading system in which the instructor will submit grades in percentages.
+The University will use the following Senate approved standardized grading scale to assign letter grades. Both the
+percentage mark and the letter grade will be recorded on the academic record and transcripts.
+F D C C+ B- B B+ A- A A+
+0-49 50-59 60-64 65-69 70-72 73-76 77-79 80-84 85-89 90-100
+Grades Description
+A+, A,
+AExceptional, outstanding or excellent performance. Normally achieved by a minority of students. These
+grades indicate a student who is self-initiating, exceeds expectation and has an insightful grasp of the subject
+matter.
+B+, B,
+BVery good, good or solid performance. Normally achieved by the largest number of students. These grades
+indicate a good grasp of the subject matter or excellent grasp in one area balanced with satisfactory grasp in
+the other areas.
+C+, C
+Satisfactory, or minimally satisfactory. These grades indicate a satisfactory performance and knowledge of
+the subject matter.
+D Marginal Performance. A student receiving this grade demonstrated a superficial grasp of the subject matter.
+F Unsatisfactory performance. Wrote final examination and completed course requirements; no supplemental.
+Posting of Grades
+Typically marks for assignments, examinations, and provisional final grades, are made available through conneX, or
+CourseSpaces where each student will be able to view only their own grades. Sometimes numerical marks/grades may
+be posted publicly to the entire class. In that case, full student numbers or names will not be included with the posted
+information.
+Course Experience Survey (CES)
+I value your feedback on this course. Towards the end of term you will have the opportunity to complete a confidential
+course experience survey (CES) regarding your learning experience. The survey is vital to providing feedback to me
+regarding the course and my teaching, as well as to help the department improve the overall program for students in
+the future. When it is time for you to complete the survey, you will receive an email inviting you to do so. If you do not
+receive an email invitation, you can go directly to the CES site
+You will need to use your UVic NetLink ID to access the survey, which can be done on your laptop, tablet or mobile
+device. I will remind you closer to the time, but please be thinking about this important activity, especially the
+following three questions, during the course.
+What strengths did your instructor demonstrate that helped you learn in this course?
+Please provide specific suggestions as to how the instructor could have helped you learn more effectively.
+Please provide specific suggestions as to how this course could be improved.
+Csc Student Groups
+The Computer Science Course Union (https://onlineacademiccommunity.uvic.ca/cscu/) serves all students who are
+either in a computer science program or taking a class in computer science. Please sign yourself up on their mailing list
+if you would like to be informed about their social events and services.
+The Engineering Students' Society (ESS) serves all students registered in an Engineering degree program, including
+Software Engineering (BSEng). For information on ESS activities, events and services navigate to
+http://www.engr.uvic.ca/~ess .
+Course Policies And Guidelines
+Late Assignments: No late assignments will be accepted unless prior arrangements have been made with the instructor
+at least 48 hours before the assignment due date.
+Coursework Mark Appeals: All marks must be appealed within 7 days of the mark being posted.
+Attendance: We expect students attend all lectures and labs. It is entirely the students' responsibility to recover any
+information or announcements presented in lectures from which they were absent.
+Electronic devices in labs and lectures: No unauthorized audio or video recording of lectures is permitted.
+Electronic devices in midterms and exams: Calculators are only permitted for examinations and tests if explicitly
+11/9/2019 SENG 350 Outline
+https://heat.csc.uvic.ca/coview/outline/2019/Fall/SENG/350?unp=t 4/4
+authorized and the type of calculator permitted may be restricted. No other electronic devices (e.g. cell phones,
+pagers, PDA, etc.) may be used during examinations or tests unless explicitly authorized.
+Plagiarism: Submitted work may be checked using plagiarism detection software. Cheating, plagiarism and other forms
+of academic fraud are taken very seriously by both the University and the Department. You should consult the link given
+below for the UVic policy on academic integrity. Note that the university policy includes the statement that "A largely or
+fully plagiarized assignment should result in a grade of F for the course."
+The Faculty of Engineering Standards for Professional Behaviour are at
+http://www.uvic.ca/shared/shared%5fengineering/docs/professional-behaviour.pdf
+U.Vic guidelines and policy concerning fraud and academic integrity are at
+http://web.uvic.ca/calendar/undergrad/info/regulations/academic-integrity.html
+U. Vic Privacy Policy: If any student has concerns about their private information being stored or accessed outside of
+Canada, they are required to inform the course instructor about their concerns before the end of second week of
+classes.
+Equality
+This course aims to provide equal opportunities and access for all students to enjoy the benefits and privileges of the
+class and its curriculum and to meet the syllabus requirements. Reasonable and appropriate accommodation will be
+made available to students with documented disabilities (physical, mental, learning) in order to give them the
+opportunity to successfully meet the essential requirements of the course. The accommodation will not alter academic
+standards or learning outcomes, although the student may be allowed to demonstrate knowledge and skills in a different
+way. It is not necessary for you to reveal your disability and/or confidential medical information to the course instructor.
+If you believe that you may require accommodation, the course instructor can provide you with information about
+confidential resources on campus that can assist you in arranging for appropriate accommodation. Alternatively, you
+may want to contact the Centre for Accessible Learning (formerly the Resource Centre for Students with a Disability)
+located in the Campus Services Building.
+The University of Victoria is committed to promoting, providing, and protecting a positive, and supportive and safe
+learning and working environment for all its members.
+Copyright © 2019, University of Victoria, All rights reserved

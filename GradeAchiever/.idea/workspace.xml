@@ -2,25 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f388c761-90bc-4b45-9fa6-c7a60a3d6904" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Modules/PDFParser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontend.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/createcourse.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__mocks__/workerMock.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DbClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/DbClient.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/controllers/CourseControllertests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/controllers/CourseControllertests.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/CourseController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/CourseController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/GradableItemController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GradableItemController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/PDFParser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/PDFParser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/AdminModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/AdminModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/BaseModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/BaseModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/CourseModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/CourseModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/GradableItemModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GradableItemModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/UserModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/UserModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/__mocks__/GradableItemModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/__mocks__/GradableItemModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/CourseRoute.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/CourseRoute.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/SessionRoute.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/SessionRoute.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/error.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/error.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/createcourse.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/createcourse.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/userhome.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/userhome.pug" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +28,8 @@
       <list>
         <option value="tsconfig.json" />
         <option value="package.json" />
-        <option value="TypeScript File" />
         <option value="Pug File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -116,7 +110,11 @@
       <workItem from="1573697096931" duration="1838000" />
       <workItem from="1573871505276" duration="3389000" />
       <workItem from="1573920321432" duration="11583000" />
-      <workItem from="1574007079125" duration="8321000" />
+      <workItem from="1574007079125" duration="20065000" />
+      <workItem from="1574619542521" duration="6019000" />
+      <workItem from="1574805265574" duration="8863000" />
+      <workItem from="1574883516296" duration="4517000" />
+      <workItem from="1574889625676" duration="1402000" />
     </task>
     <servers />
   </component>

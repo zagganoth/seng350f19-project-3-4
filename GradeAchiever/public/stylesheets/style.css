@@ -54,13 +54,14 @@ TABLES
 div.calendar{
   flex: 33%;
   min-width: 200px;
-  max-width: 400px;
+  max-width: 450px;
   text-align: center;
   padding-left: 0px;
 }
 
 table {
   width: 100%;
+
 }
 
 table.users, table.newgradableitem {
@@ -83,7 +84,9 @@ div .course-list{
   font-weight: bold;
   max-width: 500px;
 }
-
+table.gradable-items tr{
+  cursor: pointer;
+}
 table.gradable-items tr:nth-child(even){
   background: #494949;
 }
@@ -126,6 +129,10 @@ input[type=text], select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+input.noPadding {
+  padding: 0px;
+  max-width: 100px;
 }
 .overlay, .itemoverlay {
   height: 100%;

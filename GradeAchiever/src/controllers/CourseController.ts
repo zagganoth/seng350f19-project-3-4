@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel} from "../models/CourseModel";
+import {GradableItemModel} from "../models/GradableItemModel";
 import { UserModel } from "../models/UserModel";
 
 export class CourseController {
@@ -30,9 +31,9 @@ export class CourseController {
         for (const gradableItem of courseDetails.GradableItems) {
             gradableItems.push(await this.CreateGradableItem(courseId, gradableItem.name, gradableItem.duedate, gradableItem.weight));
         }
-        await courseModel.CreateNewCourse(courseDetails.studentId, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
-        const userModel = new UserModel(courseDetails.studentId);
-        return userModel.AddCourse(courseDetails.studentId, [courseId]);
+        await courseModel.CreateNewCourse(courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
+        const userModel = new UserModel(courseDetails.user);
+        return userModel.AddCourse(courseDetails.user, [courseId]);
     }
 
     /**
@@ -111,7 +112,17 @@ export class CourseController {
             return -1;
         }
     }
-
+    public async EditGradableItem(gradableItemID: number, name: string, duedate: Date, hours: number, grade: number) {
+        const gradableItemContr = new GradableItemController();
+        gradableItemContr.EditGradableItem(gradableItemID, name, duedate, hours, grade)
+        .then((details) => {
+            return true;
+        })
+        .catch((error) => {
+            console.log(error);
+            return false;
+        });
+    }
     /* Adds study time to a gradable item */
     public async addStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
         const gradableItemContr = new GradableItemController();
@@ -123,6 +134,18 @@ export class CourseController {
             console.log(error);
             return -1;
         }
+    }
+    public async deleteGradableItem(courseID: number, gradableItemID: number) {
+        try {
+            const courseModel = new CourseModel();
+            await courseModel.DeleteGradableItems(courseID, [Number(gradableItemID)]);
+            const gradableItemsModel = new GradableItemModel();
+            await gradableItemsModel.DeleteGradableItem(gradableItemID);
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
 }
