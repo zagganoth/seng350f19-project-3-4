@@ -2,6 +2,7 @@ export class Algorithm {
 /*
 This function gives a value for the item, used to calculate how well the user is doing in their current course.
 */
+
   public item_completed_calculation(percentageReccomended: number, hoursSpent: number, hoursRecommended: number, percentageAchieved: number) {
     const percentageRatio = percentageReccomended / percentageAchieved;
     const hoursRatio = hoursSpent / hoursRecommended;
@@ -23,11 +24,26 @@ This is used to calculated how much time the user needs to spend on their projec
       coursePercent += percentageWorth[i] * percentageAchieved[i];
     }
     const newCourseGoal = ((courseGoal - coursePercent * percentageDone) * courseGoal) / (1 - percentageDone);
-    const retVal = {courseRatio, percentageDone, newCourseGoal};
+    const retVal = [courseRatio, percentageDone, newCourseGoal];
     return retVal;
   }
 
-  public new_item_calculation(courseRatio: number, percentageDone: number, courseDifficulty: number, courseGoal: number, itemPercentage: number ) {
+  public new_item_calculation(courseRatio: number, percentageDone: number, inputCourseDifficulty: number, courseGoal: number, itemPercentage: number ) {
+    let courseDifficulty = 1;
+    if (inputCourseDifficulty === 1) {
+      courseDifficulty = .5;
+    } else
+    if (inputCourseDifficulty === 2) {
+      courseDifficulty = .75;
+    } else
+    if (inputCourseDifficulty === 3) {
+      courseDifficulty = 1;
+    } else
+    if (inputCourseDifficulty === 4) {
+      courseDifficulty = 1.25;
+    } else {
+      courseDifficulty = 5;
+    }
     let userIsFOOBAR = false;
     if (courseGoal >= 1) {
       courseGoal = 1;
@@ -40,11 +56,11 @@ This is used to calculated how much time the user needs to spend on their projec
     }
     let itemHours = itemPercentage * courseGoal * courseDifficulty * 50;
     let userIsBehind = false;
-    if (percentageDone > 0 && courseRatio > 1) {
+    if (percentageDone > 0 && courseRatio > 1.001) {
       userIsBehind = true;
       itemHours = itemHours * (100 - percentageDone) + itemHours * (percentageDone * courseRatio);
     }
-    return {itemHours, userIsBehind, userIsFOOBAR, userIsKillingIt};
+    return [itemHours, userIsBehind, userIsFOOBAR, userIsKillingIt];
   }
 
 }
