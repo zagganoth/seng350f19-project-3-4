@@ -7,7 +7,6 @@ jest.mock("../../models/GradableItemModel");
 jest.mock("../../models/AdminModel");
 jest.mock("../../models/UserModel");
 
-
 describe("Web App", () => {
     const InputClickMax: number = 5;
     beforeAll(async () => {
@@ -28,16 +27,15 @@ describe("Web App", () => {
         expect(clicks).toBeLessThanOrEqual(InputClickMax);
     });
 
-
     it("should add new gradable item in < 5 clicks", async () => {
         let clicks = 0;
-        //Select course home page
+        // Select course home page
         await page.click("input[value='SENG 350']");
         await page.waitForSelector("#additembutton");
-        //select plus button
+        // select plus button
         await page.click("#additembutton");
         clicks += 1;
-        //wait for gradableitem overlay
+        // wait for gradableitem overlay
         await page.waitForSelector("#newgradableitem");
         await page.type("input[name='GradableItems[0][name]']", "testitem");
         clicks += 1;
@@ -51,7 +49,6 @@ describe("Web App", () => {
         expect(page.url()).toContain("newGradableItem");
         expect(clicks).toBeLessThanOrEqual(InputClickMax);
     });
-
 
     it("should create a new user in < 5 clicks", async () => {
         await page.goto("http://localhost:3000", {waitUntil: "load"});
@@ -90,7 +87,5 @@ describe("Web App", () => {
         expect(page.url()).toContain("newGradableItem");
         expect(clicks).toBeLessThanOrEqual(InputClickMax);
     });*/
-
-
 
   });
