@@ -4,8 +4,8 @@ block content
     - var page = 'createcourse'
     - var n = 0;
     form(name='verifyInfoForm',action='/createcourse',method='post')
-        input(type='hidden',name='studentId',value=studentID)
-        table
+        input(type='hidden',name='user',value=studentID)
+        table#addCourse
             tr
                 td Name
                 td
@@ -15,14 +15,20 @@ block content
                 th Weight
                 th Due Date
             each gradableItem,name in courseDetails.GradableItems
-                tr
+                tr(id=n)
                     td
-                        input(type='text',value=name,name='GradableItems['+n+'][name]')
+                        input(type='text',value=name,name='GradableItems['+n+'][name]',required=true)
                     td
-                        input(type='text',value=gradableItem.Weight,name="GradableItems["+n+"][weight]")
+                        input(type='text',value=gradableItem.Weight,name="GradableItems["+n+"][weight]",required=true)
                     td
                         input(type='date',value=new Date(gradableItem.DueDate).toLocaleDateString('en-ca'),name='GradableItems['+n+'][duedate]')
+                    td
+                        button.delete(type='button' onclick='RemoveRow(\'addCourse\','+n+')') X
                 - n++
+
+        div.plus
+            button.plus#addrow(onclick="addNewRow(\'addCourse\')")
+        table#OtherDetails
             tr
                 td Grade Goal
                 td
@@ -31,4 +37,5 @@ block content
                 td Perceived Difficulty (1-5)
                 td
                     input(type='number',name='perceivedDiff',min=1,max=5,required=true)
+
         input(type='submit',value='Send')

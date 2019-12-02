@@ -16,6 +16,7 @@ export class GradableItemModel extends BaseModel {
     public GradableItemName!: string;
     public DueDate!: string;
     public Weight!: number;
+    public CurrentGrade!: number;
     public GItemAccuracy!: number;
     public StudiedTime!: number;
 
@@ -70,7 +71,7 @@ export class GradableItemModel extends BaseModel {
      * Deletes a gradable item
      */
     public async DeleteGradableItem(gradableItemID: number) {
-        return this.deleteOne({GradableItemID: gradableItemID})
+        return this.deleteOne({GradableItemID: Number(gradableItemID)})
         .catch ((error) => {
             console.log(error);
             return [];
@@ -109,7 +110,16 @@ export class GradableItemModel extends BaseModel {
             return [];
         });
     }
-
+    /**
+     * Edits Gradable Item Grade
+     */
+    public async EditGradableItemGrade(gradableItemID: number, newGrade: number) {
+        return this.editOne({GradableItemID: gradableItemID}, {CurrentGrade: newGrade})
+        .catch((error) => {
+            console.log(error);
+            return [];
+        });
+    }
     /**
      * Edits gradable item due date
      */

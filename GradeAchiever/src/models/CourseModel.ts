@@ -84,7 +84,7 @@ export class CourseModel extends BaseModel {
 
     public async DeleteGradableItems(courseID: number, itemsToRemove: number[]) {
         // remove ids from array
-        return this.addToArray({CourseID: courseID}, "GradableItems", itemsToRemove)
+        return this.removeFromArray({CourseID: Number(courseID)}, "GradableItems", itemsToRemove)
         .catch((error) => {
             console.log(error);
             return [];

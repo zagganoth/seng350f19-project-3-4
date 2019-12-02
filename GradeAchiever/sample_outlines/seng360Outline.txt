@@ -1,0 +1,192 @@
+11/10/2019SENG 360 Outline
+heat.csc.uvic.ca/coview/outline/2019/Fall/SENG/3601/4
+SENG360: Security Engineering
+Course Dates
+CRN(s):Section A01 CRN: 12855
+Section A02 CRN: 12856
+Section A03 CRN: 12857
+Term:Fall 2019
+Course Start:2019-09-04
+Course End:2019-12-21
+Withdrawal with 100% reduction of tuition fees:2019-09-17
+Withdrawal with 50% reduction of tuition fees:2019-10-08
+Last day for withdrawal (no fees returned):2019-10-31
+Scheduled Meeting Times (M=Mon, T=Tue, W=Wed, R=Thu, F=Fri)
+Section:Location:Classes Start:Classes End:Days of week:Hours of day:Instructor:
+A01ELL 1672019-09-042019-12-04MR08:30-09:50Adeshina Alani
+A02ELL 1672019-09-042019-12-04MR08:30-09:50Adeshina Alani
+A03ELL 1672019-09-042019-12-04MR08:30-09:50Adeshina Alani
+B01ELW B2032019-09-092019-12-04T12:30-14:20
+B02ELW B2032019-09-092019-12-04T15:30-17:20
+B03ELW B2032019-09-092019-12-04W13:30-15:20
+B04ELW B2032019-09-092019-12-04R10:00-11:50
+B05ELW B2032019-09-092019-12-04F12:30-14:20
+B06ELW B2032019-09-092019-12-04R12:00-13:50
+Instructor(s)
+Name: Adeshina Alani
+Office: ECS 617
+Phone: (250) 472-5722
+Email: aalani at uvic dot ca
+Office Hours:Comments
+Mon09:50am-10:20am 
+Thu09:50am-10:20am 
+Fri04:00pm-05:00pm 
+Course Overview
+Security Engineering is about building systems to remain secure in the face of malice, error or mischance. The objective
+of this course is to introduce students to a broad range of topics related to this discipline, including an overview of
+computer security, protection, disaster planning, and recovery. Risk analysis and security plans. Basics of cryptography.
+Public key cryptography and protocols. Security models, kernel design and systems testing. Database, network and Web
+security. The course discusses applications which need various combinations of confidentiality, availability, integrity and
+covertness properties; mechanisms to incorporate these properties in systems. Policy and legal issues are also covered
+Topics
+
+11/10/2019SENG 360 Outline
+heat.csc.uvic.ca/coview/outline/2019/Fall/SENG/3602/4
+What is Security Engineering?
+Cryptographic Tools
+Authentication and Access Control
+Database and Data Centre Security
+Malicious Software
+Denial of Service Attacks and Intrusion Detection
+Firewalls and Intrusion Prevention Systems
+Buffer Overflows
+Software and Operating System Security
+Cloud and IoT Security
+IT Security Management and Risk Assessment
+Human Resources Security, Auditing, Legal and Ethical Issues
+Cryptographic Algorithms
+Network Security
+Course Objectives And Learning Outcomes
+Upon completion of this course, students will be able to:
+Define the objectives, concepts and methods of security engineering
+Recognize security vulnerabilities in software systems
+Design mitigations for common security vulnerabilities in software systems
+Identify standards and practices used in security assurance programs
+Textbooks
+Required: Computer Security - Principles and Practice (4th edition)
+Authors: William Stallings and Lawrie Brown
+Publisher: Pearson
+Recommended: Security Engineering - A Guide to Building Dependable Distributed Systems (2nd edition)
+Author: Ross Anderson
+Publisher: Wiley
+Available for free at http://www.cl.cam.ac.uk/~rja14/book.html
+Labs
+This course has a lab component. There will be 10 labs. Labs start in the week of Sept. 16. PLEASE ATTEND THE LAB YOU
+REGISTERED IN.
+Assignments
+In this course there will be 10 assignments. Each assignment is worth 5% of your final grade.
+Tentative schedule for assignment due dates:
+AssignmentDue date
+Assignment 1September 27
+Assignment 2October 4
+Assignment 3October 11
+Assignment 4October 18
+Assignment 5October 25
+Assignment 6November 1
+Assignment 7November 8
+Assignment 8November 15
+Assignment 9November 22
+Assignment 10November 29
+
+11/10/2019SENG 360 Outline
+heat.csc.uvic.ca/coview/outline/2019/Fall/SENG/3603/4
+Exams
+There will be a midterm exam and a final exam including strategic cyber defence activities :
+ExamWorthWhen
+Midterm15%October 17
+Group cybersecurity game report and defence strategies presentation5%November 25
+Final25%arranged by the University
+Students must achieve a passing grade on the final exam and the overall course in order to pass this course.
+For courses which have final exams, students are strongly advised not to make final plans for travel or employment
+during the exam period since special arrangements will not be made for examinations that may conflict with such plans.
+Grading
+CourseworkWeight
+Assignments50%
+Final25%
+Midterm15%
+Class Attendant and participation5%
+Group cybersecurity game report and defence strategies presentation5%
+Grading System
+The University of Victoria follows a percentage grading system in which the instructor will submit grades in percentages.
+The University will use the following Senate approved standardized grading scale to assign letter grades. Both the
+percentage mark and the letter grade will be recorded on the academic record and transcripts.
+FDCC+B-BB+A-AA+
+0-4950-5960-6465-6970-7273-7677-7980-8485-8990-100
+GradesDescription
+A+, A,
+A-
+Exceptional, outstanding or excellent performance. Normally achieved by a minority of students. These
+grades indicate a student who is self-initiating, exceeds expectation and has an insightful grasp of the subject
+matter.
+B+, B,
+B-
+Very good, good or solid performance. Normally achieved by the largest number of students. These grades
+indicate a good grasp of the subject matter or excellent grasp in one area balanced with satisfactory grasp in
+the other areas.
+C+, C
+Satisfactory, or minimally satisfactory. These grades indicate a satisfactory performance and knowledge of
+the subject matter.
+DMarginal Performance. A student receiving this grade demonstrated a superficial grasp of the subject matter.
+FUnsatisfactory performance. Wrote final examination and completed course requirements; no supplemental.
+Posting of Grades
+Typically marks for assignments, examinations, and provisional final grades, are made available through conneX, or
+CourseSpaces where each student will be able to view only their own grades. Sometimes numerical marks/grades may
+be posted publicly to the entire class. In that case, full student numbers or names will not be included with the posted
+information.
+Course Experience Survey (CES)
+I value your feedback on this course. Towards the end of term you will have the opportunity to complete a confidential
+course experience survey (CES) regarding your learning experience. The survey is vital to providing feedback to me
+regarding the course and my teaching, as well as to help the department improve the overall program for students in
+the future. When it is time for you to complete the survey, you will receive an email inviting you to do so. If you do not
+receive an email invitation, you can go directly to the CES site
+
+11/10/2019SENG 360 Outline
+heat.csc.uvic.ca/coview/outline/2019/Fall/SENG/3604/4
+You will need to use your UVic NetLink ID to access the survey, which can be done on your laptop, tablet or mobile
+device. I will remind you closer to the time, but please be thinking about this important activity, especially the
+following three questions, during the course.
+What strengths did your instructor demonstrate that helped you learn in this course?
+Please provide specific suggestions as to how the instructor could have helped you learn more effectively.
+Please provide specific suggestions as to how this course could be improved.
+Csc Student Groups
+The Computer Science Course Union (https://onlineacademiccommunity.uvic.ca/cscu/) serves all students who are
+either in a computer science program or taking a class in computer science. Please sign yourself up on their mailing list
+if you would like to be informed about their social events and services.
+The Engineering Students' Society (ESS) serves all students registered in an Engineering degree program, including
+Software Engineering (BSEng). For information on ESS activities, events and services navigate to
+http://www.engr.uvic.ca/~ess .
+Course Policies And Guidelines
+Late Assignments: No late assignments will be accepted unless prior arrangements have been made with the instructor
+at least 48 hours before the assignment due date.
+Coursework Mark Appeals: All marks must be appealed within 7 days of the mark being posted.
+Attendance: We expect students attend all lectures and labs. It is entirely the students' responsibility to recover any
+information or announcements presented in lectures from which they were absent.
+Electronic devices in labs and lectures: No unauthorized audio or video recording of lectures is permitted.
+Electronic devices in midterms and exams: Calculators are only permitted for examinations and tests if explicitly
+authorized and the type of calculator permitted may be restricted. No other electronic devices (e.g. cell phones,
+pagers, PDA, etc.) may be used during examinations or tests unless explicitly authorized.
+Plagiarism: Submitted work may be checked using plagiarism detection software. Cheating, plagiarism and other forms
+of academic fraud are taken very seriously by both the University and the Department. You should consult the link given
+below for the UVic policy on academic integrity. Note that the university policy includes the statement that "A largely or
+fully plagiarized assignment should result in a grade of F for the course."
+The Faculty of Engineering Standards for Professional Behaviour are at
+http://www.uvic.ca/shared/shared%5fengineering/docs/professional-behaviour.pdf
+U.Vic guidelines and policy concerning fraud and academic integrity are at
+http://web.uvic.ca/calendar/undergrad/info/regulations/academic-integrity.html
+U. Vic Privacy Policy: If any student has concerns about their private information being stored or accessed outside of
+Canada, they are required to inform the course instructor about their concerns before the end of second week of
+classes.
+Equality
+This course aims to provide equal opportunities and access for all students to enjoy the benefits and privileges of the
+class and its curriculum and to meet the syllabus requirements. Reasonable and appropriate accommodation will be
+made available to students with documented disabilities (physical, mental, learning) in order to give them the
+opportunity to successfully meet the essential requirements of the course. The accommodation will not alter academic
+standards or learning outcomes, although the student may be allowed to demonstrate knowledge and skills in a different
+way. It is not necessary for you to reveal your disability and/or confidential medical information to the course instructor.
+If you believe that you may require accommodation, the course instructor can provide you with information about
+confidential resources on campus that can assist you in arranging for appropriate accommodation. Alternatively, you
+may want to contact the Centre for Accessible Learning (formerly the Resource Centre for Students with a Disability)
+located in the Campus Services Building.
+The University of Victoria is committed to promoting, providing, and protecting a positive, and supportive and safe
+learning and working environment for all its members.
+Copyright © 2019, University of Victoria, All rights reserved
