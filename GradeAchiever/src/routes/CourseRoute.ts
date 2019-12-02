@@ -36,7 +36,7 @@ export class CourseRoute extends BaseRoute {
         const name = req.body.name;
         const id = req.body.id;
         const duedate = req.body.date;
-        const hours = req.body.hours;
+        const hours = Number(req.body.hours) + Number(req.body.prevHours);
         const grade = req.body.grade;
         const courseController = new CourseController();
         try {
