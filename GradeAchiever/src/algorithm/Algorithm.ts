@@ -24,7 +24,8 @@ This is used to calculated how much time the user needs to spend on their projec
       coursePercent += percentageWorth[i] * percentageAchieved[i];
     }
     const newCourseGoal = ((courseGoal - coursePercent * percentageDone) * courseGoal) / (1 - percentageDone);
-    const retVal = [courseRatio, percentageDone, newCourseGoal];
+    const coursePercentRetVal = coursePercent/percentageDone;
+    const retVal = [courseRatio, percentageDone, newCourseGoal, coursePercentRetVal];
     return retVal;
   }
 
@@ -44,23 +45,11 @@ This is used to calculated how much time the user needs to spend on their projec
     } else {
       courseDifficulty = 5;
     }
-    let userIsFOOBAR = false;
-    if (courseGoal >= 1) {
-      courseGoal = 1;
-      userIsFOOBAR = true;
-    }
-    let userIsKillingIt = false;
-    if (courseGoal <= 0.25) {
-      courseGoal = 0.25;
-      userIsKillingIt = true;
-    }
     let itemHours = itemPercentage * courseGoal * courseDifficulty * 50;
-    let userIsBehind = false;
     if (percentageDone > 0 && courseRatio > 1.001) {
-      userIsBehind = true;
       itemHours = itemHours * (100 - percentageDone) + itemHours * (percentageDone * courseRatio);
     }
-    return [itemHours, userIsBehind, userIsFOOBAR, userIsKillingIt];
+    return itemHours;
   }
 
 }

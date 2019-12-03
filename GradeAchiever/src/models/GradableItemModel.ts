@@ -43,6 +43,9 @@ export class GradableItemModel extends BaseModel {
             DueDate: dueDate,
             Weight: weight,
             GItemAccuracy: gItemAccuracy,
+            CurrentGrade: 0,
+            StudiedTime: 0,
+            RecommendedTime: weight*50,
         };
 
         console.log("Gradable Item Model - adding an item");
