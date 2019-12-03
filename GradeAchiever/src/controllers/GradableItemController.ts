@@ -100,7 +100,15 @@ export class GradableItemController {
             console.log(error);
             return [];
         });
-    }
+        // if (grade !== 0) {
+        //   const algorithm = new Algorithm();
+        //   const courseID = algorithm.item_completed_calculation_and_update(id);
+        //   algorithm.course_calculation_and_update(courseID);
+        //   algorithm.new_item_calculation_and_update(courseID);
+        // }
+        // return true;
+      }
+     /* Edits gradable item's name*/
 
     /* Adds study time to a gradable item*/
     public async LogStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
