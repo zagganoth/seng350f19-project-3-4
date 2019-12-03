@@ -25,7 +25,7 @@ block content
               th Gradable Item Name
               th Due Date
             each gradableItem in gradableItemDetails
-              tr(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
+              tr.expanditem(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
                 td #{gradableItem.CourseName}
                 td #{gradableItem.GradableItemName}
                 td #{gradableItem.DueDate}
@@ -44,7 +44,7 @@ block content
                           td Hours Spent: N/A
                       tr
                         td(colspan=2)
-                          button(style='width:100%;height:100%',onclick='showEditForm('+gradableItem.GradableItemID+')') Edit
+                          button.edititem(style='width:100%;height:100%',onclick='showEditForm('+gradableItem.GradableItemID+')') Edit
                         td
                           form(name='DeleteItem',action='/deleteitem',method='post',enctype='multipart/form-data')
                             input(type='hidden',name='id',value=gradableItem.GradableItemID)
@@ -87,7 +87,7 @@ block content
                             p N/A
                       tr
                         td(colspan=3)
-                          input(type='submit')
+                          input.submitedit(type='submit')
 
 
 
