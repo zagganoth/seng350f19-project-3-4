@@ -32,6 +32,7 @@ export class CourseRoute extends BaseRoute {
             new CourseRoute().deleteGradableItem(req, res, next);
         });
     }
+    private courseController = new CourseController();
     public async editGradableItem(req: Request, res: Response, next: NextFunction) {
         const name = req.body.name;
         const id = req.body.id;
@@ -50,8 +51,7 @@ export class CourseRoute extends BaseRoute {
 
     }
     public async deleteGradableItem(req: Request, res: Response, next: NextFunction) {
-        const courseController = new CourseController();
-        courseController.deleteGradableItem(req.body.course, req.body.id)
+        this.courseController.deleteGradableItem(req.body.course, req.body.id)
         .then((details) => {
             res.redirect(307, "/overview");
         })
@@ -62,11 +62,10 @@ export class CourseRoute extends BaseRoute {
     }
     public async Course(req: Request, res: Response, next: NextFunction, courseID: number, userID: number, Mess: string= "") {
         // Then, populate the overview page
-        const courseCtrl = new CourseController();
         this.title = "Course Home";
-        courseCtrl.RequestCourse(courseID)
+        this.courseController.RequestCourse(courseID)
         .then(async (details) => {
-            const gradableItemDetails = await courseCtrl.RequestCourseGradableItems(courseID);
+            const gradableItemDetails = await this.courseController.RequestCourseGradableItems(courseID);
 
             // gradableItemDetails.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
             const options: object = {
@@ -86,20 +85,18 @@ export class CourseRoute extends BaseRoute {
      * creates a new gradable item for a course
      */
     public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, dueDate: string, weight: number, gItemAccuracy: number = -1) {
-        const courseCtrl = new CourseController();
         this.title = "CreateGradableItem";
-        courseCtrl.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy);
+        this.courseController.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy);
     }
 
     /**
      * creates new gradable items for a course
      */
     public async createGradableItems(req: Request, res: Response, next: NextFunction) {
-        const courseCtrl = new CourseController();
         console.log(req.body.courseID);
         console.log(req.body.studentID);
         this.title = "CreateGradableItems";
-        courseCtrl.createGradableItems(req.body)
+        this.courseController.createGradableItems(req.body)
         .then(() => {
             console.log("rendering userhome");
             this.Course(req, res, next, Number(req.body.courseID), Number(req.body.studentID));
@@ -110,9 +107,8 @@ export class CourseRoute extends BaseRoute {
      * Edits a course grade grade goal
      */
     public async editGradeGoal(req: Request, res: Response, next: NextFunction, courseID: number, newGoal: number) {
-        const courseCtrl = new CourseController();
         this.title = "EditGradeGoal";
-        courseCtrl.editCourseGradeGoal(req, res, next, courseID, newGoal)
+        this.courseController.editCourseGradeGoal(req, res, next, courseID, newGoal)
         .then((resp) => {
             if (resp.matchedCount === 1) {
                 res.sendStatus(200);
@@ -127,9 +123,8 @@ export class CourseRoute extends BaseRoute {
      * Edits a courses perceived difficulty
      */
     public async editDifficulty(req: Request, res: Response, next: NextFunction, courseID: number, newGoal: number) {
-        const courseCtrl = new CourseController();
         this.title = "EditDifficulty";
-        courseCtrl.editDifficulty(req, res, next, courseID, newGoal)
+        this.courseController.editDifficulty(req, res, next, courseID, newGoal)
         .then((resp) => {
             if (resp.matchedCount === 1) {
                 res.sendStatus(200);
@@ -144,9 +139,8 @@ export class CourseRoute extends BaseRoute {
      * Edits a courses name
      */
     public async editName(req: Request, res: Response, next: NextFunction, courseID: number, newName: string) {
-        const courseCtrl = new CourseController();
         this.title = "EditDifficulty";
-        courseCtrl.editCourseName(req, res, next, courseID, newName)
+        this.courseController.editCourseName(req, res, next, courseID, newName)
         .then((resp) => {
             if (resp.matchedCount === 1) {
                 res.sendStatus(200);
@@ -160,9 +154,8 @@ export class CourseRoute extends BaseRoute {
      * Edits a courses name
      */
     public async logGradableItemTime(req: Request, res: Response, next: NextFunction, gradableItemID: number,  prevtime: number, newtime: number) {
-        const courseCtrl = new CourseController();
         this.title = "AddStudyTime";
-        courseCtrl.addStudyTime(gradableItemID, prevtime, newtime)
+        this.courseController.addStudyTime(gradableItemID, prevtime, newtime)
         .then((resp) => {
             if (resp.matchedCount === 1) {
                 res.sendStatus(200);
