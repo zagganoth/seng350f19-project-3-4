@@ -18,6 +18,8 @@ export class GradableItemModel extends BaseModel {
     public Weight!: number;
     public CurrentGrade!: number;
     public GItemAccuracy!: number;
+    public StudiedTime!: number;
+    public RecommendedTime!: number;
 
     constructor() {
         super("GradableItem");
@@ -141,4 +143,18 @@ export class GradableItemModel extends BaseModel {
         });
     }
 
+    public async AddRecommendedTime(gradableItemID: number, newtime: number) {
+        return this.editOne({GradableItemID: gradableItemID}, {RecommendedTime: newtime})
+        .catch ((error) => {
+            console.log(error);
+            return [];
+        });
+    }
+    public async AddGItemAccuracy(gradableItemID: number, accuracy: number) {
+        return this.editOne({GradableItemID: gradableItemID}, {GItemAccuracy: accuracy})
+        .catch ((error) => {
+            console.log(error);
+            return [];
+        });
+    }
 }
