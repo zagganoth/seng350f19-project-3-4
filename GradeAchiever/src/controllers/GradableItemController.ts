@@ -81,15 +81,16 @@ export class GradableItemController {
             await gradableItemModel.EditGradableItemGrade(Number(id), Number(grade));
             await gradableItemModel.EditGradableItemName(Number(id), name);
         } catch (error) {
+            console.log(error);
             return false;
         }
-        if (grade) {
-          let gradableItem = gradableItemModel.GetGradableItemDetails(id);
+        if (grade != 0) {
+          let gradableItem = await gradableItemModel.GetGradableItemDetails(id);
           const courseID: any = gradableItem.CourseID;
           const hoursRecommended = gradableItem.RecommendedTime;
           const hoursSpent = gradableItem.StudiedTime;
           const courseModel = new CourseModel();
-          const gradeGoalCourse = courseModel.GetCourseDetails( courseID );
+          const gradeGoalCourse = await courseModel.GetCourseDetails( courseID );
           const gradeGoal = gradeGoalCourse.GradeGoal;
           const algorithm = new Algorithm();
           const itemRatio = algorithm.item_completed_calculation(gradeGoal, hoursSpent, hoursRecommended, grade);
@@ -97,6 +98,7 @@ export class GradableItemController {
         try {
           await gradableItemModel.AddGItemAccuracy(Number(id), Number(itemRatio));
         } catch (error) {
+            console.log(error);
             return false;
         }
         const gradableItems = gradeGoalCourse.GradableItems;
@@ -105,12 +107,10 @@ export class GradableItemController {
         let percentageWorth = [];
         let percentageAchieved = [];
         for (let val of gradableItems) {
-          if (val.CurrentGrade!= 0) {
-            itemRatios[i] = val.GItemAccuracy;
-            percentageWorth[i] = val.Weight;
-            percentageAchieved[i] = val.CurrentGrade;
-            i++;
-          }
+            gradableItem = await gradableItemModel.GetGradableItemDetails(val);
+            itemRatios[i] = gradableItem.GItemAccuracy;
+            percentageWorth[i] = gradableItem.Weight;
+            percentageAchieved[i] = gradableItem.CurrentGrade;
         }
         const courseCalResults = algorithm.course_calculation(itemRatios, percentageWorth, percentageAchieved, gradeGoal)
         const courseRatio = courseCalResults[0];
@@ -132,12 +132,13 @@ export class GradableItemController {
         let itemHours = 0;
         let itemID = 0;
         for (let val of gradableItems) {
-          weight = val.Weight;
+          gradableItem = await gradableItemModel.GetGradableItemDetails(val);
+          weight = gradableItem.Weight;
           if (weight>0) {
             itemHours = algorithm.new_item_calculation(courseRatio, percentageDone, difficulty, newCourseGoal, weight);
-            itemID = val.GradableItemID;
+            itemID = gradableItem.GradableItemID;
             try {
-              await val.EditRecommendedTime(Number(itemID), Number(itemHours));
+              await gradableItemModel.AddRecommendedTime(Number(itemID), Number(itemHours));
             }
             catch (error) {
                 return false;
