@@ -1,6 +1,4 @@
 import { GradableItemModel } from "../models/GradableItemModel";
-import { CourseModel }      from "../models/CourseModel";
-import { Algorithm }        from "../algorithm/Algorithm"
 
 export class GradableItemController {
     private gradableItemModel = new GradableItemModel();
