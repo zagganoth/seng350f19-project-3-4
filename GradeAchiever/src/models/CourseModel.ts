@@ -47,16 +47,9 @@ export class CourseModel extends BaseModel {
             CurrentGrade: currentGrade,
             GradeGoal: gradeGoal,
             GradableItems: gradableItems,
-<<<<<<< HEAD
         };*/
         newCourse.CourseID = await this.GetNewID();
         newCourse.StudentID = Number(newCourse.StudentID);
-=======
-            GradeNeeded: gradeGoal,
-            PercentageDone: 0,
-            CourseRatio: 1,
-        };
->>>>>>> 03756b8... Just need someone who understands how the models work
         return this.addOne(newCourse)
         .catch((error) => {
             console.log(error);
