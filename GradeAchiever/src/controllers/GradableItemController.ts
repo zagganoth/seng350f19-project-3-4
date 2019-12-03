@@ -3,7 +3,7 @@ import { GradableItemModel} from "../models/GradableItemModel";
 export class GradableItemController {
 
     private gradableItemModel = new GradableItemModel();
-    
+
     constructor() {
 
     }
@@ -11,9 +11,9 @@ export class GradableItemController {
     /*Gets gradable item details by  */
     public async RequestGradableItem(gradableItemID: number) {
         try {
-            return this.gradableItemModel.GetGradableItemDetails(gradableItemID)
+            return this.gradableItemModel.GetGradableItemDetails(gradableItemID);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }
@@ -23,7 +23,7 @@ export class GradableItemController {
         try {
             return this.gradableItemModel.CreateItem(gradableItem);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }
@@ -34,44 +34,44 @@ export class GradableItemController {
     */
     public async EditStudyTime(id: number, hours: number) {
         try {
-            return this.gradableItemModel.AddStudyTime(id, hours)
+            return this.gradableItemModel.AddStudyTime(id, hours);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }
 
     public async EditDueDate(id: number, dueDate: Date) {
         try {
-            return this.gradableItemModel.EditDueDate(id, dueDate.toString())
+            return this.gradableItemModel.EditDueDate(id, dueDate.toString());
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }
 
     public async EditItemGrade(id: number, grade: number) {
         try {
-            return this.gradableItemModel.EditGradableItemGrade(id, grade)
+            return this.gradableItemModel.EditGradableItemGrade(id, grade);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }
     public async EditGradableItemWeight(id: number, weight: number) {
         try {
-            return this.gradableItemModel.EditGradableItemWeight(id, weight)
+            return this.gradableItemModel.EditGradableItemWeight(id, weight);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }
 
     public async EditItemName(id: number, name: string) {
         try {
-            return this.gradableItemModel.EditGradableItemName(id, name)
+            return this.gradableItemModel.EditGradableItemName(id, name);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }
@@ -84,23 +84,22 @@ export class GradableItemController {
         // }
         // return true;
 
-
     /* Adds study time to a gradable item*/
     public async LogStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
         try {
             const totalTime: number = Number(prevtime) + Number(newtime);
-            return this.gradableItemModel.AddStudyTime(Number(gradableItemID), totalTime)
+            return this.gradableItemModel.AddStudyTime(Number(gradableItemID), totalTime);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }
 
     public async deleteGradableItem(gradableItemID: number) {
         try {
-            return this.gradableItemModel.DeleteGradableItem(gradableItemID)
+            return this.gradableItemModel.DeleteGradableItem(gradableItemID);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return [];
         }
     }

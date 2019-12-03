@@ -83,7 +83,7 @@ This is used to calculated how much time the user needs to spend on their projec
     const newCourseGoal = ((courseGoal - coursePercent * percentageDone / 100) * courseGoal) / (100 - percentageDone);
     const coursePercentRetVal = coursePercent / percentageDone;
     const newCourseGoal = ((courseGoal - coursePercent * percentageDone) * courseGoal) / (1 - percentageDone);
-    const coursePercentRetVal = coursePercent/percentageDone;
+    const coursePercentRetVal = coursePercent / percentageDone;
     const coursePercentRetVal = coursePercent / percentageDone;
     const retVal = [courseRatio, percentageDone, newCourseGoal, coursePercentRetVal];
     return retVal;
