@@ -14,11 +14,12 @@ export class GradableItemModel extends BaseModel {
     public GradableItemID!: number;
     public CourseID!: number;
     public GradableItemName!: string;
-    public DueDate!: string;
+    public DueDate!: Date;
     public Weight!: number;
     public CurrentGrade!: number;
     public GItemAccuracy!: number;
     public studyTime!: number;
+    public StudiedTime!: number;
 
     constructor() {
         super("GradableItem");
@@ -104,6 +105,7 @@ export class GradableItemModel extends BaseModel {
      * Edits gradable item percent weight
      */
     public async EditGradableItemWeight(gradableItemID: number, newWeight: number) {
+        console.log("Updating weight to " + newWeight);
         return this.editOne({GradableItemID: gradableItemID}, {Weight: newWeight})
         .catch ((error) => {
             console.log(error);

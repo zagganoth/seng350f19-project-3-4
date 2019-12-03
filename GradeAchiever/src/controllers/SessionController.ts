@@ -12,8 +12,7 @@ export class SessionController {
      * @param res
      * @param next
      */
-
-    public async RequestUsers(req: Request, res: Response, next: NextFunction) {
+    public async RequestUsers() {
         try {
             return this.adminModel.GetAllUsers();
         } catch (error) {
@@ -42,8 +41,10 @@ export class SessionController {
      * @param email
      */
     public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
-        let newID: any = await this.adminModel.GetNewID();
-        newID = Number(newID[0].StudentID) + 1;
+        let newID: any = this.adminModel.GetNewID();
+        if(newID[0] !== undefined)
+            newID = Number(newID[0].StudentID) + 1;
+        else newID = 1;
         const newuser: object = {
             StudentID: newID,
             StudentName: name,

@@ -19,17 +19,18 @@ describe("Course Routing Tests", () => {
 		const courseid = 2;
 		res.locals = {};
 		res.render = () => {return; };
-  TestCourseRoute.Course(req, res, next, courseid, thisID);
+  TestCourseRoute.Course(req, res, courseid, thisID);
   expect(TestCourseRoute).toBeInstanceOf(CourseRoute);
 	});
 
 	   it("Creates a new gradable item", async () => {
-        const courseID = 1;
-        const name = "Test User";
-        const dueDate = "2019-12-02";
+        req.body = <any>{};
+        req.body.courseID = 1;
+        req.body.name = "Test User";
+        req.body.dueDate = "2019-12-02";
         const weight = 15;
         const accuracy = -1;
-        TestCourseRoute.createGradableItem(req, res, next, courseID, name, dueDate, weight, accuracy)
+        TestCourseRoute.createGradableItems(req, res, next)
         .then((resp) => {
             expect(resp).toBeInstanceOf(Response);
         });
@@ -38,14 +39,14 @@ describe("Course Routing Tests", () => {
     it("Edits course grade goal", async () => {
         const courseID = 1;
         const newgoal = 88;
-        TestCourseRoute.editGradeGoal(req, res, next, courseID, newgoal);
+        TestCourseRoute.editGradeGoal(req, res, courseID, newgoal);
 		      expect(TestCourseRoute).toBeInstanceOf(CourseRoute);
     });
 
     it("Edits course's grade goal that does not exist", async () => {
         const courseID = 0;
         const newgoal = 88;
-        TestCourseRoute.editGradeGoal(req, res, next, courseID, newgoal);
+        TestCourseRoute.editGradeGoal(req, res, courseID, newgoal);
 		      expect(TestCourseRoute).toBeInstanceOf(CourseRoute);
     });
 
