@@ -23,7 +23,7 @@ describe("Admin Routing Tests", () => {
 	});
 
 	   it("Creates a new admin user", async () => {
-	    const user: Student = {
+	    const user: IStudent = {
             AlgorithmAccuracy: 0,
             Courses: [],
             Email: "test@email.com",
@@ -40,7 +40,7 @@ describe("Admin Routing Tests", () => {
     });
 
     it("Creates a non-admin user", async () => {
-        const user: Student = {
+        const user: IStudent = {
             AlgorithmAccuracy: 0,
             Courses: [],
             Email: "test@email.com",
