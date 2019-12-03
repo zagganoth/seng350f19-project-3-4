@@ -23,11 +23,8 @@ test("test course calculation", () => {
 
 test("new item calculation easy", () => {
 	const testAlgorithm = new Algorithm();
-	let testValue = [0, false, false, false];
+	let testValue = 0;
 	testValue = testAlgorithm.new_item_calculation(1, 20, 3, 80, 10);
-	expect(testValue[0] === 5);
-	expect(testValue[1] === false);
-	expect(testValue[2] === false);
-	expect(testValue[3] === false);
+	expect(testValue === 5);
 	},
 );

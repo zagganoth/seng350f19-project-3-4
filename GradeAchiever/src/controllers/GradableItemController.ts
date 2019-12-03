@@ -115,4 +115,8 @@ export class GradableItemController {
         return this.gradableItemModel.AddStudyTime(Number(gradableItemID), totalTime);
     }
 
+    public async deleteGradableItem(gradableItemID: number){
+        return this.gradableItemModel.DeleteGradableItem(gradableItemID);
+    }
+
 }
