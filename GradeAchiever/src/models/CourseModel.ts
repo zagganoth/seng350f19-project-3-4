@@ -21,6 +21,9 @@ export class CourseModel extends BaseModel {
     public CurrentGrade!: number;
     public GradeGoal!: number;
     public GradableItems!: number[];
+    public GradeNeeded!: number; //new
+    public PercentageDone!: number;
+    public CourseRatio!: number;
     constructor() {
         super("Course");
     }
@@ -44,6 +47,9 @@ export class CourseModel extends BaseModel {
             CurrentGrade: currentGrade,
             GradeGoal: gradeGoal,
             GradableItems: gradableItems,
+            GradeNeeded: gradeGoal,
+            PercentageDone: 0,
+            CourseRatio: 1,
         };
         return this.addOne(newCourse)
         .catch((error) => {
@@ -123,5 +129,25 @@ export class CourseModel extends BaseModel {
             return [];
         });
     }
-
+    public async EditGradeNeeded(courseID: number, gradeNeeded: number) {
+        return this.editOne({CourseID: courseID}, {GradeNeeded: gradeNeeded})
+        .catch((error) => {
+            console.log(error);
+            return [];
+        });
+    }
+    public async EditPercentageDone(courseID: number, percent: number) {
+        return this.editOne({CourseID: courseID}, {PercentageDone: percent})
+        .catch((error) => {
+            console.log(error);
+            return [];
+        });
+    }
+    public async EditCourseRatio(courseID: number, courseRatio: number) {
+        return this.editOne({CourseID: courseID}, {CourseRatio: courseRatio})
+        .catch((error) => {
+            console.log(error);
+            return [];
+        });
+    }
 }
