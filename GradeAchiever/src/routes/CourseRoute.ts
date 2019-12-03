@@ -20,7 +20,7 @@ export class CourseRoute extends BaseRoute {
             new CourseRoute().editGradeGoal(req, res, req.body.courseID, req.body.newDiff);
         });
         router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().editName(req, res, next, req.body.courseID, req.body.newName);
+            new CourseRoute().editName(res, req.body.courseID, req.body.newName);
         }); /*
         router.post("/logStudyHours", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().logGradableItemTime(req, res, next, req.body.gradableItemID, req.body.prevtime, req.body.newtime);
@@ -100,7 +100,17 @@ export class CourseRoute extends BaseRoute {
         console.log(req.body.courseID);
         console.log(req.body.studentID);
         this.title = "CreateGradableItems";
-        this.courseController.createGradableItems(req.body)
+        const course : ICourse = {
+            CourseID: req.body.courseID,
+            CourseName: "",
+            CurrentGrade: 0,
+            GradableItems: req.body.GradableItems,
+            GradeGoal: 0,
+            PerceivedDifficulty: 0,
+            StudentID: 0
+
+        }
+        this.courseController.createGradableItems(course)
         .then(() => {
             console.log("rendering userhome");
             res.redirect(307, "/course");
@@ -126,7 +136,7 @@ export class CourseRoute extends BaseRoute {
     /*
      * Edits a courses perceived difficulty
      */
-    public async editDifficulty(req: Request, res: Response, next: NextFunction, courseID: number, newGoal: number) {
+    public async editDifficulty(res: Response, courseID: number, newGoal: number) {
         this.title = "EditDifficulty";
         this.courseController.editDifficulty(courseID, newGoal)
         .then((resp) => {
@@ -142,9 +152,9 @@ export class CourseRoute extends BaseRoute {
      /*
      * Edits a courses name
      */
-    public async editName(req: Request, res: Response, next: NextFunction, courseID: number, newName: string) {
+    public async editName(res: Response,courseID: number, newName: string) {
         this.title = "EditDifficulty";
-        this.courseController.editCourseName(req, res, next, courseID, newName)
+        this.courseController.editCourseName(courseID, newName)
         .then((resp) => {
             if (resp.matchedCount === 1) {
                 res.sendStatus(200);
@@ -157,7 +167,7 @@ export class CourseRoute extends BaseRoute {
       /*
      * Edits a courses name
      */
-    public async logGradableItemTime(req: Request, res: Response, next: NextFunction, gradableItemID: number,  prevtime: number, newtime: number) {
+    public async logGradableItemTime(res: Response,gradableItemID: number,  prevtime: number, newtime: number) {
         this.title = "AddStudyTime";
         this.courseController.addStudyTime(gradableItemID, prevtime, newtime)
         .then((resp) => {

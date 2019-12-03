@@ -56,11 +56,22 @@ describe("Course Controller Tests", () => {
     });
 
     it("Creates a gradable item", async () => {
-        const courseID = 1;
+        /*const courseID = 1;
         const name = "Assignment 5";
         const duedate = "2019-11-21";
-        const weight = 10;
-        return controller.CreateGradableItem(courseID, name, duedate, weight)
+        const weight = 10;*/
+        const g: IGradableItem = {
+            CourseID: 1,
+            CurrentGrade: 0,
+            DueDate: new Date("2019-11-21"),
+            GItemAccuracy: 0,
+            GradableItemID: 0,
+            GradableItemName: "Assignment 5",
+            StudiedTime: 0,
+            Weight: 10
+
+        }
+        return controller.CreateGradableItem(g)
         .then((returnVal: any) => {
             // Changed returnVal to be the id of the new gradable item - returns -1 if failed, >0 if passed
             expect(returnVal).toBeGreaterThan(0);
@@ -70,9 +81,20 @@ describe("Course Controller Tests", () => {
     it("Attempts to create a gradable item for a course that does not exist", async () => {
         const courseID = 0;
         const name = "Assignment 5";
-        const duedate = "2019-11-21";
+        const duedate = new Date("2019-11-21");
         const weight = 10;
-        return controller.CreateGradableItem(courseID, name, duedate, weight)
+        const g: IGradableItem = {
+            CourseID: courseID,
+            CurrentGrade: 0,
+            DueDate: duedate,
+            GItemAccuracy: 0,
+            GradableItemID: 0,
+            GradableItemName: name,
+            StudiedTime: 0,
+            Weight: weight
+
+        }
+        return controller.CreateGradableItem(g)
         .then((returnVal: any) => {
             expect(returnVal).toEqual( -1);
         });
