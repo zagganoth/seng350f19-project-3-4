@@ -35,7 +35,7 @@ export class CourseController {
                 GradableItemName: gradableItem.name,
                 StudiedTime: 0,
                 Weight: gradableItem.weight,
-
+                RecommendedTime: 0
             };
             gradableItems.push(await this.CreateGradableItem(g));
         }
@@ -64,7 +64,7 @@ export class CourseController {
         const gradableItems = [];
         for (const gradableItem of courseDetails.GradableItems) {
             try {
-                const g: IGradableItem = {
+                const item: IGradableItem = {
                     CourseID: courseID,
                     CurrentGrade: 0,
                     DueDate: gradableItem.duedate,
@@ -73,9 +73,9 @@ export class CourseController {
                     GradableItemName: gradableItem.name,
                     StudiedTime: 0,
                     Weight: gradableItem.weight,
-
+                    RecommendedTime: 0
                 };
-                gradableItems.push(await this.CreateGradableItem(g));
+                gradableItems.push(await this.CreateGradableItem(item));
             } catch (error) {
                 console.log(error);
                 console.log("creating item failed :(");
