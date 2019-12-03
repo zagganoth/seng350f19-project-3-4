@@ -35,15 +35,16 @@ export class GradableItemModel extends BaseModel {
     /**
      * Creates a new gradable item
      */
-    public async CreateItem(courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
-        const newGradableItem = {
+    public async CreateItem(newGradableItem: IGradableItem) {// courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
+        newGradableItem.GradableItemID = await this.GetNewID();
+        /*const newGradableItem = {
             GradableItemID: await this.GetNewID(),
             CourseID: courseID,
             GradableItemName: gradableItemName,
             DueDate: dueDate,
             Weight: weight,
             GItemAccuracy: gItemAccuracy,
-        };
+        };*/
 
         console.log("Gradable Item Model - adding an item");
         console.log(newGradableItem);

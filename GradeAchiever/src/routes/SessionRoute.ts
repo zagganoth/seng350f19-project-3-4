@@ -102,7 +102,7 @@ export class SessionRoute extends BaseRoute {
     public async createUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
         const sessionCtrl = new SessionController();
         this.title = "CreateUser";
-        sessionCtrl.CreateUser(req, res, next, String(name), String(email))
+        sessionCtrl.CreateUser(String(name), String(email))
         .then((resp) => {
             // If adding a new user failed, return to login page
             if (resp.insertedCount === 0) {

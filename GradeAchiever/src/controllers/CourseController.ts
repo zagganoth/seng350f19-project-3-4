@@ -39,7 +39,16 @@ export class CourseController {
             };
             gradableItems.push(await this.CreateGradableItem(g));
         }
-        await this.courseModel.CreateNewCourse(courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
+        const course: ICourse = {
+            CourseID: 0,
+            CourseName: name,
+            CurrentGrade: 100,
+            GradableItems: gradableItems,
+            GradeGoal: courseDetails.gradegoal,
+            PerceivedDifficulty: courseDetails.perceivedDiff,
+            StudentID: courseDetails.user,
+        };
+        await this.courseModel.CreateNewCourse(course); // courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
 
         // these steps should not be done here, these should be put somewhere else. This function should return the course id which then gets added tothe user object.
 
@@ -113,7 +122,7 @@ export class CourseController {
     /* Gets course Details by course ID */
     public async CreateGradableItem(g: IGradableItem) {// courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
         try {
-            const returnVal: any = await this.gradableItemController.CreateItem(g.CourseID, g.GradableItemName, String(g.DueDate) , g.Weight, g.GItemAccuracy);
+            const returnVal: any = await this.gradableItemController.CreateItem(g);
             // console.log("course return:");
             // console.log(returnVal);
 
@@ -121,6 +130,7 @@ export class CourseController {
             return returnVal.ops[0].GradableItemID;
         } catch (error) {
             console.log(error);
+            console.log("error in courseController");
             return -1;
         }
     }

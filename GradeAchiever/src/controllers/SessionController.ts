@@ -40,7 +40,7 @@ export class SessionController {
      * @param name
      * @param email
      */
-    public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
+    public async CreateUser(name: string, email: string) {
         let newID: any = this.adminModel.GetNewID();
         if (newID[0] !== undefined) {
             newID = Number(newID[0].StudentID) + 1;
