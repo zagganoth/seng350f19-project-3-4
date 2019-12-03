@@ -36,12 +36,12 @@ describe("Web App", () => {
         await page.waitForSelector(".openBtn");
         let clicks = 0;
         console.log(page.url());
-        let bodyHTML = await page.evaluate(() => document.body.innerHTML);
+        const bodyHTML = await page.evaluate(() => document.body.innerHTML);
         console.log(bodyHTML);
-        //Select gradable item
+        // Select gradable item
         await page.click(".expanditem");
         clicks += 1;
-        //wait for edits to
+        // wait for edits to
         await page.waitForSelector("button.edititem");
         await page.click("button.edititem");
         clicks += 1;
