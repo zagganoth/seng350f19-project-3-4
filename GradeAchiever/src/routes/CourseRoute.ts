@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import {CourseController} from "../controllers/CourseController";
-import { BaseRoute } from "./route";
 import {GradableItemModel} from "../models/GradableItemModel";
+import { BaseRoute } from "./route";
 
 export class CourseRoute extends BaseRoute {
     public static create(router: Router) {
@@ -17,11 +17,11 @@ export class CourseRoute extends BaseRoute {
             new CourseRoute().editGradeGoal(req, res, req.body.courseID, req.body.newGoal);
         });
         router.post("/editDifficulty", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().editGradeGoal(req, res,req.body.courseID, req.body.newDiff);
+            new CourseRoute().editGradeGoal(req, res, req.body.courseID, req.body.newDiff);
         });
         router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editName(req, res, next, req.body.courseID, req.body.newName);
-        });/*
+        }); /*
         router.post("/logStudyHours", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().logGradableItemTime(req, res, next, req.body.gradableItemID, req.body.prevtime, req.body.newtime);
         });*/
@@ -35,8 +35,8 @@ export class CourseRoute extends BaseRoute {
     }
     private courseController = new CourseController();
     public async editGradableItem(req: Request, res: Response, next: NextFunction) {
-        let gItem = <GradableItem>{};
-        gItem.GradableItemName= req.body.name;
+        const gItem = {} as IGradableItem;
+        gItem.GradableItemName = req.body.name;
         gItem.GradableItemID = req.body.id;
         gItem.DueDate = req.body.date;
         gItem.StudiedTime = Number(req.body.hours) + Number(req.body.prevHours);
@@ -45,7 +45,7 @@ export class CourseRoute extends BaseRoute {
         const courseController = new CourseController();
         try {
             await courseController.EditGradableItem(gItem);
-            res.redirect(307, "/"+req.body.pagename);
+            res.redirect(307, "/" + req.body.pagename);
         } catch (error) {
             console.log(error);
             this.render(req, res, "error", error);
@@ -56,7 +56,7 @@ export class CourseRoute extends BaseRoute {
     public async deleteGradableItem(req: Request, res: Response, next: NextFunction) {
         this.courseController.deleteGradableItem(req.body.course, req.body.id)
         .then((details) => {
-            res.redirect(307, "/"+req.body.pagename);
+            res.redirect(307, "/" + req.body.pagename);
         })
         .catch((error) => {
             console.log(error);
@@ -103,7 +103,7 @@ export class CourseRoute extends BaseRoute {
         this.courseController.createGradableItems(req.body)
         .then(() => {
             console.log("rendering userhome");
-            res.redirect(307,"/course");
+            res.redirect(307, "/course");
         });
     }
 

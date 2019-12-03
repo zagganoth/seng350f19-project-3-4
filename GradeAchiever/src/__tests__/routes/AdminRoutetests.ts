@@ -23,32 +23,32 @@ describe("Admin Routing Tests", () => {
 	});
 
 	   it("Creates a new admin user", async () => {
-	    let user: Student = {
+	    const user: Student = {
             AlgorithmAccuracy: 0,
             Courses: [],
             Email: "test@email.com",
             IsAdmin: true,
             NotificationLevel: 0,
             StudentID: 0,
-            StudentName: "Test User"
-        }
-        //const name =
-        //const email = ;
-        //const isAdmin = true;
-        TestAdminRoute.createUser(req, res, user);
+            StudentName: "Test User",
+        };
+        // const name =
+        // const email = ;
+        // const isAdmin = true;
+     TestAdminRoute.createUser(req, res, user);
 	    expect(TestAdminRoute).toBeInstanceOf(AdminRoute);
     });
 
     it("Creates a non-admin user", async () => {
-        let user: Student = {
+        const user: Student = {
             AlgorithmAccuracy: 0,
             Courses: [],
             Email: "test@email.com",
             IsAdmin: false,
             NotificationLevel: 0,
             StudentID: 0,
-            StudentName: "Test User"
-        }
+            StudentName: "Test User",
+        };
         TestAdminRoute.createUser(req, res, user );
         expect(TestAdminRoute).toBeInstanceOf(AdminRoute);
     });

@@ -16,7 +16,7 @@ export class AdminRoute extends BaseRoute {
         });
 
         router.post("/createUser", (req: Request, res: Response, next: NextFunction) => {
-            const user : Student = {
+            const user: IStudent = {
                 AlgorithmAccuracy: 0,
                 Courses: [],
                 Email: req.body.email,
@@ -29,7 +29,7 @@ export class AdminRoute extends BaseRoute {
         });
 
     }
-    public async Admin(req: Request,res: Response, id: number, OpError?: string) {
+    public async Admin(req: Request, res: Response, id: number, OpError?: string) {
         const session = new SessionController();
         this.title = "Admin";
         session.RequestUsers()
@@ -71,11 +71,11 @@ export class AdminRoute extends BaseRoute {
     }
 
     // Poseted to create a new user in db with name, email, and IsAdmin
-    public async createUser(req: Request, res: Response, user: Student){//name: string, email: string, isAdmin: boolean, thisID: number) {
+    public async createUser(req: Request, res: Response, user: IStudent) {// name: string, email: string, isAdmin: boolean, thisID: number) {
         // Check if Admin user radio was checked (now handled by front-end)
         const adminCtrl = new AdminController();
         this.title = "CreateUser";
-        adminCtrl.CreateUser(user)//String(name), String(email), Boolean(isAdmin))
+        adminCtrl.CreateUser(user)// String(name), String(email), Boolean(isAdmin))
         .then((resp) => {
             // If new user creation failed, reload page with message
             if (resp.insertedCount === 0) {

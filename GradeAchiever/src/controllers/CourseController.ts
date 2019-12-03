@@ -102,15 +102,15 @@ export class CourseController {
             return -1;
         }
     }
-    public async EditGradableItem(g: GradableItem){//gradableItemID: number, name: string, dueDate: Date, hours: number, grade: number) {
+    public async EditGradableItem(g: IGradableItem) {// gradableItemID: number, name: string, dueDate: Date, hours: number, grade: number) {
         try {
             g.GradableItemID = Number(g.GradableItemID);
             await this.gradableItemController.EditDueDate(g.GradableItemID, g.DueDate);
             await this.gradableItemController.EditItemGrade(g.GradableItemID, g.CurrentGrade);
             await this.gradableItemController.EditItemName(g.GradableItemID, g.GradableItemName);
             await this.gradableItemController.EditStudyTime(g.GradableItemID, g.StudiedTime);
-            await this.gradableItemController.EditGradableItemWeight(g.GradableItemID,g.Weight);
-        } catch(error){
+            await this.gradableItemController.EditGradableItemWeight(g.GradableItemID, g.Weight);
+        } catch (error) {
             console.log(error);
             return [];
         }

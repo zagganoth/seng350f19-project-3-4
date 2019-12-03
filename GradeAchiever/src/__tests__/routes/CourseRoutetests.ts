@@ -24,7 +24,7 @@ describe("Course Routing Tests", () => {
 	});
 
 	   it("Creates a new gradable item", async () => {
-        req.body = <any>{};
+        req.body = ({} as any);
         req.body.courseID = 1;
         req.body.name = "Test User";
         req.body.dueDate = "2019-12-02";

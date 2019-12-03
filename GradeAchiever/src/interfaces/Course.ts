@@ -1,4 +1,4 @@
-interface Course {
+interface ICourse {
  CourseID: number;
  StudentID: number;
  CourseName: string;

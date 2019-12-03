@@ -21,15 +21,15 @@ describe("Session Controller Tests", () => {
     });
 
     it("Creates a new admin user", async () => {
-        let user: Student = {
+        const user: Student = {
             AlgorithmAccuracy: 0,
             Courses: [],
             Email: "test@email.com",
             IsAdmin: true,
             NotificationLevel: 0,
             StudentID: 0,
-            StudentName: "Test User"
-        }
+            StudentName: "Test User",
+        };
         return controller.CreateUser(user)
         .then((returnVal: any) => {
             expect(returnVal.insertedCount).toEqual(1);

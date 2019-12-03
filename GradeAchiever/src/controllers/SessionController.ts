@@ -42,9 +42,11 @@ export class SessionController {
      */
     public async CreateUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
         let newID: any = this.adminModel.GetNewID();
-        if(newID[0] !== undefined)
+        if (newID[0] !== undefined) {
             newID = Number(newID[0].StudentID) + 1;
-        else newID = 1;
+        } else {
+            newID = 1;
+        }
         const newuser: object = {
             StudentID: newID,
             StudentName: name,

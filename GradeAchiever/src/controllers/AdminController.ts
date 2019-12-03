@@ -15,11 +15,13 @@ export class AdminController {
     }
 
     // Creates a new user
-    public async CreateUser(user:Student) {
+    public async CreateUser(user: IStudent) {
         let newID: any = await this.adminModel.GetNewID();
-        if(newID !== undefined)
+        if (newID !== undefined) {
             newID = Number(newID[0].StudentID) + 1;
-        else newID = 1;
+        } else {
+            newID = 1;
+        }
         const newuser: object = {
             StudentID: newID,
             StudentName: user.StudentName,

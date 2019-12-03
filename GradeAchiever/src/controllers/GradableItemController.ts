@@ -9,7 +9,7 @@ export class GradableItemController {
     /*Gets gradable item details by  */
     public async RequestGradableItem(gradableItemID: number) {
         return this.gradableItemModel.GetGradableItemDetails(gradableItemID)
-        .catch ((error) =>{
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -17,7 +17,7 @@ export class GradableItemController {
 
     /*Creates gradable item*/
     public async CreateItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number) {
-        return this.gradableItemModel.CreateItem(courseID, name, duedate, weight, gItemAccuracy)
+        return this.gradableItemModel.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
             /*
         .catch ((error)=> {
             console.log(error);
@@ -31,38 +31,37 @@ export class GradableItemController {
     */
     public async EditStudyTime(id: number, hours: number) {
         return this.gradableItemModel.AddStudyTime(id, hours)
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
     public async EditDueDate(id: number, dueDate: Date) {
         return this.gradableItemModel.EditDueDate(id, dueDate.toString())
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
     public async EditItemGrade(id: number, grade: number) {
         return this.gradableItemModel.EditGradableItemGrade(id, grade)
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
-    public async EditGradableItemWeight(id: number, weight: number)
-    {
-        return this.gradableItemModel.EditGradableItemWeight(id,weight)
-        .catch((error)=>{
+    public async EditGradableItemWeight(id: number, weight: number) {
+        return this.gradableItemModel.EditGradableItemWeight(id, weight)
+        .catch((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
     public async EditItemName(id: number, name: string) {
         return this.gradableItemModel.EditGradableItemName(id, name)
-        .catch ((error) =>{
+        .catch ((error) => {
             console.log(error);
             return [];
         });
@@ -83,28 +82,28 @@ export class GradableItemController {
     /* Edits gradable item's name*/
     public async editGradableItemName(gradableItemID: number, newName: string) {
         return this.gradableItemModel.EditGradableItemName(Number(gradableItemID), String(newName))
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
     /* Adds study time to a gradable item*/
     public async LogStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
         const totalTime: number = Number(prevtime) + Number(newtime);
         return this.gradableItemModel.AddStudyTime(Number(gradableItemID), totalTime)
-        .catch ((error) =>{
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
     public async deleteGradableItem(gradableItemID: number) {
         return this.gradableItemModel.DeleteGradableItem(gradableItemID)
-        .catch ((error) =>{
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
 }

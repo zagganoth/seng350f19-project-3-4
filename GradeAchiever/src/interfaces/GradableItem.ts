@@ -1,4 +1,4 @@
-interface GradableItem{
+interface IGradableItem {
     GradableItemID: number;
     CourseID: number;
     GradableItemName: string;
