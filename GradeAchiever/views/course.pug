@@ -10,6 +10,7 @@ block content
       form(name='addGradableItemForm',action='/newGradableItem',method='post')
           input(type='hidden',name='courseID',value=courseDetails.CourseID)
           input(type='hidden',name='studentID',value=thisID)
+          input(type='hidden',name='thisID',value=thisID)
           table#newgradableitem
             tr#row1
               th Name
@@ -70,6 +71,9 @@ block content
                             input(type='hidden',name='id',value=gradableItem.GradableItemID)
                             input(type='hidden',name='course',value=gradableItem.CourseID)
                             input(type='hidden',name='user',value=thisID)
+                            input(type='hidden',name='pagename',value='course')
+                            input(type='hidden',name='courseID',value=gradableItem.CourseID)
+                            input(type='hidden',name='thisID',value=thisID)
                             button(type='submit',style='width:100%;height:100%') delete
                 tr(style='display:none',id=gradableItem.GradableItemID + "_edit")
                   td(colspan=3)

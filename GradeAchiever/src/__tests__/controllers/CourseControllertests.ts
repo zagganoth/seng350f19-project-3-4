@@ -32,7 +32,7 @@ describe("Course Controller Tests", () => {
     it("Edits a course grade goal", async () => {
         const courseID = 1;
         const newGoal = 93;
-        return controller.editCourseGradeGoal(req, res, next, courseID, newGoal)
+        return controller.editCourseGradeGoal(courseID, newGoal)
         .then((resp: any) => {
             expect(resp.matchedCount).toEqual(1);
         });
@@ -41,7 +41,7 @@ describe("Course Controller Tests", () => {
     it("Edits a course grade goal that does not exist", async () => {
         const courseID = 0;
         const newGoal = 93;
-        return controller.editCourseGradeGoal(req, res, next, courseID, newGoal)
+        return controller.editCourseGradeGoal(courseID, newGoal)
         .then((resp: any) => {
             expect(resp.matchedCount).toEqual(0);
         });

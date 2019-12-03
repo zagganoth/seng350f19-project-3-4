@@ -65,7 +65,7 @@ export class CourseController {
                 const itemDetails = await this.gradableItemController.RequestGradableItem(itemID);
                 returnVal.push(itemDetails);
             }
-            return returnVal ;
+            return returnVal;
         } else {
             console.log("No Gradable items found for course.");
             return [];
@@ -73,13 +73,13 @@ export class CourseController {
     }
 
     /* Edits course grade goal*/
-    public async editCourseGradeGoal(req: Request, res: Response, next: NextFunction, courseID: number, newGoal: number) {
-        return this.courseModel.EditGradeGoal(Number(courseID), Number(newGoal));
 
+    public async editCourseGradeGoal(courseID: number, newGoal: number) {
+        return this.courseModel.EditGradeGoal(Number(courseID), Number(newGoal));
     }
 
     /* Edits course's perceived difficulty*/
-    public async editDifficulty(req: Request, res: Response, next: NextFunction, courseID: number, newDiff: number) {
+    public async editDifficulty(courseID: number, newDiff: number) {
         return this.courseModel.EditPercievedDifficulty(Number(courseID), Number(newDiff));
     }
 
@@ -102,25 +102,18 @@ export class CourseController {
             return -1;
         }
     }
-    public async EditGradableItem(gradableItemID: number, name: string, dueDate: Date, hours: number, grade: number) {
+    public async EditGradableItem(g: IGradableItem) {// gradableItemID: number, name: string, dueDate: Date, hours: number, grade: number) {
         try {
-            await this.gradableItemController.EditDueDate(gradableItemID, dueDate);
-            await this.gradableItemController.EditItemGrade(gradableItemID, grade);
-            await this.gradableItemController.EditItemName(gradableItemID, name);
-            await this.gradableItemController.EditStudyTime(gradableItemID, hours);
+            g.GradableItemID = Number(g.GradableItemID);
+            await this.gradableItemController.EditDueDate(g.GradableItemID, g.DueDate);
+            await this.gradableItemController.EditItemGrade(g.GradableItemID, g.CurrentGrade);
+            await this.gradableItemController.EditItemName(g.GradableItemID, g.GradableItemName);
+            await this.gradableItemController.EditStudyTime(g.GradableItemID, g.StudiedTime);
+            await this.gradableItemController.EditGradableItemWeight(g.GradableItemID, g.Weight);
         } catch (error) {
             console.log(error);
             return [];
         }
-
-        // this.gradableItemController.EditGradableItem(gradableItemID, name, duedate, hours, grade)
-        // .then((details) => {
-        //     return true;
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        //     return false;
-        // });
     }
     /* Adds study time to a gradable item */
 
