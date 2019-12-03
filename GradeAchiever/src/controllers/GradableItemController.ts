@@ -1,6 +1,6 @@
+import { Algorithm } from "../algorithm/Algorithm";
+import { CourseModel } from "../models/CourseModel";
 import { GradableItemModel} from "../models/GradableItemModel";
-import { CourseModel }      from "../models/CourseModel";
-import { Algorithm }        from "../algorithm/Algorithm";
 
 export class GradableItemController {
     constructor() {
@@ -52,58 +52,57 @@ export class GradableItemController {
           const algorithm = new Algorithm();
           const itemRatio = algorithm.item_completed_calculation(gradeGoal, hoursSpent, hoursRecommended, grade);
 
-        try {
-          await gradableItemModel.AddGItemAccuracy(Number(id), Number(itemRatio));
-        } catch (error) {
-            console.log(error);
-            return false;
-        }
-        const gradableItems = gradeGoalCourse.GradableItems;
-        let i = 0;
-        let itemRatios = [];
-        let percentageWorth = [];
-        let percentageAchieved = [];
-        for (let val of gradableItems) {
+          try {
+            await gradableItemModel.AddGItemAccuracy(Number(id), Number(itemRatio));
+          } catch (error) {
+              console.log(error);
+              return false;
+            }
+          const gradableItems = gradeGoalCourse.GradableItems;
+          let i = 0;
+          let itemRatios = [];
+          let percentageWorth = [];
+          let percentageAchieved = [];
+          for (let val of gradableItems) {
             gradableItem = await gradableItemModel.GetGradableItemDetails(val);
             itemRatios[i] = gradableItem.GItemAccuracy;
             percentageWorth[i] = gradableItem.Weight;
             percentageAchieved[i] = gradableItem.CurrentGrade;
-        }
-        const courseCalResults = algorithm.course_calculation(itemRatios, percentageWorth, percentageAchieved, gradeGoal)
-        const courseRatio = courseCalResults[0];
-        const percentageDone = courseCalResults[1];
-        const newCourseGoal = courseCalResults[2];
-        const courseGrade = courseCalResults[3];
-        try {
-          await courseModel.EditCurrentGrade(Number(courseID), Number( courseGrade ));
-          await courseModel.EditGradeNeeded(Number(courseID), Number( newCourseGoal ));
-          await courseModel.EditPercentageDone(Number(courseID), Number( percentageDone ));
-          await courseModel.EditCourseRatio(Number(courseID), Number( courseRatio ));
-        } catch (error) {
+          }
+          const courseCalResults = algorithm.course_calculation(itemRatios, percentageWorth, percentageAchieved, gradeGoal);
+          const courseRatio = courseCalResults[0];
+          const percentageDone = courseCalResults[1];
+          const newCourseGoal = courseCalResults[2];
+          const courseGrade = courseCalResults[3];
+          try {
+            await courseModel.EditCurrentGrade(Number(courseID), Number( courseGrade ));
+            await courseModel.EditGradeNeeded(Number(courseID), Number( newCourseGoal ));
+            await courseModel.EditPercentageDone(Number(courseID), Number( percentageDone ));
+            await courseModel.EditCourseRatio(Number(courseID), Number( courseRatio ));
+          } catch (error) {
             return false;
-        }
-        i = 0;
-        const difficulty = gradeGoalCourse.PerceivedDifficulty;
-        let weight = 0;
-        let itemHours = 0;
-        let itemID = 0;
-        for (let val of gradableItems) {
-          gradableItem = await gradableItemModel.GetGradableItemDetails(val);
-          weight = gradableItem.Weight;
-          if (weight>0) {
-            itemHours = algorithm.new_item_calculation(courseRatio, percentageDone, difficulty, newCourseGoal, weight);
-            itemID = gradableItem.GradableItemID;
-            try {
-              await gradableItemModel.AddRecommendedTime(Number(itemID), Number(itemHours));
-            }
-            catch (error) {
+          }
+          i = 0;
+          const difficulty = gradeGoalCourse.PerceivedDifficulty;
+          let weight = 0;
+          let itemHours = 0;
+          let itemID = 0;
+          for (let val of gradableItems) {
+            gradableItem = await gradableItemModel.GetGradableItemDetails(val);
+            weight = gradableItem.Weight;
+            if (weight > 0) {
+              itemHours = algorithm.new_item_calculation(courseRatio, percentageDone, difficulty, newCourseGoal, weight);
+              itemID = gradableItem.GradableItemID;
+              try {
+                await gradableItemModel.AddRecommendedTime(Number(itemID), Number(itemHours));
+              } catch (error) {
                 return false;
+              }
             }
           }
         }
-      }
         return true;
-    }
+      }
      /* Edits gradable item's name*/
      public async editGradableItemName(gradableItemID: number, newName: string) {
         const gradableItemModel = new GradableItemModel();

@@ -21,7 +21,7 @@ export class CourseModel extends BaseModel {
     public CurrentGrade!: number;
     public GradeGoal!: number;
     public GradableItems!: number[];
-    public GradeNeeded!: number; //new
+    public GradeNeeded!: number; // new
     public PercentageDone!: number;
     public CourseRatio!: number;
     constructor() {
