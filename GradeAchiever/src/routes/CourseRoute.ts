@@ -100,16 +100,16 @@ export class CourseRoute extends BaseRoute {
         console.log(req.body.courseID);
         console.log(req.body.studentID);
         this.title = "CreateGradableItems";
-        const course : ICourse = {
+        const course: ICourse = {
             CourseID: req.body.courseID,
             CourseName: "",
             CurrentGrade: 0,
             GradableItems: req.body.GradableItems,
             GradeGoal: 0,
             PerceivedDifficulty: 0,
-            StudentID: 0
+            StudentID: 0,
 
-        }
+        };
         this.courseController.createGradableItems(course)
         .then(() => {
             console.log("rendering userhome");
@@ -152,7 +152,7 @@ export class CourseRoute extends BaseRoute {
      /*
      * Edits a courses name
      */
-    public async editName(res: Response,courseID: number, newName: string) {
+    public async editName(res: Response, courseID: number, newName: string) {
         this.title = "EditDifficulty";
         this.courseController.editCourseName(courseID, newName)
         .then((resp) => {
@@ -167,7 +167,7 @@ export class CourseRoute extends BaseRoute {
       /*
      * Edits a courses name
      */
-    public async logGradableItemTime(res: Response,gradableItemID: number,  prevtime: number, newtime: number) {
+    public async logGradableItemTime(res: Response, gradableItemID: number,  prevtime: number, newtime: number) {
         this.title = "AddStudyTime";
         this.courseController.addStudyTime(gradableItemID, prevtime, newtime)
         .then((resp) => {

@@ -26,7 +26,7 @@ export class CourseController {
         const courseId = (await this.courseModel.GetNewID()) as number;
         const gradableItems = [];
         for (const gradableItem of courseDetails.GradableItems) {
-            let g : IGradableItem = {
+            const g: IGradableItem = {
                 CourseID: courseId,
                 CurrentGrade: 0,
                 DueDate: gradableItem.duedate,
@@ -34,9 +34,9 @@ export class CourseController {
                 GradableItemID: 0,
                 GradableItemName: gradableItem.name,
                 StudiedTime: 0,
-                Weight: gradableItem.weight
+                Weight: gradableItem.weight,
 
-            }
+            };
             gradableItems.push(await this.CreateGradableItem(g));
         }
         await this.courseModel.CreateNewCourse(courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
@@ -55,7 +55,7 @@ export class CourseController {
         const gradableItems = [];
         for (const gradableItem of courseDetails.GradableItems) {
             try {
-                let g : IGradableItem = {
+                const g: IGradableItem = {
                     CourseID: courseID,
                     CurrentGrade: 0,
                     DueDate: gradableItem.duedate,
@@ -63,9 +63,9 @@ export class CourseController {
                     GradableItemID: 0,
                     GradableItemName: gradableItem.name,
                     StudiedTime: 0,
-                    Weight: gradableItem.weight
+                    Weight: gradableItem.weight,
 
-                }
+                };
                 gradableItems.push(await this.CreateGradableItem(g));
             } catch (error) {
                 console.log(error);
@@ -111,9 +111,9 @@ export class CourseController {
     }
 
     /* Gets course Details by course ID */
-    public async CreateGradableItem(g: IGradableItem){//courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
+    public async CreateGradableItem(g: IGradableItem) {// courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
         try {
-            const returnVal: any = await this.gradableItemController.CreateItem(g.CourseID,g.GradableItemName,String(g.DueDate) ,g.Weight,g.GItemAccuracy);
+            const returnVal: any = await this.gradableItemController.CreateItem(g.CourseID, g.GradableItemName, String(g.DueDate) , g.Weight, g.GItemAccuracy);
             // console.log("course return:");
             // console.log(returnVal);
 

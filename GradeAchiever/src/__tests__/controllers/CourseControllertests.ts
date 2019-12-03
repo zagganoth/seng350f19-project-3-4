@@ -68,9 +68,9 @@ describe("Course Controller Tests", () => {
             GradableItemID: 0,
             GradableItemName: "Assignment 5",
             StudiedTime: 0,
-            Weight: 10
+            Weight: 10,
 
-        }
+        };
         return controller.CreateGradableItem(g)
         .then((returnVal: any) => {
             // Changed returnVal to be the id of the new gradable item - returns -1 if failed, >0 if passed
@@ -91,9 +91,9 @@ describe("Course Controller Tests", () => {
             GradableItemID: 0,
             GradableItemName: name,
             StudiedTime: 0,
-            Weight: weight
+            Weight: weight,
 
-        }
+        };
         return controller.CreateGradableItem(g)
         .then((returnVal: any) => {
             expect(returnVal).toEqual( -1);
