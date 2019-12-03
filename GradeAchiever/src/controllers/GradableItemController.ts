@@ -1,11 +1,10 @@
-import { Algorithm } from "../algorithm/Algorithm";
+import { course_calculation_and_update, item_completed_calculation_and_update, new_item_calculation_and_update } from "../algorithm/Algorithm";
 import { CourseModel } from "../models/CourseModel";
 import { GradableItemModel } from "../models/GradableItemModel";
 
 export class GradableItemController {
 
     private gradableItemModel = new GradableItemModel();
-    private algorithm = new Algorithm();
 
     constructor() {
 
@@ -24,6 +23,8 @@ export class GradableItemController {
     /*Creates gradable item*/
     public async CreateItem(gradableItem: IGradableItem) {
         try {
+            gradableItem.GradableItemID = await this.gradableItemModel.GetNewID();
+            await new_item_calculation_and_update(gradableItem.GradableItemID);
             return this.gradableItemModel.CreateItem(gradableItem);
         } catch (error) {
             console.log(error);
@@ -41,9 +42,9 @@ export class GradableItemController {
             const gradeGetter = await this.RequestGradableItem(id);
             const grade = gradeGetter.CurrentGrade;
             if (grade !== 0) {
-                const courseID = await this.algorithm.item_completed_calculation_and_update(id);
-                await this.algorithm.course_calculation_and_update(courseID);
-                await this.algorithm.new_item_calculation_and_update(courseID);
+                const courseID = await item_completed_calculation_and_update(id);
+                await course_calculation_and_update(courseID);
+                await new_item_calculation_and_update(courseID);
             }
             return this.gradableItemModel.AddStudyTime(id, hours);
         } catch (error) {
@@ -65,9 +66,9 @@ export class GradableItemController {
         try {
             await this.gradableItemModel.EditGradableItemGrade(id, grade);
             if (grade !== 0) {
-                const courseID = await this.algorithm.item_completed_calculation_and_update(id);
-                await this.algorithm.course_calculation_and_update(courseID);
-                await this.algorithm.new_item_calculation_and_update(courseID);
+                const courseID = await item_completed_calculation_and_update(id);
+                await course_calculation_and_update(courseID);
+                await new_item_calculation_and_update(courseID);
             }
             return this.gradableItemModel.EditGradableItemGrade(id, grade);
         } catch (error) {
@@ -81,9 +82,9 @@ export class GradableItemController {
             const gradeGetter = await this.RequestGradableItem(id);
             const grade = gradeGetter.CurrentGrade;
             if (grade !== 0) {
-                const courseID = await this.algorithm.item_completed_calculation_and_update(id);
-                this.algorithm.course_calculation_and_update(courseID);
-                await this.algorithm.new_item_calculation_and_update(courseID);
+                const courseID = await item_completed_calculation_and_update(id);
+                await course_calculation_and_update(courseID);
+                await new_item_calculation_and_update(courseID);
             }
             return this.gradableItemModel.EditGradableItemWeight(id, weight);
         } catch (error) {

@@ -1,8 +1,6 @@
-import { Algorithm } from "../algorithm/Algorithm";
 import DbClient = require("../DbClient");
 import { BaseModel } from "./BaseModel";
 export class GradableItemModel extends BaseModel {
-    public algorithm = new Algorithm();
     /*
         Gradable Item Model Fields:
         		○ GradableItemID (auto-generated,auto-increment,int)
@@ -43,8 +41,6 @@ export class GradableItemModel extends BaseModel {
      */
     public async CreateItem(newGradableItem: IGradableItem) {// courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
         try {
-            newGradableItem.GradableItemID = await this.GetNewID();
-            await this.algorithm.new_item_calculation_and_update(newGradableItem.GradableItemID);
             return this.addOne(newGradableItem);
         } catch (error) {
             console.log(error);
