@@ -231,4 +231,8 @@ export class GradableItemController {
 >>>>>>> 6db47c9... Just need someone who understands how the models work
     }
 
+    public async deleteGradableItem(gradableItemID: number){
+        return this.gradableItemModel.DeleteGradableItem(gradableItemID);
+    }
+
 }
