@@ -1,6 +1,6 @@
 import { GradableItemModel} from "../models/GradableItemModel";
 import { CourseModel }      from "../models/CourseModel";
-import { Algorithm }        from "../algorithm/Algorithm"
+import { Algorithm }        from "../algorithm/Algorithm";
 
 export class GradableItemController {
     constructor() {
@@ -41,7 +41,7 @@ export class GradableItemController {
             console.log(error);
             return false;
         }
-        if (grade != 0) {
+        if (grade !== 0) {
           let gradableItem = await gradableItemModel.GetGradableItemDetails(id);
           const courseID: any = gradableItem.CourseID;
           const hoursRecommended = gradableItem.RecommendedTime;
@@ -79,8 +79,7 @@ export class GradableItemController {
           await courseModel.EditGradeNeeded(Number(courseID), Number( newCourseGoal ));
           await courseModel.EditPercentageDone(Number(courseID), Number( percentageDone ));
           await courseModel.EditCourseRatio(Number(courseID), Number( courseRatio ));
-        }
-        catch (error) {
+        } catch (error) {
             return false;
         }
         i = 0;
