@@ -44,7 +44,14 @@ export class GradableItemModel extends BaseModel {
             DueDate: dueDate,
             Weight: weight,
             GItemAccuracy: gItemAccuracy,
+<<<<<<< HEAD
         };*/
+=======
+            CurrentGrade: 0,
+            StudiedTime: 0,
+            RecommendedTime: weight*50,
+        };
+>>>>>>> 6db47c9... Just need someone who understands how the models work
 
         console.log("Gradable Item Model - adding an item");
         console.log(newGradableItem);

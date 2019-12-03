@@ -82,8 +82,13 @@ This is used to calculated how much time the user needs to spend on their projec
       percentageDone += percentageWorth[i];
       coursePercent += percentageWorth[i] * percentageAchieved[i];
     }
+<<<<<<< HEAD
     const newCourseGoal = ((courseGoal - coursePercent * percentageDone / 100) * courseGoal) / (100 - percentageDone);
     const coursePercentRetVal = coursePercent / percentageDone;
+=======
+    const newCourseGoal = ((courseGoal - coursePercent * percentageDone) * courseGoal) / (1 - percentageDone);
+    const coursePercentRetVal = coursePercent/percentageDone;
+>>>>>>> 6db47c9... Just need someone who understands how the models work
     const retVal = [courseRatio, percentageDone, newCourseGoal, coursePercentRetVal];
     return retVal;
   }
@@ -134,6 +139,7 @@ This is used to calculated how much time the user needs to spend on their projec
     } else {
       courseDifficulty = 5;
     }
+<<<<<<< HEAD
     if(courseGoal < .25) {
       courseGoal = .25;
     }
@@ -143,6 +149,11 @@ This is used to calculated how much time the user needs to spend on their projec
     let itemHours = itemPercentage * courseGoal * courseDifficulty * 50;
     if (percentageDone > 0 && courseRatio > 1.001) {
       itemHours = (itemHours * (100 - percentageDone) + itemHours * (percentageDone * courseRatio)) / 100;
+=======
+    let itemHours = itemPercentage * courseGoal * courseDifficulty * 50;
+    if (percentageDone > 0 && courseRatio > 1.001) {
+      itemHours = itemHours * (100 - percentageDone) + itemHours * (percentageDone * courseRatio);
+>>>>>>> 6db47c9... Just need someone who understands how the models work
     }
     return itemHours;
   }
