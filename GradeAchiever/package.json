@@ -50,6 +50,5 @@
     "testPathIgnorePatterns": [
       "./src/__tests__/"
     ]
-
   }
 }
