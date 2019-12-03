@@ -1,10 +1,11 @@
 import { Algorithm } from "../algorithm/Algorithm";
 import { CourseModel } from "../models/CourseModel";
-import { GradableItemModel} from "../models/GradableItemModel";
+import { GradableItemModel } from "../models/GradableItemModel";
 
 export class GradableItemController {
 
     private gradableItemModel = new GradableItemModel();
+    private algorithm = new Algorithm();
 
     constructor() {
 
@@ -12,10 +13,8 @@ export class GradableItemController {
 
     /*Gets gradable item details by  */
     public async RequestGradableItem(gradableItemID: number) {
-        const gradableItemModel = new GradableItemModel();
         try {
-            const returnVal = await gradableItemModel.GetGradableItemDetails(gradableItemID);
-            return returnVal;
+            return this.gradableItemModel.GetGradableItemDetails(gradableItemID);
         } catch (error) {
             console.log(error);
             return [];
@@ -38,17 +37,15 @@ export class GradableItemController {
     */
     public async EditStudyTime(id: number, hours: number) {
         try {
-            let retVal = this.gradableItemModel.AddStudyTime(id, hours);
-            const gradeGetter = this.gradableItemModel.RequestGradableItem(id);
+            await this.gradableItemModel.AddStudyTime(id, hours);
+            const gradeGetter = await this.RequestGradableItem(id);
             const grade = gradeGetter.CurrentGrade;
             if (grade !== 0) {
-              const algorithm = new Algorithm();
-              const courseID = algorithm.item_completed_calculation_and_update(id);
-              algorithm.course_calculation_and_update(courseID);
-              algorithm.new_item_calculation_and_update(courseID);
+                const courseID = await this.algorithm.item_completed_calculation_and_update(id);
+                await this.algorithm.course_calculation_and_update(courseID);
+                await this.algorithm.new_item_calculation_and_update(courseID);
             }
-              retVal = this.gradableItemModel.AddStudyTime(id, hours);
-              return retVal;
+            return this.gradableItemModel.AddStudyTime(id, hours);
         } catch (error) {
             console.log(error);
             return [];
@@ -66,15 +63,13 @@ export class GradableItemController {
 
     public async EditItemGrade(id: number, grade: number) {
         try {
-            let retVal = this.gradableItemModel.EditGradableItemGrade(id, grade);
+            await this.gradableItemModel.EditGradableItemGrade(id, grade);
             if (grade !== 0) {
-              const algorithm = new Algorithm();
-              const courseID = algorithm.item_completed_calculation_and_update(id);
-              algorithm.course_calculation_and_update(courseID);
-              algorithm.new_item_calculation_and_update(courseID);
+                const courseID = await this.algorithm.item_completed_calculation_and_update(id);
+                await this.algorithm.course_calculation_and_update(courseID);
+                await this.algorithm.new_item_calculation_and_update(courseID);
             }
-            retVal = retVal = this.gradableItemModel.EditGradableItemGrade(id, grade);
-            return retVal;
+            return this.gradableItemModel.EditGradableItemGrade(id, grade);
         } catch (error) {
             console.log(error);
             return [];
@@ -82,23 +77,19 @@ export class GradableItemController {
     }
     public async EditGradableItemWeight(id: number, weight: number) {
         try {
-          let retVal = this.gradableItemModel.EditGradableItemWeight(id, weight);
-          const gradeGetter = this.gradableItemModel.RequestGradableItem(id);
-          const grade = gradeGetter.CurrentGrade;
-          if (grade !== 0) {
-            const algorithm = new Algorithm();
-            const courseID = algorithm.item_completed_calculation_and_update(id);
-            algorithm.course_calculation_and_update(courseID);
-            algorithm.new_item_calculation_and_update(courseID);
-          }
-            retVal = this.gradableItemModel.EditGradableItemWeight(id, weight);
-            return retVal;
+            await this.gradableItemModel.EditGradableItemWeight(id, weight);
+            const gradeGetter = await this.RequestGradableItem(id);
+            const grade = gradeGetter.CurrentGrade;
+            if (grade !== 0) {
+                const courseID = await this.algorithm.item_completed_calculation_and_update(id);
+                this.algorithm.course_calculation_and_update(courseID);
+                await this.algorithm.new_item_calculation_and_update(courseID);
+            }
+            return this.gradableItemModel.EditGradableItemWeight(id, weight);
         } catch (error) {
             console.log(error);
             return false;
         }
-      }
-      return true;
     }
 
     public async EditItemName(id: number, name: string) {
@@ -108,21 +99,15 @@ export class GradableItemController {
             console.log(error);
             return [];
 
-          }
+        }
     }
-     /* Edits gradable item's name*/
-     public async EditGradableItemName(gradableItemID: number, newName: string) {
-        const gradableItemModel = new GradableItemModel();
-        const returnVal = await gradableItemModel.EditGradableItemName(Number(gradableItemID), String(newName));
-        return returnVal;
+    /* Edits gradable item's name*/
+    public async EditGradableItemName(gradableItemID: number, newName: string) {
+        return this.gradableItemModel.EditGradableItemName(Number(gradableItemID), String(newName));
     }
-
-
-        // return true;
 
     /* Adds study time to a gradable item*/
     public async LogStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
-        const gradableItemModel = new GradableItemModel();
         const totalTime: number = Number(prevtime) + Number(newtime);
         return this.gradableItemModel.AddStudyTime(Number(gradableItemID), totalTime);
     }

@@ -1,29 +1,33 @@
+import { CourseController } from "../controllers/CourseController";
+import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel } from "../models/CourseModel";
-import { GradableItemModel} from "../models/GradableItemModel";
+import { GradableItemModel } from "../models/GradableItemModel";
 
 export class Algorithm {
-/*
-This function gives a value for the item, used to calculate how well the user is doing in their current course.
-*/
+  // courseController = new CourseController()
+  // gradableItemController = new GradableItemController();
+  public gradableItemModel = new GradableItemModel();
+  public courseModel = new CourseModel();
 
-  public item_completed_calculation_and_update(id: number) {
+  /*
+  This function gives a value for the item, used to calculate how well the user is doing in their current course.
+  */
+
+  public async item_completed_calculation_and_update(id: number) {
     try {
-    const gradableItem = await gradableItemModel.GetGradableItemDetails(id);
-    const courseID: any = gradableItem.CourseID;
-    const grade = gradableItem.CurrentGrade;
-    const hoursRecommended = gradableItem.RecommendedTime;
-    const hoursSpent = gradableItem.StudiedTime;
-    const courseModel = new CourseModel();
-    const gradeGoalCourse = await courseModel.GetCourseDetails( courseID );
-    const gradeGoal = gradeGoalCourse.GradeGoal;
-    const algorithm = new Algorithm();
-    const itemRatio = algorithm.item_completed_calculation(gradeGoal, hoursSpent, hoursRecommended, grade);
-    await gradableItemModel.AddGItemAccuracy(Number(id), Number(itemRatio));
+      const gradableItemDetails = await this.gradableItemModel.GetGradableItemDetails(id);
+      const courseID = gradableItemDetails.CourseID;
+      const grade = gradableItemDetails.CurrentGrade;
+      const hoursRecommended = gradableItemDetails.RecommendedTime;
+      const hoursSpent = gradableItemDetails.StudiedTime;
+      const gradeGoal = (await this.courseModel.GetCourseDetails(courseID)).GradeGoal;
+      const itemRatio = this.item_completed_calculation(gradeGoal, hoursSpent, hoursRecommended, grade);
+      await this.gradableItemModel.AddGItemAccuracy(Number(id), Number(itemRatio));
+      return courseID;
     } catch (error) {
-        console.log(error);
-        return false;
-      }
-    return courseID;
+      console.log(error);
+      return false;
+    }
   }
 
   public item_completed_calculation(percentageReccomended: number, hoursSpent: number, hoursRecommended: number, percentageAchieved: number) {
@@ -33,47 +37,46 @@ This function gives a value for the item, used to calculate how well the user is
     return itemRatio;
   }
 
-/*
-This function calculates how well the user is doing in the course in multiple ways.
-This is used to calculated how much time the user needs to spend on their project.
-*/
-  public course_calculation_and_update(courseID: number) {
-    const algorithm = new Algorithm();
-    const courseModel = await new CourseModel();
-    const course = courseModel.GetCourseDetails(courseID);
-    const gradableItems = course.GradableItems;
-    let i = 0;
-    const itemRatios = [];
-    const percentageWorth = [];
-    const percentageAchieved = [];
-    for (const val of gradableItems) {
-      gradableItem = await gradableItemModel.GetGradableItemDetails(val);
-      if (gradableItem.CurrentGrade !== 0) {
-        itemRatios[i] = gradableItem.GItemAccuracy;
-        percentageWorth[i] = gradableItem.Weight;
-        percentageAchieved[i] = gradableItem.CurrentGrade;
-        i++;
-      }
-    }
-    const gradeGoal = course.GradeGoal;
-    const courseCalResults = algorithm.course_calculation(itemRatios, percentageWorth, percentageAchieved, gradeGoal);
-    const courseRatio = courseCalResults[0];
-    const percentageDone = courseCalResults[1];
-    const newCourseGoal = courseCalResults[2];
-    const courseGrade = courseCalResults[3];
+  /*
+  This function calculates how well the user is doing in the course in multiple ways.
+  This is used to calculated how much time the user needs to spend on their project.
+  */
+  public async course_calculation_and_update(courseID: number) {
     try {
-      await courseModel.EditCurrentGrade(Number(courseID), Number( courseGrade ));
-      await courseModel.EditGradeNeeded(Number(courseID), Number( newCourseGoal ));
-      await courseModel.EditPercentageDone(Number(courseID), Number( percentageDone ));
-      await courseModel.EditCourseRatio(Number(courseID), Number( courseRatio ));
+      const course = await this.courseModel.GetCourseDetails(courseID);
+      const gradableItems = course.GradableItems;
+      let i = 0;
+      const itemRatios = [];
+      const percentageWorth = [];
+      const percentageAchieved = [];
+      for (const val of gradableItems) {
+        const gradableItem = await this.gradableItemModel.GetGradableItemDetails(val);
+        if (gradableItem.CurrentGrade !== 0) {
+          itemRatios[i] = gradableItem.GItemAccuracy;
+          percentageWorth[i] = gradableItem.Weight;
+          percentageAchieved[i] = gradableItem.CurrentGrade;
+          i++;
+        }
+      }
+      const gradeGoal = course.GradeGoal;
+      const courseCalResults = this.course_calculation(itemRatios, percentageWorth, percentageAchieved, gradeGoal);
+      const courseRatio = courseCalResults[0];
+      const percentageDone = courseCalResults[1];
+      const newCourseGoal = courseCalResults[2];
+      const courseGrade = courseCalResults[3];
+      await this.courseModel.EditCurrentGrade(Number(courseID), Number(courseGrade));
+      await this.courseModel.EditGradeNeeded(Number(courseID), Number(newCourseGoal));
+      await this.courseModel.EditPercentageDone(Number(courseID), Number(percentageDone));
+      await this.courseModel.EditCourseRatio(Number(courseID), Number(courseRatio));
       return true;
     } catch (error) {
+      console.log(error);
       return false;
     }
   }
 
   public course_calculation(itemRatio: number[], percentageWorth: number[], percentageAchieved: number[], courseGoal: number) {
-    let  courseRatio = 0;
+    let courseRatio = 0;
     let percentageDone = 0;
     let coursePercent = 0;
     for (let i = 0; i < itemRatio.length; i++) {
@@ -87,53 +90,49 @@ This is used to calculated how much time the user needs to spend on their projec
     return retVal;
   }
 
-  public new_item_calculation_and_update(courseID) {
-    const algorithm = new Algorithm();
-    const gradableItemModel = await new GradableItemModel();
-    const courseModel = await new CourseModel();
-    const course = courseModel.GetCourseDetails(courseID);
-    const courseRatio = course.CourseRatio;
-    const percentageDone = course.PercentageDone;
-    const difficulty = course.PerceivedDifficulty;
-    const newCourseGoal = course.GradeNeeded;
-    const gradableItems = course.GradableItems;
-    i = 0;
-    const difficulty = course.PerceivedDifficulty;
-    let weight = 0;
-    let itemHours = 0;
-    let itemID = 0;
-    for (const val of gradableItems) {
-      gradableItem = await gradableItemModel.GetGradableItemDetails(val);
-      weight = gradableItem.Weight;
-      if (weight > 0) {
-        itemHours = algorithm.new_item_calculation(courseRatio, percentageDone, difficulty, newCourseGoal, weight);
-        itemID = gradableItem.GradableItemID;
-        try {
-          await gradableItemModel.AddRecommendedTime(Number(itemID), Number(itemHours));
-        } catch (error) {
-          return false;
+  public async new_item_calculation_and_update(courseID: number) {
+    try {
+      const course = await this.courseModel.GetCourseDetails(courseID);
+      const courseRatio = course.CourseRatio;
+      const percentageDone = course.PercentageDone;
+      const difficulty = course.PerceivedDifficulty;
+      const newCourseGoal = course.GradeNeeded;
+      const gradableItems = course.GradableItems;
+      const i = 0;
+      let weight = 0;
+      let itemHours = 0;
+      let itemID = 0;
+      for (const val of gradableItems) {
+        const gradableItem = await this.gradableItemModel.GetGradableItemDetails(val);
+        weight = gradableItem.Weight;
+        if (weight > 0) {
+          itemHours = this.new_item_calculation(courseRatio, percentageDone, difficulty, newCourseGoal, weight);
+          itemID = gradableItem.GradableItemID;
+          await this.gradableItemModel.AddRecommendedTime(Number(itemID), Number(itemHours));
         }
       }
+    } catch (error) {
+      console.log(error);
+      return false;
     }
-    return true
   }
 
-  public new_item_calculation(courseRatio: number, percentageDone: number, inputCourseDifficulty: number, courseGoal: number, itemPercentage: number ) {
+  public new_item_calculation(courseRatio: number, percentageDone: number, inputCourseDifficulty: number, courseGoal: number, itemPercentage: number) {
     let courseDifficulty = 1;
     if (inputCourseDifficulty === 1) {
       courseDifficulty = .5;
     } else
-    if (inputCourseDifficulty === 2) {
-      courseDifficulty = .75;
-    } else
-    if (inputCourseDifficulty === 3) {
-      courseDifficulty = 1;
-    } else
-    if (inputCourseDifficulty === 4) {
-      courseDifficulty = 1.25;
-    } else {
-      courseDifficulty = 5;
-    }
+      if (inputCourseDifficulty === 2) {
+        courseDifficulty = .75;
+      } else
+        if (inputCourseDifficulty === 3) {
+          courseDifficulty = 1;
+        } else
+          if (inputCourseDifficulty === 4) {
+            courseDifficulty = 1.25;
+          } else {
+            courseDifficulty = 5;
+          }
     if (courseGoal < .15) {
       courseGoal = .15;
     }
@@ -142,7 +141,7 @@ This is used to calculated how much time the user needs to spend on their projec
     }
     let itemHours = itemPercentage * courseGoal * courseDifficulty * 50;
     if ((percentageDone > 0 && courseRatio > 1.001)) {
-      itemHours = (itemHours * (100 - percentageDone)/100 + itemHours * (percentageDone * courseRatio)) / 100;
+      itemHours = (itemHours * (100 - percentageDone) / 100 + itemHours * (percentageDone * courseRatio)) / 100;
     }
     return itemHours;
   }

@@ -5,13 +5,13 @@ jest.mock("../../models/CourseModel");
 jest.mock("../../models/GradableItemModel");
 
 describe("Course Controller Tests", () => {
-    let controller: CourseController;
-    const req = {} as Request;
-    const res = {} as Response;
-    const next = {} as NextFunction;
-    beforeEach(() => {
-        controller = new CourseController();
-    });
+    const controller = new CourseController();
+    // const req = {} as Request;
+    // const res = {} as Response;
+    // const next = {} as NextFunction;
+    // beforeEach(() => {
+    //     controller = new CourseController();
+    // });
 
     it("Gets a course by id", async () => {
         const courseID = 1;
@@ -69,7 +69,7 @@ describe("Course Controller Tests", () => {
             GradableItemName: "Assignment 5",
             StudiedTime: 0,
             Weight: 10,
-
+            RecommendedTime: 10,
         };
         return controller.CreateGradableItem(g)
         .then((returnVal: any) => {
@@ -92,7 +92,7 @@ describe("Course Controller Tests", () => {
             GradableItemName: name,
             StudiedTime: 0,
             Weight: weight,
-
+            RecommendedTime: 10,
         };
         return controller.CreateGradableItem(g)
         .then((returnVal: any) => {

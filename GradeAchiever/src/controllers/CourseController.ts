@@ -136,11 +136,13 @@ export class CourseController {
     }
     public async EditGradableItem(g: IGradableItem) {// gradableItemID: number, name: string, dueDate: Date, hours: number, grade: number) {
         try {
-            return this.gradableItemController.EditGradableItem(gradableItemID, name, dueDate, hours, grade);
-            // await this.gradableItemController.EditDueDate(gradableItemID, dueDate);
-            // await this.gradableItemController.EditItemGrade(gradableItemID, grade);
-            // await this.gradableItemController.EditItemName(gradableItemID, name);
-            // await this.gradableItemController.EditStudyTime(gradableItemID, hours);
+            g.GradableItemID = Number(g.GradableItemID);
+            await this.gradableItemController.EditDueDate(g.GradableItemID, g.DueDate);
+            await this.gradableItemController.EditItemGrade(g.GradableItemID, g.CurrentGrade);
+            await this.gradableItemController.EditItemName(g.GradableItemID, g.GradableItemName);
+            await this.gradableItemController.EditStudyTime(g.GradableItemID, g.StudiedTime);
+            await this.gradableItemController.EditGradableItemWeight(g.GradableItemID, g.Weight);
+            return g.GradableItemID;
         } catch (error) {
             console.log(error);
             return [];
