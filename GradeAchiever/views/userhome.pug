@@ -21,11 +21,13 @@ block content
           h3 Calendar        
           table.gradable-items
             tr
+              th Recommended Study Hours
               th Course Name
               th Gradable Item Name
               th Due Date
             each gradableItem in gradableItemDetails
               tr(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
+                td #{gradableItem.RecommendedTime}
                 td #{gradableItem.CourseName}
                 td #{gradableItem.GradableItemName}
                 td #{gradableItem.DueDate}
