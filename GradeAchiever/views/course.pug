@@ -30,7 +30,7 @@ block content
             button.plus#addrow(onclick="addNewRow(\'newgradableitem\')")
           div
             input.submit(type='submit',value='Submit')
-  div.container-fluid
+  div.container-fluid(onload="CourseProgress()")
     div.row
       button#editname(type='button' onclick='editCourseName()')
         h1.course-title#name(title="Edit course name") #{courseDetails.CourseName}
@@ -85,6 +85,8 @@ block content
                       input(type='hidden',name='course',value=gradableItem.CourseID)
                       input(type='hidden',name='user',value=thisID)
                       input(type='hidden',name='pagename',value='course')
+                      input(type='hidden',name='courseID',value=gradableItem.CourseID)
+                      input(type='hidden',name='thisID',value=thisID)
                       input(type='hidden',name='prevHours',value=gradableItem.StudiedTime)
 
                       table.extra
