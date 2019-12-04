@@ -112,7 +112,7 @@ form.createcourse .plus{
 .fixed_header tbody{
   display:block;
   overflow:auto;
-  height:600px;
+  max-height:600px;
   width:100%;
 }
 
