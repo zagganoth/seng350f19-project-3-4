@@ -81,10 +81,12 @@ export function course_calculation(itemRatio: number[], percentageWorth: number[
   let coursePercent = 0;
   let coursePercentRetVal = 0;
   for (let i = 0; i < itemRatio.length; i++) {
-    courseRatio += (Number(percentageWorth[i]) * Number(itemRatio[i])) / 100;
-    percentageDone += Number(percentageWorth[i]);
-    coursePercent += Number(percentageWorth[i]) * Number(percentageAchieved[i]);
-    coursePercentRetVal = Number(percentageAchieved[i]);
+    if(percentageAchieved[i]>1) {
+      courseRatio += (Number(percentageWorth[i]) * Number(itemRatio[i])) / 100;
+      percentageDone += Number(percentageWorth[i]);
+      coursePercent += Number(percentageWorth[i]) * Number(percentageAchieved[i]);
+      coursePercentRetVal = Number(percentageAchieved[i]);
+    }
   }
   const newCourseGoal = ((courseGoal - (coursePercent * percentageDone / 100)) * courseGoal) / (100 - percentageDone);
   const retVal = [courseRatio, percentageDone, newCourseGoal, coursePercentRetVal];
@@ -140,7 +142,7 @@ export function new_item_calculation(courseRatio: number, percentageDone: number
   if (courseGoal > 3) {
     courseGoal = 3;
   }
-  let itemHours = itemPercentage * courseGoal / 100 * courseDifficulty * 50;
+  const itemHours = itemPercentage * courseGoal / 100 * courseDifficulty * 50;
   /*if ((percentageDone > 0 && courseRatio > 1.001)) {
     itemHours = ((itemHours * (100 - percentageDone) / 100) + itemHours * (percentageDone * courseRatio)) / 100;
   }*/

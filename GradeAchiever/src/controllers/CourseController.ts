@@ -35,7 +35,7 @@ export class CourseController {
                 GradableItemName: gradableItem.name,
                 StudiedTime: 0,
                 Weight: gradableItem.weight,
-                RecommendedTime: gradableItem.weight,
+                RecommendedTime: gradableItem.weight / 2,
             };
             gradableItems.push(await this.CreateGradableItem(g));
         }
