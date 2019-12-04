@@ -51,7 +51,7 @@ export async function course_calculation_and_update(courseID: number) {
     const percentageAchieved = [];
     for (const val of gradableItems) {
       const gradableItem = await gradableItemModel.GetGradableItemDetails(val);
-      if (gradableItem.CurrentGrade !== 0) {
+      if (gradableItem.CurrentGrade > 1) {
         itemRatios[i] = gradableItem.GItemAccuracy;
         percentageWorth[i] = gradableItem.Weight;
         percentageAchieved[i] = gradableItem.CurrentGrade;
@@ -140,10 +140,10 @@ export function new_item_calculation(courseRatio: number, percentageDone: number
   if (courseGoal > 3) {
     courseGoal = 3;
   }
-  let itemHours = itemPercentage * courseGoal/100 * courseDifficulty * 50;
-  if ((percentageDone > 0 && courseRatio > 1.001)) {
+  let itemHours = itemPercentage * courseGoal / 100 * courseDifficulty * 50;
+  /*if ((percentageDone > 0 && courseRatio > 1.001)) {
     itemHours = ((itemHours * (100 - percentageDone) / 100) + itemHours * (percentageDone * courseRatio)) / 100;
-  }
+  }*/
   return itemHours;
 }
 
