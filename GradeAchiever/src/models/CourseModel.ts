@@ -47,6 +47,10 @@ export class CourseModel extends BaseModel {
             CurrentGrade: currentGrade,
             GradeGoal: gradeGoal,
             GradableItems: gradableItems,
+            GradeNeeded: gradeGoal,
+            PercentageDone: 0,
+            CourseRatio: 1,
+        };
         };*/
         newCourse.CourseID = await this.GetNewID();
         newCourse.StudentID = Number(newCourse.StudentID);

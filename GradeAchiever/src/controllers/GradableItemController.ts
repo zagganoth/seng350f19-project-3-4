@@ -3,6 +3,9 @@ import { CourseModel } from "../models/CourseModel";
 import { GradableItemModel} from "../models/GradableItemModel";
 
 export class GradableItemController {
+
+    private gradableItemModel = new GradableItemModel();
+
     constructor() {
 
     }
@@ -66,12 +69,6 @@ export class GradableItemController {
             console.log(error);
             return false;
         }
-        if (grade !== 0) {
-          const algorithm = new Algorithm();
-          const courseID = algorithm.item_completed_calculation_and_update(id);
-          algorithm.course_calculation_and_update(courseID);
-          algorithm.new_item_calculation_and_update(courseID);
-        }
       }
       return true;
     }
@@ -83,10 +80,10 @@ export class GradableItemController {
             console.log(error);
             return [];
 
-      }
+          }
     }
      /* Edits gradable item's name*/
-     public async editGradableItemName(gradableItemID: number, newName: string) {
+     public async EditGradableItemName(gradableItemID: number, newName: string) {
         const gradableItemModel = new GradableItemModel();
         const returnVal = await gradableItemModel.EditGradableItemName(Number(gradableItemID), String(newName));
         return returnVal;
@@ -104,7 +101,10 @@ export class GradableItemController {
     public async LogStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
         const gradableItemModel = new GradableItemModel();
         const totalTime: number = Number(prevtime) + Number(newtime);
-        const returnVal = await gradableItemModel.AddStudyTime(Number(gradableItemID), totalTime);
-        return returnVal;
+        return this.gradableItemModel.AddStudyTime(Number(gradableItemID), totalTime);
+    }
+
+    public async deleteGradableItem(gradableItemID: number) {
+        return this.gradableItemModel.DeleteGradableItem(gradableItemID);
     }
 }

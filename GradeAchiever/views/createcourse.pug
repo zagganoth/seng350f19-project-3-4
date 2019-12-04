@@ -3,7 +3,7 @@ extends layout
 block content
     - var page = 'createcourse'
     - var n = 0;
-    form(name='verifyInfoForm',action='/createcourse',method='post')
+    form.createcourse(name='verifyInfoForm',action='/createcourse',method='post')
         input(type='hidden',name='user',value=studentID)
         table#addCourse
             tr
@@ -38,4 +38,4 @@ block content
                 td
                     input(type='number',name='perceivedDiff',min=1,max=5,required=true)
 
-        input(type='submit',value='Send')
+        input.submit(type='submit',value='Submit Course')
