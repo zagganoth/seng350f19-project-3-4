@@ -64,7 +64,7 @@ table {
 
 }
 
-table.users, table.newgradableitem {
+table.users, table.newgradableitem, table#OtherDetails, table#addCourse{
   max-width: 840px;
   text-align: left;
 }
@@ -87,12 +87,17 @@ div .course-list{
 table.gradable-items tr{
   cursor: pointer;
 }
-table.gradable-items tr:nth-child(even){
-  background: #494949;
+
+table.gradable-items tr:nth-child(6n), table.gradable-items tr:nth-child(6n-1){
+  background-color: #494949;
 }
 
-table.gradable-items tr:nth-child(odd){
-  background: #5f5f5f;
+table.gradable-items tr:nth-child(6n-5), table.gradable-items tr:nth-child(6n-2),table.gradable-items tr:nth-child(6n-3),table.gradable-items tr:nth-child(6n-4){
+  background-color: #5f5f5f;
+}
+
+table.extra td{
+  background-color: transparent;
 }
 
 td{
@@ -102,6 +107,11 @@ td{
 table.course-details{
   max-width: 500px;
 }
+
+form.createcourse{
+  width: 90%;
+}
+
 
 
 
@@ -223,6 +233,15 @@ input.course:hover{
 #nameinput{
   display: none;
   max-width: 200px;
+}
+
+#filesubmit{
+  margin: 10px;
+  float: left;
+}
+
+#file{
+  color:#f3e0ec;
 }
 
 

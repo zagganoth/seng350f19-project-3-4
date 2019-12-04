@@ -43,10 +43,12 @@ block content
             h3 Calendar        
             table.gradable-items
               tr
+                th Recommended Study Time
                 th Gradable Item
                 th Due Date
               each gradableItem in gradableItems
                 tr(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
+                  td #{gradableItem.RecommendedTime}
                   td #{gradableItem.GradableItemName}
                   td #{gradableItem.DueDate}
                 tr(style='display:none',id=gradableItem.GradableItemID + "_details")
@@ -62,6 +64,7 @@ block content
                           td Hours Spent: #{gradableItem.StudiedTime}
                         else
                           td Hours Spent: N/A
+                        td &nbsp;
                       tr
                         td(colspan=2)
                           button(style='width:100%;height:100%',onclick='showEditForm(' + gradableItem.GradableItemID + ')') Edit
@@ -72,7 +75,7 @@ block content
                             input(type='hidden',name='user',value=thisID)
                             button(type='submit',style='width:100%;height:100%') delete
                 tr(style='display:none',id=gradableItem.GradableItemID + "_edit")
-                  td(colspan=3)
+                  td(colspan=4)
                     button(onclick='showEditForm(' + gradableItem.GradableItemID + ')') hide
                     form(name='EditItem',action='/editgradableitem',method='post',enctype='multipart/form-data')
                       input(type='hidden',name='id',value=gradableItem.GradableItemID)
