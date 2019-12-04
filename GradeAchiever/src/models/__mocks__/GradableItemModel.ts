@@ -63,4 +63,9 @@ export class GradableItemModel {
             return returnVal;
         }
     }
+
+    public GetNewID() {
+        return 5;
+    }
+
 }
