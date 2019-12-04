@@ -109,7 +109,7 @@ export class SessionRoute extends BaseRoute {
                 res.redirect("/");
             } else {
                 // Loads overview page for new user
-                this.Session(req, res, <NextFunction>{}, resp.ops[0].StudentID);
+                this.Session(req, res, {} as NextFunction, resp.ops[0].StudentID);
             }
         });
 
