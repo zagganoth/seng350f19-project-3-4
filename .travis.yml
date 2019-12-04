@@ -5,8 +5,8 @@ node_js:
 services:
   - docker
 
-before_install:
-  - docker build -t grade-achiever ./GradeAchiever
+    #before_install:
+    #  - docker build -t grade-achiever ./GradeAchiever
   
 install:
   - npm --prefix ./GradeAchiever install
