@@ -21,7 +21,10 @@ block content
                     td
                         input(type='text',value=gradableItem.Weight,name="GradableItems["+n+"][weight]",required=true)
                     td
-                        input(type='date',value=new Date(gradableItem.DueDate).toLocaleDateString('en-ca'),name='GradableItems['+n+'][duedate]')
+                        if(gradableItem.DueDate !== "" && gradableItem.DueDate !== undefined)
+                            input(type='date',value=new Date(gradableItem.DueDate).toISOString().split('T')[0],name='GradableItems[' + n + '][duedate]')
+                        else
+                            input(type='date')
                     td
                         button.delete(type='button' onclick='RemoveRow(\'addCourse\','+n+')') X
                 - n++
