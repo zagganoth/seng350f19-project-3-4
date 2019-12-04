@@ -21,7 +21,7 @@ export class SessionRoute extends BaseRoute {
         router.post("/newUser", (req: Request, res: Response, next: NextFunction) => {
             const b = req as any;
             console.log(b.body.messages);
-            new SessionRoute().createUser(req, res, next, req.body.name, req.body.email);
+            new SessionRoute().createUser(req, res,  req.body.name, req.body.email);
         });
 
         router.post("/pdfparse", (req: Request, res: Response, next: NextFunction) => {
@@ -99,7 +99,7 @@ export class SessionRoute extends BaseRoute {
     /**
      * Signs up a new user by creating them in db and then loads their homepage
      */
-    public async createUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
+    public async createUser(req: Request, res: Response, name: string, email: string) {
         const sessionCtrl = new SessionController();
         this.title = "CreateUser";
         sessionCtrl.CreateUser(String(name), String(email))
@@ -109,7 +109,7 @@ export class SessionRoute extends BaseRoute {
                 res.redirect("/");
             } else {
                 // Loads overview page for new user
-                this.Session(req, res, next, resp.ops[0].StudentID);
+                this.Session(req, res, <NextFunction>{}, resp.ops[0].StudentID);
             }
         });
 
