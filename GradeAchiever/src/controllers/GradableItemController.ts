@@ -38,7 +38,17 @@ export class GradableItemController {
     */
     public async EditStudyTime(id: number, hours: number) {
         try {
-            return this.gradableItemModel.AddStudyTime(id, hours);
+            let retVal = this.gradableItemModel.AddStudyTime(id, hours);
+            const gradeGetter = this.gradableItemModel.RequestGradableItem(id);
+            const grade = gradeGetter.CurrentGrade;
+            if (grade !== 0) {
+              const algorithm = new Algorithm();
+              const courseID = algorithm.item_completed_calculation_and_update(id);
+              algorithm.course_calculation_and_update(courseID);
+              algorithm.new_item_calculation_and_update(courseID);
+            }
+              retVal = this.gradableItemModel.AddStudyTime(id, hours);
+              return retVal;
         } catch (error) {
             console.log(error);
             return [];
@@ -56,7 +66,15 @@ export class GradableItemController {
 
     public async EditItemGrade(id: number, grade: number) {
         try {
-            return this.gradableItemModel.EditGradableItemGrade(id, grade);
+            let retVal = this.gradableItemModel.EditGradableItemGrade(id, grade);
+            if (grade !== 0) {
+              const algorithm = new Algorithm();
+              const courseID = algorithm.item_completed_calculation_and_update(id);
+              algorithm.course_calculation_and_update(courseID);
+              algorithm.new_item_calculation_and_update(courseID);
+            }
+            retVal = retVal = this.gradableItemModel.EditGradableItemGrade(id, grade);
+            return retVal;
         } catch (error) {
             console.log(error);
             return [];
@@ -64,7 +82,17 @@ export class GradableItemController {
     }
     public async EditGradableItemWeight(id: number, weight: number) {
         try {
-            return this.gradableItemModel.EditGradableItemWeight(id, weight);
+          let retVal = this.gradableItemModel.EditGradableItemWeight(id, weight);
+          const gradeGetter = this.gradableItemModel.RequestGradableItem(id);
+          const grade = gradeGetter.CurrentGrade;
+          if (grade !== 0) {
+            const algorithm = new Algorithm();
+            const courseID = algorithm.item_completed_calculation_and_update(id);
+            algorithm.course_calculation_and_update(courseID);
+            algorithm.new_item_calculation_and_update(courseID);
+          }
+            retVal = this.gradableItemModel.EditGradableItemWeight(id, weight);
+            return retVal;
         } catch (error) {
             console.log(error);
             return false;
@@ -89,12 +117,7 @@ export class GradableItemController {
         return returnVal;
     }
 
-        // if (grade !== 0) {
-        //   const algorithm = new Algorithm();
-        //   const courseID = algorithm.item_completed_calculation_and_update(id);
-        //   algorithm.course_calculation_and_update(courseID);
-        //   algorithm.new_item_calculation_and_update(courseID);
-        // }
+
         // return true;
 
     /* Adds study time to a gradable item*/
