@@ -304,12 +304,10 @@ function RemoveRow(tableid: string, rowNum: number) {
     }
 }
 
-
 /*Calculates how far into course student is */
-function CourseProgress(){
+function CourseProgress() {
     const date: Date = new Date();
     const rows = document.getElementsByClassName("iteminfo");
     console.log(rows);
-    let progess = 0;
+    const progess = 0;
 }
-

@@ -34,6 +34,7 @@ export class CourseRoute extends BaseRoute {
         });
     }
     private courseController = new CourseController();
+
     public async editGradableItem(req: Request, res: Response, next: NextFunction) {
         const gItem = {} as IGradableItem;
         gItem.GradableItemName = req.body.name;
