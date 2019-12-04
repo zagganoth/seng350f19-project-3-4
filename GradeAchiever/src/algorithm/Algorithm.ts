@@ -116,6 +116,7 @@ This is used to calculated how much time the user needs to spend on their projec
         }
       }
     }
+    return true
   }
 
   public new_item_calculation(courseRatio: number, percentageDone: number, inputCourseDifficulty: number, courseGoal: number, itemPercentage: number ) {

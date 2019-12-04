@@ -1,4 +1,5 @@
 import DbClient = require("../DbClient");
+import { Algorithm } from "../algorithm/Algorithm";
 import { BaseModel } from "./BaseModel";
 export class GradableItemModel extends BaseModel {
 
@@ -47,7 +48,8 @@ export class GradableItemModel extends BaseModel {
             StudiedTime: 0,
             RecommendedTime: weight * .5,
         };
-
+        const algorithm = new Algorithm;
+        algorithm.new_item_calculation_and_update(courseID);
         console.log("Gradable Item Model - adding an item");
         console.log(newGradableItem);
         return this.addOne(newGradableItem)

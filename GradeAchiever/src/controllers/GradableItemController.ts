@@ -1,8 +1,5 @@
 import { Algorithm } from "../algorithm/Algorithm";
-import { CourseModel } from "../models/CourseModel";
 import { GradableItemModel} from "../models/GradableItemModel";
-import { CourseModel }      from "../models/CourseModel";
-import { Algorithm }        from "../algorithm/Algorithm";
 
 export class GradableItemController {
 
