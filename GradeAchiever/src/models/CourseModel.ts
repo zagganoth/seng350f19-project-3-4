@@ -34,7 +34,7 @@ export class CourseModel extends BaseModel {
         });
     }
 
-    public async CreateNewCourse(newCourse: ICourse){//studentID: number, courseName: string, percievedDifficulty: number, currentGrade: number, gradeGoal: number, gradableItems: number[]) {
+    public async CreateNewCourse(newCourse: ICourse) {// studentID: number, courseName: string, percievedDifficulty: number, currentGrade: number, gradeGoal: number, gradableItems: number[]) {
         // I don't know why, but studentID was getting inserted as a string if I didn't force it to number below
         /*const newCourse = {
             CourseID: await this.GetNewID(),

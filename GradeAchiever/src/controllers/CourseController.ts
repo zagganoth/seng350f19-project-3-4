@@ -39,16 +39,16 @@ export class CourseController {
             };
             gradableItems.push(await this.CreateGradableItem(g));
         }
-        const course : ICourse = {
+        const course: ICourse = {
             CourseID: 0,
             CourseName: name,
             CurrentGrade: 100,
             GradableItems: gradableItems,
             GradeGoal: courseDetails.gradegoal,
             PerceivedDifficulty: courseDetails.perceivedDiff,
-            StudentID: courseDetails.user
-        }
-        await this.courseModel.CreateNewCourse(course);//courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
+            StudentID: courseDetails.user,
+        };
+        await this.courseModel.CreateNewCourse(course); // courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
 
         // these steps should not be done here, these should be put somewhere else. This function should return the course id which then gets added tothe user object.
 

@@ -50,7 +50,7 @@ export class GradableItemModel {
         }
     }
 
-    public CreateItem(g:IGradableItem){//courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
+    public CreateItem(g: IGradableItem) {// courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
         if (g.CourseID !== 1) {
             const returnVal = {
                 ops: [{GradableItemID: -1}],
