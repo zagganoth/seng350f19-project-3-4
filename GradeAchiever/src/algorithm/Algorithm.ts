@@ -5,15 +5,10 @@ export class Algorithm {
 /*
 This function gives a value for the item, used to calculate how well the user is doing in their current course.
 */
-<<<<<<< HEAD
-  public item_completed_calculation_and_update(id: number){
-    try {
-    let gradableItem = await gradableItemModel.GetGradableItemDetails(id);
-=======
+
   public item_completed_calculation_and_update(id: number) {
     try {
     const gradableItem = await gradableItemModel.GetGradableItemDetails(id);
->>>>>>> c89724cd73f41499dc7247d844c2a7c3becc7c62
     const courseID: any = gradableItem.CourseID;
     const grade = gradableItem.CurrentGrade;
     const hoursRecommended = gradableItem.RecommendedTime;
