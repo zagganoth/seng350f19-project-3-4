@@ -8,9 +8,10 @@ block content
       //input(id='outlineUpload',onchange='parsePDF("outlineUpload")',type='file')
       form(name='outlineUpload',action='/pdfparse',method='post',enctype='multipart/form-data')
         h1 Please upload a course outline PDF (optional)
-        input#file(type="file",name="file")
-        input(type='hidden',name='studentid',value=studentDetails.StudentID)
-        input.submit#filesubmit(type="submit", value='Proceed')
+        div#fileupload
+          input#file(type="file",name="file")
+          input(type='hidden',name='studentid',value=studentDetails.StudentID)
+          input.submit#filesubmit(type="submit", value='Proceed')
   div.container-fluid
     button(class='openBtn',onclick='toggleAddCourse()',title="Toggle Overlay") Add New Course
     h1 Overview Page
@@ -19,8 +20,8 @@ block content
       div.calendar
         if courseDetails && courseDetails.length > 0
           h3 Calendar        
-          table.gradable-items
-            tr
+          table.gradable-items.fixed_header
+            tr.fixed_header
               th Recommended Study Hours
               th Course Name
               th Gradable Item Name
@@ -63,13 +64,12 @@ block content
                     input(type='hidden',name='course',value=gradableItem.CourseID)
                     input(type='hidden',name='user',value=studentDetails.StudentID)
                     input(type='hidden',name='prevHours',value=gradableItem.StudiedTime)
-                    button(onclick='showEditForm('+gradableItem.GradableItemID+')') hide
-                    table
+                    //button(onclick='showEditForm('+gradableItem.GradableItemID+')') hide
+                    table.extra
                       tr
                         th Name
                         th Due Date
                         th Weight
-                        th
                       tr
                         td
                           input.noPadding(type='text',name='name',value=gradableItem.GradableItemName)
@@ -93,8 +93,8 @@ block content
                           else
                             p N/A
                       tr
-                        td(colspan=3)
-                          input.submit(type='submit', value="Submit")
+                        td(colspan=4)
+                          input.submit.itemeditsubmit(type='submit', value="Submit")
 
 
 
