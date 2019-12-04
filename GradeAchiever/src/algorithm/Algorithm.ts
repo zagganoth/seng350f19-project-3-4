@@ -78,7 +78,7 @@ This is used to calculated how much time the user needs to spend on their projec
     let percentageDone = 0;
     let coursePercent = 0;
     for (let i = 0; i < itemRatio.length; i++) {
-      courseRatio += percentageWorth[i] * itemRatio[i];
+      courseRatio += (percentageWorth[i] * itemRatio[i]) / 100;
       percentageDone += percentageWorth[i];
       coursePercent += percentageWorth[i] * percentageAchieved[i];
     }
