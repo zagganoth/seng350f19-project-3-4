@@ -49,6 +49,7 @@ block content
                           button(style='width:100%;height:100%',onclick='showEditForm('+gradableItem.GradableItemID+')') Edit
                         td
                           form(name='DeleteItem',action='/deleteitem',method='post',enctype='multipart/form-data')
+                            input(type='hidden',name='pagename',value='overview')
                             input(type='hidden',name='id',value=gradableItem.GradableItemID)
                             input(type='hidden',name='course',value=gradableItem.CourseID)
                             input(type='hidden',name='user',value=studentDetails.StudentID)
@@ -57,11 +58,12 @@ block content
                 td(colspan=4)
                   button(onclick='showEditForm(' + gradableItem.GradableItemID + ')') hide
                   form(name='EditItem',action='/editgradableitem',method='post',enctype='multipart/form-data')
+                    input(type='hidden',name='pagename',value='overview')
                     input(type='hidden',name='id',value=gradableItem.GradableItemID)
                     input(type='hidden',name='course',value=gradableItem.CourseID)
                     input(type='hidden',name='user',value=studentDetails.StudentID)
                     input(type='hidden',name='prevHours',value=gradableItem.StudiedTime)
-
+                    button(onclick='showEditForm('+gradableItem.GradableItemID+')') hide
                     table
                       tr
                         th Name
