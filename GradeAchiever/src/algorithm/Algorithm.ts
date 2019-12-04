@@ -81,7 +81,7 @@ export function course_calculation(itemRatio: number[], percentageWorth: number[
   let coursePercent = 0;
   let coursePercentRetVal = 0;
   for (let i = 0; i < itemRatio.length; i++) {
-    if(percentageAchieved[i]>1) {
+    if (percentageAchieved[i] > 1) {
       courseRatio += (Number(percentageWorth[i]) * Number(itemRatio[i])) / 100;
       percentageDone += Number(percentageWorth[i]);
       coursePercent += Number(percentageWorth[i]) * Number(percentageAchieved[i]);
