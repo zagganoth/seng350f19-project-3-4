@@ -5,9 +5,15 @@ export class Algorithm {
 /*
 This function gives a value for the item, used to calculate how well the user is doing in their current course.
 */
+<<<<<<< HEAD
   public item_completed_calculation_and_update(id: number){
     try {
     let gradableItem = await gradableItemModel.GetGradableItemDetails(id);
+=======
+  public item_completed_calculation_and_update(id: number) {
+    try {
+    const gradableItem = await gradableItemModel.GetGradableItemDetails(id);
+>>>>>>> c89724cd73f41499dc7247d844c2a7c3becc7c62
     const courseID: any = gradableItem.CourseID;
     const grade = gradableItem.CurrentGrade;
     const hoursRecommended = gradableItem.RecommendedTime;
@@ -17,12 +23,12 @@ This function gives a value for the item, used to calculate how well the user is
     const gradeGoal = gradeGoalCourse.GradeGoal;
     const algorithm = new Algorithm();
     const itemRatio = algorithm.item_completed_calculation(gradeGoal, hoursSpent, hoursRecommended, grade);
-      await gradableItemModel.AddGItemAccuracy(Number(id), Number(itemRatio));
+    await gradableItemModel.AddGItemAccuracy(Number(id), Number(itemRatio));
     } catch (error) {
         console.log(error);
         return false;
       }
-      return courseID;
+    return courseID;
   }
 
   public item_completed_calculation(percentageReccomended: number, hoursSpent: number, hoursRecommended: number, percentageAchieved: number) {
@@ -39,15 +45,15 @@ This is used to calculated how much time the user needs to spend on their projec
   public course_calculation_and_update(courseID: number) {
     const algorithm = new Algorithm();
     const courseModel = await new CourseModel();
-    let course = courseModel.GetCourseDetails(courseID);
+    const course = courseModel.GetCourseDetails(courseID);
     const gradableItems = course.GradableItems;
     let i = 0;
-    let itemRatios = [];
-    let percentageWorth = [];
-    let percentageAchieved = [];
-    for (let val of gradableItems) {
+    const itemRatios = [];
+    const percentageWorth = [];
+    const percentageAchieved = [];
+    for (const val of gradableItems) {
       gradableItem = await gradableItemModel.GetGradableItemDetails(val);
-      if(gradableItem.CurrentGrade != 0){
+      if (gradableItem.CurrentGrade !== 0) {
         itemRatios[i] = gradableItem.GItemAccuracy;
         percentageWorth[i] = gradableItem.Weight;
         percentageAchieved[i] = gradableItem.CurrentGrade;
@@ -71,8 +77,6 @@ This is used to calculated how much time the user needs to spend on their projec
     }
   }
 
-
-
   public course_calculation(itemRatio: number[], percentageWorth: number[], percentageAchieved: number[], courseGoal: number) {
     let  courseRatio = 0;
     let percentageDone = 0;
@@ -88,11 +92,11 @@ This is used to calculated how much time the user needs to spend on their projec
     return retVal;
   }
 
-  public new_item_calculation_and_update(courseID){
+  public new_item_calculation_and_update(courseID) {
     const algorithm = new Algorithm();
     const gradableItemModel = await new GradableItemModel();
     const courseModel = await new CourseModel();
-    let course = courseModel.GetCourseDetails(courseID);
+    const course = courseModel.GetCourseDetails(courseID);
     const courseRatio = course.CourseRatio;
     const percentageDone = course.PercentageDone;
     const difficulty = course.PerceivedDifficulty;
@@ -103,7 +107,7 @@ This is used to calculated how much time the user needs to spend on their projec
     let weight = 0;
     let itemHours = 0;
     let itemID = 0;
-    for (let val of gradableItems) {
+    for (const val of gradableItems) {
       gradableItem = await gradableItemModel.GetGradableItemDetails(val);
       weight = gradableItem.Weight;
       if (weight > 0) {
@@ -135,14 +139,14 @@ This is used to calculated how much time the user needs to spend on their projec
     } else {
       courseDifficulty = 5;
     }
-    if(courseGoal < .25) {
-      courseGoal = .25;
+    if (courseGoal < .15) {
+      courseGoal = .15;
     }
-    if(courseGoal > 2) {
-      courseGoal = 2;
+    if (courseGoal > 3) {
+      courseGoal = 3;
     }
     let itemHours = itemPercentage * courseGoal * courseDifficulty * 50;
-    if (percentageDone > 0 && courseRatio > 1.001) {
+    if ((percentageDone > 0 && courseRatio > 1.001)) {
       itemHours = (itemHours * (100 - percentageDone) + itemHours * (percentageDone * courseRatio)) / 100;
     }
     return itemHours;
