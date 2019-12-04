@@ -142,7 +142,7 @@ This is used to calculated how much time the user needs to spend on their projec
     }
     let itemHours = itemPercentage * courseGoal * courseDifficulty * 50;
     if ((percentageDone > 0 && courseRatio > 1.001)) {
-      itemHours = (itemHours * (100 - percentageDone) + itemHours * (percentageDone * courseRatio)) / 100;
+      itemHours = (itemHours * (100 - percentageDone)/100 + itemHours * (percentageDone * courseRatio)) / 100;
     }
     return itemHours;
   }
