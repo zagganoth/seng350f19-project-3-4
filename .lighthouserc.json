@@ -4,7 +4,7 @@
         "target": "temporary-public-storage"
       },
       "collect": {
-        "url": ["http://localhost:3000/"]
+        "url": ["http://localhost:8080/"]
       }
     }
 }
