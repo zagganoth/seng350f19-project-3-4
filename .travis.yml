@@ -15,8 +15,8 @@ install:
 
 script:
   - npm --prefix ./GradeAchiever run tslint-test
-  - docker-compose -f ./GradeAchiever/docker-compose.yml up -d
-  - lhci collect --url="http://localhost:8080" --config=./.lighthouserc.json 
-  - docker-compose -f ./GradeAchiever/docker-compose.yml down
+  #- docker-compose -f ./GradeAchiever/docker-compose.yml up -d
+  - lhci autorun
+  #- docker-compose -f ./GradeAchiever/docker-compose.yml down
   - npm --prefix ./GradeAchiever run compile
   - npm --prefix ./GradeAchiever run test
