@@ -21,6 +21,7 @@ install:
   - npm install -g @lhci/cli@0.3.x 
 script:
   - npm --prefix ./GradeAchiever run tslint-test
+  - curl localhost:8080
   - lhci autorun
   - npm --prefix ./GradeAchiever run compile
   - npm --prefix ./GradeAchiever run test
