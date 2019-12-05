@@ -1,18 +1,20 @@
 language: node_js
 node_js:
   - "node"
-
+env:
+  - LHCI_GITHUB_TOKEN=438c389b7b70399e97ad252b55b04b84d2e7166c
 services:
   - docker
 
 before_install:
   - npm install -g @lhci/cli@0.3.x
-  - docker build -t grade-achiever ./GradeAchiever
-  
+  #- docker build -t grade-achiever ./GradeAchiever
+  - docker-compose -f ./GradeAchiever/docker-compose.yml build
 install:
   - npm --prefix ./GradeAchiever install
 
 script:
+  - docker-compose -f ./GradeAchiever/docker-compose.yml up
   - npm --prefix ./GradeAchiever run tslint-test
   - lhci autorun
   - npm --prefix ./GradeAchiever run compile
