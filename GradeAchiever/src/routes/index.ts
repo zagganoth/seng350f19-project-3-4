@@ -60,7 +60,7 @@ export class IndexRoute extends BaseRoute {
         // set custom title
         this.title = "Grade Achiever";
 
-        session.RequestUsers(req, res, next)
+        session.RequestUsers()
         .then((mess) => {
             // set message
             const options: object = {

@@ -2,17 +2,17 @@ import { CourseController } from "../controllers/CourseController";
 import { UserModel } from "../models/UserModel";
 
 export class OverviewController {
-    constructor() {
 
+    private courseController = new CourseController();
+    constructor() {
     }
 
     // Gets user by ID and their courses, gradable items (in sorted order)
     public async RequestUser(id: number) {
-        const um = new UserModel(id);
-        const CourseCtrl = new CourseController();
+        const userModel = new UserModel(id);
         const retVal = [];
         // Get all details for the user, including courses
-        const userDetails = await um.GetUserDetails(id);
+        const userDetails = await userModel.GetUserDetails(id);
         // gets course and grade info from courseController
         let gradableItems: any[] = [];
         const courses = [];
@@ -20,7 +20,7 @@ export class OverviewController {
             // For each course
             for (const course of userDetails.Courses) {
                 // Get the course details, including all gradable items
-                const courseDetails = await CourseCtrl.RequestCourse(course);
+                const courseDetails = await this.courseController.RequestCourse(course);
                 courses.push(courseDetails);
                 gradableItems = await this.RequestGradableItems(course, (courseDetails as any).CourseName, gradableItems);
             }
@@ -35,9 +35,8 @@ export class OverviewController {
      * Requests all gradable items by course and sorts in order by duedate
      */
     public async RequestGradableItems(courseID: number, courseName: string, gradableItems: any[]) {
-        const CourseCtrl = new CourseController();
         // get gradable items by course id from Course Controller
-        const gradableItemsbyCourse: any = await CourseCtrl.RequestCourseGradableItems(courseID);
+        const gradableItemsbyCourse: any = await this.courseController.RequestCourseGradableItems(courseID);
         for (const gradableitem of gradableItemsbyCourse) {
             // Add course name to each gradable item
             if (gradableitem !== null) {

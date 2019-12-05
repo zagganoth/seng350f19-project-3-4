@@ -1,7 +1,6 @@
 
 import { NextFunction, Request, Response, Router } from "express";
 import {CourseController} from "../controllers/CourseController";
-import {GradableItemController} from "../controllers/GradableItemController";
 import {OverviewController} from "../controllers/OverviewController";
 import {SessionController} from "../controllers/SessionController";
 import {PDFParser} from "../Modules/PDFParser";
@@ -41,6 +40,7 @@ export class SessionRoute extends BaseRoute {
         const courseController = new CourseController();
         courseController.createCourse(course)
         .then((details) => {
+            // RIGHT HERE THIS SHOULD APPEND VALUE TO USER OBJECT
             // console.log(course.studentId);
             // this.Session(req, res, next, Number(course.studentId));
             res.redirect(307, "/overview");

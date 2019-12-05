@@ -18,29 +18,44 @@ describe("Admin Routing Tests", () => {
 		const userid = 2;
 		res.locals = {};
 		res.render = () => {return; };
-  TestAdminRoute.Admin(req, res, next, userid);
+  TestAdminRoute.Admin(req, res, userid);
   expect(TestAdminRoute).toBeInstanceOf(AdminRoute);
 	});
 
 	   it("Creates a new admin user", async () => {
-        const name = "Test User";
-        const email = "test@email.com";
-        const isAdmin = true;
-        TestAdminRoute.createUser(req, res, next, name, email, isAdmin, thisID);
-		      expect(TestAdminRoute).toBeInstanceOf(AdminRoute);
+	    const user: IStudent = {
+            AlgorithmAccuracy: 0,
+            Courses: [],
+            Email: "test@email.com",
+            IsAdmin: true,
+            NotificationLevel: 0,
+            StudentID: 0,
+            StudentName: "Test User",
+        };
+        // const name =
+        // const email = ;
+        // const isAdmin = true;
+     TestAdminRoute.createUser(req, res, user);
+	    expect(TestAdminRoute).toBeInstanceOf(AdminRoute);
     });
 
     it("Creates a non-admin user", async () => {
-        const name = "Test User";
-        const email = "test@email.com";
-        const isAdmin = false;
-        TestAdminRoute.createUser(req, res, next, name, email, isAdmin, thisID);
-		      expect(TestAdminRoute).toBeInstanceOf(AdminRoute);
+        const user: IStudent = {
+            AlgorithmAccuracy: 0,
+            Courses: [],
+            Email: "test@email.com",
+            IsAdmin: false,
+            NotificationLevel: 0,
+            StudentID: 0,
+            StudentName: "Test User",
+        };
+        TestAdminRoute.createUser(req, res, user );
+        expect(TestAdminRoute).toBeInstanceOf(AdminRoute);
     });
 
     it("Deletes a user", async () => {
         const userid = 1;
-        TestAdminRoute.deleteUser(req, res, next, userid, thisID);
+        TestAdminRoute.deleteUser(req, res, userid, thisID);
 		      expect(TestAdminRoute).toBeInstanceOf(AdminRoute);
 	});
 
