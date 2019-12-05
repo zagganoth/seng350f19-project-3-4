@@ -5,4 +5,8 @@ jest.mock("../../models/BaseModel");
 
 describe("GradableItem Model Tests", () => {
 
+    it("Sample test", async () => {
+
+    });
+
 });

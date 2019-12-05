@@ -5,4 +5,8 @@ jest.mock("../../models/BaseModel");
 
 describe("User Model Tests", () => {
 
+    it("Sample test", async () => {
+
+    });
+
 });
