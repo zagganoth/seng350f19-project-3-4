@@ -28,7 +28,7 @@ describe("Web App", () => {
         await page.waitForSelector(".openBtn");
         expect(page.url()).toContain("newUser");
         expect(clicks).toBeLessThanOrEqual(InputClickMax);
-        //await page.click(".logout");
+        // await page.click(".logout");
     });
 
     it("logs in in < 5 clicks", async () => {
@@ -43,8 +43,8 @@ describe("Web App", () => {
         await page.waitForSelector(".openBtn");
         expect(page.url()).toContain("overview");
         expect(clicks).toBeLessThanOrEqual(InputClickMax);
-    },15000);
-    it("Create a course in < 5 clicks", async()=>{
+    }, 15000);
+    it("Create a course in < 5 clicks", async () => {
         await page.select("select[name='user']");
         await page.waitForSelector("option");
         await page.select("select[name='user']", "1");
@@ -55,21 +55,21 @@ describe("Web App", () => {
         clicks++;
         const filePath = path.resolve(__dirname, "../../../sample_outlines/SENG350Outline.pdf");
         console.log(filePath);
-        const input = await page.waitForSelector("input[name='file']")
+        const input = await page.waitForSelector("input[name='file']");
         await input.uploadFile(filePath);
         console.log(page.url());
-        await page.click("#courseAddConfirm")
+        await page.click("#courseAddConfirm");
         clicks++;
         console.log(page.url());
         await page.waitForSelector("input[name='gradegoal']");
-        await page.type("input[name='gradegoal']","89");
-        await page.type("input[name='perceivedDiff']","3");
+        await page.type("input[name='gradegoal']", "89");
+        await page.type("input[name='perceivedDiff']", "3");
         await page.click("input[type='submit']");
         clicks++;
         expect(clicks).toBeLessThanOrEqual(InputClickMax);
-    },15000)
+    }, 15000);
     it("logs study time for gradable item in < 5 clicks", async () => {
-        //await page.goto("http://localhost:8080", {waitUntil: "load"});
+        // await page.goto("http://localhost:8080", {waitUntil: "load"});
         await page.select("select[name='user']");
         await page.waitForSelector("option");
         await page.select("select[name='user']", "1");
@@ -89,13 +89,13 @@ describe("Web App", () => {
         await page.type("input[name='hours']", "2");
         clicks += 1;
         console.log(page.url());
-        //await page.waitForSelector("input[type=")
+        // await page.waitForSelector("input[type=")
         const um = await page.click(".submitedit");
         console.log(um);
-        //await page.waitForNavigation();
+        // await page.waitForNavigation();
         clicks += 1;
         expect(clicks).toBeLessThanOrEqual(InputClickMax);
-    },15000);
+    }, 15000);
 
     it("adds a new gradable item in < 5 clicks", async () => {
         await page.select("select[name='user']");
@@ -122,9 +122,8 @@ describe("Web App", () => {
         await page.click("input[type='submit'][value='Submit']");
         clicks += 1;
         await page.waitForSelector(".course-details");
-        //expect(page.url()).toContain("newGradableItem");
+        // expect(page.url()).toContain("newGradableItem");
         expect(clicks).toBeLessThanOrEqual(InputClickMax);
     }, 15000);
-
 
   });
