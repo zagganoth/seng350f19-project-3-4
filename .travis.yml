@@ -7,7 +7,8 @@ env:
   - LHCI_GITHUB_TOKEN=438c389b7b70399e97ad252b55b04b84d2e7166c
 services:
   - docker
-
+addons: 
+  chrome: stable
 before_install:
 
   #- tsc -p ./GradeAchiever/
