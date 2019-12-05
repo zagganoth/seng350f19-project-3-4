@@ -15,6 +15,6 @@ install:
 
 script:
   - npm --prefix ./GradeAchiever run tslint-test
-  - lhci autorun --config=./lighthouserc.json
+  - lhci autorun --config=./.lighthouserc.json
   - npm --prefix ./GradeAchiever run compile
   - npm --prefix ./GradeAchiever run test
