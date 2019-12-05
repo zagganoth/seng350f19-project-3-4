@@ -76,9 +76,9 @@ describe("Web App", () => {
         await page.click("input[type='submit'][value='Login']");
         await page.waitForSelector(".openBtn");
         let clicks = 0;
-        console.log(page.url());
+        //console.log(page.url());
         const bodyHTML = await page.evaluate(() => document.body.innerHTML);
-        console.log(bodyHTML);
+        //console.log(bodyHTML);
         // Select gradable item
         await page.click(".expanditem");
         clicks += 1;
