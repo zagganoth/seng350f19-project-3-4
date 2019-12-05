@@ -24,6 +24,3 @@ EXPOSE 3000
 
 # Start server
 CMD ["./bin/www"]
-
-# Try to run lighthouse
-CMD ["lhci autorun --config='../.lighthouserc.json'"]

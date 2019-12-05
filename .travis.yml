@@ -1,4 +1,6 @@
 language: node_js
+dist: trusty
+sudo: required
 node_js:
   - "node"
 env:
@@ -11,13 +13,15 @@ before_install:
   #- tsc -p ./GradeAchiever/
   #- docker build -t grade-achiever ./GradeAchiever
   - docker-compose -f ./GradeAchiever/docker-compose.yml build
+  - docker-compose -f ./GradeAchiever/docker-compose.yml up -d
+  - sleep 10
 install:
   - npm --prefix ./GradeAchiever install
 
 script:
   - npm --prefix ./GradeAchiever run tslint-test
-  - docker-compose -f ./GradeAchiever/docker-compose.yml up -d
-  #- lhci autorun
-  - docker-compose -f ./GradeAchiever/docker-compose.yml down
+  - lhci autorun
   - npm --prefix ./GradeAchiever run compile
   - npm --prefix ./GradeAchiever run test
+after_script:
+  - docker-compose -f ./GradeAchiever/docker-compose.yml down
