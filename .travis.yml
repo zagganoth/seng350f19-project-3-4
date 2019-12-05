@@ -8,7 +8,8 @@ services:
 
 before_install:
   - npm install -g @lhci/cli@0.3.x
-  - docker build -t grade-achiever ./GradeAchiever
+  - tsc -p ./GradeAchiever/
+  #- docker build -t grade-achiever ./GradeAchiever
   #- docker-compose -f ./GradeAchiever/docker-compose.yml build
 install:
   - npm --prefix ./GradeAchiever install
