@@ -6,6 +6,7 @@ services:
   - docker
 
 before_install:
+  - npm install -g @lhci/cli@0.3.x
   - docker build -t grade-achiever ./GradeAchiever
   
 install:
@@ -13,5 +14,6 @@ install:
 
 script:
   - npm --prefix ./GradeAchiever run tslint-test
+  - lhci autorun
   - npm --prefix ./GradeAchiever run compile
   - npm --prefix ./GradeAchiever run test
