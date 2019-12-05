@@ -64,7 +64,6 @@ export class CourseModel extends BaseModel {
     // Gets next new course ID
     public async GetNewID() {
         try {
-            console.log("Course Model - getting new course ID");
             const maxRow = await this.getMax({}, {}, {CourseID: -1});
             return maxRow[0].CourseID + 1;
         } catch (error) {
