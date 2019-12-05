@@ -5,5 +5,5 @@ interface ICourse {
  PerceivedDifficulty: number;
  CurrentGrade: number;
  GradeGoal: number;
- GradableItems: number[];
+ GradableItems: any[];
 }

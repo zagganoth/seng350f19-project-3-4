@@ -18,10 +18,7 @@ export class GradableItemModel extends BaseModel {
     public Weight!: number;
     public CurrentGrade!: number;
     public GItemAccuracy!: number;
-<<<<<<< HEAD
-=======
     public studyTime!: number;
->>>>>>> master
     public StudiedTime!: number;
 
     constructor() {

@@ -26,9 +26,29 @@ export class CourseController {
         const courseId = (await this.courseModel.GetNewID()) as number;
         const gradableItems = [];
         for (const gradableItem of courseDetails.GradableItems) {
-            gradableItems.push(await this.CreateGradableItem(courseId, gradableItem.name, gradableItem.duedate, gradableItem.weight));
+            const g: IGradableItem = {
+                CourseID: courseId,
+                CurrentGrade: 0,
+                DueDate: gradableItem.duedate,
+                GItemAccuracy: 0,
+                GradableItemID: 0,
+                GradableItemName: gradableItem.name,
+                StudiedTime: 0,
+                Weight: gradableItem.weight,
+
+            };
+            gradableItems.push(await this.CreateGradableItem(g));
         }
-        await this.courseModel.CreateNewCourse(courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
+        const course: ICourse = {
+            CourseID: 0,
+            CourseName: name,
+            CurrentGrade: 100,
+            GradableItems: gradableItems,
+            GradeGoal: courseDetails.gradegoal,
+            PerceivedDifficulty: courseDetails.perceivedDiff,
+            StudentID: courseDetails.user,
+        };
+        await this.courseModel.CreateNewCourse(course); // courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
 
         // these steps should not be done here, these should be put somewhere else. This function should return the course id which then gets added tothe user object.
 
@@ -39,12 +59,23 @@ export class CourseController {
     /**
      * Creates gradable items for a course
      */
-    public async createGradableItems(courseDetails: any)  {
-        const courseID: number = Number(courseDetails.courseID);
+    public async createGradableItems(courseDetails: ICourse)  {
+        const courseID: number = Number(courseDetails.CourseID);
         const gradableItems = [];
         for (const gradableItem of courseDetails.GradableItems) {
             try {
-                gradableItems.push(await this.CreateGradableItem(courseID, gradableItem.name, gradableItem.duedate, gradableItem.weight));
+                const g: IGradableItem = {
+                    CourseID: courseID,
+                    CurrentGrade: 0,
+                    DueDate: gradableItem.duedate,
+                    GItemAccuracy: 0,
+                    GradableItemID: 0,
+                    GradableItemName: gradableItem.name,
+                    StudiedTime: 0,
+                    Weight: gradableItem.weight,
+
+                };
+                gradableItems.push(await this.CreateGradableItem(g));
             } catch (error) {
                 console.log(error);
                 console.log("creating item failed :(");
@@ -84,14 +115,14 @@ export class CourseController {
     }
 
     /* Edits course's name*/
-    public async editCourseName(req: Request, res: Response, next: NextFunction, courseID: number, newName: string) {
+    public async editCourseName(courseID: number, newName: string) {
         return this.courseModel.EditCourseName(Number(courseID), String(newName));
     }
 
     /* Gets course Details by course ID */
-    public async CreateGradableItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
+    public async CreateGradableItem(g: IGradableItem) {// courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
         try {
-            const returnVal: any = await this.gradableItemController.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
+            const returnVal: any = await this.gradableItemController.CreateItem(g);
             // console.log("course return:");
             // console.log(returnVal);
 
@@ -99,6 +130,7 @@ export class CourseController {
             return returnVal.ops[0].GradableItemID;
         } catch (error) {
             console.log(error);
+            console.log("error in courseController");
             return -1;
         }
     }

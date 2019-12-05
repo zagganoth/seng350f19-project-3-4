@@ -16,8 +16,8 @@ export class GradableItemController {
     }
 
     /*Creates gradable item*/
-    public async CreateItem(courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number) {
-        return this.gradableItemModel.CreateItem(courseID, name, duedate, weight, gItemAccuracy);
+    public async CreateItem(gradableItem: IGradableItem) {
+        return this.gradableItemModel.CreateItem(gradableItem);
             /*
         .catch ((error)=> {
             console.log(error);

@@ -30,7 +30,7 @@ describe("Session Controller Tests", () => {
     it("Creates a new user", async () => {
         const name = "Test User";
         const email = "test@email.com";
-        return controller.CreateUser(req, res, next, name, email)
+        return controller.CreateUser(name, email)
         .then((returnVal: any) => {
             expect(returnVal.insertedCount).toEqual(1);
         });
