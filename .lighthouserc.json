@@ -2,7 +2,8 @@
     "ci": {
       "upload": {
         "target": "temporary-public-storage",
-        "url": ["http://localhost:3000/"]
+        "url": ["http://localhost:3000/"],
+        "startServerCommand":   "docker-compose -f ./GradeAchiever/docker-compose.yml up"
       }
     }
 }

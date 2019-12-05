@@ -14,7 +14,6 @@ install:
   - npm --prefix ./GradeAchiever install
 
 script:
-  - docker-compose -f ./GradeAchiever/docker-compose.yml up
   - npm --prefix ./GradeAchiever run tslint-test
   - lhci autorun
   - npm --prefix ./GradeAchiever run compile
