@@ -1,7 +1,6 @@
 
 import { NextFunction, Request, Response, Router } from "express";
 import {CourseController} from "../controllers/CourseController";
-import {GradableItemController} from "../controllers/GradableItemController";
 import {OverviewController} from "../controllers/OverviewController";
 import {SessionController} from "../controllers/SessionController";
 import {PDFParser} from "../Modules/PDFParser";
@@ -22,7 +21,7 @@ export class SessionRoute extends BaseRoute {
         router.post("/newUser", (req: Request, res: Response, next: NextFunction) => {
             const b = req as any;
             console.log(b.body.messages);
-            new SessionRoute().createUser(req, res, next, req.body.name, req.body.email);
+            new SessionRoute().createUser(req, res,  req.body.name, req.body.email);
         });
 
         router.post("/pdfparse", (req: Request, res: Response, next: NextFunction) => {
@@ -41,6 +40,7 @@ export class SessionRoute extends BaseRoute {
         const courseController = new CourseController();
         courseController.createCourse(course)
         .then((details) => {
+            // RIGHT HERE THIS SHOULD APPEND VALUE TO USER OBJECT
             // console.log(course.studentId);
             // this.Session(req, res, next, Number(course.studentId));
             res.redirect(307, "/overview");
@@ -99,17 +99,17 @@ export class SessionRoute extends BaseRoute {
     /**
      * Signs up a new user by creating them in db and then loads their homepage
      */
-    public async createUser(req: Request, res: Response, next: NextFunction, name: string, email: string) {
+    public async createUser(req: Request, res: Response, name: string, email: string) {
         const sessionCtrl = new SessionController();
         this.title = "CreateUser";
-        sessionCtrl.CreateUser(req, res, next, String(name), String(email))
+        sessionCtrl.CreateUser(String(name), String(email))
         .then((resp) => {
             // If adding a new user failed, return to login page
             if (resp.insertedCount === 0) {
                 res.redirect("/");
             } else {
                 // Loads overview page for new user
-                this.Session(req, res, next, resp.ops[0].StudentID);
+                this.Session(req, res, {} as NextFunction, resp.ops[0].StudentID);
             }
         });
 

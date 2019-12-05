@@ -15,16 +15,22 @@ describe("Session Controller Tests", () => {
     });
 
     it("Deletes an existing user", async () => {
-        return controller.DeleteUser(req, res, next, id).then((users: any) => {
+        return controller.DeleteUser(id).then((users: any) => {
             expect(users.length).toEqual(2);
         });
     });
 
     it("Creates a new admin user", async () => {
-        const name = "Test User";
-        const email = "test@email.com";
-        const isadmin = true;
-        return controller.CreateUser(req, res, next, name, email, isadmin)
+        const user: IStudent = {
+            AlgorithmAccuracy: 0,
+            Courses: [],
+            Email: "test@email.com",
+            IsAdmin: true,
+            NotificationLevel: 0,
+            StudentID: 0,
+            StudentName: "Test User",
+        };
+        return controller.CreateUser(user)
         .then((returnVal: any) => {
             expect(returnVal.insertedCount).toEqual(1);
         });
@@ -37,7 +43,7 @@ describe("Session Controller Tests", () => {
             IsAdmin: false,
         };
         const studentID = 5;
-        return controller.EditUser(req, res, next, studentID, userDetails)
+        return controller.EditUser(studentID, userDetails)
         .then((returnVal: any) => {
             expect(returnVal.matchedCount).toEqual(1);
         });

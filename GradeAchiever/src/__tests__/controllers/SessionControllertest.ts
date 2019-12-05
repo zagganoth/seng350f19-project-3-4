@@ -14,7 +14,7 @@ describe("Session Controller Tests", () => {
     });
 
     it("Gets all users", async () => {
-        return controller.RequestUsers(req, res, next)
+        return controller.RequestUsers()
         .then((users: any) => {
             expect(users.length).toEqual(3);
         });
@@ -30,7 +30,7 @@ describe("Session Controller Tests", () => {
     it("Creates a new user", async () => {
         const name = "Test User";
         const email = "test@email.com";
-        return controller.CreateUser(req, res, next, name, email)
+        return controller.CreateUser(name, email)
         .then((returnVal: any) => {
             expect(returnVal.insertedCount).toEqual(1);
         });
