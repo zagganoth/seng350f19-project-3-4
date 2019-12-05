@@ -14,7 +14,7 @@ export class GradableItemModel extends BaseModel {
     public GradableItemID!: number;
     public CourseID!: number;
     public GradableItemName!: string;
-    public DueDate!: string;
+    public DueDate!: Date;
     public Weight!: number;
     public CurrentGrade!: number;
     public GItemAccuracy!: number;
@@ -34,15 +34,16 @@ export class GradableItemModel extends BaseModel {
     /**
      * Creates a new gradable item
      */
-    public async CreateItem(courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
-        const newGradableItem = {
+    public async CreateItem(newGradableItem: IGradableItem) {// courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
+        newGradableItem.GradableItemID = await this.GetNewID();
+        /*const newGradableItem = {
             GradableItemID: await this.GetNewID(),
             CourseID: courseID,
             GradableItemName: gradableItemName,
             DueDate: dueDate,
             Weight: weight,
             GItemAccuracy: gItemAccuracy,
-        };
+        };*/
 
         console.log("Gradable Item Model - adding an item");
         console.log(newGradableItem);
@@ -104,6 +105,7 @@ export class GradableItemModel extends BaseModel {
      * Edits gradable item percent weight
      */
     public async EditGradableItemWeight(gradableItemID: number, newWeight: number) {
+        console.log("Updating weight to " + newWeight);
         return this.editOne({GradableItemID: gradableItemID}, {Weight: newWeight})
         .catch ((error) => {
             console.log(error);

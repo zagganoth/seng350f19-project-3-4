@@ -27,7 +27,7 @@ describe("Session Routing Tests", () => {
 	   it("Creates User", async () => {
         const name = "Test User";
         const email = "test@email.com";
-        TestSessionRoute.createUser(req, res, next, name, email);
+        TestSessionRoute.createUser(req, res, name, email);
 		      expect(TestSessionRoute).toBeInstanceOf(SessionRoute);
 	});
 
