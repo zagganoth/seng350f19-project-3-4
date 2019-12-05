@@ -23,6 +23,18 @@ export class BaseModel {
                 GradableItems: [5, 6, 12],
             };
             return courseDetails;
+        } else if (this.tableName === "GradableItem") {
+            const gradableItemDetails: IGradableItem = {
+                GradableItemID: 1,
+                CourseID: 1,
+                GradableItemName: "Assignment1",
+                DueDate: new Date("2019-01-01"),
+                Weight: 5,
+                CurrentGrade: 0,
+                GItemAccuracy: 0,
+                StudiedTime: 0,
+            };
+            return gradableItemDetails;
         }
     }
 
@@ -44,6 +56,18 @@ export class BaseModel {
                 GradableItems: [5, 6, 12],
             };
             return [courseDetails];
+        } else if (this.tableName === "GradableItem") {
+            const gradableItemDetails: IGradableItem = {
+                GradableItemID: 1,
+                CourseID: 1,
+                GradableItemName: "Assignment1",
+                DueDate: new Date("2019-01-01"),
+                Weight: 5,
+                CurrentGrade: 0,
+                GItemAccuracy: 0,
+                StudiedTime: 0,
+            };
+            return [gradableItemDetails];
         }
     }
 
@@ -55,6 +79,8 @@ export class BaseModel {
 
     public async deleteOne(query: object) {
         if (this.tableName === "Course") {
+            return query;
+        } else if (this.tableName === "GradableItem") {
             return query;
         }
     }
@@ -81,6 +107,24 @@ export class BaseModel {
             courseDetails.CurrentGrade = 50;
             courseDetails.GradeGoal = 70;
             return courseDetails;
+        } else if (this.tableName === "GradableItem") {
+            const gradableItemDetails: IGradableItem = {
+                GradableItemID: 1,
+                CourseID: 1,
+                GradableItemName: "Assignment1",
+                DueDate: new Date("2019-01-01"),
+                Weight: 5,
+                CurrentGrade: 0,
+                GItemAccuracy: 0,
+                StudiedTime: 0,
+            };
+            gradableItemDetails.CourseID = 2;
+            gradableItemDetails.GradableItemName = "Assignment2";
+            gradableItemDetails.Weight = 10;
+            gradableItemDetails.CurrentGrade = 100;
+            gradableItemDetails.DueDate = new Date("2019-12-01");
+            gradableItemDetails.StudiedTime = 7;
+            return gradableItemDetails;
         }
     }
 
@@ -128,6 +172,8 @@ export class BaseModel {
 
     public async addOne(query: object) {
         if (this.tableName === "Course") {
+            return query;
+        } else if (this.tableName === "GradableItem") {
             return query;
         }
     }

@@ -41,6 +41,7 @@ export class GradableItemModel extends BaseModel {
      */
     public async CreateItem(newGradableItem: IGradableItem) {// courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
         try {
+            newGradableItem.GradableItemID = await this.GetNewID();
             return this.addOne(newGradableItem);
         } catch (error) {
             console.log(error);
@@ -51,7 +52,6 @@ export class GradableItemModel extends BaseModel {
     // Gets next new gradable item ID
     public async GetNewID() {
         try {
-            console.log("Gradable Item Model - getting new item ID");
             const maxRow = await this.getMax({}, {}, {GradableItemID: -1});
             return maxRow[0].GradableItemID + 1;
         } catch (error) {
