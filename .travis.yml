@@ -7,17 +7,17 @@ services:
   - docker
 
 before_install:
-  - npm install -g @lhci/cli@0.3.x
-  - tsc -p ./GradeAchiever/
+
+  #- tsc -p ./GradeAchiever/
   #- docker build -t grade-achiever ./GradeAchiever
-  #- docker-compose -f ./GradeAchiever/docker-compose.yml build
+  - docker-compose -f ./GradeAchiever/docker-compose.yml build
 install:
   - npm --prefix ./GradeAchiever install
 
 script:
   - npm --prefix ./GradeAchiever run tslint-test
   #- docker-compose -f ./GradeAchiever/docker-compose.yml up -d
-  - lhci autorun
+  #- lhci autorun
   #- docker-compose -f ./GradeAchiever/docker-compose.yml down
   - npm --prefix ./GradeAchiever run compile
   - npm --prefix ./GradeAchiever run test

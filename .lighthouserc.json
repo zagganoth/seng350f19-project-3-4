@@ -4,8 +4,8 @@
         "target": "temporary-public-storage"
       },
       "collect": {
-        "startServerCommand": "./GradeAchiever/bin/www",
-        "url": ["http://localhost:3000/"]
+        "startServerCommand": "./bin/www",
+        "url": ["http://localhost:8080/"]
       }
     }
 }

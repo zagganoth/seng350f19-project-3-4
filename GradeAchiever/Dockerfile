@@ -12,7 +12,7 @@ COPY package*.json ./
 # tsc does not work without the explicit install
 RUN npm install
 RUN npm install -g typescript 
-
+RUN npm install -g @lhci/cli@0.3.x
 # Pull over rest of source files
 ADD . /usr/src/app
 
@@ -24,3 +24,6 @@ EXPOSE 3000
 
 # Start server
 CMD ["./bin/www"]
+
+# Try to run lighthouse
+CMD ["lhci autorun --config='../.lighthouserc.json'"]
