@@ -10,7 +10,7 @@ block content
         h1 Please upload a course outline PDF (optional)
         input(type="file",name="file",id="file")
         input(type='hidden',name='studentid',value=studentDetails.StudentID)
-        input(type="submit")
+        input#courseAddConfirm(type="submit")
   div.container-fluid
     button(class='openBtn',onclick='toggleAddCourse()',title="Toggle Overlay") Add New Course
     h1 Overview Page
