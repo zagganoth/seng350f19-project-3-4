@@ -28,7 +28,7 @@ block content
               th Gradable Item Name
               th Due Date
             each gradableItem in gradableItemDetails
-              tr(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
+              tr.expanditem(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
                 td #{gradableItem.RecommendedTime}
                 td #{gradableItem.CourseName}
                 td #{gradableItem.GradableItemName}
