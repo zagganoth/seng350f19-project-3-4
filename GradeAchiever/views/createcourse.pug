@@ -22,7 +22,7 @@ block content
                         input(type='text',value=gradableItem.Weight,name="GradableItems["+n+"][weight]",required=true)
                     td
                         if(gradableItem.DueDate !== "" && gradableItem.DueDate !== undefined)
-                            input(type='date',value=new Date(gradableItem.DueDate).toISOString().split('T')[0],name='GradableItems[' + n + '][duedate]')
+                            input(type='date',value=new Date(gradableItem.DueDate).toISOString().split('T')[0],name='GradableItems['+n+'][duedate]')
                         else
                             input(type='date')
                     td

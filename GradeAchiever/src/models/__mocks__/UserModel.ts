@@ -22,4 +22,19 @@ export class UserModel {
             };
         }
     }
+
+    public AddCourse(userid: number, CourseIDs: number[]) {
+        if (userid === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
 }
