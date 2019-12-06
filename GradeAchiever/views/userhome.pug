@@ -12,6 +12,7 @@ block content
           input#file(type="file",name="file")
           input(type='hidden',name='studentid',value=studentDetails.StudentID)
           input.submit#filesubmit(type="submit", value='Proceed')
+
   div.container-fluid
     button(class='openBtn',onclick='toggleAddCourse()',title="Toggle Overlay") Add New Course
     h1 Overview Page
@@ -47,7 +48,7 @@ block content
                           td Hours Spent: N/A
                       tr
                         td(colspan=2)
-                          button(style='width:100%;height:100%',onclick='showEditForm('+gradableItem.GradableItemID+')') Edit
+                          button.edititem(style='width:100%;height:100%',onclick='showEditForm('+gradableItem.GradableItemID+')') Edit
                         td
                           form(name='DeleteItem',action='/deleteitem',method='post',enctype='multipart/form-data')
                             input(type='hidden',name='pagename',value='overview')
@@ -95,6 +96,7 @@ block content
                       tr
                         td(colspan=4)
                           input.submit.itemeditsubmit(type='submit', value="Submit")
+
 
 
 
