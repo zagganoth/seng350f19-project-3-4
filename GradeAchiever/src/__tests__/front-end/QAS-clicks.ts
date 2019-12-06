@@ -13,15 +13,15 @@ import fs from "fs";
 describe("Web App", () => {
     const InputClickMax: number = 5;
     beforeEach(async () => {
-        try{
+        try {
             await page.goto("http://localhost:3000", {waitUntil: "load"});
-        }catch(error){
+        } catch (error) {
             expect(true).toEqual(false);
         }
     });
 
     it("creates a new user in < 5 clicks", async () => {
-        try{
+        try {
             await page.goto("http://localhost:3000", {waitUntil: "load"});
             let clicks = 0;
             await page.type("input[type='text'][name='name']", "testuser");
@@ -33,14 +33,14 @@ describe("Web App", () => {
             await page.waitForSelector(".openBtn");
             expect(page.url()).toContain("newUser");
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
-        }catch(error){
+        } catch (error) {
             expect(true).toEqual(false);
         }
         // await page.click(".logout");
     });
 
     it("logs in in < 5 clicks", async () => {
-        try{
+        try {
             let clicks = 0;
             await page.select("select[name='user']");
             clicks += 1;
@@ -52,12 +52,12 @@ describe("Web App", () => {
             await page.waitForSelector(".openBtn");
             expect(page.url()).toContain("overview");
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
-        }catch(error){
+        } catch (error) {
             expect(true).toEqual(false);
         }
     }, 15000);
     it("Create a course in < 5 clicks", async () => {
-        try{
+        try {
             await page.select("select[name='user']");
             await page.waitForSelector("option");
             await page.select("select[name='user']", "1");
@@ -80,12 +80,12 @@ describe("Web App", () => {
             await page.click("input[type='submit']");
             clicks++;
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
-        }catch(error){
+        } catch (error) {
             expect(true).toEqual(false);
         }
     }, 15000);
     it("logs study time for gradable item in < 5 clicks", async () => {
-        try{
+        try {
             await page.select("select[name='user']");
             await page.waitForSelector("option");
             await page.select("select[name='user']", "1");
@@ -111,14 +111,14 @@ describe("Web App", () => {
             // await page.waitForNavigation();
             clicks += 1;
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
-        }catch(error){
+        } catch (error) {
             console.log(error);
             expect(true).toEqual(false);
         }
     }, 15000);
 
     it("adds a new gradable item in < 5 clicks", async () => {
-        try{
+        try {
             await page.select("select[name='user']");
             await page.waitForSelector("option");
             await page.select("select[name='user']", "1");
@@ -145,7 +145,7 @@ describe("Web App", () => {
             await page.waitForSelector(".course-details");
             // expect(page.url()).toContain("newGradableItem");
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
-        }catch(error){
+        } catch (error) {
             expect(true).toEqual(false);
         }
     }, 15000);
