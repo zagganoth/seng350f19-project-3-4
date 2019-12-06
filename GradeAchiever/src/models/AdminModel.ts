@@ -15,7 +15,6 @@ export class AdminModel extends BaseModel {
     // Removes a user specified by ID
     public async RemoveUser(userID: number) {
         // Returns db response after deleting user
-        console.log("Admin Model - trying to delete one: " + userID);
         return await this.deleteOne({StudentID: Number(userID)})
         .catch ((error) => {
             console.log(error);
@@ -35,7 +34,6 @@ export class AdminModel extends BaseModel {
 
     // Adds a new user
     public async AddUser(user: object) {
-        console.log("Admin Model - adding a user");
         return this.addOne(user)
         .catch ((error) => {
             console.log(error);
@@ -45,7 +43,6 @@ export class AdminModel extends BaseModel {
 
     // Gets next new user ID
     public async GetNewID() {
-        console.log("Admin Model - getting new user ID");
         return this.getMax({}, {}, {StudentID: -1})
         .catch ((error) => {
             console.log(error);
@@ -55,12 +52,9 @@ export class AdminModel extends BaseModel {
 
     // Gets user by ID and updates user details
     public async UpdateUser(userID: number, update: object) {
-
-        console.log("Admin Model - Updating a user");
         return this.editOne({StudentID: userID}, update)
         .catch((error) => {
             console.log(error);
-            // console.log("error from UpdateUser users");
             return [];
         });
     }

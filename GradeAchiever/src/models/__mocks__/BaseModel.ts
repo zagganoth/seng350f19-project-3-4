@@ -14,7 +14,11 @@ export class BaseModel {
     }
 
     public async getOne(query: object): Promise<any> {
+        const query2 = query as any;
         if (this.tableName === "Course") {
+            if (query2.CourseID === 2) {
+                throw new Error("Something went wrong");
+            }
             const courseDetails: ICourse = {
                 CourseID: 1,
                 StudentID: 1,
@@ -26,6 +30,9 @@ export class BaseModel {
             };
             return courseDetails;
         } else if (this.tableName === "GradableItem") {
+            if (query2.GradableItemID === 2) {
+                throw new Error("Something went wrong");
+            }
             const gradableItemDetails: IGradableItem = {
                 GradableItemID: 1,
                 CourseID: 1,
@@ -38,7 +45,6 @@ export class BaseModel {
             };
             return gradableItemDetails;
         } else if (this.tableName === "User") {
-            const query2 = query as any;
             if (query2.StudentID === 2) {
                 throw new Error("Something went wrong");
             }
@@ -98,12 +104,18 @@ export class BaseModel {
     }
 
     public async deleteOne(query: object): Promise<any> {
+        const q2 = query as any;
         if (this.tableName === "Course") {
+            if (q2.CourseID === 2) {
+                throw new Error("something went wrong");
+            }
             return query;
         } else if (this.tableName === "GradableItem") {
+            if (q2.GradableItemID === 2) {
+                throw new Error("something went wrong");
+            }
             return query;
         } else if (this.tableName === "User") {
-            const q2 = query as any;
             if (q2.StudentID === 2) {
                 throw new Error("something went wrong");
             }
@@ -118,7 +130,11 @@ export class BaseModel {
     }
 
     public async editOne(query: object, update: object): Promise<any> {
+        const query2 = query as any;
         if (this.tableName === "Course") {
+            if (query2.CourseID === 2) {
+                throw new Error("Something went wrong");
+            }
             const courseDetails: ICourse = {
                 CourseID: 1,
                 StudentID: 1,
@@ -134,6 +150,9 @@ export class BaseModel {
             courseDetails.GradeGoal = 70;
             return courseDetails;
         } else if (this.tableName === "GradableItem") {
+            if (query2.GradableItemID === 2) {
+                throw new Error("Something went wrong");
+            }
             const gradableItemDetails: IGradableItem = {
                 GradableItemID: 1,
                 CourseID: 1,
@@ -152,7 +171,6 @@ export class BaseModel {
             gradableItemDetails.StudiedTime = 7;
             return gradableItemDetails;
         } else if (this.tableName === "User") {
-            const query2 = query as any;
             if (query2.StudentID === 2) {
                 throw new Error("Something went wrong");
             }
@@ -164,7 +182,11 @@ export class BaseModel {
     }
 
     public async addToArray(query: object, field: string, value: number[]): Promise<any> {
+        const query2 = query as any;
         if (this.tableName === "Course") {
+            if (query2.CourseID === 2) {
+                throw new Error("Something went wrong");
+            }
             const courseDetails: ICourse = {
                 CourseID: 1,
                 StudentID: 1,
@@ -179,7 +201,6 @@ export class BaseModel {
             });
             return courseDetails;
         } else if (this.tableName === "User") {
-            const query2 = query as any;
             if (query2.StudentID === 2) {
                 throw new Error("Something went wrong");
             }
@@ -197,7 +218,11 @@ export class BaseModel {
     }
 
     public async removeFromArray(query: object, field: string, value: number[]): Promise<any> {
+        const query2 = query as any;
         if (this.tableName === "Course") {
+            if (query2.CourseID === 2) {
+                throw new Error("Something went wrong");
+            }
             const courseDetails: ICourse = {
                 CourseID: 1,
                 StudentID: 1,
@@ -213,7 +238,6 @@ export class BaseModel {
             return courseDetails;
         }
         if (this.tableName === "User") {
-            const query2 = query as any;
             if (query2.StudentID === 2) {
                 throw new Error("Something went wrong");
             }
@@ -240,12 +264,18 @@ export class BaseModel {
     }
 
     public async addOne(query: object): Promise<any> {
+        const q2 = query as any;
         if (this.tableName === "Course") {
+            if (q2.CourseID > 2) {
+                throw new Error("Something went wrong");
+            }
             return query;
         } else if (this.tableName === "GradableItem") {
+            if (q2.GradableItemID > 2) {
+                throw new Error("Something went wrong");
+            }
             return query;
         } else if (this.tableName === "User") {
-            const q2 = query as any;
             if (q2.StudentID === 2) {
                 throw new Error("Something went wrong");
             }

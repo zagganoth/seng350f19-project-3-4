@@ -1,7 +1,5 @@
-import {NextFunction, Request, Response} from "express";
-import DbClient = require("../DbClient");
 import { BaseModel } from "./BaseModel";
-import {GradableItemModel} from "./GradableItemModel";
+
 export class CourseModel extends BaseModel {
 
     /*
@@ -38,20 +36,6 @@ export class CourseModel extends BaseModel {
     }
 
     public async CreateNewCourse(newCourse: ICourse) {// studentID: number, courseName: string, percievedDifficulty: number, currentGrade: number, gradeGoal: number, gradableItems: number[]) {
-        // I don't know why, but studentID was getting inserted as a string if I didn't force it to number below
-        /*const newCourse = {
-            CourseID: await this.GetNewID(),
-            StudentID: Number(studentID),
-            CourseName: courseName,
-            PerceivedDifficulty: percievedDifficulty,
-            CurrentGrade: currentGrade,
-            GradeGoal: gradeGoal,
-            GradableItems: gradableItems,
-            GradeNeeded: gradeGoal,
-            PercentageDone: 0,
-            CourseRatio: 1,
-        };
-        };*/
         newCourse.CourseID = await this.GetNewID();
         newCourse.StudentID = Number(newCourse.StudentID);
         return this.addOne(newCourse)
@@ -68,7 +52,6 @@ export class CourseModel extends BaseModel {
             return maxRow[0].CourseID + 1;
         } catch (error) {
             console.log(error);
-            console.log("error from getMax");
             return 1;
         }
     }
@@ -91,7 +74,6 @@ export class CourseModel extends BaseModel {
     }
 
     public async DeleteGradableItems(courseID: number, itemsToRemove: number[]) {
-        // remove ids from array
         return this.removeFromArray({CourseID: Number(courseID)}, "GradableItems", itemsToRemove)
         .catch((error) => {
             console.log(error);
