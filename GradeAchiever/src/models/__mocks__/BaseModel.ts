@@ -1,17 +1,19 @@
 export class BaseModel {
-    private tableName: string;
-
+    private readonly tableName: string;
+    private users = [];
     constructor(tableName: string) {
         this.tableName = tableName;
     }
 
-    public async getAll(query: object = {}, project: object = {}, sort: object = {}) {
+    public async getAll(query: object = {}, project: object = {}, sort: object = {}): Promise<any> {
         if (this.tableName === "Course") {
 
+        } else if (this.tableName === "User") {
+            return [{Test: true}];
         }
     }
 
-    public async getOne(query: object) {
+    public async getOne(query: object): Promise<any> {
         if (this.tableName === "Course") {
             const courseDetails: ICourse = {
                 CourseID: 1,
@@ -35,16 +37,31 @@ export class BaseModel {
                 StudiedTime: 0,
             };
             return gradableItemDetails;
+        } else if (this.tableName === "User") {
+            const query2 = query as any;
+            if (query2.StudentID === 2) {
+                throw new Error("Something went wrong");
+            }
+            const user: IStudent = {
+                AlgorithmAccuracy: 0,
+                Courses: [],
+                Email: "",
+                IsAdmin: false,
+                NotificationLevel: 0,
+                StudentID: 0,
+                StudentName: "Test",
+            };
+            return user;
         }
     }
 
-    public async getCount(query: object = {}) {
+    public async getCount(query: object = {}): Promise<any> {
         if (this.tableName === "Course") {
 
         }
     }
 
-    public async getMax(query: object = {}, project: object = {}, sort: object = {}) {
+    public async getMax(query: object = {}, project: object = {}, sort: object = {}): Promise<any> {
         if (this.tableName === "Course") {
             const courseDetails: ICourse = {
                 CourseID: 1,
@@ -69,29 +86,38 @@ export class BaseModel {
             };
             return [gradableItemDetails];
         }
+        if (this.tableName === "User") {
+            return 1;
+        }
     }
 
-    public async getMin(query: object = {}, project: object = {}, sort: object = {}) {
+    public async getMin(query: object = {}, project: object = {}, sort: object = {}): Promise<any> {
         if (this.tableName === "Course") {
 
         }
     }
 
-    public async deleteOne(query: object) {
+    public async deleteOne(query: object): Promise<any> {
         if (this.tableName === "Course") {
             return query;
         } else if (this.tableName === "GradableItem") {
             return query;
+        } else if (this.tableName === "User") {
+            const q2 = query as any;
+            if (q2.StudentID === 2) {
+                throw new Error("something went wrong");
+            }
+            return query;
         }
     }
 
-    public async deleteMany(query: object) {
+    public async deleteMany(query: object): Promise<any> {
         if (this.tableName === "Course") {
 
         }
     }
 
-    public async editOne(query: object, update: object) {
+    public async editOne(query: object, update: object): Promise<any> {
         if (this.tableName === "Course") {
             const courseDetails: ICourse = {
                 CourseID: 1,
@@ -125,10 +151,19 @@ export class BaseModel {
             gradableItemDetails.DueDate = new Date("2019-12-01");
             gradableItemDetails.StudiedTime = 7;
             return gradableItemDetails;
+        } else if (this.tableName === "User") {
+            const query2 = query as any;
+            if (query2.StudentID === 2) {
+                throw new Error("Something went wrong");
+            }
+            query2.StudentName = update;
+            query2.AlgorithmAccuracy = update;
+            query2.NotificationSettings = update;
+            return query2;
         }
     }
 
-    public async addToArray(query: object, field: string, value: number[]) {
+    public async addToArray(query: object, field: string, value: number[]): Promise<any> {
         if (this.tableName === "Course") {
             const courseDetails: ICourse = {
                 CourseID: 1,
@@ -143,10 +178,25 @@ export class BaseModel {
                 courseDetails.GradableItems.push(element);
             });
             return courseDetails;
+        } else if (this.tableName === "User") {
+            const query2 = query as any;
+            if (query2.StudentID === 2) {
+                throw new Error("Something went wrong");
+            }
+            const user: IStudent = {
+                AlgorithmAccuracy: 0,
+                Courses: value,
+                Email: "",
+                IsAdmin: false,
+                NotificationLevel: 0,
+                StudentID: 0,
+                StudentName: "",
+            };
+            return user;
         }
     }
 
-    public async removeFromArray(query: object, field: string, value: number[]) {
+    public async removeFromArray(query: object, field: string, value: number[]): Promise<any> {
         if (this.tableName === "Course") {
             const courseDetails: ICourse = {
                 CourseID: 1,
@@ -162,23 +212,48 @@ export class BaseModel {
             });
             return courseDetails;
         }
+        if (this.tableName === "User") {
+            const query2 = query as any;
+            if (query2.StudentID === 2) {
+                throw new Error("Something went wrong");
+            }
+            const user: IStudent = {
+                AlgorithmAccuracy: 0,
+                Courses: [3, 1, 2],
+                Email: "",
+                IsAdmin: false,
+                NotificationLevel: 0,
+                StudentID: 0,
+                StudentName: "",
+            };
+            value.forEach((element) => {
+                user.Courses.pop();
+            });
+            return user;
+        }
     }
 
-    public async editMany(query: object, update: object) {
+    public async editMany(query: object, update: object): Promise<any> {
         if (this.tableName === "Course") {
 
         }
     }
 
-    public async addOne(query: object) {
+    public async addOne(query: object): Promise<any> {
         if (this.tableName === "Course") {
             return query;
         } else if (this.tableName === "GradableItem") {
             return query;
+        } else if (this.tableName === "User") {
+            const q2 = query as any;
+            if (q2.StudentID === 2) {
+                throw new Error("Something went wrong");
+            }
+            return query;
         }
     }
 
-    public async addMany(query: object[]) {
+    public async addMany(query: object[]): Promise<any> {
         if (this.tableName === "Course") {
 
         }

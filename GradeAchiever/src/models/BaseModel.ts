@@ -9,7 +9,7 @@ export class BaseModel {
         this.tableName = tableName;
     }
 
-    public async getAll(query: object = {}, project: object = {}, sort: object = {}) {
+    public async getAll(query: object = {}, project: object = {}, sort: object = {}): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 return db.collection(this.tableName).find(query).project(project).sort(sort).toArray();
@@ -20,7 +20,7 @@ export class BaseModel {
             });
     }
 
-    public async getOne(query: object) {
+    public async getOne(query: object): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 const returnVal = db.collection(this.tableName).findOne(query);
@@ -32,7 +32,7 @@ export class BaseModel {
     }
 
     /*Gets the number of rows in a table */
-    public async getCount(query: object = {}) {
+    public async getCount(query: object = {}): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 return db.collection(this.tableName).find(query).count();
@@ -59,7 +59,7 @@ export class BaseModel {
                StudentID:-1
            }
      */
-    public async getMax(query: object = {}, project: object = {}, sort: object = {}) {
+    public async getMax(query: object = {}, project: object = {}, sort: object = {}): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 const returnVal = db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
@@ -80,7 +80,7 @@ export class BaseModel {
               StudentID: +1
           }
     */
-    public async getMin(query: object = {}, project: object = {}, sort: object = {}) {
+    public async getMin(query: object = {}, project: object = {}, sort: object = {}): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 return db.collection(this.tableName).find(query).project(project).sort(sort).limit(1).toArray();
@@ -91,7 +91,7 @@ export class BaseModel {
             });
     }
 
-    public async deleteOne(query: object) {
+    public async deleteOne(query: object): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 return db.collection(this.tableName).deleteOne(query);
@@ -102,7 +102,7 @@ export class BaseModel {
             });
     }
 
-    public async deleteMany(query: object) {
+    public async deleteMany(query: object): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 // returns an object which has a field confirming how many items were deleted. Might be useful.
@@ -121,14 +121,14 @@ export class BaseModel {
         .
     }
     */
-    public async editOne(query: object, update: object) {
+    public async editOne(query: object, update: object): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 return db.collection(this.tableName).updateOne(query, { $set: update });
             });
     }
 
-    public async addToArray(query: object, field: string, value: number[]) {
+    public async addToArray(query: object, field: string, value: number[]): Promise<any> {
         interface IUpdateType {
             [key: string]: object;
         }
@@ -146,7 +146,7 @@ export class BaseModel {
             });
     }
 
-    public async removeFromArray(query: object, field: string, value: number[]) {
+    public async removeFromArray(query: object, field: string, value: number[]): Promise<any> {
         interface IUpdateType {
             [key: string]: object;
         }
@@ -166,7 +166,7 @@ export class BaseModel {
             });
     }
 
-    public async editMany(query: object, update: object) {
+    public async editMany(query: object, update: object): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 return db.collection(this.tableName).updateMany(query, { $set: update });
@@ -176,7 +176,7 @@ export class BaseModel {
     /**
      * Adds one entry to db table
      */
-    public async addOne(query: object) {
+    public async addOne(query: object): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 return db.collection(this.tableName).insertOne(query);
@@ -184,7 +184,7 @@ export class BaseModel {
     }
 
     // The query object must be an array where each element of the array is the document object.
-    public async addMany(query: object[]) {
+    public async addMany(query: object[]): Promise<any> {
         return DbClient.connect()
             .then((db) => {
                 return db.collection(this.tableName).insertMany(query);
