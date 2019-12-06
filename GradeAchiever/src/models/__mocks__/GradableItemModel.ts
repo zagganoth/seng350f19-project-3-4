@@ -68,4 +68,94 @@ export class GradableItemModel {
         return 5;
     }
 
+
+    public EditGradableItemName(id: number, newGrade: number) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+
+    public EditGradableItemGrade(id: number, newGrade: number) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+
+    public EditDueDate(id: number, newGrade: number) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+
+    public AddStudyTime(id: number, newGrade: number) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+
+    public EditGradableItemWeight(id: number, newGrade: number) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+
+    public EditGradeGoal(id: number, newGrade: number) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
 }

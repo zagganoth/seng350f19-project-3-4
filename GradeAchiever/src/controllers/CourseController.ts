@@ -134,6 +134,7 @@ export class CourseController {
             return -1;
         }
     }
+    
     public async EditGradableItem(g: IGradableItem) {// gradableItemID: number, name: string, dueDate: Date, hours: number, grade: number) {
         try {
             g.GradableItemID = Number(g.GradableItemID);

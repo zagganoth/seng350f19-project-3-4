@@ -42,4 +42,20 @@ export class CourseModel {
         }
     }
 
+
+
+    public DeleteGradableItems(id: number, itemsToRemove: number[]){
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
 }
