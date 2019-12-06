@@ -39,7 +39,7 @@ div {
 }
 
 .error{
-  color: red;
+  color: #ff8686;
 }
 
 h1.course-title{
@@ -157,8 +157,8 @@ div.inneritemoverlay{
 
 input[type=submit], #submitgoal, #editgoal, #submitdiff,#editdiff, #submitname {
   width: 100%;
-  background-color: #eca72c;
-  color: #f3e0ec;
+  background-color: #da900d;
+  color: #ffffff;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
