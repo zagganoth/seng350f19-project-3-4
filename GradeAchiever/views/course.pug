@@ -49,7 +49,7 @@ block content
                 th Due Date
               each gradableItem in gradableItems
                 tr(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
-                  td #{gradableItem.RecommendedTime}
+                  td #{Number(gradableItem.RecommendedTime).toFixed(1)}
                   td #{gradableItem.GradableItemName}
                   td #{gradableItem.DueDate}
                 tr(style='display:none',id=gradableItem.GradableItemID + "_details")
