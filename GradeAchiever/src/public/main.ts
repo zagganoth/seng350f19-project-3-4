@@ -2,10 +2,14 @@
  * Client side ts/js
  */
 
+ if (document.title === "Course Home") {
+     CourseProgress();
+ }
+
 /**
  * changeGradeGoal by sending fetch request with course id and new goal
  */
-function changeGradeGoal(courseID: number) {
+ function changeGradeGoal(courseID: number) {
     // Cast to input element to get value.
     const newGradeElement = document.getElementById("goalinput") as HTMLInputElement;
     if (newGradeElement) {
@@ -44,7 +48,7 @@ function changeGradeGoal(courseID: number) {
 /**
  * changeGradeGoal by sending fetch request with course id and new goal
  */
-function changeDifficulty(courseID: number) {
+ function changeDifficulty(courseID: number) {
     // Cast to input element to get value.
     const newGradeElement = document.getElementById("diffinput") as HTMLInputElement;
     if (newGradeElement) {
@@ -83,7 +87,7 @@ function changeDifficulty(courseID: number) {
 /**
  * Change course name by sending fetch request with course id and new name
  */
-function changeName(courseID: number) {
+ function changeName(courseID: number) {
     // Cast to input element to get value.
     const newNameElement = document.getElementById("nameinput") as HTMLInputElement;
     if (newNameElement) {
@@ -120,7 +124,7 @@ function changeName(courseID: number) {
 /*
  * Check fetch response status code
  */
-function CheckResponse(resp: any) {
+ function CheckResponse(resp: any) {
     if (resp.ok) {
         return;
     } else {
@@ -131,7 +135,7 @@ function CheckResponse(resp: any) {
 /*
  * Verifies new goal is a number between 0 and 100
  */
-function verifyNewGrade(newGrade: number) {
+ function verifyNewGrade(newGrade: number) {
     if (!newGrade || (isNaN(newGrade) || (newGrade > 100 || newGrade < 0))) {
         alert("Please enter a number between 0 and 100");
         return false;
@@ -143,7 +147,7 @@ function verifyNewGrade(newGrade: number) {
 /*
  * Verifies new diff is a number between 1 and 5
  */
-function verifyNewDiff(newDiff: number) {
+ function verifyNewDiff(newDiff: number) {
     if (!newDiff || (isNaN(newDiff) || (newDiff > 5 || newDiff < 1))) {
         alert("Please enter a number between 1 and 5");
         return false;
@@ -153,7 +157,7 @@ function verifyNewDiff(newDiff: number) {
 }
 
 /** Updated edited html */
-function UpdateHTML(id: string, newUpdate: any) {
+ function UpdateHTML(id: string, newUpdate: any) {
     const goal = document.getElementById(id);
     if (goal) {
         goal.innerHTML = String(newUpdate);
@@ -164,7 +168,7 @@ function UpdateHTML(id: string, newUpdate: any) {
 /**
  * Create prompt for user input
  */
-function editGradeGoal() {
+ function editGradeGoal() {
     hideElementbyID(document.getElementById("gradegoal"));
     showElementbyID(document.getElementById("gradegoalinput"));
     hideElementbyID(document.getElementById("editgoal"));
@@ -174,7 +178,7 @@ function editGradeGoal() {
 /**
  * Create prompt for user input
  */
-function editDifficulty() {
+ function editDifficulty() {
     hideElementbyID(document.getElementById("diff"));
     showElementbyID(document.getElementById("difficultyinput"));
     hideElementbyID(document.getElementById("editdiff"));
@@ -184,7 +188,7 @@ function editDifficulty() {
 /**
  * Create prompt for user input
  */
-function editCourseName() {
+ function editCourseName() {
     hideElementbyID(document.getElementById("editname"));
     showElementbyID(document.getElementById("nameinput"));
     showElementbyID(document.getElementById("submitname"));
@@ -193,7 +197,7 @@ function editCourseName() {
 /**
  * Create prompt for user input
  */
-function doneEditCourseName() {
+ function doneEditCourseName() {
     showElementbyID(document.getElementById("editname"));
     hideElementbyID(document.getElementById("nameinput"));
     hideElementbyID(document.getElementById("submitname"));
@@ -202,7 +206,7 @@ function doneEditCourseName() {
 /**
  * Hide goal prompt
  */
-function doneEditDifficulty() {
+ function doneEditDifficulty() {
     hideElementbyID(document.getElementById("difficultyinput"));
     hideElementbyID(document.getElementById("submitdiff"));
     showElementbyID(document.getElementById("diff"));
@@ -212,36 +216,36 @@ function doneEditDifficulty() {
 /**
  * Hide difficulty prompt
  */
-function doneEditGradeGoal() {
+ function doneEditGradeGoal() {
     hideElementbyID(document.getElementById("gradegoalinput"));
     hideElementbyID(document.getElementById("submitgoal"));
     showElementbyID(document.getElementById("gradegoal"));
     showElementbyID(document.getElementById("editgoal"));
 }
 
-function hideElementbyID(element: any) {
+ function hideElementbyID(element: any) {
     element.style.display = "none";
 }
 
-function showElementbyID(element: any) {
+ function showElementbyID(element: any) {
     element.style.display = "table-cell";
 }
 
-function toggleAddCourse() {
+ function toggleAddCourse() {
     document.getElementById("courseAddOverlay")!.style.display = (document.getElementById("courseAddOverlay")!.style.display === "block" ? "none" : "block");
 }
 
-function toggleAddGradableItem() {
+ function toggleAddGradableItem() {
     document.getElementById("GradableItemAddOverlay")!.style.display = (document.getElementById("GradableItemAddOverlay")!.style.display === "block" ? "none" : "block");
 }
-function expandGradableItem(gradableItemID: number) {
+ function expandGradableItem(gradableItemID: number) {
     const rowID = gradableItemID + "_details";
     const rowElement = document.getElementById(rowID);
     if (rowElement !== null) {
         rowElement.style.display === "" ? rowElement.style.display = "none" : rowElement.style.display = "";
     }
 }
-function showEditForm(gradableItemID: number) {
+ function showEditForm(gradableItemID: number) {
     const rowID = gradableItemID + "_edit";
     const rowElement = document.getElementById(rowID);
     const rowID2 = gradableItemID + "_details";
@@ -254,7 +258,7 @@ function showEditForm(gradableItemID: number) {
 /**
  * Add a new row to a table
  */
-function addNewRow(tableid: string) {
+ function addNewRow(tableid: string) {
     const tableElement = document.getElementById(String(tableid)) as HTMLTableElement;
     if (tableElement) {
         const row = tableElement.insertRow();
@@ -270,7 +274,7 @@ function addNewRow(tableid: string) {
 /**
  * Get max row id
  */
-function GetNewID(tableElement: HTMLTableElement) {
+ function GetNewID(tableElement: HTMLTableElement) {
     let maxid: number = 0;
     let x = 1;
     while (x < tableElement.rows.length) {
@@ -287,7 +291,7 @@ function GetNewID(tableElement: HTMLTableElement) {
 /**
  * Add remove row from table
  */
-function RemoveRow(tableid: string, rowNum: number) {
+ function RemoveRow(tableid: string, rowNum: number) {
     const tableElement = document.getElementById(String(tableid)) as HTMLTableElement;    let x = 0;
     let item: HTMLTableRowElement = tableElement.rows[x];
     while (item.id !== String(rowNum)) {
@@ -305,9 +309,53 @@ function RemoveRow(tableid: string, rowNum: number) {
 }
 
 /*Calculates how far into course student is */
-function CourseProgress() {
+ function CourseProgress() {
     const date: Date = new Date();
-    const rows = document.getElementsByClassName("iteminfo");
-    console.log(rows);
-    const progess = 0;
+    const table = document.getElementById("calendartable") as HTMLTableElement;
+    console.log(date);
+    console.log(table);
+    let progress = 0;
+    if (table) {
+        for (let i = 0, row = table.rows[i];i <= table.rows.length; i++, row = table.rows[i]) {
+            if (row.onclick === null) {
+                continue;
+            }
+            console.log(row);
+            const due = row.childNodes[2].textContent;
+            console.log(due);
+            if (due) {
+                const duedate: Date = new Date(due);
+                if (duedate.getTime() <= date.getTime()) {
+                    progress += AddToCompleteItems(i);
+                }
+            }
+        }
+    }
+    UpdateBarHTML(progress);
+}
+
+ function AddToCompleteItems(rowindex: number) {
+    const table = document.getElementById("calendartable") as HTMLTableElement;
+    if (table) {
+        for (let i = 0, row = table.rows[i];i <= table.rows.length; i++, row = table.rows[i]) {
+            if (i === rowindex + 1) {
+                const weight = (row.childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].textContent);
+                if (weight) {
+                    const percent = weight.split(" ", 2)[1];
+                    const progress = percent.split("%", 1)[0];
+                    console.log(progress);
+                    return Number(progress);
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+ function UpdateBarHTML(percent: number) {
+    const bar = document.getElementById("progress");
+    if (bar) {
+        console.log(bar);
+        bar.style.width = String(percent + "%");
+    }
 }

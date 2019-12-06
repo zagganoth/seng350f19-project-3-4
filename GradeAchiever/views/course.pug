@@ -1,5 +1,6 @@
 extends layout
 
+
 block content
   
   - var page = 'course'
@@ -30,19 +31,19 @@ block content
             button.plus#addrow(onclick="addNewRow(\'newgradableitem\')")
           div
             input.submit(type='submit',value='Submit')
-  div.container-fluid(onload="CourseProgress()")
+  div.container-fluid
     div.row
       button#editname(type='button' onclick='editCourseName()')
         h1.course-title#name(title="Edit course name") #{courseDetails.CourseName}
       input#nameinput(type="text", name="newName" placeholder=courseDetails.CourseName)
       button.submit#submitname(type='button' onclick='changeName('+courseDetails.CourseID+')') Submit
       div.progress-bar
-        span.progress
+        span.progress#progress
     div.row
         div.calendar
           if courseDetails
             h3 Calendar        
-            table.gradable-items.fixed_header
+            table.gradable-items.fixed_header#calendartable
               tr.iteminfo
                 th Recommended Study Time
                 th Gradable Item
