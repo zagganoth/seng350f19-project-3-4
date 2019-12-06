@@ -317,7 +317,7 @@
     let progress = 0;
     if (table) {
         for (let i = 0; i < table.rows.length; i++) {
-            let row = table.rows[i];
+            const row = table.rows[i];
             if (row === null || row.onclick === null) {
                 continue;
             }
@@ -339,7 +339,7 @@
     const table = document.getElementById("calendartable") as HTMLTableElement;
     if (table) {
         for (let i = 0; i <= table.rows.length; i++) {
-            let row = table.rows[i];
+            const row = table.rows[i];
             if (i === rowindex + 1) {
                 const weight = (row.childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].textContent);
                 if (weight) {
