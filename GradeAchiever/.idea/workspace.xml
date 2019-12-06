@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f388c761-90bc-4b45-9fa6-c7a60a3d6904" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/interfaces/Course.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/GradableItem.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/Student.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/controllers/AdminControllertests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/controllers/AdminControllertests.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/controllers/CourseControllertests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/controllers/CourseControllertests.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/controllers/SessionControllertest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/controllers/SessionControllertest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/routes/AdminRoutetests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/routes/AdminRoutetests.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/routes/CourseRoutetests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/routes/CourseRoutetests.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/AdminController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/AdminController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/CourseController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/CourseController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/GradableItemController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GradableItemController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/SessionController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SessionController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/GradableItemModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GradableItemModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/AdminRoute.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/AdminRoute.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/CourseRoute.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/CourseRoute.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/course.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/course.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/userhome.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/userhome.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,14 +42,14 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/models/BaseModel.ts" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ashenwai\OneDrive\Anish\School-ish\3B\SENG350\Lab3\GradeAchiever_Master\GradeAchiever\src\models" />
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ashenwai\OneDrive\Anish\School-ish\3B\SENG350\Lab3\GradeAchiever_Master\GradeAchiever" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ashenwai\OneDrive\Anish\School-ish\3B\SENG350\Lab3\GradeAchiever_Master\GradeAchiever\src\models" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunDashboard">
