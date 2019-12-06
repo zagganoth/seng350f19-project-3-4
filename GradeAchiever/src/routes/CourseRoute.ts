@@ -113,6 +113,8 @@ export class CourseRoute extends BaseRoute {
             PerceivedDifficulty: 0,
             StudentID: 0,
             GradeNeeded: 0,
+            CourseRatio: 0,
+            PercentageDone: 0,
         };
         this.courseController.createGradableItems(course)
         .then(() => {

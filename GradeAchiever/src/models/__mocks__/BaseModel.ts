@@ -9,7 +9,7 @@ export class BaseModel {
         if (this.tableName === "Course") {
 
         } else if (this.tableName === "User") {
-            return [{Test: true}];
+            return [{ Test: true }];
         }
     }
 
@@ -27,6 +27,9 @@ export class BaseModel {
                 CurrentGrade: 76,
                 GradeGoal: 80,
                 GradableItems: [5, 6, 12],
+                GradeNeeded: 80,
+                CourseRatio: 0,
+                PercentageDone: 0,
             };
             return courseDetails;
         } else if (this.tableName === "GradableItem") {
@@ -42,6 +45,7 @@ export class BaseModel {
                 CurrentGrade: 0,
                 GItemAccuracy: 0,
                 StudiedTime: 0,
+                RecommendedTime: 0,
             };
             return gradableItemDetails;
         } else if (this.tableName === "User") {
@@ -77,6 +81,9 @@ export class BaseModel {
                 CurrentGrade: 76,
                 GradeGoal: 80,
                 GradableItems: [5, 6, 12],
+                GradeNeeded: 80,
+                CourseRatio: 0,
+                PercentageDone: 0,
             };
             return [courseDetails];
         } else if (this.tableName === "GradableItem") {
@@ -89,6 +96,7 @@ export class BaseModel {
                 CurrentGrade: 0,
                 GItemAccuracy: 0,
                 StudiedTime: 0,
+                RecommendedTime: 0,
             };
             return [gradableItemDetails];
         }
@@ -143,11 +151,17 @@ export class BaseModel {
                 CurrentGrade: 76,
                 GradeGoal: 80,
                 GradableItems: [5, 6, 12],
+                GradeNeeded: 80,
+                CourseRatio: 0,
+                PercentageDone: 0,
             };
             courseDetails.CourseName = "SENG350";
             courseDetails.PerceivedDifficulty = 1;
             courseDetails.CurrentGrade = 50;
             courseDetails.GradeGoal = 70;
+            courseDetails.GradeNeeded = 70;
+            courseDetails.CourseRatio = 30;
+            courseDetails.PercentageDone = 40;
             return courseDetails;
         } else if (this.tableName === "GradableItem") {
             if (query2.GradableItemID === 2) {
@@ -162,6 +176,7 @@ export class BaseModel {
                 CurrentGrade: 0,
                 GItemAccuracy: 0,
                 StudiedTime: 0,
+                RecommendedTime: 0,
             };
             gradableItemDetails.CourseID = 2;
             gradableItemDetails.GradableItemName = "Assignment2";
@@ -169,6 +184,8 @@ export class BaseModel {
             gradableItemDetails.CurrentGrade = 100;
             gradableItemDetails.DueDate = new Date("2019-12-01");
             gradableItemDetails.StudiedTime = 7;
+            gradableItemDetails.RecommendedTime = 10;
+            gradableItemDetails.GItemAccuracy = 1;
             return gradableItemDetails;
         } else if (this.tableName === "User") {
             if (query2.StudentID === 2) {
@@ -195,6 +212,9 @@ export class BaseModel {
                 CurrentGrade: 76,
                 GradeGoal: 80,
                 GradableItems: [5, 6, 12],
+                GradeNeeded: 80,
+                CourseRatio: 0,
+                PercentageDone: 0,
             };
             value.forEach((element) => {
                 courseDetails.GradableItems.push(element);
@@ -231,6 +251,9 @@ export class BaseModel {
                 CurrentGrade: 76,
                 GradeGoal: 80,
                 GradableItems: [5, 6, 12],
+                GradeNeeded: 80,
+                CourseRatio: 0,
+                PercentageDone: 0,
             };
             value.forEach((element) => {
                 courseDetails.GradableItems.pop();

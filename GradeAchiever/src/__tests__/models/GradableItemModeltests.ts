@@ -17,6 +17,7 @@ describe("GradableItem Model Tests", () => {
             CurrentGrade: 0,
             GItemAccuracy: 0,
             StudiedTime: 0,
+            RecommendedTime: 0,
         };
     });
 
@@ -78,7 +79,6 @@ describe("GradableItem Model Tests", () => {
     });
 
     it("Should edit gradable item due date succesfully", async () => {
-        // const newDate = new Date("2019-12-01");
         const newDate = "2019-12-01";
         const dateObj = new Date(newDate);
         return gradableItemModel.EditDueDate(1, newDate)
@@ -94,27 +94,26 @@ describe("GradableItem Model Tests", () => {
         });
     });
 
+    it("Should edit recommeneded time succesfully", async () => {
+        return gradableItemModel.AddRecommendedTime(1, 10)
+        .then((gradableItemDetails: any) => {
+            expect(gradableItemDetails.RecommendedTime).toEqual(10);
+        });
+    });
+
+    it("Should edit gradable item accuracy succesfully", async () => {
+        return gradableItemModel.AddGItemAccuracy(1, 1)
+        .then((gradableItemDetails: any) => {
+            expect(gradableItemDetails.GItemAccuracy).toEqual(1);
+        });
+    });
+
     it("Should get gradable item details unsuccesfully", async () => {
         return gradableItemModel.GetGradableItemDetails(2)
         .then((gradableItemDetails: any) => {
             expect(gradableItemDetails).toEqual([]);
         });
     });
-
-    // it("Should create a new gradable item unsuccesfully", async () => {
-    //     const gradableItemID = startGradableItem.GradableItemID;
-    //     return gradableItemModel.CreateItem(startGradableItem)
-    //     .then((gradableItemDetails: any) => {
-    //         expect(gradableItemDetails).toEqual([]);
-    //     });
-    // });
-
-    // it("Should get a new ID unsuccesfully", async () => {
-    //     return gradableItemModel.GetNewID()
-    //     .then((newID: any) => {
-    //         expect(gradableItemDetails).toEqual([]);
-    //     });
-    // });
 
     it("Should delete a gradable item unsuccesfully", async () => {
         return gradableItemModel.DeleteGradableItem(2)
@@ -152,7 +151,6 @@ describe("GradableItem Model Tests", () => {
     });
 
     it("Should edit gradable item due date unsuccesfully", async () => {
-        // const newDate = new Date("2019-12-01");
         const newDate = "2019-12-01";
         const dateObj = new Date(newDate);
         return gradableItemModel.EditDueDate(2, newDate)
@@ -163,6 +161,20 @@ describe("GradableItem Model Tests", () => {
 
     it("Should add study time to gradable item unsuccesfully", async () => {
         return gradableItemModel.AddStudyTime(2, 7)
+        .then((gradableItemDetails: any) => {
+            expect(gradableItemDetails).toEqual([]);
+        });
+    });
+
+    it("Should edit recommened time succesfully unsuccesfully", async () => {
+        return gradableItemModel.AddRecommendedTime(2, 10)
+        .then((gradableItemDetails: any) => {
+            expect(gradableItemDetails).toEqual([]);
+        });
+    });
+
+    it("Should edit gradable item accuracy unsuccesfully", async () => {
+        return gradableItemModel.AddGItemAccuracy(2, 1)
         .then((gradableItemDetails: any) => {
             expect(gradableItemDetails).toEqual([]);
         });

@@ -17,6 +17,9 @@ describe("Course Model Tests", () => {
             CurrentGrade: 76,
             GradeGoal: 80,
             GradableItems: [5, 6, 12],
+            GradeNeeded: 80,
+            CourseRatio: 0,
+            PercentageDone: 0,
         };
     });
 
@@ -91,6 +94,27 @@ describe("Course Model Tests", () => {
         });
     });
 
+    it("Should edit grade needed succesfully", async () => {
+        return courseModel.EditGradeNeeded(1, 70)
+        .then((courseDetails: any) => {
+            expect(courseDetails.GradeNeeded).toEqual(70);
+        });
+    });
+
+    it("Should edit percentage done succesfully", async () => {
+        return courseModel.EditPercentageDone(1, 40)
+        .then((courseDetails: any) => {
+            expect(courseDetails.PercentageDone).toEqual(40);
+        });
+    });
+
+    it("Should edit course ratio succesfully", async () => {
+        return courseModel.EditCourseRatio(1, 30)
+        .then((courseDetails: any) => {
+            expect(courseDetails.CourseRatio).toEqual(30);
+        });
+    });
+
     it("Should get all course details unsuccesfully", async () => {
         return courseModel.GetCourseDetails(2)
         .then((courseDetails: any) => {
@@ -142,6 +166,27 @@ describe("Course Model Tests", () => {
 
     it("Should edit grade goal unsuccesfully", async () => {
         return courseModel.EditGradeGoal(2, 70)
+        .then((courseDetails: any) => {
+            expect(courseDetails).toEqual([]);
+        });
+    });
+
+    it("Should edit grade needed unsuccesfully", async () => {
+        return courseModel.EditGradeNeeded(2, 70)
+        .then((courseDetails: any) => {
+            expect(courseDetails).toEqual([]);
+        });
+    });
+
+    it("Should edit percentage done unsuccesfully", async () => {
+        return courseModel.EditPercentageDone(2, 40)
+        .then((courseDetails: any) => {
+            expect(courseDetails).toEqual([]);
+        });
+    });
+
+    it("Should edit course ratio unsuccesfully", async () => {
+        return courseModel.EditCourseRatio(2, 30)
         .then((courseDetails: any) => {
             expect(courseDetails).toEqual([]);
         });
