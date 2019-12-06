@@ -82,7 +82,7 @@ export class CourseRoute extends BaseRoute {
         .catch((error) => {
            this.render(req, res, "error", error);
         })
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
         });
     }
@@ -119,7 +119,7 @@ export class CourseRoute extends BaseRoute {
             console.log("rendering userhome");
             res.redirect(307, "/course");
         })
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
         });
     }
@@ -137,7 +137,7 @@ export class CourseRoute extends BaseRoute {
                 res.sendStatus(500);
             }
         })
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
         });
 
@@ -156,7 +156,7 @@ export class CourseRoute extends BaseRoute {
                 res.sendStatus(500);
             }
         })
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
         });
 
@@ -175,7 +175,7 @@ export class CourseRoute extends BaseRoute {
                 res.sendStatus(500);
             }
         })
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
         });
     }
@@ -193,7 +193,7 @@ export class CourseRoute extends BaseRoute {
                 res.sendStatus(500);
             }
         })
-        .catch((error)=>{
+        .catch((error) => {
             console.log(error);
         });
     }

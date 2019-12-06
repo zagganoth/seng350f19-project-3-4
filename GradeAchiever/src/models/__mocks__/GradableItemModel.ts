@@ -152,7 +152,6 @@ export class GradableItemModel {
         }
     }
 
-
     public DeleteGradableItem(id: number) {
         if (id === 0) {
             const retVal = {

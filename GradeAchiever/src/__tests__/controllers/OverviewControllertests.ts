@@ -17,6 +17,6 @@ describe("Overview Controller Tests", () => {
         .then((returnVal: any) => {
             expect(returnVal.length).toEqual(3);
         })
-        .catch((error)=> error);
+        .catch((error) => error);
     });
 });

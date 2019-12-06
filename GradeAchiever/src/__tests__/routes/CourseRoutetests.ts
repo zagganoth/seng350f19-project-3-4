@@ -47,7 +47,7 @@ describe("Course Routing Tests", () => {
     it("Edits course's grade goal that does not exist", async () => {
         const courseID = 0;
         const newgoal = 88;
-		res.render = () => {return; };
+		      res.render = () => {return; };
         TestCourseRoute.editGradeGoal(req, res, courseID, newgoal);
 		      expect(TestCourseRoute).toBeInstanceOf(CourseRoute);
     });

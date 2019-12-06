@@ -56,7 +56,6 @@ export class CourseModel {
         }
     }
 
-
     public AddGradableItems(id: number, itemsToRemove: number[]) {
         if (id === 0) {
             const retVal = {
@@ -70,7 +69,6 @@ export class CourseModel {
             return retVal;
         }
     }
-
 
     public EditCourseName(id: number, name: string) {
         if (id === 0) {
@@ -100,11 +98,8 @@ export class CourseModel {
         }
     }
 
-
-    public GetNewID(){
+    public GetNewID() {
         return 5;
     }
-
-
 
 }

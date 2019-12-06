@@ -50,7 +50,7 @@ export class SessionRoute extends BaseRoute {
             this.render(req, res, "error", error);
         });
     }
-    
+
     public async ParsePDF(req: Request, res: Response, next: NextFunction, b: any) {
         const parser = new PDFParser();
         // console.log(b.files.file);
@@ -68,8 +68,6 @@ export class SessionRoute extends BaseRoute {
         };
         this.render(req, res, "createcourse", options);
     }
-
-
 
     public async Session(req: Request, res: Response, next: NextFunction, id: number) {
 

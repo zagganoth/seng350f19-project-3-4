@@ -23,7 +23,7 @@ export class UserModel {
         }
     }
 
-    public AddCourse(userid:number, CourseIDs:number[]){
+    public AddCourse(userid: number, CourseIDs: number[]) {
         if (userid === 0) {
             const retVal = {
                 matchedCount: 0,
