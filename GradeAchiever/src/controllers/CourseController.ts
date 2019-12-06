@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response, Router } from "express";
+import {new_item_calculation_and_update} from "../algorithm/Algorithm";
 import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel} from "../models/CourseModel";
 import { UserModel } from "../models/UserModel";
@@ -14,6 +15,7 @@ export class CourseController {
     /* Gets course Details by course ID */
     public async RequestCourse(courseID: number) {
         try {
+            await new_item_calculation_and_update(courseID);
             return this.courseModel.GetCourseDetails(courseID);
         } catch (error) {
             console.log(error);
@@ -47,13 +49,15 @@ export class CourseController {
             GradeGoal: courseDetails.gradegoal,
             PerceivedDifficulty: courseDetails.perceivedDiff,
             StudentID: courseDetails.user,
+            GradeNeeded: courseDetails.gradegoal,
         };
         await this.courseModel.CreateNewCourse(course); // courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
 
         // these steps should not be done here, these should be put somewhere else. This function should return the course id which then gets added tothe user object.
 
         const userModel = new UserModel(courseDetails.user);
-        return userModel.AddCourse(courseDetails.user, [courseId]);
+        const retVal = userModel.AddCourse(courseDetails.user, [courseId]);
+        return retVal;
     }
 
     /**
@@ -89,6 +93,7 @@ export class CourseController {
      */
     public async RequestCourseGradableItems(courseID: number) {
         const courseDetails = await this.RequestCourse(courseID);
+        await new_item_calculation_and_update(courseID);
         if ("GradableItems" in courseDetails && courseDetails.GradableItems.length > 0) {
             const gradableItemIDs = courseDetails.GradableItems;
             const returnVal = [];
