@@ -2,7 +2,7 @@ import { course_calculation, item_completed_calculation, new_item_calculation } 
 
 test("test item completed calculation", () => {
 	let itemRatio = 0;
-	itemRatio = item_completed_calculation(80, 8, 4, 40);
+	itemRatio = item_completed_calculation(80, 8, 4, 40, 20);
 	expect(itemRatio === 4);
 	},
 );
