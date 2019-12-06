@@ -3,7 +3,7 @@ import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel } from "../models/CourseModel";
 import { GradableItemModel } from "../models/GradableItemModel";
 
-// export class Algorithm {
+// export new class Algorithm {
 // courseController = new CourseController()
 // gradableItemController = new GradableItemController();
 const gradableItemModel = new GradableItemModel();
