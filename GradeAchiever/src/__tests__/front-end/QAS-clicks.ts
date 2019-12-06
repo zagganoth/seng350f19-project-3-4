@@ -14,7 +14,7 @@ describe("Web App", () => {
     const InputClickMax: number = 5;
     beforeEach(async () => {
         try {
-            await page.goto("http://localhost:3000", {waitUntil: "load"});
+            await page.goto("http://localhost:8080", {waitUntil: "load"});
         } catch (error) {
             expect(true).toEqual(false);
         }
@@ -22,7 +22,7 @@ describe("Web App", () => {
 
     it("creates a new user in < 5 clicks", async () => {
         try {
-            await page.goto("http://localhost:3000", {waitUntil: "load"});
+            await page.goto("http://localhost:8080", {waitUntil: "load"});
             let clicks = 0;
             await page.type("input[type='text'][name='name']", "testuser");
             clicks += 1;
@@ -34,6 +34,7 @@ describe("Web App", () => {
             expect(page.url()).toContain("newUser");
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
         } catch (error) {
+            console.log(error);
             expect(true).toEqual(false);
         }
         // await page.click(".logout");
@@ -53,6 +54,7 @@ describe("Web App", () => {
             expect(page.url()).toContain("overview");
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
         } catch (error) {
+            console.log(error);
             expect(true).toEqual(false);
         }
     }, 15000);
@@ -81,6 +83,7 @@ describe("Web App", () => {
             clicks++;
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
         } catch (error) {
+            console.log(error);
             expect(true).toEqual(false);
         }
     }, 15000);
@@ -146,6 +149,7 @@ describe("Web App", () => {
             // expect(page.url()).toContain("newGradableItem");
             expect(clicks).toBeLessThanOrEqual(InputClickMax);
         } catch (error) {
+            console.log(error);
             expect(true).toEqual(false);
         }
     }, 15000);
