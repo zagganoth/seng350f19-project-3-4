@@ -1,17 +1,31 @@
 language: node_js
+dist: trusty
+sudo: required
 node_js:
   - "node"
-
+env:
+  - LHCI_GITHUB_TOKEN=438c389b7b70399e97ad252b55b04b84d2e7166c
 services:
   - docker
+addons: 
+  chrome: stable
 
-    #before_install:
-    #  - docker build -t grade-achiever ./GradeAchiever
-  
+before_install:
+
+  #- tsc -p ./GradeAchiever/
+  #- docker build -t grade-achiever ./GradeAchiever
+  - docker-compose -f ./GradeAchiever/docker-compose.yml build
+  - docker-compose -f ./GradeAchiever/docker-compose.yml up -d
+  - sleep 5
+
 install:
   - npm --prefix ./GradeAchiever install
-
+  - npm install -g @lhci/cli@0.3.x 
 script:
   - npm --prefix ./GradeAchiever run tslint-test
+  - curl localhost:8080
+  - lhci autorun
   - npm --prefix ./GradeAchiever run compile
   - npm --prefix ./GradeAchiever run test
+after_script:
+  - docker-compose -f ./GradeAchiever/docker-compose.yml down
