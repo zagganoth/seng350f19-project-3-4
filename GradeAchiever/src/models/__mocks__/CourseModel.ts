@@ -42,4 +42,64 @@ export class CourseModel {
         }
     }
 
+    public DeleteGradableItems(id: number, itemsToRemove: number[]) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+    public AddGradableItems(id: number, itemsToRemove: number[]) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+    public EditCourseName(id: number, name: string) {
+        if (id === 0) {
+            const retVal = {
+                matchedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                matchedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+    public CreateNewCourse(Course: ICourse) {
+        if (Course.CourseID === 0) {
+            const retVal = {
+                insertedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                insertedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
+    public GetNewID() {
+        return 5;
+    }
+
 }

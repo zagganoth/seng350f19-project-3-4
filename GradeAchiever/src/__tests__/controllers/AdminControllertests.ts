@@ -15,7 +15,8 @@ describe("Session Controller Tests", () => {
     });
 
     it("Deletes an existing user", async () => {
-        return controller.DeleteUser(id).then((users: any) => {
+        controller.DeleteUser(id)
+        .then((users: any) => {
             expect(users.length).toEqual(2);
         });
     });
@@ -30,7 +31,7 @@ describe("Session Controller Tests", () => {
             StudentID: 0,
             StudentName: "Test User",
         };
-        return controller.CreateUser(user)
+        controller.CreateUser(user)
         .then((returnVal: any) => {
             expect(returnVal.insertedCount).toEqual(1);
         });
@@ -43,7 +44,7 @@ describe("Session Controller Tests", () => {
             IsAdmin: false,
         };
         const studentID = 5;
-        return controller.EditUser(studentID, userDetails)
+        controller.EditUser(studentID, userDetails)
         .then((returnVal: any) => {
             expect(returnVal.matchedCount).toEqual(1);
         });

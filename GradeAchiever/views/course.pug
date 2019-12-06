@@ -30,7 +30,7 @@ block content
             button.plus#addrow(onclick="addNewRow(\'newgradableitem\')")
           div
             input.submit(type='submit',value='Submit')
-  div.container-fluid
+  div.container-fluid(onload="CourseProgress()")
     div.row
       button#editname(type='button' onclick='editCourseName()')
         h1.course-title#name(title="Edit course name") #{courseDetails.CourseName}
@@ -42,17 +42,19 @@ block content
         div.calendar
           if courseDetails
             h3 Calendar        
-            table.gradable-items
-              tr
+            table.gradable-items.fixed_header
+              tr.iteminfo
+                th Recommended Study Time
                 th Gradable Item
                 th Due Date
               each gradableItem in gradableItems
                 tr(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
+                  td #{gradableItem.RecommendedTime}
                   td #{gradableItem.GradableItemName}
                   td #{gradableItem.DueDate}
                 tr(style='display:none',id=gradableItem.GradableItemID + "_details")
                   td(colspan=3)
-                    table
+                    table.extra
                       tr
                         td Weight: #{gradableItem.Weight}%
                         if(gradableItem.CurrentGrade !== undefined && gradableItem.CurrentGrade > 0)
@@ -82,9 +84,12 @@ block content
                       input(type='hidden',name='id',value=gradableItem.GradableItemID)
                       input(type='hidden',name='course',value=gradableItem.CourseID)
                       input(type='hidden',name='user',value=thisID)
+                      input(type='hidden',name='pagename',value='course')
+                      input(type='hidden',name='courseID',value=gradableItem.CourseID)
+                      input(type='hidden',name='thisID',value=thisID)
                       input(type='hidden',name='prevHours',value=gradableItem.StudiedTime)
 
-                      table
+                      table.extra
                         tr
                           th Name
                           th Due Date
@@ -112,7 +117,7 @@ block content
                               p N/A
                         tr
                           td(colspan=3)
-                            input(type='submit')
+                            input.submit.itemeditsubmit(type='submit', value="Submit")
           else
             h3 You haven't added any gradable items.
           div.plus

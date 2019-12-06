@@ -35,7 +35,7 @@ export class CourseController {
                 GradableItemName: gradableItem.name,
                 StudiedTime: 0,
                 Weight: gradableItem.weight,
-
+                RecommendedTime: gradableItem.weight / 2,
             };
             gradableItems.push(await this.CreateGradableItem(g));
         }
@@ -64,7 +64,7 @@ export class CourseController {
         const gradableItems = [];
         for (const gradableItem of courseDetails.GradableItems) {
             try {
-                const g: IGradableItem = {
+                const item: IGradableItem = {
                     CourseID: courseID,
                     CurrentGrade: 0,
                     DueDate: gradableItem.duedate,
@@ -73,9 +73,9 @@ export class CourseController {
                     GradableItemName: gradableItem.name,
                     StudiedTime: 0,
                     Weight: gradableItem.weight,
-
+                    RecommendedTime: gradableItem.weight,
                 };
-                gradableItems.push(await this.CreateGradableItem(g));
+                gradableItems.push(await this.CreateGradableItem(item));
             } catch (error) {
                 console.log(error);
                 console.log("creating item failed :(");
@@ -134,6 +134,7 @@ export class CourseController {
             return -1;
         }
     }
+
     public async EditGradableItem(g: IGradableItem) {// gradableItemID: number, name: string, dueDate: Date, hours: number, grade: number) {
         try {
             g.GradableItemID = Number(g.GradableItemID);
@@ -142,6 +143,7 @@ export class CourseController {
             await this.gradableItemController.EditItemName(g.GradableItemID, g.GradableItemName);
             await this.gradableItemController.EditStudyTime(g.GradableItemID, g.StudiedTime);
             await this.gradableItemController.EditGradableItemWeight(g.GradableItemID, g.Weight);
+            return g.GradableItemID;
         } catch (error) {
             console.log(error);
             return [];

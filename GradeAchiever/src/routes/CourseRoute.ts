@@ -34,6 +34,7 @@ export class CourseRoute extends BaseRoute {
         });
     }
     private courseController = new CourseController();
+
     public async editGradableItem(req: Request, res: Response, next: NextFunction) {
         const gItem = {} as IGradableItem;
         gItem.GradableItemName = req.body.name;
@@ -80,6 +81,9 @@ export class CourseRoute extends BaseRoute {
         })
         .catch((error) => {
            this.render(req, res, "error", error);
+        })
+        .catch((error) => {
+            console.log(error);
         });
     }
 
@@ -114,6 +118,9 @@ export class CourseRoute extends BaseRoute {
         .then(() => {
             console.log("rendering userhome");
             res.redirect(307, "/course");
+        })
+        .catch((error) => {
+            console.log(error);
         });
     }
 
@@ -129,6 +136,9 @@ export class CourseRoute extends BaseRoute {
             } else {
                 res.sendStatus(500);
             }
+        })
+        .catch((error) => {
+            console.log(error);
         });
 
     }
@@ -145,6 +155,9 @@ export class CourseRoute extends BaseRoute {
             } else {
                 res.sendStatus(500);
             }
+        })
+        .catch((error) => {
+            console.log(error);
         });
 
     }
@@ -161,6 +174,9 @@ export class CourseRoute extends BaseRoute {
             } else {
                 res.sendStatus(500);
             }
+        })
+        .catch((error) => {
+            console.log(error);
         });
     }
 
@@ -176,6 +192,9 @@ export class CourseRoute extends BaseRoute {
             } else {
                 res.sendStatus(500);
             }
+        })
+        .catch((error) => {
+            console.log(error);
         });
     }
 

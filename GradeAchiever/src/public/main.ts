@@ -303,3 +303,11 @@ function RemoveRow(tableid: string, rowNum: number) {
         toggleAddGradableItem();
     }
 }
+
+/*Calculates how far into course student is */
+function CourseProgress() {
+    const date: Date = new Date();
+    const rows = document.getElementsByClassName("iteminfo");
+    console.log(rows);
+    const progess = 0;
+}

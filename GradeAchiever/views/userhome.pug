@@ -8,9 +8,11 @@ block content
       //input(id='outlineUpload',onchange='parsePDF("outlineUpload")',type='file')
       form(name='outlineUpload',action='/pdfparse',method='post',enctype='multipart/form-data')
         h1 Please upload a course outline PDF (optional)
-        input(type="file",name="file",id="file")
-        input(type='hidden',name='studentid',value=studentDetails.StudentID)
-        input#courseAddConfirm(type="submit")
+        div#fileupload
+          input#file(type="file",name="file")
+          input(type='hidden',name='studentid',value=studentDetails.StudentID)
+          input.submit#filesubmit(type="submit", value='Proceed')
+
   div.container-fluid
     button(class='openBtn',onclick='toggleAddCourse()',title="Toggle Overlay") Add New Course
     h1 Overview Page
@@ -19,19 +21,21 @@ block content
       div.calendar
         if courseDetails && courseDetails.length > 0
           h3 Calendar        
-          table.gradable-items
-            tr
+          table.gradable-items.fixed_header
+            tr.fixed_header
+              th Recommended Study Hours
               th Course Name
               th Gradable Item Name
               th Due Date
             each gradableItem in gradableItemDetails
               tr.expanditem(onclick='expandGradableItem('+gradableItem.GradableItemID+')')
+                td #{gradableItem.RecommendedTime}
                 td #{gradableItem.CourseName}
                 td #{gradableItem.GradableItemName}
                 td #{gradableItem.DueDate}
               tr(style='display:none',id=gradableItem.GradableItemID + "_details")
-                td(colspan=3)
-                    table
+                td(colspan=4)
+                    table.extra
                       tr
                         td Weight: #{gradableItem.Weight}%
                         if(gradableItem.CurrentGrade!== undefined && gradableItem.CurrentGrade > 0)
@@ -51,17 +55,18 @@ block content
                             input(type='hidden',name='id',value=gradableItem.GradableItemID)
                             input(type='hidden',name='course',value=gradableItem.CourseID)
                             input(type='hidden',name='user',value=studentDetails.StudentID)
-                            button(type='submit',style='width:100%;height:100%') delete
-              tr(style='display:none',id=gradableItem.GradableItemID + "_edit")
-                td(colspan=3)
+                            button(type='submit',style='width:100%;height:100%', value='Submit') delete
+              tr.extra(style='display:none',id=gradableItem.GradableItemID + "_edit")
+                td(colspan=4)
+                  button(onclick='showEditForm(' + gradableItem.GradableItemID + ')') hide
                   form(name='EditItem',action='/editgradableitem',method='post',enctype='multipart/form-data')
                     input(type='hidden',name='pagename',value='overview')
                     input(type='hidden',name='id',value=gradableItem.GradableItemID)
                     input(type='hidden',name='course',value=gradableItem.CourseID)
                     input(type='hidden',name='user',value=studentDetails.StudentID)
                     input(type='hidden',name='prevHours',value=gradableItem.StudiedTime)
-                    button(onclick='showEditForm('+gradableItem.GradableItemID+')') hide
-                    table
+                    //button(onclick='showEditForm('+gradableItem.GradableItemID+')') hide
+                    table.extra
                       tr
                         th Name
                         th Due Date
@@ -73,6 +78,7 @@ block content
                           input(type='date',name='date',value=gradableItem.DueDate)
                         td
                           input.noPadding(type='number',name='weight',value=gradableItem.Weight)
+                      
                       tr
                         th Current Grade
                         th Add Hours
@@ -88,8 +94,9 @@ block content
                           else
                             p N/A
                       tr
-                        td(colspan=3)
-                          input.submitedit(type='submit')
+                        td(colspan=4)
+                          input.submit.itemeditsubmit(type='submit', value="Submit")
+
 
 
 

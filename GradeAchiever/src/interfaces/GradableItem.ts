@@ -7,4 +7,5 @@ interface IGradableItem {
     CurrentGrade: number;
     GItemAccuracy: number;
     StudiedTime: number;
+    RecommendedTime: number;
 }
