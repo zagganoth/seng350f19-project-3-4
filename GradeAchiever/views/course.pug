@@ -134,7 +134,7 @@ block content
                   td Difficulty Level
                   td#diff #{courseDetails.PerceivedDifficulty}
                   td#difficultyinput
-                    input#diffinput(type="text", name="newDifficulty" placeholder=courseDetails.PerceivedDifficulty)
+                    input#diffinput(type="text", name="newDifficulty",value=courseDetails.PerceivedDifficulty)
                   td
                     button.edit#editdiff(type='button' onclick='editDifficulty()') Edit
                   td
