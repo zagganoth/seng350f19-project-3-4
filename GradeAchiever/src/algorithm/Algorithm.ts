@@ -3,7 +3,7 @@ import { GradableItemController } from "../controllers/GradableItemController";
 import { CourseModel } from "../models/CourseModel";
 import { GradableItemModel } from "../models/GradableItemModel";
 
-// export new class Algorithm {
+// export class Algorithm {
 // courseController = new CourseController()
 // gradableItemController = new GradableItemController();
 const gradableItemModel = new GradableItemModel();
@@ -18,10 +18,11 @@ export async function item_completed_calculation_and_update(id: number) {
     const gradableItemDetails = await gradableItemModel.GetGradableItemDetails(id);
     const courseID = gradableItemDetails.CourseID;
     const grade = gradableItemDetails.CurrentGrade;
-    const hoursRecommended = gradableItemDetails.RecommendedTime;
-    const hoursSpent = gradableItemDetails.StudiedTime;
+    const perceivedDifficulty = await courseModel.PerceivedDifficulty;
+    const hoursSpent = await gradableItemDetails.StudiedTime;
     const gradeGoal = (await courseModel.GetCourseDetails(courseID)).GradeGoal;
-    const itemRatio = item_completed_calculation(gradeGoal, hoursSpent, hoursRecommended, grade);
+    const itemWorth = await gradableItemDetails.Weight;
+    const itemRatio = item_completed_calculation(gradeGoal, hoursSpent, perceivedDifficulty, grade, itemWorth);
     await gradableItemModel.AddGItemAccuracy(Number(id), Number(itemRatio));
     return courseID;
   } catch (error) {
@@ -30,9 +31,25 @@ export async function item_completed_calculation_and_update(id: number) {
   }
 }
 
-export function item_completed_calculation(percentageReccomended: number, hoursSpent: number, hoursRecommended: number, percentageAchieved: number) {
-  const percentageRatio = percentageReccomended / percentageAchieved;
-  const hoursRatio = hoursSpent / hoursRecommended;
+export function item_completed_calculation(percentageGoal: number, hoursSpent: number, inputCourseDifficulty: number, percentageAchieved: number, itemWorth: number) {
+  let courseDifficulty = 1;
+  if (inputCourseDifficulty === 1) {
+    courseDifficulty = .5;
+  }
+  if (inputCourseDifficulty === 2) {
+    courseDifficulty = .75;
+  }
+  if (inputCourseDifficulty === 3) {
+    courseDifficulty = 1;
+  }
+  if (inputCourseDifficulty === 4) {
+    courseDifficulty = 1.25;
+  }
+  if (inputCourseDifficulty === 5) {
+    courseDifficulty = 1.5;
+  }
+  const percentageRatio = percentageGoal / percentageAchieved;
+  const hoursRatio = hoursSpent / (itemWorth / 100 * courseDifficulty * 50 * percentageGoal / 100) ;
   const itemRatio = percentageRatio * hoursRatio;
   return itemRatio;
 }
@@ -79,17 +96,25 @@ export function course_calculation(itemRatio: number[], percentageWorth: number[
   let courseRatio = 0;
   let percentageDone = 0;
   let coursePercent = 0;
-  let coursePercentRetVal = 0;
+  let isItem = false;
   for (let i = 0; i < itemRatio.length; i++) {
     if (percentageAchieved[i] > 1) {
+      isItem = true;
       courseRatio += (Number(percentageWorth[i]) * Number(itemRatio[i])) / 100;
-      percentageDone += Number(percentageWorth[i]);
-      coursePercent += Number(percentageWorth[i]) * Number(percentageAchieved[i]);
-      coursePercentRetVal = Number(percentageAchieved[i]);
+      percentageDone += Number(percentageWorth[i]) / 100;
+      coursePercent += Number (percentageWorth[i])  * Number(percentageAchieved[i]) / 100;
     }
   }
-  const newCourseGoal = ((courseGoal - (coursePercent * percentageDone / 100)) * courseGoal) / (100 - percentageDone);
-  const retVal = [courseRatio, percentageDone, newCourseGoal, coursePercentRetVal];
+  coursePercent = coursePercent / percentageDone;
+  let newCourseGoal = courseGoal;
+  if (isItem) {
+    newCourseGoal = ((courseGoal - (coursePercent * percentageDone))) / ((1 - percentageDone));
+    courseRatio = courseRatio / percentageDone;
+  } else {
+    courseRatio = 1;
+  }
+  percentageDone = percentageDone * 100;
+  const retVal = [courseRatio, percentageDone, newCourseGoal, coursePercent];
   return retVal;
 }
 
@@ -124,28 +149,27 @@ export function new_item_calculation(courseRatio: number, percentageDone: number
   let courseDifficulty = 1;
   if (inputCourseDifficulty === 1) {
     courseDifficulty = .5;
-  } else
-    if (inputCourseDifficulty === 2) {
-      courseDifficulty = .75;
-    } else
-      if (inputCourseDifficulty === 3) {
-        courseDifficulty = 1;
-      } else
-        if (inputCourseDifficulty === 4) {
-          courseDifficulty = 1.25;
-        } else {
-          courseDifficulty = 1;
-        }
-  if (courseGoal < .15) {
+  }
+  if (inputCourseDifficulty === 2) {
+    courseDifficulty = .75;
+    }
+  if (inputCourseDifficulty === 3) {
+    courseDifficulty = 1;
+      }
+  if (inputCourseDifficulty === 4) {
+    courseDifficulty = 1.25;
+  }
+  if (inputCourseDifficulty === 5) {
+    courseDifficulty = 1.5;
+  }
+  if (courseGoal < 15) {
     courseGoal = .15;
   }
-  if (courseGoal > 3) {
-    courseGoal = 3;
+  if (courseGoal > 100) {
+    courseGoal = 100;
   }
-  const itemHours = itemPercentage * courseGoal / 100 * courseDifficulty * 50;
-  /*if ((percentageDone > 0 && courseRatio > 1.001)) {
-    itemHours = ((itemHours * (100 - percentageDone) / 100) + itemHours * (percentageDone * courseRatio)) / 100;
-  }*/
+  let itemHours = (itemPercentage / 100) * courseGoal / 100 * courseDifficulty * 50;
+  itemHours = ((itemHours * courseRatio * percentageDone / 100) + itemHours * (100 - percentageDone) / 100);
   return itemHours;
 }
 
