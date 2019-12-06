@@ -44,8 +44,13 @@ export class SessionRoute extends BaseRoute {
             // console.log(course.studentId);
             // this.Session(req, res, next, Number(course.studentId));
             res.redirect(307, "/overview");
+        })
+        .catch((error) => {
+            console.log(error);
+            this.render(req, res, "error", error);
         });
     }
+    
     public async ParsePDF(req: Request, res: Response, next: NextFunction, b: any) {
         const parser = new PDFParser();
         // console.log(b.files.file);
@@ -63,6 +68,9 @@ export class SessionRoute extends BaseRoute {
         };
         this.render(req, res, "createcourse", options);
     }
+
+
+
     public async Session(req: Request, res: Response, next: NextFunction, id: number) {
 
         const session = new SessionController();
@@ -111,6 +119,10 @@ export class SessionRoute extends BaseRoute {
                 // Loads overview page for new user
                 this.Session(req, res, {} as NextFunction, resp.ops[0].StudentID);
             }
+        })
+        .catch((error) => {
+            console.log(error);
+            this.render(req, res, "error", error);
         });
 
     }

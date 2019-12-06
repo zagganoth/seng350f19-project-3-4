@@ -14,14 +14,14 @@ describe("Session Controller Tests", () => {
     });
 
     it("Gets all users", async () => {
-        return controller.RequestUsers()
+        controller.RequestUsers()
         .then((users: any) => {
             expect(users.length).toEqual(3);
         });
     });
 
     it("Verifies user exists", async () => {
-        return controller.VerifyUser(req, res, next, 1)
+        controller.VerifyUser(req, res, next, 1)
         .then((users: any) => {
             expect(1);
         });
@@ -30,7 +30,7 @@ describe("Session Controller Tests", () => {
     it("Creates a new user", async () => {
         const name = "Test User";
         const email = "test@email.com";
-        return controller.CreateUser(name, email)
+        controller.CreateUser(name, email)
         .then((returnVal: any) => {
             expect(returnVal.insertedCount).toEqual(1);
         });

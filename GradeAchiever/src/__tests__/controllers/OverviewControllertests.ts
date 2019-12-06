@@ -13,9 +13,10 @@ describe("Overview Controller Tests", () => {
     });
 
     it("requests a user and their courses and gradable items", async () => {
-        return controller.RequestUser(userid)
+        controller.RequestUser(userid)
         .then((returnVal: any) => {
             expect(returnVal.length).toEqual(3);
-        });
+        })
+        .catch((error)=> error);
     });
 });

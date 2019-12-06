@@ -152,4 +152,19 @@ export class GradableItemModel {
         }
     }
 
+
+    public DeleteGradableItem(id: number) {
+        if (id === 0) {
+            const retVal = {
+                removedCount: 0,
+            };
+            return retVal;
+        } else {
+            const retVal = {
+                removedCount: 1,
+            };
+            return retVal;
+        }
+    }
+
 }
