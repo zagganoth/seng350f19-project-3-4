@@ -42,9 +42,7 @@ export class CourseModel {
         }
     }
 
-
-
-    public DeleteGradableItems(id: number, itemsToRemove: number[]){
+    public DeleteGradableItems(id: number, itemsToRemove: number[]) {
         if (id === 0) {
             const retVal = {
                 matchedCount: 0,

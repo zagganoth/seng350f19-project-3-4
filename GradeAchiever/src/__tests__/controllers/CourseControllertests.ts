@@ -153,7 +153,7 @@ describe("Course Controller Tests", () => {
             Weight: 15,
             CurrentGrade: 80,
             StudiedTime: 2,
-            RecommendedTime: 10
+            RecommendedTime: 10,
         };
         controller.EditGradableItem(gitem)
         .then((resp: any) => {

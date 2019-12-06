@@ -68,7 +68,6 @@ export class GradableItemModel {
         return 5;
     }
 
-
     public EditGradableItemName(id: number, newGrade: number) {
         if (id === 0) {
             const retVal = {
@@ -82,7 +81,6 @@ export class GradableItemModel {
             return retVal;
         }
     }
-
 
     public EditGradableItemGrade(id: number, newGrade: number) {
         if (id === 0) {
@@ -98,7 +96,6 @@ export class GradableItemModel {
         }
     }
 
-
     public EditDueDate(id: number, newGrade: number) {
         if (id === 0) {
             const retVal = {
@@ -112,7 +109,6 @@ export class GradableItemModel {
             return retVal;
         }
     }
-
 
     public AddStudyTime(id: number, newGrade: number) {
         if (id === 0) {
@@ -128,7 +124,6 @@ export class GradableItemModel {
         }
     }
 
-
     public EditGradableItemWeight(id: number, newGrade: number) {
         if (id === 0) {
             const retVal = {
@@ -142,7 +137,6 @@ export class GradableItemModel {
             return retVal;
         }
     }
-
 
     public EditGradeGoal(id: number, newGrade: number) {
         if (id === 0) {
