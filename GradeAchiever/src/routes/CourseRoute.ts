@@ -17,7 +17,7 @@ export class CourseRoute extends BaseRoute {
             new CourseRoute().editGradeGoal(req, res, req.body.courseID, req.body.newGoal);
         });
         router.post("/editDifficulty", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().editGradeGoal(req, res, req.body.courseID, req.body.newDiff);
+            new CourseRoute().editDifficulty(res, req.body.courseID, req.body.newDiff);
         });
         router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
             new CourseRoute().editName(res, req.body.courseID, req.body.newName);
