@@ -39,11 +39,12 @@ Clone this project from GitHub and from the "GradeAchiever" directory run:
 ``tsc`` to compile
 ``./bin/www`` to run
 ``docker`` stuff 
+The web app will likely not be accessible this way as it is designed to work in docker-compose 
 
 ### Running with Docker
 
 From inside the `GradeAchiever` directory, run `sudo docker-compose up --build`
-
+It should be possible to access the web app at http://localhost:8080
 ## Testing
 Unit test are written using Jest.
 To manually run tests:
