@@ -1,152 +1,135 @@
 import { NextFunction, Request, Response, Router } from "express";
-import {CourseController} from "../controllers/CourseController";
-import {GradableItemModel} from "../models/GradableItemModel";
-import { BaseRoute } from "./route";
+import {new_item_calculation_and_update} from "../algorithm/Algorithm";
+import { GradableItemController } from "../controllers/GradableItemController";
+import { CourseModel} from "../models/CourseModel";
+import { UserModel } from "../models/UserModel";
 
-export class CourseRoute extends BaseRoute {
-    public static create(router: Router) {
+export class CourseController {
 
-        console.log("[CourseRoute::create] Creating course page route.");
-        router.post("/course", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().Course(req, res, Number(req.body.courseID), Number(req.body.thisID));
-        });
-        router.post("/newGradableItem", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().createGradableItems(req, res, next);
-        });
-        router.post("/editGradeGoal", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().editGradeGoal(req, res, req.body.courseID, req.body.newGoal);
-        });
-        router.post("/editDifficulty", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().editGradeGoal(req, res, req.body.courseID, req.body.newDiff);
-        });
-        router.post("/editCourseName", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().editName(res, req.body.courseID, req.body.newName);
-        }); /*
-        router.post("/logStudyHours", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().logGradableItemTime(req, res, next, req.body.gradableItemID, req.body.prevtime, req.body.newtime);
-        });*/
-        router.post("/editgradableitem", (req: Request, res: Response, next: NextFunction) => {
-            // new CourseRoute().editName(req, res, next, req.body.gradableItemID, req.body.newName);
-            new CourseRoute().editGradableItem(req, res, next);
-        });
-        router.post("/deleteitem", (req: Request, res: Response, next: NextFunction) => {
-            new CourseRoute().deleteGradableItem(req, res, next);
-        });
+    private courseModel = new CourseModel();
+    private gradableItemController = new GradableItemController();
+
+    constructor() {
     }
-    private courseController = new CourseController();
 
-    public async editGradableItem(req: Request, res: Response, next: NextFunction) {
-        const gItem = {} as IGradableItem;
-        gItem.GradableItemName = req.body.name;
-        gItem.GradableItemID = req.body.id;
-        gItem.DueDate = req.body.date;
-        gItem.StudiedTime = Number(req.body.hours) + Number(req.body.prevHours);
-        gItem.CurrentGrade = req.body.grade;
-        gItem.Weight = req.body.weight;
-        const courseController = new CourseController();
+    /* Gets course Details by course ID */
+    public async RequestCourse(courseID: number) {
         try {
-            await courseController.EditGradableItem(gItem);
-            res.redirect(307, "/" + req.body.pagename);
+            await new_item_calculation_and_update(courseID);
+            return this.courseModel.GetCourseDetails(courseID);
         } catch (error) {
             console.log(error);
-            this.render(req, res, "error", error);
+            return [];
         }
-        // this.logGradableItemTime(req,res,next,id,0,hours);
-
     }
-    public async deleteGradableItem(req: Request, res: Response, next: NextFunction) {
-        this.courseController.deleteGradableItem(req.body.course, req.body.id)
-        .then((details) => {
-            res.redirect(307, "/" + req.body.pagename);
-        })
-        .catch((error) => {
-            console.log(error);
-            this.render(req, res, "error", error);
-        });
-    }
-    public async Course(req: Request, res: Response, courseID: number, userID: number) {
-        // Then, populate the overview page
-        this.title = "Course Home";
-        this.courseController.RequestCourse(courseID)
-        .then(async (details) => {
-            const gradableItemDetails = await this.courseController.RequestCourseGradableItems(courseID);
 
-            // gradableItemDetails.sort((a, b) => a.DueDate < b.DueDate ? -1 : a.DueDate > b.DueDate ? 1 : 0);
-            const options: object = {
-                courseDetails: details,
-                gradableItems: gradableItemDetails,
-                thisID: userID,
+    public async createCourse(courseDetails: any) {
+        const name: string = courseDetails.name;
+        const courseId = (await this.courseModel.GetNewID()) as number;
+        const gradableItems = [];
+        for (const gradableItem of courseDetails.GradableItems) {
+            const g: IGradableItem = {
+                CourseID: courseId,
+                CurrentGrade: 0,
+                DueDate: gradableItem.duedate,
+                GItemAccuracy: 0,
+                GradableItemID: 0,
+                GradableItemName: gradableItem.name,
+                StudiedTime: 0,
+                Weight: gradableItem.weight,
+                RecommendedTime: gradableItem.weight / 2,
             };
-            this.render(req, res, "course", options);
-        })
-        .catch((error) => {
-           this.render(req, res, "error", error);
-        });
-    }
-
-    /**
-     * creates a new gradable item for a course
-     */
-/*
-    public async createGradableItem(req: Request, res: Response, next: NextFunction, courseID: number, name: string, dueDate: string, weight: number, gItemAccuracy: number = -1) {
-        this.title = "CreateGradableItem";
-        this.courseController.CreateGradableItem(courseID, name, dueDate, weight, gItemAccuracy);
-        res.redirect(307,'/course');
-    }
-*/
-    /**
-     * creates new gradable items for a course
-     */
-    public async createGradableItems(req: Request, res: Response, next: NextFunction) {
-        console.log(req.body.courseID);
-        console.log(req.body.studentID);
-        this.title = "CreateGradableItems";
+            gradableItems.push(await this.CreateGradableItem(g));
+        }
         const course: ICourse = {
-            CourseID: req.body.courseID,
-            CourseName: "",
-            CurrentGrade: 0,
-            GradableItems: req.body.GradableItems,
-            GradeGoal: 0,
-            PerceivedDifficulty: 0,
-            StudentID: 0,
-            GradeNeeded: 0,
+            CourseID: 0,
+            CourseName: name,
+            CurrentGrade: 100,
+            GradableItems: gradableItems,
+            GradeGoal: courseDetails.gradegoal,
+            PerceivedDifficulty: courseDetails.perceivedDiff,
+            StudentID: courseDetails.user,
+            GradeNeeded: courseDetails.gradegoal,
         };
-        this.courseController.createGradableItems(course)
-        .then(() => {
-            console.log("rendering userhome");
-            res.redirect(307, "/course");
-        });
+        await this.courseModel.CreateNewCourse(course); // courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
+
+        // these steps should not be done here, these should be put somewhere else. This function should return the course id which then gets added tothe user object.
+
+        const userModel = new UserModel(courseDetails.user);
+        const retVal = userModel.AddCourse(courseDetails.user, [courseId]);
+        return retVal;
     }
 
     /**
-     * Edits a course grade grade goal
+     * Creates gradable items for a course
      */
-    public async editGradeGoal(req: Request, res: Response, courseID: number, newGoal: number) {
-        this.title = "EditGradeGoal";
-        this.courseController.editCourseGradeGoal(courseID, newGoal)
-        .then((resp) => {
-            if (resp.matchedCount === 1) {
-                res.sendStatus(200);
-            } else {
-                res.sendStatus(500);
+    public async createGradableItems(courseDetails: ICourse)  {
+        const courseID: number = Number(courseDetails.CourseID);
+        const gradableItems = [];
+        for (const gradableItem of courseDetails.GradableItems) {
+            try {
+                const item: IGradableItem = {
+                    CourseID: courseID,
+                    CurrentGrade: 0,
+                    DueDate: gradableItem.duedate,
+                    GItemAccuracy: 0,
+                    GradableItemID: 0,
+                    GradableItemName: gradableItem.name,
+                    StudiedTime: 0,
+                    Weight: gradableItem.weight,
+                    RecommendedTime: gradableItem.weight,
+                };
+                gradableItems.push(await this.CreateGradableItem(item));
+            } catch (error) {
+                console.log(error);
+                console.log("creating item failed :(");
             }
-        });
-
+        }
+        await this.courseModel.AddGradableItems(courseID, gradableItems);
     }
 
-    /*
-     * Edits a courses perceived difficulty
+    /* Gets all gradable items Details in an array of a specified course ID
+     * Called from course view
      */
-    public async editDifficulty(res: Response, courseID: number, newGoal: number) {
-        this.title = "EditDifficulty";
-        this.courseController.editDifficulty(courseID, newGoal)
-        .then((resp) => {
-            if (resp.matchedCount === 1) {
-                res.sendStatus(200);
-            } else {
-                res.sendStatus(500);
+    public async RequestCourseGradableItems(courseID: number) {
+        const courseDetails = await this.RequestCourse(courseID);
+        await new_item_calculation_and_update(courseID);
+        if ("GradableItems" in courseDetails && courseDetails.GradableItems.length > 0) {
+            const gradableItemIDs = courseDetails.GradableItems;
+            const returnVal = [];
+            for (const itemID of gradableItemIDs) {
+                const itemDetails = await this.gradableItemController.RequestGradableItem(itemID);
+                returnVal.push(itemDetails);
             }
-        });
+            return returnVal;
+        } else {
+            console.log("No Gradable items found for course.");
+            return [];
+        }
+    }
+
+    /* Edits course grade goal*/
+
+    public async editCourseGradeGoal(courseID: number, newGoal: number) {
+        return this.courseModel.EditGradeGoal(Number(courseID), Number(newGoal));
+    }
+
+    /* Edits course's perceived difficulty*/
+    public async editDifficulty(courseID: number, newDiff: number) {
+        return this.courseModel.EditPercievedDifficulty(Number(courseID), Number(newDiff));
+    }
+
+    /* Edits course's name*/
+    public async editCourseName(courseID: number, newName: string) {
+        return this.courseModel.EditCourseName(Number(courseID), String(newName));
+    }
+
+    /* Gets course Details by course ID */
+    public async CreateGradableItem(g: IGradableItem) {// courseID: number, name: string, duedate: string, weight: number, gItemAccuracy: number = -1) {
+        try {
+            const returnVal: any = await this.gradableItemController.CreateItem(g);
+            // console.log("course return:");
+            // console.log(returnVal);
 
             // Returns the id of the newly created gradable item
             return returnVal.ops[0].GradableItemID;
@@ -156,7 +139,6 @@ export class CourseRoute extends BaseRoute {
             return -1;
         }
     }
-
     public async EditGradableItem(g: IGradableItem) {// gradableItemID: number, name: string, dueDate: Date, hours: number, grade: number) {
         try {
             g.GradableItemID = Number(g.GradableItemID);
@@ -171,35 +153,27 @@ export class CourseRoute extends BaseRoute {
             return [];
         }
     }
+    /* Adds study time to a gradable item */
 
-     /*
-     * Edits a courses name
-     */
-    public async editName(res: Response, courseID: number, newName: string) {
-        this.title = "EditDifficulty";
-        this.courseController.editCourseName(courseID, newName)
-        .then((resp) => {
-            if (resp.matchedCount === 1) {
-                res.sendStatus(200);
-            } else {
-                res.sendStatus(500);
-            }
-        });
+    // this one probably needs to rely on grabbing the previous value from the database? Will need to confirm.
+    public async addStudyTime(gradableItemID: number, prevtime: number, newtime: number) {
+        try {
+            const returnVal: any = await this.gradableItemController.LogStudyTime(gradableItemID, prevtime, newtime);
+            // Returns the new number of hours studied
+            return returnVal.ops[0].StudiedTime;
+        } catch (error) {
+            console.log(error);
+            return -1;
+        }
     }
+    public async deleteGradableItem(courseID: number, gradableItemID: number) {
+        try {
+            await this.courseModel.DeleteGradableItems(courseID, [Number(gradableItemID)]);
+            return this.gradableItemController.deleteGradableItem(gradableItemID);
+        } catch (error) {
+            console.log(error);
+        }
 
-      /*
-     * Edits a courses name
-     */
-    public async logGradableItemTime(res: Response, gradableItemID: number,  prevtime: number, newtime: number) {
-        this.title = "AddStudyTime";
-        this.courseController.addStudyTime(gradableItemID, prevtime, newtime)
-        .then((resp) => {
-            if (resp.matchedCount === 1) {
-                res.sendStatus(200);
-            } else {
-                res.sendStatus(500);
-            }
-        });
     }
 
 }
