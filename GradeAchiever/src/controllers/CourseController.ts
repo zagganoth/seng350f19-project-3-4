@@ -16,7 +16,11 @@ export class CourseController {
     public async RequestCourse(courseID: number) {
         try {
             await new_item_calculation_and_update(courseID);
-            return this.courseModel.GetCourseDetails(courseID);
+            return this.courseModel.GetCourseDetails(courseID)
+            .catch((error)=>{
+                console.log(error);
+                return [];
+            })
         } catch (error) {
             console.log(error);
             return [];
