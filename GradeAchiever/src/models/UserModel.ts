@@ -32,7 +32,6 @@ export class UserModel extends BaseModel {
             console.log(error);
             return [];
         });
-
     }
 
     public async AddCourse(userID: number, itemsToAdd: number[]) {
