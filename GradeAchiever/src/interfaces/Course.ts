@@ -6,4 +6,5 @@ interface ICourse {
  CurrentGrade: number;
  GradeGoal: number;
  GradableItems: any[];
+ GradeNeeded: number;
 }
