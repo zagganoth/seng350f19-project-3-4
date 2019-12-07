@@ -41,11 +41,9 @@ Clone this project from GitHub and from the "GradeAchiever" directory run:
 ``./bin/www`` to run
 ``docker`` stuff 
 
-In order to run with docker, need to ensure that the location being passed to DbClient is `mongodb://mongo:27017`
+### Running with Docker
 
-Next, build using `docker-compose build` (may need to use with `sudo`).
-
-To run the app, `docker-compose up`.
+From inside the `GradeAchiever` directory, run `sudo docker-compose up --build`
 
 ## Testing
 Unit test are written using Jest.
