@@ -68,7 +68,7 @@ export class GradableItemModel {
         return 5;
     }
 
-    public EditGradableItemName(id: number, newGrade: number) {
+    public EditGradableItemName(id: number, newName: number) {
         if (id === 0) {
             const retVal = {
                 matchedCount: 0,
@@ -98,10 +98,7 @@ export class GradableItemModel {
 
     public EditDueDate(id: number, newGrade: number) {
         if (id === 0) {
-            const retVal = {
-                matchedCount: 0,
-            };
-            return retVal;
+            throw Error;
         } else {
             const retVal = {
                 matchedCount: 1,
@@ -154,10 +151,7 @@ export class GradableItemModel {
 
     public DeleteGradableItem(id: number) {
         if (id === 0) {
-            const retVal = {
-                removedCount: 0,
-            };
-            return retVal;
+            throw Error;
         } else {
             const retVal = {
                 removedCount: 1,

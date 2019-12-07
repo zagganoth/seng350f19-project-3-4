@@ -99,7 +99,11 @@ export class CourseController {
      */
     public async RequestCourseGradableItems(courseID: number) {
         const courseDetails = await this.RequestCourse(courseID);
-        await new_item_calculation_and_update(courseID);
+        try {
+            await new_item_calculation_and_update(courseID);
+        } catch (error) {
+            console.log(error);
+        }
         if ("GradableItems" in courseDetails && courseDetails.GradableItems.length > 0) {
             const gradableItemIDs = courseDetails.GradableItems;
             const returnVal = [];
@@ -175,7 +179,8 @@ export class CourseController {
     public async deleteGradableItem(courseID: number, gradableItemID: number) {
         try {
             await this.courseModel.DeleteGradableItems(courseID, [Number(gradableItemID)]);
-            return this.gradableItemController.deleteGradableItem(gradableItemID);
+            const returnVal = await this.gradableItemController.deleteGradableItem(gradableItemID);
+            return returnVal;
         } catch (error) {
             console.log(error);
         }
