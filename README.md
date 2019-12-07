@@ -19,11 +19,10 @@ Each user can update each gradable item they have by clicking on it on the calen
 
 
 ## Automated 3 QAS Testing
- - We have made use of the jest-puppeteer npm module to write front-end tests for the QASs Data Input Simplicity. . The tests occur as specified in the relevant issue: 
- Usability: User stories are attempted in under 5 clicks by jest-puppeteer
- - For Accessibility, we made use of google-lighthouse as a repo status check in Travis. Whenever Travis runs, we run lighthouse against    the landing page to verify its accessibility. If the page gets a 50 or higher on accessibility, we accept the pull request. 
- These tests are possible because we run a docker container as part of the build and run these tests against it
- - For  Study Time Responsiveness, we have a unit test that runs the algorithm to verify it can compute within 5 seconds.
+ - Usability. We have made use of the jest-puppeteer npm module to write front-end tests for the QASs Data Input Simplicity. The tests occur as specified in the relevant issue: 
+ Usability: User stories are attempted in under 5 clicks by jest-puppeteer. These tests include creating a new course and gradable items by uploading a course outline pdf.
+ - Accessibility. We made use of google-lighthouse as a repo status check in Travis. Whenever Travis runs, we run lighthouse against the landing page to verify its accessibility. If the page gets a 50 or higher on accessibility, we accept the pull request. These tests are possible because we run a docker container as part of the build and run these tests against it
+ - Performance. For Study Time Responsiveness, we have a unit test that runs the algorithm to verify it can compute within 5 seconds.
   
 ## Changed Design Rational
 During the development process, a few architectural designs were changed from the original Module Diagram in Milestone 2. The most notable of these changes was the splitting of session controller functionality into an admin controller and a session controller. This was as during our initial design we overlooked the fact that the session controller would be responsible for both of these functionalities even though they are fairly distinct.
