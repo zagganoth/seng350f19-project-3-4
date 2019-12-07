@@ -4,12 +4,19 @@
 ## Implemented User Stories
 - User Story #7: View current grades:
 Upon launching the app, the user can select an account to log in with, and see their grades on the overview page for each course they are enrolled in.
-- User Story #4: View gradable items:
-Upon landing on the overview page, each user can see each gradable item they have due along with its due date in chronological order.
-- User Story #5 Create/Delete users:
-From the login page, a new user can be created. From the Admin page, an admin user can add create a new regular user or a new admin user and can delete exisitng users (except themselves).
 - User Story #6 Set grade goals:
 From a course home page, a user can view their current grade goal and edit it to better reflect their goals as needed.
+- User Story #5 Create/Delete users:
+From the login page, a new user can be created. From the Admin page, an admin user can add create a new regular user or a new admin user and can delete exisitng users (except themselves).
+- User Story #4: View gradable items:
+Upon landing on the overview page, each user can see each gradable item they have due along with its due date in chronological order.
+- User Story #3: Add a course
+Upon logging in and landing on the overview page, each user can upload a course outline pdf and create a course to see on their overview page.
+- User Story #2: Create/edit gradable items
+Upon navigating to a course page, each user can add gradable items and edit them. Gradable items can be added at time of course creation. It is also possible to edit a gradable item from the overview page by clicking on it on the calendar display.
+- User Story #1: Log time spent on gradable item
+Each user can update each gradable item they have by clicking on it on the calendar view on either the course or overview page. 
+
 
 ## Automated 3 QAS Testing
  - We have made use of the jest-puppeteer npm module to write front-end tests for the QASs Data Input Simplicity. . The tests occur as specified in the relevant issue: 
