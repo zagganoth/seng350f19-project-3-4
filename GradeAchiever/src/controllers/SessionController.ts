@@ -13,12 +13,11 @@ export class SessionController {
      * @param next
      */
     public async RequestUsers() {
-        try {
-            return this.adminModel.GetAllUsers();
-        } catch (error) {
+        return this.adminModel.GetAllUsers()
+        .catch ((error) => {
             console.log(error);
             return [];
-        }
+        });
     }
 
     /**
