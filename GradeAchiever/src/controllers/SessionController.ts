@@ -14,10 +14,10 @@ export class SessionController {
      */
     public async RequestUsers() {
         return this.adminModel.GetAllUsers()
-        .catch ((error)=> {
+        .catch ((error) => {
             console.log(error);
             return [];
-        })
+        });
     }
 
     /**

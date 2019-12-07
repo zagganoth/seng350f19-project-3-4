@@ -17,10 +17,10 @@ export class CourseController {
         try {
             await new_item_calculation_and_update(courseID);
             return this.courseModel.GetCourseDetails(courseID)
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error);
                 return [];
-            })
+            });
         } catch (error) {
             console.log(error);
             return [];
