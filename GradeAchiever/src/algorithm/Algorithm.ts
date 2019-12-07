@@ -124,6 +124,9 @@ export async function new_item_calculation_and_update(courseID: number) {
     const courseRatio = course.CourseRatio;
     const percentageDone = course.PercentageDone;
     const difficulty = course.PerceivedDifficulty;
+    if (course.GradeNeeded === 0) {
+      course.GradeNeeded = course.GradeGoal;
+    }
     const newCourseGoal = course.GradeNeeded;
     const gradableItems = course.GradableItems;
     const i = 0;
@@ -163,13 +166,18 @@ export function new_item_calculation(courseRatio: number, percentageDone: number
     courseDifficulty = 1.5;
   }
   if (courseGoal < 15) {
-    courseGoal = .15;
+    courseGoal = 15;
   }
   if (courseGoal > 100) {
     courseGoal = 100;
   }
+  if (courseRatio === 0) {
+    courseRatio = 1;
+  }
   let itemHours = (itemPercentage / 100) * courseGoal / 100 * courseDifficulty * 50;
-  itemHours = ((itemHours * courseRatio * percentageDone / 100) + itemHours * (100 - percentageDone) / 100);
+  if (percentageDone > 0) {
+    itemHours = ((itemHours * courseRatio * percentageDone / 100) + itemHours * (100 - percentageDone) / 100);
+  }
   return itemHours;
 }
 
