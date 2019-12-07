@@ -28,20 +28,21 @@ export class GradableItemModel extends BaseModel {
      * Returns all details for a gradable item
      */
     public async GetGradableItemDetails(gradableItemID: number) {
-        try {
-            return this.getOne({GradableItemID: Number(gradableItemID)});
-        } catch (error) {
-            console.log(error);
-            return [];
-        }
+        return this.getOne({ GradableItemID: Number(gradableItemID) })
+            .catch((error) => {
+                console.log(error);
+                return [];
+            });
     }
 
     /**
      * Creates a new gradable item
      */
-    public async CreateItem(newGradableItem: IGradableItem) {// courseID: number, gradableItemName: string, dueDate= "", weight: number, gItemAccuracy: number) {
+
+    public async CreateItem(newGradableItem: IGradableItem) {
+        newGradableItem.GradableItemID = await this.GetNewID();
         return this.addOne(newGradableItem)
-        .catch ((error) => {
+        .catch((error) => {
             console.log(error);
             return [];
         });
@@ -50,8 +51,7 @@ export class GradableItemModel extends BaseModel {
     // Gets next new gradable item ID
     public async GetNewID() {
         try {
-            console.log("Gradable Item Model - getting new item ID");
-            const maxRow = await this.getMax({}, {}, {GradableItemID: -1});
+            const maxRow = await this.getMax({}, {}, { GradableItemID: -1 });
             return maxRow[0].GradableItemID + 1;
         } catch (error) {
             console.log(error);
@@ -65,23 +65,22 @@ export class GradableItemModel extends BaseModel {
      * Deletes a gradable item
      */
     public async DeleteGradableItem(gradableItemID: number) {
-        try {
-            return this.deleteOne({GradableItemID: Number(gradableItemID)});
-        } catch (error) {
-            console.log(error);
-            return [];
-        }
+        return this.deleteOne({ GradableItemID: Number(gradableItemID) })
+            .catch((error) => {
+                console.log(error);
+                return [];
+            });
     }
 
     /**
      * Changes the course a gradable item part of
      */
     public async EditCourseID(gradableItemID: number, newID: number) {
-        return this.editOne({GradableItemID: gradableItemID}, {CourseID: newID})
-        .catch ((error) => {
-            console.log(error);
-            return [];
-        });
+        return this.editOne({ GradableItemID: gradableItemID }, { CourseID: newID })
+            .catch((error) => {
+                console.log(error);
+                return [];
+            });
     }
 
     /**
@@ -93,6 +92,7 @@ export class GradableItemModel extends BaseModel {
             console.log(error);
             return [];
         });
+
     }
 
     /**

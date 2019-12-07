@@ -119,6 +119,8 @@ describe("Course Controller Tests", () => {
             CurrentGrade: 100,
             GradeGoal: 82,
             GradeNeeded: 82,
+            CourseRatio: 0,
+            PercentageDone: 0,
         };
         controller.createGradableItems(course)
         .then((resp: any) => {

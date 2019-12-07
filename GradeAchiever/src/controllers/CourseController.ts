@@ -54,6 +54,8 @@ export class CourseController {
             PerceivedDifficulty: courseDetails.perceivedDiff,
             StudentID: courseDetails.user,
             GradeNeeded: courseDetails.gradegoal,
+            CourseRatio: 0,
+            PercentageDone: 0,
         };
         await this.courseModel.CreateNewCourse(course); // courseDetails.user, name, courseDetails.perceivedDiff, 100, courseDetails.gradegoal, gradableItems);
 

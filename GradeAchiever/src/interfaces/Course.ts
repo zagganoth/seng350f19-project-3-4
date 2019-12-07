@@ -7,4 +7,6 @@ interface ICourse {
  GradeGoal: number;
  GradableItems: any[];
  GradeNeeded: number;
+ CourseRatio: number;
+ PercentageDone: number;
 }
