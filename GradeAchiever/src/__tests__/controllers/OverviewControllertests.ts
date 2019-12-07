@@ -13,10 +13,7 @@ describe("Overview Controller Tests", () => {
     });
 
     it("requests a user and their courses and gradable items", async () => {
-        controller.RequestUser(userid)
-        .then((returnVal: any) => {
-            expect(returnVal.length).toEqual(3);
-        })
-        .catch((error) => error);
+        const returnVal = await controller.RequestUser(userid);
+        expect(returnVal.length).toEqual(3);
     });
 });

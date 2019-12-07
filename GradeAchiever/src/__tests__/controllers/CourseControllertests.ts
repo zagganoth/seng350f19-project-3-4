@@ -177,7 +177,40 @@ describe("Course Controller Tests", () => {
         const gradableItemID = 1;
         controller.deleteGradableItem(courseID, gradableItemID)
         .then((resp: any) => {
-            expect(resp.matchedCount).toEqual(1);
+            expect(resp.removedCount).toEqual(1);
+        });
+    });
+
+    it("Tries to delete a gradable item that does not exist", async () => {
+        const courseID = 1;
+        const gradableItemID = 0;
+        controller.deleteGradableItem(courseID, gradableItemID)
+        .then((resp: any) => {
+            expect(true).toEqual(false);
+        })
+        .catch((error) => {
+            expect(true).toEqual(true);
+        });
+    });
+
+    it("Tries to edit a gradable item that does not exist", async () => {
+        const gitem: IGradableItem = {
+            GradableItemID: 0,
+            GradableItemName: "Name",
+            GItemAccuracy: 0.7,
+            CourseID: 1,
+            DueDate: new Date("2019-09-09"),
+            Weight: 15,
+            CurrentGrade: 80,
+            StudiedTime: 2,
+            RecommendedTime: 10,
+        };
+        controller.EditGradableItem(gitem)
+        .then((resp: any) => {
+            expect(true).toEqual(false);
+        })
+        .catch((error) => {
+            expect(true).toEqual(true);
         });
     });
 
@@ -202,5 +235,14 @@ describe("Course Controller Tests", () => {
             expect(resp.insertedCount).toEqual(1);
         });
     });
-
+/*
+    it("Edits a gradable item's name", async () => {
+        const gradableItemID = 1;
+        const NewName = "NewGitemName";
+        controller.EditsAGradable(gradableItemID, NewName);
+        .then((resp: any) => {
+            expect(resp.matchedCount).toEqual(1);
+        });
+    });
+*/
 });
