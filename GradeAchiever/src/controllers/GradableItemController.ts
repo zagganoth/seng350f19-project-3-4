@@ -1,6 +1,9 @@
-import { course_calculation_and_update, item_completed_calculation_and_update, new_item_calculation_and_update } from "../algorithm/Algorithm";
-import { CourseModel } from "../models/CourseModel";
-import { GradableItemModel } from "../models/GradableItemModel";
+import {
+    course_calculation_and_update,
+    item_completed_calculation_and_update,
+    new_item_calculation_and_update,
+} from "../algorithm/Algorithm";
+import {GradableItemModel} from "../models/GradableItemModel";
 
 export class GradableItemController {
 
@@ -24,7 +27,6 @@ export class GradableItemController {
     public async CreateItem(gradableItem: IGradableItem) {
         try {
             gradableItem.GradableItemID = await this.gradableItemModel.GetNewID();
-            await new_item_calculation_and_update(gradableItem.GradableItemID);
             return this.gradableItemModel.CreateItem(gradableItem);
         } catch (error) {
             console.log(error);
@@ -38,14 +40,6 @@ export class GradableItemController {
     */
     public async EditStudyTime(id: number, hours: number) {
         try {
-            await this.gradableItemModel.AddStudyTime(id, hours);
-            const gradeGetter = await this.RequestGradableItem(id);
-            const grade = gradeGetter.CurrentGrade;
-            if (grade !== 0) {
-                const courseID = await item_completed_calculation_and_update(id);
-                await course_calculation_and_update(courseID);
-                await new_item_calculation_and_update(courseID);
-            }
             return this.gradableItemModel.AddStudyTime(id, hours);
         } catch (error) {
             console.log(error);
@@ -64,12 +58,6 @@ export class GradableItemController {
 
     public async EditItemGrade(id: number, grade: number) {
         try {
-            await this.gradableItemModel.EditGradableItemGrade(id, grade);
-            if (grade !== 0) {
-                const courseID = await item_completed_calculation_and_update(id);
-                await course_calculation_and_update(courseID);
-                await new_item_calculation_and_update(courseID);
-            }
             return this.gradableItemModel.EditGradableItemGrade(id, grade);
         } catch (error) {
             console.log(error);
