@@ -3,7 +3,7 @@ Title: Marking Rubric - Project
 Authors: Neil Ernst
 ---
 
-# Running Total (this will change each milestone):   45.5
+# Running Total (this will change each milestone):   69.5
 
 NB: for all milestones, basic clean coding style: comments, standardized indentation, lack of code smells, is expected. Your submission and repository should show the following: 
 	- Travis CI is being used (M3+)
@@ -80,3 +80,37 @@ Marks deducted:
 -----
 
 - The methods are large. The database connection could be moved somewhere else to avoid having large methods.
+
+# Milestone 4 24 / 30
+
+## Marking Guide
+
+- code compiles
+- code conventions/CI from above (commented, code style, design principles)
+- working demo
+- clear explanation of what user stories were satisfied in this iteration
+- design as implemented follows design doc, or change rationale is present in README
+- async is async when necessary
+- TSLint does not complain
+- test suite present/part of CI
+- test coverage reasonable and meaningful
+- explanation of how you are automating testing 3 QAS from your list in M1
+- explanation of integration testing and CI pipeline
+
+
+Marks deducted:
+
+- Code comments. (-2)
+- Test Coverage. (-1)
+- CI build failed. (-2)
+- Does not fully comply the QASs in the implementation(-1) 
+
+
+## Notes M4
+
+(explaining why marks were deducted)
+-----
+
+- Code commenting could be better. For example, in the algorithm file which is very crucial to understand is not commented well. Reduces readability, maintanability.
+- Overall test coverage could be a little better.
+- CI build failed on the last build on deadline day due to failing some of the checks.
